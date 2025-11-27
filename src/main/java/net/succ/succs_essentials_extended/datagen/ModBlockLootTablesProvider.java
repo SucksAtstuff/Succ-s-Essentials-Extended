@@ -16,6 +16,7 @@ import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import net.succ.succs_essentials_extended.block.ModBlocks;
+import net.succ.succs_essentials_extended.item.ModItems;
 
 import java.util.Set;
 
@@ -27,8 +28,15 @@ public class ModBlockLootTablesProvider extends BlockLootSubProvider {
 
     }
 
+
+
     @Override
     protected void generate() {
+        // Define loot tables for ores that drop items similar to diamond ores
+        add(ModBlocks.CHROMIUM_ORE.get(),
+                block -> createOreDrop(ModBlocks.CHROMIUM_ORE.get(), ModItems.CHROMIUM_INGOT.get()));
+        add(ModBlocks.DEEPSLATE_CHROMIUM_ORE.get(),
+                block -> createOreDrop(ModBlocks.DEEPSLATE_CHROMIUM_ORE.get(), ModItems.CHROMIUM_INGOT.get()));
     }
 
     protected LootTable.Builder createMultipleOreDrops (Block pBlock, Item item, float minDrops, float maxDrops) {

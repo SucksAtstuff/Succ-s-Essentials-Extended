@@ -1,5 +1,7 @@
 package net.succ.succs_essentials_extended.datagen;
 
+
+
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceKey;
@@ -16,7 +18,6 @@ import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.succ.succs_essentials_extended.Succs_essentials_extended;
-import net.succ.succs_essentials_extended.block.ModBlocks;
 import net.succ.succs_essentials_extended.item.ModItems;
 
 import java.util.LinkedHashMap;
@@ -43,6 +44,11 @@ public class ModItemModelProvider extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
+        // Register models for ingots
+        basicItem(ModItems.CHROMIUM_INGOT.get());
+
+        basicItem(ModItems.RAW_CHROMIUM.get());
+
 
     }
 

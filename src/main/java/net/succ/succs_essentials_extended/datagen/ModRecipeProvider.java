@@ -10,6 +10,8 @@ import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.ItemLike;
 import net.neoforged.neoforge.common.conditions.IConditionBuilder;
 import net.succ.succs_essentials_extended.Succs_essentials_extended;
+import net.succ.succs_essentials_extended.block.ModBlocks;
+import net.succ.succs_essentials_extended.item.ModItems;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -21,7 +23,10 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
     @Override
     protected void buildRecipes(RecipeOutput recipeOutput){
+        List<ItemLike> CHROMIUM_SMELTABLES = List.of(ModBlocks.CHROMIUM_ORE, ModBlocks.DEEPSLATE_CHROMIUM_ORE);
 
+        oreSmelting(recipeOutput, CHROMIUM_SMELTABLES, RecipeCategory.MISC, ModItems.CHROMIUM_INGOT.get(), 0.25f, 200, "chromium");
+        oreBlasting(recipeOutput, CHROMIUM_SMELTABLES, RecipeCategory.MISC, ModItems.CHROMIUM_INGOT.get(), 0.25f, 100, "chromium");
 
     }
 

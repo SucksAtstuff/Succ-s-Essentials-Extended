@@ -13,12 +13,6 @@ import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.succ.succs_essentials_extended.Succs_essentials_extended;
 import net.succ.succs_essentials_extended.advancement.AllSuccAdvancements;
-import net.succ.succs_essentials_extended.datagen.ModDataMapProvider;
-import net.succ.succs_essentials_extended.datagen.ModGlobalLootModifierProvider;
-import net.succ.succs_essentials_extended.datagen.ModItemModelProvider;
-import net.succ.succs_essentials_extended.datagen.ModItemTagProvider;
-import net.succ.succs_essentials_extended.datagen.ModRecipeProvider;
-import net.succ.succs_essentials_extended.datagen.ModWorldGenProvider;
 
 import java.util.List;
 import java.util.Set;

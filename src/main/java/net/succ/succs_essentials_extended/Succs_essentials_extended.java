@@ -15,6 +15,19 @@ import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
+import net.succ.succs_essentials_extended.block.ModBlocks;
+import net.succ.succs_essentials_extended.block.entity.ModBlockEntities;
+import net.succ.succs_essentials_extended.effect.ModEffects;
+import net.succ.succs_essentials_extended.entity.ModEntities;
+import net.succ.succs_essentials_extended.item.ModCreativeModeTabs;
+import net.succ.succs_essentials_extended.item.ModItems;
+import net.succ.succs_essentials_extended.loot.ModLootModifiers;
+import net.succ.succs_essentials_extended.potion.ModPotions;
+import net.succ.succs_essentials_extended.recipe.ModRecipes;
+import net.succ.succs_essentials_extended.screen.ModMenuTypes;
+import net.succ.succs_essentials_extended.sound.ModSounds;
+import net.succ.succs_essentials_extended.villager.ModVillagers;
+import net.succ.succs_essentials_extended.worldgen.feature.ModFeatures;
 import org.slf4j.Logger;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
@@ -29,13 +42,36 @@ public class Succs_essentials_extended {
     // FML will recognize some parameter types like IEventBus or ModContainer and pass them in automatically.
     public Succs_essentials_extended(IEventBus modEventBus, ModContainer modContainer)
     {
-        // Register the commonSetup method for modloading
+        // Register the commonSetup method for modloading 20
         modEventBus.addListener(this::commonSetup);
 
         // Register ourselves for server and other game events we are interested in.
-        // Note that this is necessary if and only if we want *this* class (Succs_essentials_extended) to respond directly to events.
+        // Note that this is necessary if and only if we want *this* class (ExampleMod) to respond directly to events.
         // Do not add this line if there are no @SubscribeEvent-annotated functions in this class, like onServerStarting() below.
         NeoForge.EVENT_BUS.register(this);
+
+
+        ModItems.register(modEventBus);
+        ModBlocks.register(modEventBus);
+
+        ModEntities.register(modEventBus);
+
+        ModEffects.register(modEventBus);
+
+        ModPotions.register(modEventBus);
+        ModVillagers.register(modEventBus);
+
+        ModFeatures.FEATURES.register(modEventBus);
+
+        ModBlockEntities.register(modEventBus);
+        ModMenuTypes.register(modEventBus);
+
+        ModRecipes.register(modEventBus);
+
+        ModLootModifiers.register(modEventBus);
+        ModSounds.register(modEventBus);
+
+        ModCreativeModeTabs.register(modEventBus);
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);

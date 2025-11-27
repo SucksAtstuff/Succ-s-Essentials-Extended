@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 0.25,
+  "group": "chromium",
+  "ingredient": {
+    "item": "succs_essentials_extended:deesplate_chromium_ore"
+  },
+  "result": {
+    "count": 1,
+    "id": "succs_essentials_extended:chromium_ingot"
+  }
+}
