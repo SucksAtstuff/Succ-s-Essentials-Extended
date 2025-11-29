@@ -1,8 +1,22 @@
 {
   "block.succsessentials_extended.chromium_ore": "Chromium Ore",
   "block.succsessentials_extended.deesplate_chromium_ore": "Deesplate Chromium Ore",
+  "creativetab.succsessentials_extended.armor.tab": "Succ's Essentials Extended Armor",
   "creativetab.succsessentials_extended.blocks.tab": "Succ's Essentials Extended Blocks",
   "creativetab.succsessentials_extended.ingots.tab": "Succ's Essentials Extended Ingots",
+  "creativetab.succsessentials_extended.tools.tab": "Succ's Essentials Extended Tools",
+  "item.succsessentials_extended.chromium_axe": "Chromium Axe",
+  "item.succsessentials_extended.chromium_boots": "Chromium Boots",
+  "item.succsessentials_extended.chromium_chestplate": "Chromium Chestplate",
+  "item.succsessentials_extended.chromium_hammer": "Chromium Hammer",
+  "item.succsessentials_extended.chromium_helmet": "Chromium Helmet",
+  "item.succsessentials_extended.chromium_hoe": "Chromium Hoe",
   "item.succsessentials_extended.chromium_ingot": "Chromium Ingot",
+  "item.succsessentials_extended.chromium_leggings": "Chromium Leggings",
+  "item.succsessentials_extended.chromium_paxel": "Chromium Paxel",
+  "item.succsessentials_extended.chromium_pickaxe": "Chromium Pickaxe",
+  "item.succsessentials_extended.chromium_reinforced_hammer": "Chromium Reinforced Hammer",
+  "item.succsessentials_extended.chromium_shovel": "Chromium Shovel",
+  "item.succsessentials_extended.chromium_sword": "Chromium Sword",
   "item.succsessentials_extended.raw_chromium": "Raw Chromium"
 }

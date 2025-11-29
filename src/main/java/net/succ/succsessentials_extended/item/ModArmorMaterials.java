@@ -1,5 +1,6 @@
 package net.succ.succsessentials_extended.item;
 
+import net.minecraft.Util;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -13,11 +14,21 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.succ.succsessentials_extended.Succsessentials_extended;
 
 
+
 import java.util.EnumMap;
 import java.util.List;
 import java.util.function.Supplier;
 
 public class ModArmorMaterials {
+
+    public static Holder<ArmorMaterial> CHROMIUM_ARMOR_MATERIAL = register("chromium",
+            Util.make(new EnumMap<>(ArmorItem.Type.class), attribute -> {
+                attribute.put(ArmorItem.Type.BOOTS, 7);
+                attribute.put(ArmorItem.Type.LEGGINGS, 10);
+                attribute.put(ArmorItem.Type.CHESTPLATE, 12);
+                attribute.put(ArmorItem.Type.HELMET, 7);
+                attribute.put(ArmorItem.Type.BODY, 8);
+            }), 25, 5.0f, 0.35f, () -> ModItems.CHROMIUM_INGOT.get());
 
     private static Holder<ArmorMaterial> register(String name, EnumMap<ArmorItem.Type, Integer> typeProtection,
                                                   int enchantability, float toughness, float knockbackResistance,

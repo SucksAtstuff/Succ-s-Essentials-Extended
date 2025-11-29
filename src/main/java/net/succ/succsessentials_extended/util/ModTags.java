@@ -17,6 +17,9 @@ public class ModTags {
     }
 
     public static class Blocks {
+        public static final TagKey<Block> NEEDS_CHROMIUM_TOOL = createTag("needs_chromium_tool");
+        public static final TagKey<Block> INCORRECT_FOR_CHROMIUM_TOOL = createTag("incorrect_for_chromium_tool");
+
 
         public static final TagKey<Block> PAXEL_MINEABLE = createTag("mineable/paxel");
 

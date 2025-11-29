@@ -169,7 +169,7 @@ public class ModLangProvider extends LanguageProvider {
             //
             // So we must convert "succs_essentials_tab_gems" → "gems"
 
-            String clean = path.replace("succs_essentials_extended_tab_", ""); // "gems"
+            String clean = path.replace("succsessentials_extended_tab_", ""); // "gems"
 
             // Build proper lang key
             String key = "creativetab." + Succsessentials_extended.MOD_ID + "." + clean + ".tab";

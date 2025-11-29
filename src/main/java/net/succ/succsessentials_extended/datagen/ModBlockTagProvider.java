@@ -30,9 +30,12 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .addTag(BlockTags.MINEABLE_WITH_AXE)
                 .addTag(BlockTags.MINEABLE_WITH_SHOVEL);
 
-        this.tag(BlockTags.NEEDS_DIAMOND_TOOL)
+        tag(net.succ.succsmod.util.ModTags.Blocks.NEEDS_ATHERIUM_TOOL)
                 .add(ModBlocks.CHROMIUM_ORE.get())
                 .add(ModBlocks.DEEPSLATE_CHROMIUM_ORE.get());
+
+        this.tag(BlockTags.NEEDS_DIAMOND_TOOL);
+
 
         this.tag(Tags.Blocks.NEEDS_NETHERITE_TOOL);
 
@@ -56,8 +59,6 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         this.tag(BlockTags.INCORRECT_FOR_WOODEN_TOOL)
                 .addTag(Tags.Blocks.NEEDS_NETHERITE_TOOL)
                 .addTag(BlockTags.NEEDS_DIAMOND_TOOL);
-
-
 
         tag(BlockTags.INCORRECT_FOR_NETHERITE_TOOL);
 
