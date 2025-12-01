@@ -7,7 +7,9 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.succ.succsessentials_extended.Succsessentials_extended;
+import net.succ.succsessentials_extended.block.ModBlocks;
 import net.succ.succsessentials_extended.item.ModItems;
+import net.succ.succsessentials_extended.util.ModTags;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.concurrent.CompletableFuture;
@@ -24,23 +26,18 @@ public class ModItemTagProvider extends ItemTagsProvider {
         //  VANILLA TOOL TAGS (SWORDS, PICKAXES, AXES, SHOVELS, HOES)
         // --------------------------------------------------
 
-        // SWORDS
         tag(ItemTags.SWORDS)
                 .add(ModItems.CHROMIUM_SWORD.get());
 
-        // PICKAXES
         tag(ItemTags.PICKAXES)
                 .add(ModItems.CHROMIUM_PICKAXE.get());
 
-        // AXES
         tag(ItemTags.AXES)
                 .add(ModItems.CHROMIUM_AXE.get());
 
-        // SHOVELS
         tag(ItemTags.SHOVELS)
                 .add(ModItems.CHROMIUM_SHOVEL.get());
 
-        // HOES
         tag(ItemTags.HOES)
                 .add(ModItems.CHROMIUM_HOE.get());
 
@@ -48,66 +45,6 @@ public class ModItemTagProvider extends ItemTagsProvider {
         //  TRIMMABLE ARMOR
         // --------------------------------------------------
         tag(ItemTags.TRIMMABLE_ARMOR)
-                .add(ModItems.CHROMIUM_HELMET.get());
-
-        // --------------------------------------------------
-        //  ARMOR ENCHANTABLE (ALL PIECES)
-        // --------------------------------------------------
-        tag(ItemTags.ARMOR_ENCHANTABLE)
-                .add(ModItems.CHROMIUM_HELMET.get());
-        // --------------------------------------------------
-        //  HEAD ARMOR ONLY
-        // --------------------------------------------------
-        tag(ItemTags.HEAD_ARMOR_ENCHANTABLE)
-                .add(ModItems.CHROMIUM_HELMET.get());
-        // --------------------------------------------------
-        //  CHEST ARMOR ONLY
-        // --------------------------------------------------
-        tag(ItemTags.CHEST_ARMOR_ENCHANTABLE)
-                .add(ModItems.CHROMIUM_CHESTPLATE.get());
-
-        // --------------------------------------------------
-        //  LEG ARMOR ONLY
-        // --------------------------------------------------
-        tag(ItemTags.LEG_ARMOR_ENCHANTABLE)
-                .add(ModItems.CHROMIUM_LEGGINGS.get());
-
-        // --------------------------------------------------
-        //  FOOT ARMOR ONLY
-        // --------------------------------------------------
-        tag(ItemTags.FOOT_ARMOR_ENCHANTABLE)
-                .add(ModItems.CHROMIUM_BOOTS.get());
-
-        // --------------------------------------------------
-        //  DURABILITY ENCHANTABLE (TOOLS + ARMOR)
-        // --------------------------------------------------
-        tag(ItemTags.DURABILITY_ENCHANTABLE)
-
-                // swords
-                .add(ModItems.CHROMIUM_SWORD.get())
-
-                // axes
-                .add(ModItems.CHROMIUM_AXE.get())
-
-                // pickaxes
-                .add(ModItems.CHROMIUM_PICKAXE.get())
-
-                // shovels
-                .add(ModItems.CHROMIUM_SHOVEL.get())
-
-                // hoes
-                .add(ModItems.CHROMIUM_HOE.get())
-
-                // hammers
-                .add(ModItems.CHROMIUM_HAMMER.get())
-
-                // reinforced hammers
-                .add(ModItems.CHROMIUM_REINFORCED_HAMMER.get())
-
-                // paxels
-                .add(ModItems.CHROMIUM_PAXEL.get())
-
-                // armor
                 .add(ModItems.CHROMIUM_HELMET.get())
                 .add(ModItems.CHROMIUM_CHESTPLATE.get())
                 .add(ModItems.CHROMIUM_LEGGINGS.get())
@@ -115,73 +52,161 @@ public class ModItemTagProvider extends ItemTagsProvider {
 
 
         // --------------------------------------------------
-        //  WEAPON ENCHANTABLE (SWORDS + AXES)
+        //  ARMOR ENCHANTABLE
+        // --------------------------------------------------
+        tag(ItemTags.ARMOR_ENCHANTABLE)
+                .add(ModItems.CHROMIUM_HELMET.get());
+
+        tag(ItemTags.HEAD_ARMOR_ENCHANTABLE)
+                .add(ModItems.CHROMIUM_HELMET.get());
+
+        tag(ItemTags.CHEST_ARMOR_ENCHANTABLE)
+                .add(ModItems.CHROMIUM_CHESTPLATE.get());
+
+        tag(ItemTags.LEG_ARMOR_ENCHANTABLE)
+                .add(ModItems.CHROMIUM_LEGGINGS.get());
+
+        tag(ItemTags.FOOT_ARMOR_ENCHANTABLE)
+                .add(ModItems.CHROMIUM_BOOTS.get());
+
+        // --------------------------------------------------
+        //  DURABILITY ENCHANTABLE (TOOLS + ARMOR)
+        // --------------------------------------------------
+        tag(ItemTags.DURABILITY_ENCHANTABLE)
+                .add(ModItems.CHROMIUM_SWORD.get())
+                .add(ModItems.CHROMIUM_AXE.get())
+                .add(ModItems.CHROMIUM_PICKAXE.get())
+                .add(ModItems.CHROMIUM_SHOVEL.get())
+                .add(ModItems.CHROMIUM_HOE.get())
+                .add(ModItems.CHROMIUM_HAMMER.get())
+                .add(ModItems.CHROMIUM_REINFORCED_HAMMER.get())
+                .add(ModItems.CHROMIUM_PAXEL.get())
+                .add(ModItems.CHROMIUM_HELMET.get())
+                .add(ModItems.CHROMIUM_CHESTPLATE.get())
+                .add(ModItems.CHROMIUM_LEGGINGS.get())
+                .add(ModItems.CHROMIUM_BOOTS.get());
+
+        // --------------------------------------------------
+        //  WEAPON ENCHANTABLE
         // --------------------------------------------------
         tag(ItemTags.WEAPON_ENCHANTABLE)
                 .add(ModItems.CHROMIUM_SWORD.get())
-
-                // axes count as weapons in vanilla
                 .add(ModItems.CHROMIUM_AXE.get());
 
         // --------------------------------------------------
-        //  SHARP WEAPON ENCHANTABLE (Swords + Axes)
+        //  SHARP WEAPON ENCHANTABLE
         // --------------------------------------------------
         tag(ItemTags.SHARP_WEAPON_ENCHANTABLE)
                 .add(ModItems.CHROMIUM_SWORD.get())
-
                 .add(ModItems.CHROMIUM_AXE.get());
 
         // --------------------------------------------------
-        //  FIRE ASPECT ENCHANTABLE (Swords + Axes)
+        //  FIRE ASPECT ENCHANTABLE
         // --------------------------------------------------
         tag(ItemTags.FIRE_ASPECT_ENCHANTABLE)
                 .add(ModItems.CHROMIUM_SWORD.get())
-
                 .add(ModItems.CHROMIUM_AXE.get());
 
         // --------------------------------------------------
-        //  MINING ENCHANTABLE (Pickaxe, shovel, hoe, axe, hammer, paxel)
+        //  MINING ENCHANTABLE
         // --------------------------------------------------
         tag(ItemTags.MINING_ENCHANTABLE)
-
-                // pickaxes
                 .add(ModItems.CHROMIUM_PICKAXE.get())
-
-                // shovels
                 .add(ModItems.CHROMIUM_SHOVEL.get())
-
-                // hoes
                 .add(ModItems.CHROMIUM_HOE.get())
-
-                // axes
                 .add(ModItems.CHROMIUM_AXE.get())
-
-                // hammers
                 .add(ModItems.CHROMIUM_HAMMER.get())
-
-                // reinforced hammers
                 .add(ModItems.CHROMIUM_REINFORCED_HAMMER.get())
-
-                // paxels
                 .add(ModItems.CHROMIUM_PAXEL.get());
 
         // --------------------------------------------------
-        //  MINING LOOT ENCHANTABLE (Pickaxe, hammer, paxel)
+        //  MINING LOOT ENCHANTABLE
         // --------------------------------------------------
         tag(ItemTags.MINING_LOOT_ENCHANTABLE)
-
-                // pickaxes
                 .add(ModItems.CHROMIUM_PICKAXE.get())
-
-                // hammers
                 .add(ModItems.CHROMIUM_HAMMER.get())
-
-                // reinforced hammers
                 .add(ModItems.CHROMIUM_REINFORCED_HAMMER.get())
-
-                // paxels
                 .add(ModItems.CHROMIUM_PAXEL.get());
+
+        // --------------------------------------------------
+        //  c:ores  (raw ore items / block items)
+        // --------------------------------------------------
+        tag(ModTags.Items.ORES)
+                .add(ModBlocks.CHROMIUM_ORE.get().asItem())
+                .add(ModBlocks.DEEPSLATE_CHROMIUM_ORE.get().asItem());
+
+        // =====================================================================
+        //                       C: COMMON TAGS (INTER-MOD TAGS)
+        // =====================================================================
+
+        // c:ingots (ingot unification)
+        tag(ModTags.Items.INGOTS)
+                .add(ModItems.CHROMIUM_INGOT.get());
+
+        // c:tools (all chromium tools)
+        tag(ModTags.Items.TOOLS)
+                .add(ModItems.CHROMIUM_SWORD.get())
+                .add(ModItems.CHROMIUM_PICKAXE.get())
+                .add(ModItems.CHROMIUM_AXE.get())
+                .add(ModItems.CHROMIUM_SHOVEL.get())
+                .add(ModItems.CHROMIUM_HOE.get())
+                .add(ModItems.CHROMIUM_HAMMER.get())
+                .add(ModItems.CHROMIUM_REINFORCED_HAMMER.get())
+                .add(ModItems.CHROMIUM_PAXEL.get());
+
+        // c:tools/mining_tool (everything used to break blocks)
+        tag(ModTags.Items.MINING_TOOLS)
+                .add(ModItems.CHROMIUM_PICKAXE.get())
+                .add(ModItems.CHROMIUM_AXE.get())
+                .add(ModItems.CHROMIUM_SHOVEL.get())
+                .add(ModItems.CHROMIUM_HOE.get())
+                .add(ModItems.CHROMIUM_HAMMER.get())
+                .add(ModItems.CHROMIUM_REINFORCED_HAMMER.get())
+                .add(ModItems.CHROMIUM_PAXEL.get());
+
+        // c:tools/melee_weapon
+        tag(ModTags.Items.MELEE_WEAPONS)
+                .add(ModItems.CHROMIUM_SWORD.get())
+                .add(ModItems.CHROMIUM_AXE.get())
+                .add(ModItems.CHROMIUM_HAMMER.get())
+                .add(ModItems.CHROMIUM_REINFORCED_HAMMER.get());
+
+        // c:tools/pickaxes
+        tag(ModTags.Items.PICKAXES)
+                .add(ModItems.CHROMIUM_PICKAXE.get());
+
+        // c:tools/axes
+        tag(ModTags.Items.AXES)
+                .add(ModItems.CHROMIUM_AXE.get());
+
+        // c:tools/shovels
+        tag(ModTags.Items.SHOVELS)
+                .add(ModItems.CHROMIUM_SHOVEL.get());
+
+        // c:tools/swords
+        tag(ModTags.Items.SWORDS)
+                .add(ModItems.CHROMIUM_SWORD.get());
+
+        // c:armors
+        tag(ModTags.Items.ARMOR)
+                .add(ModItems.CHROMIUM_HELMET.get())
+                .add(ModItems.CHROMIUM_CHESTPLATE.get())
+                .add(ModItems.CHROMIUM_LEGGINGS.get())
+                .add(ModItems.CHROMIUM_BOOTS.get());
+
+        // c:enchantables
+        tag(ModTags.Items.ENCHANTABLES)
+                .add(ModItems.CHROMIUM_SWORD.get())
+                .add(ModItems.CHROMIUM_AXE.get())
+                .add(ModItems.CHROMIUM_PICKAXE.get())
+                .add(ModItems.CHROMIUM_SHOVEL.get())
+                .add(ModItems.CHROMIUM_HOE.get())
+                .add(ModItems.CHROMIUM_HAMMER.get())
+                .add(ModItems.CHROMIUM_REINFORCED_HAMMER.get())
+                .add(ModItems.CHROMIUM_PAXEL.get())
+                .add(ModItems.CHROMIUM_HELMET.get())
+                .add(ModItems.CHROMIUM_CHESTPLATE.get())
+                .add(ModItems.CHROMIUM_LEGGINGS.get())
+                .add(ModItems.CHROMIUM_BOOTS.get());
     }
-
-
 }

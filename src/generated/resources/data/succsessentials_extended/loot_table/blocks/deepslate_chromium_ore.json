@@ -26,7 +26,7 @@
                   }
                 }
               ],
-              "name": "succsessentials_extended:deesplate_chromium_ore"
+              "name": "succsessentials_extended:deepslate_chromium_ore"
             },
             {
               "type": "minecraft:item",
@@ -48,5 +48,5 @@
       "rolls": 1.0
     }
   ],
-  "random_sequence": "succsessentials_extended:blocks/deesplate_chromium_ore"
+  "random_sequence": "succsessentials_extended:blocks/deepslate_chromium_ore"
 }

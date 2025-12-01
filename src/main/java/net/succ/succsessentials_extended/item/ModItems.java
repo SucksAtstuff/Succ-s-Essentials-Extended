@@ -96,5 +96,4 @@ public class ModItems {
     public static final DeferredItem<ArmorItem> CHROMIUM_BOOTS = ITEMS.register("chromium_boots",
             () -> new ArmorItem(ModArmorMaterials.CHROMIUM_ARMOR_MATERIAL, ArmorItem.Type.BOOTS,
                     new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(42))));
-
 }

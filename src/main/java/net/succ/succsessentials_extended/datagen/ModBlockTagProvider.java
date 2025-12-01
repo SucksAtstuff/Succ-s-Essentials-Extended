@@ -102,8 +102,14 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 
         tag(BlockTags.ENDERMAN_HOLDABLE);
 
-
         tag(BlockTags.REPLACEABLE_BY_TREES);
+
+        tag(ModTags.Blocks.ORES)
+                .add(ModBlocks.CHROMIUM_ORE.get())
+                .add(ModBlocks.DEEPSLATE_CHROMIUM_ORE.get());
+
+        tag(ModTags.Blocks.STORAGE_BLOCKS);
+
 
 
     }

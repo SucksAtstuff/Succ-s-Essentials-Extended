@@ -36,6 +36,7 @@ public class ModCreativeModeTabs {
                     .displayItems((itemDisplayParameters, output) -> {
                         output.accept(ModBlocks.CHROMIUM_ORE);
                         output.accept(ModBlocks.DEEPSLATE_CHROMIUM_ORE);
+                        output.accept(ModBlocks.CHROMIUM_BLOCK);
                     })
                     .build());
 
