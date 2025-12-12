@@ -46,10 +46,14 @@ public class ModItemModelProvider extends ItemModelProvider {
     protected void registerModels() {
         // Register models for ingots
         basicItem(ModItems.CHROMIUM_INGOT.get());
-
         basicItem(ModItems.RAW_CHROMIUM.get());
 
-
+        // Register models for chromium tools
+        handheldItem(ModItems.CHROMIUM_SWORD.get());
+        handheldItem(ModItems.CHROMIUM_PICKAXE.get());
+        handheldItem(ModItems.CHROMIUM_AXE.get());
+        handheldItem(ModItems.CHROMIUM_SHOVEL.get());
+        handheldItem(ModItems.CHROMIUM_HOE.get());
     }
 
     // Shoutout to El_Redstoniano for making this

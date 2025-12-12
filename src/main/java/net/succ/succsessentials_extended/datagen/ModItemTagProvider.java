@@ -196,17 +196,10 @@ public class ModItemTagProvider extends ItemTagsProvider {
 
         // c:enchantables
         tag(ModTags.Items.ENCHANTABLES)
-                .add(ModItems.CHROMIUM_SWORD.get())
-                .add(ModItems.CHROMIUM_AXE.get())
-                .add(ModItems.CHROMIUM_PICKAXE.get())
-                .add(ModItems.CHROMIUM_SHOVEL.get())
-                .add(ModItems.CHROMIUM_HOE.get())
-                .add(ModItems.CHROMIUM_HAMMER.get())
-                .add(ModItems.CHROMIUM_REINFORCED_HAMMER.get())
-                .add(ModItems.CHROMIUM_PAXEL.get())
-                .add(ModItems.CHROMIUM_HELMET.get())
-                .add(ModItems.CHROMIUM_CHESTPLATE.get())
-                .add(ModItems.CHROMIUM_LEGGINGS.get())
-                .add(ModItems.CHROMIUM_BOOTS.get());
+                // all swords, axes, pickaxes, shovels, hoes, hammers, reinforced hammers, paxels
+                .addTag(ModTags.Items.TOOLS)
+
+                // all armor
+                .addTag(ModTags.Items.ARMOR);
     }
 }
