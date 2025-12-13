@@ -35,12 +35,19 @@ public class ModBlockLootTablesProvider extends BlockLootSubProvider {
         // Define loot tables for blocks that drop themselves
         dropSelf(ModBlocks.CHROMIUM_BLOCK.get());
         dropSelf(ModBlocks.ALLOY_FORGER.get());
+        dropSelf(ModBlocks.PANEL_BLOCK.get());
+        dropSelf(ModBlocks.COAL_GENERATOR.get());
 
         // Define loot tables for ores that drop items similar to diamond ores
         add(ModBlocks.CHROMIUM_ORE.get(),
                 block -> createOreDrop(ModBlocks.CHROMIUM_ORE.get(), ModItems.RAW_CHROMIUM.get()));
         add(ModBlocks.DEEPSLATE_CHROMIUM_ORE.get(),
                 block -> createOreDrop(ModBlocks.DEEPSLATE_CHROMIUM_ORE.get(), ModItems.RAW_CHROMIUM.get()));
+
+        add(ModBlocks.TITANIUM_ORE.get(),
+                block -> createOreDrop(ModBlocks.TITANIUM_ORE.get(), ModItems.RAW_TITANIUM.get()));
+        add(ModBlocks.DEEPSLATE_TITANIUM_ORE.get(),
+                block -> createOreDrop(ModBlocks.DEEPSLATE_TITANIUM_ORE.get(), ModItems.RAW_TITANIUM.get()));
     }
 
     protected LootTable.Builder createMultipleOreDrops (Block pBlock, Item item, float minDrops, float maxDrops) {

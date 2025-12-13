@@ -1,6 +1,8 @@
 {
   "values": [
     "succsessentials_extended:chromium_ore",
-    "succsessentials_extended:deepslate_chromium_ore"
+    "succsessentials_extended:deepslate_chromium_ore",
+    "succsessentials_extended:titanium_ore",
+    "succsessentials_extended:deepslate_titanium_ore"
   ]
 }

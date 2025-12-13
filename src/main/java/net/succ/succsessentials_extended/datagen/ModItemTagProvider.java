@@ -133,7 +133,9 @@ public class ModItemTagProvider extends ItemTagsProvider {
         // --------------------------------------------------
         tag(ModTags.Items.ORES)
                 .add(ModBlocks.CHROMIUM_ORE.get().asItem())
-                .add(ModBlocks.DEEPSLATE_CHROMIUM_ORE.get().asItem());
+                .add(ModBlocks.DEEPSLATE_CHROMIUM_ORE.get().asItem())
+                .add(ModBlocks.TITANIUM_ORE.get().asItem())
+                .add(ModBlocks.DEEPSLATE_TITANIUM_ORE.get().asItem());
 
         // =====================================================================
         //                       C: COMMON TAGS (INTER-MOD TAGS)
@@ -141,7 +143,9 @@ public class ModItemTagProvider extends ItemTagsProvider {
 
         // c:ingots (ingot unification)
         tag(ModTags.Items.INGOTS)
-                .add(ModItems.CHROMIUM_INGOT.get());
+                .add(ModItems.CHROMIUM_INGOT.get())
+                .add(ModItems.TITANIUM_INGOT.get())
+                .add(ModItems.TITA_CHROME_INGOT.get());
 
         // c:tools (all chromium tools)
         tag(ModTags.Items.TOOLS)

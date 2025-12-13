@@ -19,6 +19,20 @@ public class ModItems {
             () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> CHROMIUM_INGOT = ITEMS.register("chromium_ingot",
             () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> CHROMIUM_NUGGET = ITEMS.register("chromium_nugget",
+            () -> new Item(new Item.Properties()));
+
+    public static final DeferredItem<Item> RAW_TITANIUM = ITEMS.register("raw_titanium",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> TITANIUM_INGOT = ITEMS.register("titanium_ingot",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> TITANIUM_NUGGET = ITEMS.register("titanium_nugget",
+            () -> new Item(new Item.Properties()));
+
+    public static final DeferredItem<Item> TITA_CHROME_INGOT = ITEMS.register("tita-chrome_ingot",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> TITA_CHROME_NUGGET = ITEMS.register("tita-chrome_nugget",
+            () -> new Item(new Item.Properties()));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

@@ -18,101 +18,86 @@ import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.neoforged.neoforge.capabilities.Capabilities;
-import net.neoforged.neoforge.items.IItemHandler;
+import net.neoforged.neoforge.energy.IEnergyStorage;
 import net.neoforged.neoforge.items.ItemStackHandler;
 import net.succ.succsessentials_extended.block.custom.AlloyForgerBlock;
 import net.succ.succsessentials_extended.block.entity.ModBlockEntities;
+import net.succ.succsessentials_extended.block.entity.energy.ModEnergyStorage;
 import net.succ.succsessentials_extended.recipe.AlloyForgingRecipe;
 import net.succ.succsessentials_extended.recipe.AlloyForgingRecipeInput;
 import net.succ.succsessentials_extended.recipe.ModRecipes;
 import net.succ.succsessentials_extended.screen.custom.AlloyForgerBlockMenu;
 import net.succ.succsessentials_extended.util.ModTags;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
 
 public class AlloyForgerBlockEntity extends BlockEntity implements MenuProvider {
 
-    /* ==========================================================
-       SLOT DEFINITIONS
-       ========================================================== */
-    private static final int INPUT_SLOT_A = 0;
-    private static final int INPUT_SLOT_B = 1;
-    private static final int FUEL_SLOT    = 2;
-    private static final int OUTPUT_SLOT  = 3;
+    /* ================= SLOTS ================= */
+    private static final int INPUT_A = 0;
+    private static final int INPUT_B = 1;
+    private static final int OUTPUT  = 2;
 
-    /* ==========================================================
-       INVENTORY
-       ========================================================== */
-    public final ItemStackHandler itemHandler = new ItemStackHandler(4) {
+    /* ================= ENERGY ================= */
+    private static final int ENERGY_PER_TICK = 20;
+    private static final int ENERGY_CAPACITY = 64000;
+    private static final int ENERGY_TRANSFER = 320;
 
+    /* ================= INVENTORY ================= */
+    public final ItemStackHandler itemHandler = new ItemStackHandler(3) {
         @Override
         protected void onContentsChanged(int slot) {
             setChanged();
             if (!level.isClientSide()) {
-                level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), 3);
+                level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 3);
             }
         }
 
         @Override
-        public boolean isItemValid(int slot, @NotNull ItemStack stack) {
+        public boolean isItemValid(int slot, ItemStack stack) {
             return switch (slot) {
-
-                // Two alloy inputs
-                case INPUT_SLOT_A, INPUT_SLOT_B ->
-                        stack.is(ModTags.Items.INGOTS);
-
-                // Vanilla furnace fuel logic
-                case FUEL_SLOT ->
-                        AbstractFurnaceBlockEntity.isFuel(stack);
-
-                // Output slot is insert-protected
-                case OUTPUT_SLOT -> false;
-
+                case INPUT_A, INPUT_B -> stack.is(ModTags.Items.INGOTS);
+                case OUTPUT -> false;
                 default -> false;
             };
         }
     };
 
-    /* ==========================================================
-       PROGRESS & FUEL
-       ========================================================== */
+    /* ================= ENERGY STORAGE ================= */
+    private final ModEnergyStorage energyStorage = new ModEnergyStorage(
+            ENERGY_CAPACITY, ENERGY_TRANSFER
+    ) {
+        @Override
+        public void onEnergyChanged() {
+            setChanged();
+            level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 3);
+        }
+    };
+
+    /* ================= PROGRESS ================= */
     private int progress = 0;
+    private int maxProgress = 200;
 
-    private int maxProgress = 1; // avoid divide-by-zero
-
-    private int burnTime = 0;
-    private int maxBurnTime = 0;
-
-    /* ==========================================================
-       CONTAINER DATA (SYNC TO CLIENT)
-       ========================================================== */
+    /* ================= DATA SYNC ================= */
     private final ContainerData data = new ContainerData() {
-
         @Override
         public int get(int index) {
             return switch (index) {
                 case 0 -> progress;
                 case 1 -> maxProgress;
-                case 2 -> burnTime;
-                case 3 -> maxBurnTime;
+                case 2 -> energyStorage.getEnergyStored();
+                case 3 -> energyStorage.getMaxEnergyStored();
                 default -> 0;
             };
         }
 
         @Override
         public void set(int index, int value) {
-            switch (index) {
-                case 0 -> progress = value;
-                case 1 -> maxProgress = value;
-                case 2 -> burnTime = value;
-                case 3 -> maxBurnTime = value;
-            }
+            if (index == 0) progress = value;
+            if (index == 1) maxProgress = value;
         }
 
         @Override
@@ -121,68 +106,47 @@ public class AlloyForgerBlockEntity extends BlockEntity implements MenuProvider 
         }
     };
 
-    /* ==========================================================
-       CONSTRUCTOR
-       ========================================================== */
     public AlloyForgerBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.ALLOY_FORGER_BE.get(), pos, state);
     }
 
-    /* ==========================================================
-       TICK LOGIC
-       ========================================================== */
+    public IEnergyStorage getEnergyStorage(@Nullable Direction side) {
+        return energyStorage;
+    }
+
+    /* ================= TICK ================= */
     public void tick(Level level, BlockPos pos, BlockState state) {
+        if (hasRecipe() && hasEnoughEnergy()) {
+            progress++;
+            energyStorage.extractEnergy(ENERGY_PER_TICK, false);
 
-        boolean isBurning = burnTime > 0;
-
-        if (isBurning) {
-            burnTime--;
-        }
-
-        if (hasRecipe()) {
-
-            if (!isBurning && hasFuel()) {
-                consumeFuel();
-                isBurning = true;
+            if (progress >= maxProgress) {
+                craftItem();
+                progress = 0;
             }
 
-            if (isBurning) {
-                progress++;
-
-                if (progress >= maxProgress) {
-                    craftItem();
-                    progress = 0;
-                }
-            }
-
+            level.setBlockAndUpdate(pos, state.setValue(AlloyForgerBlock.LIT, true));
         } else {
             progress = 0;
-        }
-
-        if (isBurning != state.getValue(AlloyForgerBlock.LIT)) {
-            level.setBlockAndUpdate(pos, state.setValue(AlloyForgerBlock.LIT, isBurning));
+            level.setBlockAndUpdate(pos, state.setValue(AlloyForgerBlock.LIT, false));
         }
     }
 
-    /* ==========================================================
-       RECIPE LOGIC
-       ========================================================== */
+    /* ================= RECIPE ================= */
     private boolean hasRecipe() {
         Optional<RecipeHolder<AlloyForgingRecipe>> recipe = getCurrentRecipe();
         if (recipe.isEmpty()) return false;
 
-        this.maxProgress = recipe.get().value().cookTime();
-
-        ItemStack output = recipe.get().value().getResultItem(null);
-        return canInsertIntoOutput(output);
+        maxProgress = recipe.get().value().cookTime();
+        return canInsertIntoOutput(recipe.get().value().output());
     }
 
     private Optional<RecipeHolder<AlloyForgingRecipe>> getCurrentRecipe() {
         return level.getRecipeManager().getRecipeFor(
                 ModRecipes.ALLOY_FORGING_TYPE.get(),
                 new AlloyForgingRecipeInput(
-                        itemHandler.getStackInSlot(INPUT_SLOT_A),
-                        itemHandler.getStackInSlot(INPUT_SLOT_B)
+                        itemHandler.getStackInSlot(INPUT_A),
+                        itemHandler.getStackInSlot(INPUT_B)
                 ),
                 level
         );
@@ -192,51 +156,31 @@ public class AlloyForgerBlockEntity extends BlockEntity implements MenuProvider 
         Optional<RecipeHolder<AlloyForgingRecipe>> recipe = getCurrentRecipe();
         if (recipe.isEmpty()) return;
 
-        ItemStack output = recipe.get().value().output();
-
-        itemHandler.extractItem(INPUT_SLOT_A, 1, false);
-        itemHandler.extractItem(INPUT_SLOT_B, 1, false);
+        ItemStack result = recipe.get().value().output();
+        itemHandler.extractItem(INPUT_A, 1, false);
+        itemHandler.extractItem(INPUT_B, 1, false);
 
         itemHandler.setStackInSlot(
-                OUTPUT_SLOT,
+                OUTPUT,
                 new ItemStack(
-                        output.getItem(),
-                        itemHandler.getStackInSlot(OUTPUT_SLOT).getCount() + output.getCount()
+                        result.getItem(),
+                        itemHandler.getStackInSlot(OUTPUT).getCount() + result.getCount()
                 )
         );
     }
 
-    /* ==========================================================
-       FUEL
-       ========================================================== */
-    private boolean hasFuel() {
-        return AbstractFurnaceBlockEntity.isFuel(itemHandler.getStackInSlot(FUEL_SLOT));
+    private boolean hasEnoughEnergy() {
+        return energyStorage.getEnergyStored() >= ENERGY_PER_TICK;
     }
 
-    private void consumeFuel() {
-        ItemStack fuel = itemHandler.getStackInSlot(FUEL_SLOT);
-
-        maxBurnTime = burnTime =
-                AbstractFurnaceBlockEntity.getFuel().getOrDefault(fuel.getItem(), 0);
-
-        fuel.shrink(1);
-    }
-
-    /* ==========================================================
-       OUTPUT CHECKS
-       ========================================================== */
     private boolean canInsertIntoOutput(ItemStack stack) {
-        ItemStack output = itemHandler.getStackInSlot(OUTPUT_SLOT);
-
+        ItemStack output = itemHandler.getStackInSlot(OUTPUT);
         if (output.isEmpty()) return true;
         if (!ItemStack.isSameItemSameComponents(output, stack)) return false;
-
         return output.getCount() + stack.getCount() <= output.getMaxStackSize();
     }
 
-    /* ==========================================================
-       MENU / UI
-       ========================================================== */
+    /* ================= MENU ================= */
     @Override
     public Component getDisplayName() {
         return Component.translatable("block.succsessentials_extended.alloy_forger");
@@ -248,15 +192,12 @@ public class AlloyForgerBlockEntity extends BlockEntity implements MenuProvider 
         return new AlloyForgerBlockMenu(id, inv, this, data);
     }
 
-    /* ==========================================================
-       SAVE / LOAD
-       ========================================================== */
+    /* ================= SAVE / LOAD ================= */
     @Override
     protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         tag.put("inventory", itemHandler.serializeNBT(registries));
         tag.putInt("progress", progress);
-        tag.putInt("burnTime", burnTime);
-        tag.putInt("maxBurnTime", maxBurnTime);
+        tag.putInt("energy", energyStorage.getEnergyStored());
         super.saveAdditional(tag, registries);
     }
 
@@ -264,14 +205,10 @@ public class AlloyForgerBlockEntity extends BlockEntity implements MenuProvider 
     protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         itemHandler.deserializeNBT(registries, tag.getCompound("inventory"));
         progress = tag.getInt("progress");
-        burnTime = tag.getInt("burnTime");
-        maxBurnTime = tag.getInt("maxBurnTime");
+        energyStorage.setEnergy(tag.getInt("energy"));
         super.loadAdditional(tag, registries);
     }
 
-    /* ==========================================================
-       DROPS
-       ========================================================== */
     public void drops() {
         SimpleContainer container = new SimpleContainer(itemHandler.getSlots());
         for (int i = 0; i < itemHandler.getSlots(); i++) {
@@ -280,9 +217,6 @@ public class AlloyForgerBlockEntity extends BlockEntity implements MenuProvider 
         Containers.dropContents(level, worldPosition, container);
     }
 
-    /* ==========================================================
-       SYNC
-       ========================================================== */
     @Nullable
     @Override
     public Packet<ClientGamePacketListener> getUpdatePacket() {

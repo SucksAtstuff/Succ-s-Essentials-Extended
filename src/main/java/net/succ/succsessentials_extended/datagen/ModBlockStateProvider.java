@@ -30,6 +30,12 @@ public class ModBlockStateProvider extends BlockStateProvider {
         // Registering ingot ores with their respective item models
         simpleBlockWithItem(ModBlocks.CHROMIUM_ORE.get(), cubeAll(ModBlocks.CHROMIUM_ORE.get()));
         simpleBlockWithItem(ModBlocks.DEEPSLATE_CHROMIUM_ORE.get(), cubeAll(ModBlocks.DEEPSLATE_CHROMIUM_ORE.get()));
+        simpleBlockWithItem(ModBlocks.TITANIUM_ORE.get(), cubeAll(ModBlocks.TITANIUM_ORE.get()));
+        simpleBlockWithItem(ModBlocks.DEEPSLATE_TITANIUM_ORE.get(), cubeAll(ModBlocks.DEEPSLATE_TITANIUM_ORE.get()));
+        simpleBlockWithItem(ModBlocks.COAL_GENERATOR.get(), cubeAll(ModBlocks.COAL_GENERATOR.get()));
+
+
+        panelBlock(ModBlocks.PANEL_BLOCK);
 
         alloyForgerBlock(ModBlocks.ALLOY_FORGER);
     }
@@ -107,6 +113,22 @@ public class ModBlockStateProvider extends BlockStateProvider {
         // Item model uses unlit model (vanilla behavior)
         simpleBlockItem(block.get(), unlit);
     }
+
+    private void panelBlock(DeferredBlock<Block> block) {
+
+        ResourceLocation side = blockTexture(block.get());
+        ResourceLocation top  = modLoc("block/alloy_forger/alloy_forger_top");
+
+        ModelFile model = models().cubeBottomTop(
+                block.getId().getPath(),
+                side,
+                top,
+                top
+        );
+
+        simpleBlockWithItem(block.get(), model);
+    }
+
 
 
 

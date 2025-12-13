@@ -13,6 +13,7 @@ import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.succ.succsessentials_extended.Succsessentials_extended;
 import net.succ.succsessentials_extended.block.custom.AlloyForgerBlock;
+import net.succ.succsessentials_extended.block.custom.CoalGeneratorBlock;
 import net.succ.succsessentials_extended.item.ModItems;
 
 import java.util.function.Supplier;
@@ -33,8 +34,22 @@ public class ModBlocks {
     public static final DeferredBlock<Block> CHROMIUM_BLOCK = registerBlock("chromium_block",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.NETHERITE_BLOCK).requiresCorrectToolForDrops()));
 
+    public static final DeferredBlock<Block> TITANIUM_ORE = registerBlock("titanium_ore",
+            () -> new DropExperienceBlock(UniformInt.of(3,7),
+                    BlockBehaviour.Properties.ofFullCopy(Blocks.EMERALD_ORE).requiresCorrectToolForDrops()));
+
+    public static final DeferredBlock<Block> DEEPSLATE_TITANIUM_ORE = registerBlock("deepslate_titanium_ore",
+            () -> new DropExperienceBlock(UniformInt.of(3,7),
+                    BlockBehaviour.Properties.ofFullCopy(Blocks.EMERALD_ORE).requiresCorrectToolForDrops()));
+
     public static final DeferredBlock<Block> ALLOY_FORGER = registerBlock("alloy_forger",
             () -> new AlloyForgerBlock(BlockBehaviour.Properties.of().strength(3f).requiresCorrectToolForDrops()));
+
+    public static final DeferredBlock<Block> PANEL_BLOCK = registerBlock("panel_block",
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops()));
+
+    public static final DeferredBlock<Block> COAL_GENERATOR = registerBlock("coal_generator",
+            () -> new CoalGeneratorBlock(BlockBehaviour.Properties.of().strength(3f).requiresCorrectToolForDrops()));
 
 
 
