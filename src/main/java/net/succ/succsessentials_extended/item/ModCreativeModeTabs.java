@@ -25,6 +25,12 @@ public class ModCreativeModeTabs {
                     .displayItems((itemDisplayParameters, output) -> {
                         output.accept(ModItems.CHROMIUM_INGOT);
                         output.accept(ModItems.RAW_CHROMIUM);
+                        output.accept(ModItems.CHROMIUM_NUGGET);
+                        output.accept(ModItems.TITANIUM_INGOT);
+                        output.accept(ModItems.RAW_TITANIUM);
+                        output.accept(ModItems.TITANIUM_NUGGET);
+                        output.accept(ModItems.TITA_CHROME_INGOT);
+                        output.accept(ModItems.TITA_CHROME_NUGGET);
                     })
                     .build());
 
@@ -37,7 +43,11 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.CHROMIUM_ORE);
                         output.accept(ModBlocks.DEEPSLATE_CHROMIUM_ORE);
                         output.accept(ModBlocks.CHROMIUM_BLOCK);
+                        output.accept(ModBlocks.TITANIUM_ORE);
+                        output.accept(ModBlocks.DEEPSLATE_TITANIUM_ORE);
                         output.accept(ModBlocks.ALLOY_FORGER);
+                        output.accept(ModBlocks.COAL_GENERATOR);
+                        output.accept(ModBlocks.PANEL_BLOCK);
                     })
                     .build());
 

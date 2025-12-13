@@ -28,6 +28,7 @@ import net.succ.succsessentials_extended.recipe.ModRecipes;
 import net.succ.succsessentials_extended.screen.ModMenuTypes;
 import net.succ.succsessentials_extended.screen.custom.AlloyForgerBlockMenu;
 import net.succ.succsessentials_extended.screen.custom.AlloyForgerBlockScreen;
+import net.succ.succsessentials_extended.screen.custom.CoalGeneratorScreen;
 import net.succ.succsessentials_extended.sound.ModSounds;
 import net.succ.succsessentials_extended.villager.ModVillagers;
 import net.succ.succsessentials_extended.worldgen.feature.ModFeatures;
@@ -118,6 +119,8 @@ public class Succsessentials_extended {
         @SubscribeEvent
         public static void registerScreens(RegisterMenuScreensEvent event) {
             event.register(ModMenuTypes.ALLOY_FORGER_MENU.get(), AlloyForgerBlockScreen::new);
+            event.register(ModMenuTypes.COAL_GENERATOR_MENU.get(), CoalGeneratorScreen::new);
+
         }
 
     }

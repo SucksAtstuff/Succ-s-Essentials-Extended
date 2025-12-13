@@ -47,6 +47,12 @@ public class ModItemModelProvider extends ItemModelProvider {
         // Register models for ingots
         basicItem(ModItems.CHROMIUM_INGOT.get());
         basicItem(ModItems.RAW_CHROMIUM.get());
+        basicItem(ModItems.CHROMIUM_NUGGET.get());
+        basicItem(ModItems.TITANIUM_INGOT.get());
+        basicItem(ModItems.RAW_TITANIUM.get());
+        basicItem(ModItems.TITANIUM_NUGGET.get());
+        basicItem(ModItems.TITA_CHROME_INGOT.get());
+        basicItem(ModItems.TITA_CHROME_NUGGET.get());
 
         // Register models for chromium tools
         handheldItem(ModItems.CHROMIUM_SWORD.get());

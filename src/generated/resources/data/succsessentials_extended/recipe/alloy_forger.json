@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "succsessentials_extended:chromium_ingot"
+    },
+    "F": {
+      "item": "minecraft:blast_furnace"
+    },
+    "P": {
+      "item": "succsessentials_extended:panel_block"
+    }
+  },
+  "pattern": [
+    "CPC",
+    "PFP",
+    "CPC"
+  ],
+  "result": {
+    "count": 1,
+    "id": "succsessentials_extended:alloy_forger"
+  }
+}

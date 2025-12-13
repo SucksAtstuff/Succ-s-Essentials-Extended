@@ -106,7 +106,10 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 
         tag(ModTags.Blocks.ORES)
                 .add(ModBlocks.CHROMIUM_ORE.get())
-                .add(ModBlocks.DEEPSLATE_CHROMIUM_ORE.get());
+                .add(ModBlocks.DEEPSLATE_CHROMIUM_ORE.get())
+                .add(ModBlocks.TITANIUM_ORE.get())
+                .add(ModBlocks.DEEPSLATE_TITANIUM_ORE.get());
+
 
         tag(ModTags.Blocks.STORAGE_BLOCKS);
 

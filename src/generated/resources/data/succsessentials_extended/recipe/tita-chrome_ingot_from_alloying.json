@@ -1,0 +1,14 @@
+{
+  "type": "succsessentials_extended:alloy_forging",
+  "cook_time": 400,
+  "input_a": {
+    "item": "succsessentials_extended:chromium_ingot"
+  },
+  "input_b": {
+    "item": "succsessentials_extended:titanium_ingot"
+  },
+  "result": {
+    "count": 1,
+    "id": "succsessentials_extended:tita-chrome_ingot"
+  }
+}
