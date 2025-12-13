@@ -1,20 +1,27 @@
 package net.succ.succsessentials_extended.datagen;
 
+import com.simibubi.create.AllItems;
+import com.simibubi.create.Create;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.ItemLike;
 import net.neoforged.neoforge.common.conditions.IConditionBuilder;
 import net.succ.succsessentials_extended.Succsessentials_extended;
 import net.succ.succsessentials_extended.block.ModBlocks;
 import net.succ.succsessentials_extended.item.ModItems;
+import net.succ.succsessentials_extended.recipe.AlloyForgingRecipe;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
+
 
 public class ModRecipeProvider extends RecipeProvider implements IConditionBuilder {
     public ModRecipeProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
@@ -47,6 +54,32 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             SimpleCookingRecipeBuilder.generic(Ingredient.of(itemlike), pCategory, pResult, pExperience, pCookingTime, pCookingSerializer, factory).group(pGroup).unlockedBy(getHasName(itemlike), has(itemlike))
                     .save(recipeOutput, Succsessentials_extended.MOD_ID + ":" + getItemName(pResult) + pRecipeName + "_" + getItemName(itemlike));
         }
+    }
+
+    protected static void alloyForging(RecipeOutput recipeOutput,
+                                       ItemLike inputA,
+                                       ItemLike inputB,
+                                       ItemLike result,
+                                       String group,
+                                       int cookTime) {
+
+        AlloyForgingRecipe recipe =
+                new AlloyForgingRecipe(
+                        Ingredient.of(inputA),     // First metal input
+                        Ingredient.of(inputB),     // Second metal input
+                        new ItemStack(result),     // Output item
+                        cookTime                   // How long alloying takes (in ticks)
+                );
+
+        recipeOutput.accept(
+                ResourceLocation.fromNamespaceAndPath(
+                        Succsessentials_extended.MOD_ID,
+                        getItemName(result) + "_from_alloying"
+                ),
+                recipe,
+                null
+        );
+
     }
 
 }

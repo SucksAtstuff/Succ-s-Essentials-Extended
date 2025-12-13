@@ -12,6 +12,7 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.succ.succsessentials_extended.Succsessentials_extended;
+import net.succ.succsessentials_extended.block.custom.AlloyForgerBlock;
 import net.succ.succsessentials_extended.item.ModItems;
 
 import java.util.function.Supplier;
@@ -31,6 +32,9 @@ public class ModBlocks {
 
     public static final DeferredBlock<Block> CHROMIUM_BLOCK = registerBlock("chromium_block",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.NETHERITE_BLOCK).requiresCorrectToolForDrops()));
+
+    public static final DeferredBlock<Block> ALLOY_FORGER = registerBlock("alloy_forger",
+            () -> new AlloyForgerBlock(BlockBehaviour.Properties.of().strength(3f).requiresCorrectToolForDrops()));
 
 
 

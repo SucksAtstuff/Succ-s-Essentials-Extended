@@ -9,10 +9,14 @@ import net.neoforged.neoforge.network.IContainerFactory;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.succ.succsessentials_extended.Succsessentials_extended;
+import net.succ.succsessentials_extended.screen.custom.AlloyForgerBlockMenu;
 
 public class ModMenuTypes {
     public static final DeferredRegister<MenuType<?>> MENUS =
             DeferredRegister.create(Registries.MENU, Succsessentials_extended.MOD_ID);
+
+    public static final DeferredHolder<MenuType<?>, MenuType<AlloyForgerBlockMenu>> ALLOY_FORGER_MENU =
+            registerMenuType("alloy_forger_menu", AlloyForgerBlockMenu::new);
 
 
     private static <T extends AbstractContainerMenu>DeferredHolder<MenuType<?>, MenuType<T>> registerMenuType(String name,

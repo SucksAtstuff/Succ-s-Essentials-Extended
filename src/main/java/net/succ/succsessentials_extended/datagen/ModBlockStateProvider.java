@@ -1,10 +1,12 @@
 package net.succ.succsessentials_extended.datagen;
 
+import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
@@ -28,6 +30,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
         // Registering ingot ores with their respective item models
         simpleBlockWithItem(ModBlocks.CHROMIUM_ORE.get(), cubeAll(ModBlocks.CHROMIUM_ORE.get()));
         simpleBlockWithItem(ModBlocks.DEEPSLATE_CHROMIUM_ORE.get(), cubeAll(ModBlocks.DEEPSLATE_CHROMIUM_ORE.get()));
+
+        alloyForgerBlock(ModBlocks.ALLOY_FORGER);
     }
 
     public void makeCrop(CropBlock block, String modelName, String textureName) {
@@ -56,6 +60,55 @@ public class ModBlockStateProvider extends BlockStateProvider {
     private void saplingBlock(DeferredBlock<Block> deferredBlock) {
         simpleBlock(deferredBlock.get(), models().cross(BuiltInRegistries.BLOCK.getKey(deferredBlock.get()).getPath(), blockTexture(deferredBlock.get())).renderType("cutout"));
     }
+
+    private void alloyForgerBlock(DeferredBlock<Block> block) {
+
+        // Base path for textures
+        ResourceLocation side  = modLoc("block/alloy_forger/alloy_forger_side");
+        ResourceLocation top   = modLoc("block/alloy_forger/alloy_forger_top");
+        ResourceLocation front = modLoc("block/alloy_forger/alloy_forger_front");
+        ResourceLocation frontOn = modLoc("block/alloy_forger/alloy_forger_front_on");
+
+        // Unlit model
+        ModelFile unlit = models().orientable(
+                block.getId().getPath(),
+                side,
+                front,
+                top
+        );
+
+        // Lit model
+        ModelFile lit = models().orientable(
+                block.getId().getPath() + "_on",
+                side,
+                frontOn,
+                top
+        );
+
+        getVariantBuilder(block.get())
+                .forAllStates(state -> {
+
+                    Direction facing = state.getValue(HorizontalDirectionalBlock.FACING);
+                    boolean litState = state.getValue(BlockStateProperties.LIT);
+
+                    int rotationY = switch (facing) {
+                        case SOUTH -> 180;
+                        case WEST  -> 270;
+                        case EAST  -> 90;
+                        default    -> 0; // NORTH
+                    };
+
+                    return ConfiguredModel.builder()
+                            .modelFile(litState ? lit : unlit)
+                            .rotationY(rotationY)
+                            .build();
+                });
+
+        // Item model uses unlit model (vanilla behavior)
+        simpleBlockItem(block.get(), unlit);
+    }
+
+
 
     private void blockWithItem(DeferredBlock<?> deferredBlock){
         simpleBlockWithItem(deferredBlock.get(), cubeAll(deferredBlock.get()));

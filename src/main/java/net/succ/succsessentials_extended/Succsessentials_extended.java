@@ -12,6 +12,7 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
@@ -25,9 +26,12 @@ import net.succ.succsessentials_extended.loot.ModLootModifiers;
 import net.succ.succsessentials_extended.potion.ModPotions;
 import net.succ.succsessentials_extended.recipe.ModRecipes;
 import net.succ.succsessentials_extended.screen.ModMenuTypes;
+import net.succ.succsessentials_extended.screen.custom.AlloyForgerBlockMenu;
+import net.succ.succsessentials_extended.screen.custom.AlloyForgerBlockScreen;
 import net.succ.succsessentials_extended.sound.ModSounds;
 import net.succ.succsessentials_extended.villager.ModVillagers;
 import net.succ.succsessentials_extended.worldgen.feature.ModFeatures;
+import net.succ.succsmod.screen.custom.GemPolishingTableBlockScreen;
 import org.slf4j.Logger;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
@@ -111,5 +115,12 @@ public class Succsessentials_extended {
 
         }
 
+        @SubscribeEvent
+        public static void registerScreens(RegisterMenuScreensEvent event) {
+            event.register(ModMenuTypes.ALLOY_FORGER_MENU.get(), AlloyForgerBlockScreen::new);
+        }
+
     }
+
+
 }

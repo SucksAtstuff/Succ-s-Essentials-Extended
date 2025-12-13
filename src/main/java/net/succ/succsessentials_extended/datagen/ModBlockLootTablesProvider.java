@@ -34,6 +34,7 @@ public class ModBlockLootTablesProvider extends BlockLootSubProvider {
     protected void generate() {
         // Define loot tables for blocks that drop themselves
         dropSelf(ModBlocks.CHROMIUM_BLOCK.get());
+        dropSelf(ModBlocks.ALLOY_FORGER.get());
 
         // Define loot tables for ores that drop items similar to diamond ores
         add(ModBlocks.CHROMIUM_ORE.get(),
