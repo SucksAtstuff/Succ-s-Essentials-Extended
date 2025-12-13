@@ -1,6 +1,7 @@
 {
   "type": "succsessentials_extended:alloy_forging",
   "cook_time": 400,
+  "energy_per_tick": 200,
   "input_a": {
     "item": "succsessentials_extended:chromium_ingot"
   },

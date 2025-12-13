@@ -2,7 +2,6 @@ package net.succ.succsessentials_extended.block.entity.energy;
 
 import net.neoforged.neoforge.energy.EnergyStorage;
 
-
 public abstract class ModEnergyStorage extends EnergyStorage {
     public ModEnergyStorage(int capacity, int maxTransfer) {
         super(capacity, maxTransfer);

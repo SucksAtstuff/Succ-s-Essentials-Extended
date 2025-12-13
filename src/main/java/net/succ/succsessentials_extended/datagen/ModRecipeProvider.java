@@ -44,7 +44,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 ModItems.TITANIUM_INGOT,
                 ModItems.TITA_CHROME_INGOT,
                 "tita-chrome",
-                400 // 20 seconds
+                400, // 20 seconds
+                200 // FE/t
         );
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.ALLOY_FORGER.get(), 1)
@@ -85,14 +86,16 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                                        ItemLike inputB,
                                        ItemLike result,
                                        String group,
-                                       int cookTime) {
+                                       int cookTime,
+                                       int energyPerTick) {
 
         AlloyForgingRecipe recipe =
                 new AlloyForgingRecipe(
                         Ingredient.of(inputA),     // First metal input
                         Ingredient.of(inputB),     // Second metal input
                         new ItemStack(result),     // Output item
-                        cookTime                   // How long alloying takes (in ticks)
+                        cookTime,                  // Alloying time (ticks)
+                        energyPerTick              // Energy cost per tick
                 );
 
         recipeOutput.accept(
@@ -103,7 +106,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 recipe,
                 null
         );
-
     }
+
 
 }

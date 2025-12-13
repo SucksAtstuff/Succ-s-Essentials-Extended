@@ -38,6 +38,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         panelBlock(ModBlocks.PANEL_BLOCK);
 
         alloyForgerBlock(ModBlocks.ALLOY_FORGER);
+        electricFurnaceBlock(ModBlocks.ELECTRIC_FURNACE);
     }
 
     public void makeCrop(CropBlock block, String modelName, String textureName) {
@@ -90,6 +91,57 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 frontOn,
                 top
         );
+
+
+
+        getVariantBuilder(block.get())
+                .forAllStates(state -> {
+
+                    Direction facing = state.getValue(HorizontalDirectionalBlock.FACING);
+                    boolean litState = state.getValue(BlockStateProperties.LIT);
+
+                    int rotationY = switch (facing) {
+                        case SOUTH -> 180;
+                        case WEST  -> 270;
+                        case EAST  -> 90;
+                        default    -> 0; // NORTH
+                    };
+
+                    return ConfiguredModel.builder()
+                            .modelFile(litState ? lit : unlit)
+                            .rotationY(rotationY)
+                            .build();
+                });
+
+        // Item model uses unlit model (vanilla behavior)
+        simpleBlockItem(block.get(), unlit);
+    }
+
+    private void electricFurnaceBlock(DeferredBlock<Block> block) {
+
+        // Base path for textures
+        ResourceLocation side  = modLoc("block/electric_furnace/electric_furnace_side");
+        ResourceLocation top   = modLoc("block/electric_furnace/electric_furnace_top");
+        ResourceLocation front = modLoc("block/electric_furnace/electric_furnace_front");
+        ResourceLocation frontOn = modLoc("block/electric_furnace/electric_furnace_front_on");
+
+        // Unlit model
+        ModelFile unlit = models().orientable(
+                block.getId().getPath(),
+                side,
+                front,
+                top
+        );
+
+        // Lit model
+        ModelFile lit = models().orientable(
+                block.getId().getPath() + "_on",
+                side,
+                frontOn,
+                top
+        );
+
+
 
         getVariantBuilder(block.get())
                 .forAllStates(state -> {

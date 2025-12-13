@@ -13,63 +13,100 @@ import net.succ.succsessentials_extended.util.MouseUtil;
 
 import java.util.Optional;
 
-public class AlloyForgerBlockScreen extends AbstractContainerScreen<AlloyForgerBlockMenu> {
+public class ElectricFurnaceBlockScreen
+        extends AbstractContainerScreen<ElectricFurnaceBlockMenu> {
 
     private static final ResourceLocation GUI_TEXTURE =
             ResourceLocation.fromNamespaceAndPath(
                     Succsessentials_extended.MOD_ID,
-                    "textures/gui/container/alloy_forger.png"
+                    "textures/gui/container/electric_furnace.png"
             );
 
-    // energy bar renderer
+    /* ================= ENERGY BAR ================= */
+
     private EnergyDisplayTooltipArea energyInfoArea;
 
-    public AlloyForgerBlockScreen(AlloyForgerBlockMenu menu,
-                                  Inventory inv,
-                                  Component title) {
+    public ElectricFurnaceBlockScreen(ElectricFurnaceBlockMenu menu,
+                                      Inventory inv,
+                                      Component title) {
         super(menu, inv, title);
     }
 
     @Override
     protected void init() {
         super.init();
+
+        // Hide vanilla labels (same as Alloy Forger)
         this.inventoryLabelY = 10000;
         this.titleLabelY = 10000;
 
         assignEnergyInfoArea();
     }
 
-    // Create the energy bar fill renderer
+    /* ================= ENERGY BAR SETUP ================= */
+
     private void assignEnergyInfoArea() {
         energyInfoArea = new EnergyDisplayTooltipArea(
                 ((width - imageWidth) / 2) + 11,
                 ((height - imageHeight) / 2) + 11,
                 menu.blockEntity.getEnergyStorage(null),
-                8, 64
+                8,
+                64
         );
-
     }
 
-    // Tooltip when hovering energy bar
-    private void renderEnergyAreaTooltip(GuiGraphics guiGraphics, int mouseX, int mouseY, int x, int y) {
+    /* ================= ENERGY TOOLTIP ================= */
+
+    private void renderEnergyAreaTooltip(GuiGraphics guiGraphics,
+                                         int mouseX,
+                                         int mouseY,
+                                         int x,
+                                         int y) {
+
         if (isMouseAboveArea(mouseX, mouseY, x, y, 11, 11, 8, 64)) {
-            guiGraphics.renderTooltip(this.font, energyInfoArea.getTooltips(),
-                    Optional.empty(), mouseX - x, mouseY - y);
+            guiGraphics.renderTooltip(
+                    this.font,
+                    energyInfoArea.getTooltips(),
+                    Optional.empty(),
+                    mouseX - x,
+                    mouseY - y
+            );
         }
     }
 
-    // Standard mouse check helper
-    public static boolean isMouseAboveArea(int mouseX, int mouseY, int x, int y, int offsetX, int offsetY, int width, int height) {
-        return MouseUtil.isMouseOver(mouseX, mouseY, x + offsetX, y + offsetY, width, height);
+    public static boolean isMouseAboveArea(int mouseX,
+                                           int mouseY,
+                                           int x,
+                                           int y,
+                                           int offsetX,
+                                           int offsetY,
+                                           int width,
+                                           int height) {
+
+        return MouseUtil.isMouseOver(
+                mouseX,
+                mouseY,
+                x + offsetX,
+                y + offsetY,
+                width,
+                height
+        );
     }
 
+    /* ================= LABELS ================= */
+
     @Override
-    protected void renderLabels(GuiGraphics guiGraphics, int mouseX, int mouseY) {
+    protected void renderLabels(GuiGraphics guiGraphics,
+                                int mouseX,
+                                int mouseY) {
+
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
 
         renderEnergyAreaTooltip(guiGraphics, mouseX, mouseY, x, y);
     }
+
+    /* ================= BACKGROUND ================= */
 
     @Override
     protected void renderBg(GuiGraphics guiGraphics,
@@ -84,13 +121,13 @@ public class AlloyForgerBlockScreen extends AbstractContainerScreen<AlloyForgerB
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
 
-        // Draw base GUI
+        // Base GUI
         guiGraphics.blit(GUI_TEXTURE, x, y, 0, 0, imageWidth, imageHeight);
 
-        // ✅ Draw red fill energy bar
+        // ✅ Energy bar (identical to Alloy Forger)
         energyInfoArea.render(guiGraphics);
 
-        // Draw alloying progress arrow
+        // Furnace progress arrow
         int arrow = menu.getCraftProgress();
         guiGraphics.blit(GUI_TEXTURE, x + 79, y + 34, 176, 14, arrow + 1, 16);
     }
@@ -100,6 +137,7 @@ public class AlloyForgerBlockScreen extends AbstractContainerScreen<AlloyForgerB
                        int mouseX,
                        int mouseY,
                        float delta) {
+
         renderBackground(guiGraphics, mouseX, mouseY, delta);
         super.render(guiGraphics, mouseX, mouseY, delta);
         renderTooltip(guiGraphics, mouseX, mouseY);

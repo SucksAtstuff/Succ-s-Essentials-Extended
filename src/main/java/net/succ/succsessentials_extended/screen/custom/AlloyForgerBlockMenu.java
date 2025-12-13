@@ -25,7 +25,7 @@ public class AlloyForgerBlockMenu extends AbstractContainerMenu {
     public AlloyForgerBlockMenu(int id, Inventory inv, FriendlyByteBuf buf) {
         this(id, inv,
                 inv.player.level().getBlockEntity(buf.readBlockPos()),
-                new SimpleContainerData(4) // ✅ 2 progress + 2 energy
+                new SimpleContainerData(4) // 2 progress + 2 energy
         );
     }
 

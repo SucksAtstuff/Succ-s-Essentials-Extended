@@ -6,7 +6,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.DropExperienceBlock;
-import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
@@ -14,6 +13,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import net.succ.succsessentials_extended.Succsessentials_extended;
 import net.succ.succsessentials_extended.block.custom.AlloyForgerBlock;
 import net.succ.succsessentials_extended.block.custom.CoalGeneratorBlock;
+import net.succ.succsessentials_extended.block.custom.ElectricFurnaceBlock;
 import net.succ.succsessentials_extended.item.ModItems;
 
 import java.util.function.Supplier;
@@ -44,6 +44,9 @@ public class ModBlocks {
 
     public static final DeferredBlock<Block> ALLOY_FORGER = registerBlock("alloy_forger",
             () -> new AlloyForgerBlock(BlockBehaviour.Properties.of().strength(3f).requiresCorrectToolForDrops()));
+
+    public static final DeferredBlock<Block> ELECTRIC_FURNACE = registerBlock("electric_furnace",
+            () -> new ElectricFurnaceBlock(BlockBehaviour.Properties.of().strength(3f).requiresCorrectToolForDrops()));
 
     public static final DeferredBlock<Block> PANEL_BLOCK = registerBlock("panel_block",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops()));

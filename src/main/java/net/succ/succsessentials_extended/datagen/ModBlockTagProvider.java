@@ -23,7 +23,12 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         // Pickaxe mineable ores
         tag(BlockTags.MINEABLE_WITH_PICKAXE)
                 .add(ModBlocks.CHROMIUM_ORE.get())
-                .add(ModBlocks.DEEPSLATE_CHROMIUM_ORE.get());
+                .add(ModBlocks.DEEPSLATE_CHROMIUM_ORE.get())
+                .add(ModBlocks.TITANIUM_ORE.get())
+                .add(ModBlocks.DEEPSLATE_TITANIUM_ORE.get())
+                .add(ModBlocks.ALLOY_FORGER.get())
+                .add(ModBlocks.PANEL_BLOCK.get())
+                .add(ModBlocks.ELECTRIC_FURNACE.get());
 
         tag(ModTags.Blocks.PAXEL_MINEABLE)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE)
@@ -32,7 +37,9 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 
         tag(net.succ.succsmod.util.ModTags.Blocks.NEEDS_ATHERIUM_TOOL)
                 .add(ModBlocks.CHROMIUM_ORE.get())
-                .add(ModBlocks.DEEPSLATE_CHROMIUM_ORE.get());
+                .add(ModBlocks.DEEPSLATE_CHROMIUM_ORE.get())
+                .add(ModBlocks.TITANIUM_ORE.get())
+                .add(ModBlocks.DEEPSLATE_TITANIUM_ORE.get());
 
         this.tag(BlockTags.NEEDS_DIAMOND_TOOL);
 
@@ -88,7 +95,6 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         tag(BlockTags.SAPLINGS);
 
         tag(BlockTags.LEAVES);
-
 
         tag(BlockTags.CLIMBABLE);
 

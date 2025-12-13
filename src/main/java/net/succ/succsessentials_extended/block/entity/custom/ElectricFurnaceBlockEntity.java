@@ -16,39 +16,32 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.energy.IEnergyStorage;
 import net.neoforged.neoforge.items.ItemStackHandler;
-import net.succ.succsessentials_extended.block.custom.AlloyForgerBlock;
+import net.succ.succsessentials_extended.block.custom.ElectricFurnaceBlock;
 import net.succ.succsessentials_extended.block.entity.ModBlockEntities;
 import net.succ.succsessentials_extended.block.entity.energy.ModEnergyStorage;
-import net.succ.succsessentials_extended.recipe.AlloyForgingRecipe;
-import net.succ.succsessentials_extended.recipe.AlloyForgingRecipeInput;
-import net.succ.succsessentials_extended.recipe.ModRecipes;
 import net.succ.succsessentials_extended.screen.custom.AlloyForgerBlockMenu;
-import net.succ.succsessentials_extended.util.ModTags;
+import net.succ.succsessentials_extended.screen.custom.ElectricFurnaceBlockMenu;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
 
-public class AlloyForgerBlockEntity extends BlockEntity implements MenuProvider {
+public class ElectricFurnaceBlockEntity extends BlockEntity implements MenuProvider {
 
-    /* ================= SLOTS ================= */
-    private static final int INPUT_A = 0;
-    private static final int INPUT_B = 1;
-    private static final int OUTPUT  = 2;
+    private static final int INPUT = 0;
+    private static final int OUTPUT = 1;
 
-    /* ================= ENERGY ================= */
-    private int energyPerTick = 20; // default fallback
+    private int energyPerTick = 20;
 
     private static final int ENERGY_CAPACITY = 64000;
     private static final int ENERGY_TRANSFER = 320;
 
-    /* ================= INVENTORY ================= */
-    public final ItemStackHandler itemHandler = new ItemStackHandler(3) {
+    public final ItemStackHandler itemHandler = new ItemStackHandler(2) {
         @Override
         protected void onContentsChanged(int slot) {
             setChanged();
@@ -60,14 +53,13 @@ public class AlloyForgerBlockEntity extends BlockEntity implements MenuProvider 
         @Override
         public boolean isItemValid(int slot, ItemStack stack) {
             return switch (slot) {
-                case INPUT_A, INPUT_B -> stack.is(ModTags.Items.INGOTS);
+                case INPUT -> true;
                 case OUTPUT -> false;
                 default -> false;
             };
         }
     };
 
-    /* ================= ENERGY STORAGE ================= */
     private final ModEnergyStorage energyStorage = new ModEnergyStorage(
             ENERGY_CAPACITY, ENERGY_TRANSFER
     ) {
@@ -78,7 +70,6 @@ public class AlloyForgerBlockEntity extends BlockEntity implements MenuProvider 
         }
     };
 
-    /* ================= PROGRESS ================= */
     private int progress = 0;
     private int maxProgress = 200;
 
@@ -107,15 +98,16 @@ public class AlloyForgerBlockEntity extends BlockEntity implements MenuProvider 
         }
     };
 
-    public AlloyForgerBlockEntity(BlockPos pos, BlockState state) {
-        super(ModBlockEntities.ALLOY_FORGER_BE.get(), pos, state);
+
+    public ElectricFurnaceBlockEntity(BlockPos pos, BlockState state) {
+        super(ModBlockEntities.ELECTRIC_FURNACE_BE.get(), pos, state);
     }
 
     public IEnergyStorage getEnergyStorage(@Nullable Direction side) {
         return energyStorage;
     }
 
-    /* ================= TICK ================= */
+    /* ================= TICK (INSTANCE, SAME AS ALLOY FORGER) ================= */
     public void tick(Level level, BlockPos pos, BlockState state) {
         if (hasRecipe() && hasEnoughEnergy()) {
             progress++;
@@ -126,51 +118,61 @@ public class AlloyForgerBlockEntity extends BlockEntity implements MenuProvider 
                 progress = 0;
             }
 
-            level.setBlockAndUpdate(pos, state.setValue(AlloyForgerBlock.LIT, true));
+            if (!state.getValue(ElectricFurnaceBlock.LIT)) {
+                level.setBlock(pos, state.setValue(ElectricFurnaceBlock.LIT, true), 3);
+            }
+
         } else {
             progress = 0;
-            energyPerTick = 20; // reset to default if recipe is invalid
-            level.setBlockAndUpdate(pos, state.setValue(AlloyForgerBlock.LIT, false));
+            energyPerTick = 20;
+
+            if (state.getValue(ElectricFurnaceBlock.LIT)) {
+                level.setBlock(pos, state.setValue(ElectricFurnaceBlock.LIT, false), 3);
+            }
         }
     }
 
-    /* ================= RECIPE ================= */
+
+    /* ================= RECIPE (VANILLA SMELTING) ================= */
     private boolean hasRecipe() {
-        Optional<RecipeHolder<AlloyForgingRecipe>> recipe = getCurrentRecipe();
+        Optional<RecipeHolder<SmeltingRecipe>> recipe = getCurrentRecipe();
         if (recipe.isEmpty()) return false;
 
-        maxProgress = recipe.get().value().cookTime();
-        energyPerTick = recipe.get().value().energyPerTick();
-        return canInsertIntoOutput(recipe.get().value().output());
+        maxProgress = recipe.get().value().getCookingTime();
+        energyPerTick = 20;
+
+        ItemStack result = recipe.get().value().getResultItem(level.registryAccess());
+        return canInsertIntoOutput(result);
     }
 
-    private Optional<RecipeHolder<AlloyForgingRecipe>> getCurrentRecipe() {
+
+    private Optional<RecipeHolder<SmeltingRecipe>> getCurrentRecipe() {
         return level.getRecipeManager().getRecipeFor(
-                ModRecipes.ALLOY_FORGING_TYPE.get(),
-                new AlloyForgingRecipeInput(
-                        itemHandler.getStackInSlot(INPUT_A),
-                        itemHandler.getStackInSlot(INPUT_B)
-                ),
+                RecipeType.SMELTING,
+                new SingleRecipeInput(itemHandler.getStackInSlot(INPUT)),
                 level
         );
     }
 
     private void craftItem() {
-        Optional<RecipeHolder<AlloyForgingRecipe>> recipe = getCurrentRecipe();
+        Optional<RecipeHolder<SmeltingRecipe>> recipe = getCurrentRecipe();
         if (recipe.isEmpty()) return;
 
-        ItemStack result = recipe.get().value().output();
-        itemHandler.extractItem(INPUT_A, 1, false);
-        itemHandler.extractItem(INPUT_B, 1, false);
+        ItemStack result = recipe.get().value().getResultItem(level.registryAccess());
 
-        itemHandler.setStackInSlot(
-                OUTPUT,
-                new ItemStack(
-                        result.getItem(),
-                        itemHandler.getStackInSlot(OUTPUT).getCount() + result.getCount()
-                )
-        );
+        itemHandler.extractItem(INPUT, 1, false);
+
+        ItemStack output = itemHandler.getStackInSlot(OUTPUT);
+        if (output.isEmpty()) {
+            itemHandler.setStackInSlot(OUTPUT, result.copy());
+        } else {
+            itemHandler.setStackInSlot(
+                    OUTPUT,
+                    new ItemStack(result.getItem(), output.getCount() + result.getCount())
+            );
+        }
     }
+
 
     private boolean hasEnoughEnergy() {
         return energyStorage.getEnergyStored() >= energyPerTick;
@@ -183,16 +185,17 @@ public class AlloyForgerBlockEntity extends BlockEntity implements MenuProvider 
         return output.getCount() + stack.getCount() <= output.getMaxStackSize();
     }
 
+
     /* ================= MENU ================= */
     @Override
     public Component getDisplayName() {
-        return Component.translatable("block.succsessentials_extended.alloy_forger");
+        return Component.translatable("block.succsessentials_extended.electric_furnace");
     }
 
     @Nullable
     @Override
     public AbstractContainerMenu createMenu(int id, Inventory inv, Player player) {
-        return new AlloyForgerBlockMenu(id, inv, this, data);
+        return new ElectricFurnaceBlockMenu(id, inv, this, data);
     }
 
     /* ================= SAVE / LOAD ================= */
@@ -234,3 +237,4 @@ public class AlloyForgerBlockEntity extends BlockEntity implements MenuProvider 
         return saveWithoutMetadata(registries);
     }
 }
+

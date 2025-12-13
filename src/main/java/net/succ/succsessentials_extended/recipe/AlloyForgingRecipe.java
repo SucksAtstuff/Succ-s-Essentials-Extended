@@ -19,7 +19,9 @@ public record AlloyForgingRecipe(
         Ingredient inputA,   // first metal
         Ingredient inputB,   // second metal
         ItemStack output,     // alloy result
-        int cookTime
+        int cookTime,
+        int energyPerTick
+
 ) implements Recipe<AlloyForgingRecipeInput> {
 
     @Override
@@ -90,8 +92,11 @@ public record AlloyForgingRecipe(
                         ItemStack.CODEC.fieldOf("result")
                                 .forGetter(AlloyForgingRecipe::output),
                         Codec.INT.optionalFieldOf("cook_time", 200)
-                                .forGetter(AlloyForgingRecipe::cookTime)
+                                .forGetter(AlloyForgingRecipe::cookTime),
+                        Codec.INT.optionalFieldOf("energy_per_tick", 20)
+                                .forGetter(AlloyForgingRecipe::energyPerTick)
                 ).apply(inst, AlloyForgingRecipe::new));
+
 
         public static final StreamCodec<RegistryFriendlyByteBuf, AlloyForgingRecipe> STREAM_CODEC =
                 StreamCodec.composite(
@@ -99,8 +104,10 @@ public record AlloyForgingRecipe(
                         Ingredient.CONTENTS_STREAM_CODEC, AlloyForgingRecipe::inputB,
                         ItemStack.STREAM_CODEC, AlloyForgingRecipe::output,
                         ByteBufCodecs.INT, AlloyForgingRecipe::cookTime,
+                        ByteBufCodecs.INT, AlloyForgingRecipe::energyPerTick,
                         AlloyForgingRecipe::new
                 );
+
 
 
         @Override
