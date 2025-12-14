@@ -343,6 +343,33 @@ public class ModTags {
         public static final TagKey<Item> STORAGE_STEEL =
                 TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/steel"));
 
+        /* ================= TITA-CHROME ================= */
+
+        public static final TagKey<Item> INGOTS_TITA_CHROME =
+                TagKey.create(Registries.ITEM,
+                        ResourceLocation.fromNamespaceAndPath("c", "ingots/tita_chrome"));
+        public static final TagKey<Item> NUGGETS_TITA_CHROME =
+                TagKey.create(Registries.ITEM,
+                        ResourceLocation.fromNamespaceAndPath("c", "nuggets/tita_chrome"));
+        public static final TagKey<Item> DUSTS_TITA_CHROME =
+                TagKey.create(Registries.ITEM,
+                        ResourceLocation.fromNamespaceAndPath("c", "dusts/tita_chrome"));
+        public static final TagKey<Item> PLATES_TITA_CHROME =
+                TagKey.create(Registries.ITEM,
+                        ResourceLocation.fromNamespaceAndPath("c", "plates/tita_chrome"));
+        public static final TagKey<Item> RODS_TITA_CHROME =
+                TagKey.create(Registries.ITEM,
+                        ResourceLocation.fromNamespaceAndPath("c", "rods/tita_chrome"));
+        public static final TagKey<Item> GEARS_TITA_CHROME =
+                TagKey.create(Registries.ITEM,
+                        ResourceLocation.fromNamespaceAndPath("c", "gears/tita_chrome"));
+        public static final TagKey<Item> ORES_TITA_CHROME =
+                TagKey.create(Registries.ITEM,
+                        ResourceLocation.fromNamespaceAndPath("c", "ores/tita_chrome"));
+        public static final TagKey<Item> STORAGE_TITA_CHROME =
+                TagKey.create(Registries.ITEM,
+                        ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/tita_chrome"));
+
         /* ---------- BRONZE ---------- */
 
         public static final TagKey<Item> STORAGE_BRONZE =
@@ -515,6 +542,12 @@ public class ModTags {
                 TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "ores/chromium"));
         public static final TagKey<Block> STORAGE_CHROMIUM =
                 TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/chromium"));
+
+        /* ================= TITA-CHROME ================= */
+
+        public static final TagKey<Block> STORAGE_BLOCKS_TITA_CHROME =
+                TagKey.create(Registries.BLOCK,
+                        ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/tita_chrome"));
 
 
         private static TagKey<Block> createTag (String name) {

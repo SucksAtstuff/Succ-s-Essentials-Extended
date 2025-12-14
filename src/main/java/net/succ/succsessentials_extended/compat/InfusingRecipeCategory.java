@@ -74,6 +74,11 @@ public class InfusingRecipeCategory implements IRecipeCategory<InfusingRecipe> {
                 .addIngredients(recipe.getIngredients().get(1));
 
         builder.addSlot(RecipeIngredientRole.OUTPUT, 116, 35)
-                .addItemStack(recipe.output());
+                .addItemStack(recipe.output())
+                .addRichTooltipCallback((slotView, tooltip) -> {
+                    tooltip.add(
+                            Component.literal("Energy: " + recipe.getTotalEnergy() + " FE")
+                    );
+                });
     }
 }

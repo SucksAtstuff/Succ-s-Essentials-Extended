@@ -7,10 +7,7 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.succ.succsessentials_extended.Succsessentials_extended;
 import net.succ.succsessentials_extended.block.ModBlocks;
-import net.succ.succsessentials_extended.block.entity.custom.AlloyForgerBlockEntity;
-import net.succ.succsessentials_extended.block.entity.custom.CoalGeneratorBlockEntity;
-import net.succ.succsessentials_extended.block.entity.custom.ElectricFurnaceBlockEntity;
-import net.succ.succsessentials_extended.block.entity.custom.InfuserBlockEntity;
+import net.succ.succsessentials_extended.block.entity.custom.*;
 
 import java.util.function.Supplier;
 
@@ -33,6 +30,10 @@ public class ModBlockEntities {
     public static final Supplier<BlockEntityType<InfuserBlockEntity>> INFUSER_BE =
             BLOCK_ENTITIES.register("infuser_be", () -> BlockEntityType.Builder.of(
                     InfuserBlockEntity::new, ModBlocks.INFUSER.get()).build(null));
+
+    public static final Supplier<BlockEntityType<PulverizerBlockEntity>> PULVERIZER_BE =
+            BLOCK_ENTITIES.register("pulverizer_be", () -> BlockEntityType.Builder.of(
+                    PulverizerBlockEntity::new, ModBlocks.PULVERIZER.get()).build(null));
 
 
     public static void register(IEventBus eventBus){

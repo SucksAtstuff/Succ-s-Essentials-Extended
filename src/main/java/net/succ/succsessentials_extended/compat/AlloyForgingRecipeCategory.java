@@ -3,11 +3,14 @@ package net.succ.succsessentials_extended.compat;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
+import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
@@ -63,9 +66,13 @@ public class AlloyForgingRecipeCategory implements IRecipeCategory<AlloyForgingR
     }
 
     @Override
-    public void setRecipe(IRecipeLayoutBuilder builder,
-                          AlloyForgingRecipe recipe,
-                          IFocusGroup focuses) {
+    public void setRecipe(
+            IRecipeLayoutBuilder builder,
+            AlloyForgingRecipe recipe,
+            IFocusGroup focuses
+    ) {
+
+        /* ================= INPUTS ================= */
 
         builder.addSlot(RecipeIngredientRole.INPUT, 56, 25)
                 .addIngredients(recipe.getIngredients().get(0));
@@ -73,7 +80,35 @@ public class AlloyForgingRecipeCategory implements IRecipeCategory<AlloyForgingR
         builder.addSlot(RecipeIngredientRole.INPUT, 56, 44)
                 .addIngredients(recipe.getIngredients().get(1));
 
+        /* ================= OUTPUT ================= */
+
         builder.addSlot(RecipeIngredientRole.OUTPUT, 116, 35)
-                .addItemStack(recipe.output());
+                .addItemStack(recipe.output())
+                // Tooltip showing total energy cost
+                .addRichTooltipCallback((slotView, tooltip) -> {
+                    tooltip.add(Component.literal("Energy: " + recipe.getTotalEnergy() + " FE"));
+                });
+
+    }
+
+    /* ================= EXTRA DRAWING ================= */
+
+    @Override
+    public void draw(
+            AlloyForgingRecipe recipe,
+            IRecipeSlotsView recipeSlotsView,
+            GuiGraphics graphics,
+            double mouseX,
+            double mouseY
+    ) {
+        // Draw energy cost as text in the JEI recipe GUI
+        graphics.drawString(
+                Minecraft.getInstance().font,
+                "Energy: " + recipe.getTotalEnergy() + " FE",
+                6,
+                72,
+                0xFFFFFF,
+                false
+        );
     }
 }

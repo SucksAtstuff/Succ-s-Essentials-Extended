@@ -10,10 +10,7 @@ import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
 import net.neoforged.neoforge.event.entity.RegisterSpawnPlacementsEvent;
 import net.succ.succsessentials_extended.Succsessentials_extended;
 import net.succ.succsessentials_extended.block.entity.ModBlockEntities;
-import net.succ.succsessentials_extended.block.entity.custom.AlloyForgerBlockEntity;
-import net.succ.succsessentials_extended.block.entity.custom.CoalGeneratorBlockEntity;
-import net.succ.succsessentials_extended.block.entity.custom.ElectricFurnaceBlockEntity;
-import net.succ.succsessentials_extended.block.entity.custom.InfuserBlockEntity;
+import net.succ.succsessentials_extended.block.entity.custom.*;
 import net.succ.succsessentials_extended.item.ModItems;
 
 @EventBusSubscriber(modid = Succsessentials_extended.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
@@ -28,6 +25,9 @@ public class ModBusEvents {
         event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK, ModBlockEntities.ELECTRIC_FURNACE_BE.get(), ElectricFurnaceBlockEntity::getEnergyStorage);
 
         event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK, ModBlockEntities.INFUSER_BE.get(), InfuserBlockEntity::getEnergyStorage);
+
+        event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK, ModBlockEntities.PULVERIZER_BE.get(), PulverizerBlockEntity::getEnergyStorage);
+
     }
 
     @SubscribeEvent

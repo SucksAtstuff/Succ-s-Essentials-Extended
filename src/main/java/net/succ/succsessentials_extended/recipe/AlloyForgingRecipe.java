@@ -55,6 +55,9 @@ public record AlloyForgingRecipe(
         return normalOrder || swappedOrder;
     }
 
+    public int getTotalEnergy() {
+        return energyPerTick * cookTime;
+    }
 
     @Override
     public ItemStack assemble(AlloyForgingRecipeInput input, HolderLookup.Provider registries) {

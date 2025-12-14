@@ -7,6 +7,12 @@
     "succsessentials_extended:alloy_forger",
     "succsessentials_extended:panel_block",
     "succsessentials_extended:infuser",
+    "succsessentials_extended:chromium_block",
+    "succsessentials_extended:titanium_block",
+    "succsessentials_extended:steel_block",
+    "succsessentials_extended:tita-chrome_block",
+    "succsessentials_extended:raw_chromium_block",
+    "succsessentials_extended:raw_titanium_block",
     "succsessentials_extended:electric_furnace"
   ]
 }

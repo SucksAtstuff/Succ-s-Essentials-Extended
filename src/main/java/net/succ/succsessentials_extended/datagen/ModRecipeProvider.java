@@ -4,6 +4,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -17,6 +18,7 @@ import net.succ.succsessentials_extended.block.ModBlocks;
 import net.succ.succsessentials_extended.item.ModItems;
 import net.succ.succsessentials_extended.recipe.AlloyForgingRecipe;
 import net.succ.succsessentials_extended.recipe.InfusingRecipe;
+import net.succ.succsessentials_extended.recipe.PulverizingRecipe;
 import net.succ.succsessentials_extended.util.ModTags;
 
 import java.util.List;
@@ -116,6 +118,83 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy(getHasName(Items.REDSTONE_BLOCK), has(Items.REDSTONE_BLOCK))
                 .save(recipeOutput);
 
+
+        metalConversions(
+                recipeOutput,
+                ModTags.Items.INGOTS_CHROMIUM,
+                ModTags.Items.NUGGETS_CHROMIUM,
+                ModBlocks.CHROMIUM_BLOCK,
+                ModItems.CHROMIUM_INGOT,
+                ModItems.CHROMIUM_NUGGET
+        );
+
+        metalConversions(
+                recipeOutput,
+                ModTags.Items.INGOTS_TITANIUM,
+                ModTags.Items.NUGGETS_TITANIUM,
+                ModBlocks.TITANIUM_BLOCK,
+                ModItems.TITANIUM_INGOT,
+                ModItems.TITANIUM_NUGGET
+        );
+
+        metalConversions(
+                recipeOutput,
+                ModTags.Items.INGOTS_STEEL,
+                ModTags.Items.NUGGETS_STEEL,
+                ModBlocks.STEEL_BLOCK,
+                ModItems.STEEL_INGOT,
+                ModItems.STEEL_NUGGET
+        );
+
+        metalConversions(
+                recipeOutput,
+                ModTags.Items.INGOTS_TITA_CHROME,
+                ModTags.Items.NUGGETS_TITA_CHROME,
+                ModBlocks.TITA_CHROME_BLOCK,
+                ModItems.TITA_CHROME_INGOT,
+                ModItems.TITA_CHROME_NUGGET
+        );
+
+        rawMaterialConversions(
+                recipeOutput,
+                ModTags.Items.RAW_CHROMIUM,
+                ModBlocks.RAW_CHROMIUM_BLOCK,
+                ModItems.RAW_CHROMIUM
+        );
+
+        rawMaterialConversions(
+                recipeOutput,
+                ModTags.Items.RAW_TITANIUM,
+                ModBlocks.RAW_TITANIUM_BLOCK,
+                ModItems.RAW_TITANIUM
+        );
+
+        pulverizing(
+                recipeOutput,
+                ModTags.Items.ORES_TITANIUM,
+                ModItems.TITANIUM_DUST,
+                Blocks.COBBLESTONE,
+                200,
+                20
+        );
+
+        pulverizing(
+                recipeOutput,
+                ItemTags.COALS,
+                ModItems.COAL_DUST,
+                null,
+                80,
+                10
+        );
+
+    }
+
+
+    protected static ResourceLocation id(ItemLike item, String suffix) {
+        return ResourceLocation.fromNamespaceAndPath(
+                Succsessentials_extended.MOD_ID,
+                getItemName(item) + suffix
+        );
     }
 
     protected static void oreSmelting(RecipeOutput recipeOutput, List<ItemLike> pIngredients, RecipeCategory pCategory, ItemLike pResult,
@@ -190,6 +269,101 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 ResourceLocation.fromNamespaceAndPath(
                         Succsessentials_extended.MOD_ID,
                         getItemName(result) + "_from_infusing"
+                ),
+                recipe,
+                null
+        );
+    }
+
+    protected static void metalConversions(
+            RecipeOutput recipeOutput,
+            TagKey<Item> ingotTag,
+            TagKey<Item> nuggetTag,
+            ItemLike block,
+            ItemLike ingot,
+            ItemLike nugget
+    ) {
+
+        // 9 NUGGETS -> 1 INGOT
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ingot)
+                .pattern("NNN")
+                .pattern("NNN")
+                .pattern("NNN")
+                .define('N', Ingredient.of(nuggetTag))
+                .unlockedBy("has_nugget", has(nuggetTag))
+                .save(recipeOutput, id(ingot, "_from_nuggets"));
+
+        // 1 INGOT -> 9 NUGGETS
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, nugget, 9)
+                .requires(Ingredient.of(ingotTag))
+                .unlockedBy("has_ingot", has(ingotTag))
+                .save(recipeOutput, id(nugget, "_from_ingot"));
+
+        // 9 INGOTS -> 1 BLOCK
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, block)
+                .pattern("III")
+                .pattern("III")
+                .pattern("III")
+                .define('I', Ingredient.of(ingotTag))
+                .unlockedBy("has_ingot", has(ingotTag))
+                .save(recipeOutput, id(block, "_from_ingots"));
+
+        // 1 BLOCK -> 9 INGOTS
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ingot, 9)
+                .requires(block)
+                .unlockedBy("has_block", has(block))
+                .save(recipeOutput, id(ingot, "_from_block"));
+    }
+
+    protected static void rawMaterialConversions(
+            RecipeOutput recipeOutput,
+            TagKey<Item> rawItemTag,
+            ItemLike rawBlock,
+            ItemLike rawItem
+    ) {
+
+        // 9 RAW ITEMS -> 1 RAW BLOCK
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, rawBlock)
+                .pattern("RRR")
+                .pattern("RRR")
+                .pattern("RRR")
+                .define('R', Ingredient.of(rawItemTag))
+                .unlockedBy("has_raw", has(rawItemTag))
+                .save(recipeOutput, id(rawBlock, "_from_raw_items"));
+
+        // 1 RAW BLOCK -> 9 RAW ITEMS
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, rawItem, 9)
+                .requires(rawBlock)
+                .unlockedBy("has_raw_block", has(rawBlock))
+                .save(recipeOutput, id(rawItem, "_from_raw_block"));
+    }
+
+    protected static void pulverizing(
+            RecipeOutput recipeOutput,
+            TagKey<Item> input,          // input tag (ore / ingot / coal / etc)
+            ItemLike result,             // primary output (dust)
+            ItemLike byproduct,          // secondary output (may be null)
+            int cookTime,
+            int energyPerTick
+    ) {
+
+        // If no byproduct is desired, fall back to EMPTY
+        ItemStack byproductStack =
+                byproduct == null ? ItemStack.EMPTY : new ItemStack(byproduct);
+
+        PulverizingRecipe recipe =
+                new PulverizingRecipe(
+                        Ingredient.of(input),        // TAG-based input
+                        new ItemStack(result),       // primary output
+                        byproductStack,              // optional byproduct
+                        cookTime,
+                        energyPerTick
+                );
+
+        recipeOutput.accept(
+                ResourceLocation.fromNamespaceAndPath(
+                        Succsessentials_extended.MOD_ID,
+                        getItemName(result) + "_from_pulverizing"
                 ),
                 recipe,
                 null

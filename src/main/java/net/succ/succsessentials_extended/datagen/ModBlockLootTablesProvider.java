@@ -37,11 +37,15 @@ public class ModBlockLootTablesProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.TITANIUM_BLOCK.get());
         dropSelf(ModBlocks.TITA_CHROME_BLOCK.get());
         dropSelf(ModBlocks.STEEL_BLOCK.get());
+        dropSelf(ModBlocks.RAW_CHROMIUM_BLOCK.get());
+        dropSelf(ModBlocks.RAW_TITANIUM_BLOCK.get());
         dropSelf(ModBlocks.ALLOY_FORGER.get());
         dropSelf(ModBlocks.PANEL_BLOCK.get());
         dropSelf(ModBlocks.COAL_GENERATOR.get());
         dropSelf(ModBlocks.ELECTRIC_FURNACE.get());
         dropSelf(ModBlocks.INFUSER.get());
+        dropSelf(ModBlocks.PULVERIZER.get());
+
 
         // Define loot tables for ores that drop items similar to diamond ores
         add(ModBlocks.CHROMIUM_ORE.get(),

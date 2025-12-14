@@ -25,6 +25,9 @@ import org.jetbrains.annotations.Nullable;
  *  - Energy generation
  *  - Energy pushing
  *  - NBT save/load
+ *
+ * FIX:
+ *  - Energy pushing is no longer tied to burning state
  * ============================================================
  */
 public abstract class AbstractGeneratorBlockEntity extends BlockEntity {
@@ -72,6 +75,11 @@ public abstract class AbstractGeneratorBlockEntity extends BlockEntity {
     /* ================= TICK ================= */
 
     public void tick(Level level, BlockPos pos, BlockState state) {
+
+        /* --------------------------------------------------
+           FUEL + BURN LOGIC (GENERATION ONLY)
+           -------------------------------------------------- */
+
         if (hasFuel() && !isBurning) {
             consumeFuel();
             isBurning = true;
@@ -79,18 +87,27 @@ public abstract class AbstractGeneratorBlockEntity extends BlockEntity {
 
         if (isBurning) {
             burnProgress--;
-
             generateEnergy();
-            pushEnergy();
 
             if (burnProgress <= 0) {
                 resetBurn();
             }
-
-            setLitState(true);
-        } else {
-            setLitState(false);
         }
+
+        /* --------------------------------------------------
+           ENERGY OUTPUT (ALWAYS RUNS)
+           -------------------------------------------------- */
+
+        // FIX: Energy is pushed even when not burning
+        if (energyStorage.getEnergyStored() > 0) {
+            pushEnergy();
+        }
+
+        /* --------------------------------------------------
+           BLOCKSTATE (LIT)
+           -------------------------------------------------- */
+
+        setLitState(isBurning);
     }
 
     protected void resetBurn() {
@@ -105,7 +122,8 @@ public abstract class AbstractGeneratorBlockEntity extends BlockEntity {
      *  - Push energy to the block ABOVE
      *  - Uses ModEnergyUtil
      *
-     * Can be overridden for side-based or omni-directional output.
+     * IMPORTANT:
+     *  - This is no longer tied to burning state
      */
     protected void pushEnergy() {
         if (level == null) return;

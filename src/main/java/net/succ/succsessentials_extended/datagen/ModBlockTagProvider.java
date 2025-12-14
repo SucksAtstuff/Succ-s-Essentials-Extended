@@ -33,6 +33,12 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.ALLOY_FORGER.get())
                 .add(ModBlocks.PANEL_BLOCK.get())
                 .add(ModBlocks.INFUSER.get())
+                .add(ModBlocks.CHROMIUM_BLOCK.get())
+                .add(ModBlocks.TITANIUM_BLOCK.get())
+                .add(ModBlocks.STEEL_BLOCK.get())
+                .add(ModBlocks.TITA_CHROME_BLOCK.get())
+                .add(ModBlocks.RAW_CHROMIUM_BLOCK.get())
+                .add(ModBlocks.RAW_TITANIUM_BLOCK.get())
                 .add(ModBlocks.ELECTRIC_FURNACE.get());
 
         tag(ModTags.Blocks.PAXEL_MINEABLE)
@@ -145,6 +151,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         tag(ModTags.Blocks.STORAGE_INVAR);
         tag(ModTags.Blocks.STORAGE_CONSTANTAN);
         tag(ModTags.Blocks.STORAGE_CHROMIUM).add(ModBlocks.CHROMIUM_BLOCK.get());
+        tag(ModTags.Blocks.STORAGE_BLOCKS_TITA_CHROME).add(ModBlocks.TITA_CHROME_BLOCK.get());
 
         /* ===================================================== */
         /*          VANILLA TAGS — INITIALIZED EMPTY              */

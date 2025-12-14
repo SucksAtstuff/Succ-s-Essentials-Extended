@@ -49,6 +49,10 @@ public record InfusingRecipe(
         return inputA.test(a) && inputB.test(b);
     }
 
+    public int getTotalEnergy() {
+        return energyPerTick * cookTime;
+    }
+
     @Override
     public ItemStack assemble(InfusingRecipeInput input, HolderLookup.Provider registries) {
         return output.copy();

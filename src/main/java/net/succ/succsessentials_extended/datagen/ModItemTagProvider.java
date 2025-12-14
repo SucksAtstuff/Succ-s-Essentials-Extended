@@ -41,15 +41,21 @@ public class ModItemTagProvider extends ItemTagsProvider {
 
         // Chromium
         tag(ModTags.Items.STORAGE_CHROMIUM)
-                .add(ModBlocks.CHROMIUM_BLOCK.get().asItem());
+                .add(ModBlocks.CHROMIUM_BLOCK.get().asItem())
+                .add(ModBlocks.RAW_CHROMIUM_BLOCK.get().asItem());
 
         // Titanium
         tag(ModTags.Items.STORAGE_TITANIUM)
-                .add(ModBlocks.TITANIUM_BLOCK.get().asItem());
+                .add(ModBlocks.TITANIUM_BLOCK.get().asItem())
+                .add(ModBlocks.RAW_TITANIUM_BLOCK.asItem());
 
         // Steel
         tag(ModTags.Items.STORAGE_STEEL)
                 .add(ModBlocks.STEEL_BLOCK.get().asItem());
+
+        // Tita-Chrome
+        tag(ModTags.Items.STORAGE_TITA_CHROME)
+                .add(ModBlocks.TITA_CHROME_BLOCK.get().asItem());
 
         tag(ModTags.Items.STORAGE_IRON);
         tag(ModTags.Items.STORAGE_GOLD);
@@ -149,7 +155,9 @@ public class ModItemTagProvider extends ItemTagsProvider {
         tag(ModTags.Items.NUGGETS)
                 .add(ModItems.CHROMIUM_NUGGET.get())
                 .add(ModItems.TITANIUM_NUGGET.get())
-                .add(ModItems.STEEL_NUGGET.get());
+                .add(ModItems.STEEL_NUGGET.get())
+                .add(ModItems.TITA_CHROME_NUGGET.get());
+
 
         tag(ModTags.Items.DUSTS)
                 .add(ModItems.COAL_DUST.get())
@@ -325,6 +333,15 @@ public class ModItemTagProvider extends ItemTagsProvider {
         tag(ModTags.Items.RODS_STEEL);
         tag(ModTags.Items.GEARS_STEEL);
 
+        // Tita-Chrome
+        tag(ModTags.Items.INGOTS_TITA_CHROME)
+                .add(ModItems.TITA_CHROME_INGOT.get());
+        tag(ModTags.Items.NUGGETS_TITA_CHROME)
+                .add(ModItems.TITA_CHROME_NUGGET.get());
+        tag(ModTags.Items.DUSTS_TITA_CHROME);
+        tag(ModTags.Items.PLATES_TITA_CHROME);
+        tag(ModTags.Items.RODS_TITA_CHROME);
+        tag(ModTags.Items.GEARS_TITA_CHROME);
 
         // Coal
         tag(ModTags.Items.DUSTS_COAL)
