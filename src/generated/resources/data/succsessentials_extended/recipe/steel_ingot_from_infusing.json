@@ -2,10 +2,10 @@
   "type": "succsessentials_extended:infusing",
   "energy_per_tick": 120,
   "input_a": {
-    "item": "minecraft:iron_ingot"
+    "tag": "c:ingots/iron"
   },
   "input_b": {
-    "item": "succsessentials_extended:coal_dust"
+    "tag": "c:dusts/coal"
   },
   "result": {
     "count": 1,

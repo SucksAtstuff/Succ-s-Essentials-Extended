@@ -49,6 +49,9 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.CHROMIUM_BLOCK);
                         output.accept(ModBlocks.TITANIUM_ORE);
                         output.accept(ModBlocks.DEEPSLATE_TITANIUM_ORE);
+                        output.accept(ModBlocks.TITANIUM_BLOCK);
+                        output.accept(ModBlocks.STEEL_BLOCK);
+                        output.accept(ModBlocks.TITA_CHROME_BLOCK);
                         output.accept(ModBlocks.ALLOY_FORGER);
                         output.accept(ModBlocks.ELECTRIC_FURNACE);
                         output.accept(ModBlocks.INFUSER);

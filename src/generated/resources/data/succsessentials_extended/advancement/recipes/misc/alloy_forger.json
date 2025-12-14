@@ -25,7 +25,7 @@
       "conditions": {
         "items": [
           {
-            "items": "succsessentials_extended:steel_ingot"
+            "items": "#c:ingots/steel"
           }
         ]
       },

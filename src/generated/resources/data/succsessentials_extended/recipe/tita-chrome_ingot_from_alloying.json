@@ -3,10 +3,10 @@
   "cook_time": 100,
   "energy_per_tick": 40,
   "input_a": {
-    "item": "succsessentials_extended:chromium_ingot"
+    "tag": "c:ingots/chromium"
   },
   "input_b": {
-    "item": "succsessentials_extended:titanium_ingot"
+    "tag": "c:ingots/titanium"
   },
   "result": {
     "count": 1,

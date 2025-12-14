@@ -43,6 +43,9 @@ public class ModBlocks {
             () -> new DropExperienceBlock(UniformInt.of(3,7),
                     BlockBehaviour.Properties.ofFullCopy(Blocks.EMERALD_ORE).requiresCorrectToolForDrops()));
 
+    public static final DeferredBlock<Block> TITANIUM_BLOCK = registerBlock("titanium_block",
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.NETHERITE_BLOCK).requiresCorrectToolForDrops()));
+
     public static final DeferredBlock<Block> ALLOY_FORGER = registerBlock("alloy_forger",
             () -> new AlloyForgerBlock(BlockBehaviour.Properties.of().strength(3f).requiresCorrectToolForDrops()));
 
@@ -57,6 +60,12 @@ public class ModBlocks {
 
     public static final DeferredBlock<Block> COAL_GENERATOR = registerBlock("coal_generator",
             () -> new CoalGeneratorBlock(BlockBehaviour.Properties.of().strength(3f).requiresCorrectToolForDrops()));
+
+    public static final DeferredBlock<Block> TITA_CHROME_BLOCK = registerBlock("tita-chrome_block",
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.NETHERITE_BLOCK).requiresCorrectToolForDrops()));
+
+    public static final DeferredBlock<Block> STEEL_BLOCK = registerBlock("steel_block",
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.NETHERITE_BLOCK).requiresCorrectToolForDrops()));
 
 
 

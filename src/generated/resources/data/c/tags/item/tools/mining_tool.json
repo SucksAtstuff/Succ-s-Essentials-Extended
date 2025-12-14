@@ -1,11 +1,5 @@
 {
   "values": [
-    "succsessentials_extended:chromium_pickaxe",
-    "succsessentials_extended:chromium_axe",
-    "succsessentials_extended:chromium_shovel",
-    "succsessentials_extended:chromium_hoe",
-    "succsessentials_extended:chromium_hammer",
-    "succsessentials_extended:chromium_reinforced_hammer",
-    "succsessentials_extended:chromium_paxel"
+    "#c:tools"
   ]
 }

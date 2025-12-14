@@ -9,7 +9,7 @@
       "item": "succsessentials_extended:panel_block"
     },
     "S": {
-      "item": "succsessentials_extended:steel_ingot"
+      "tag": "c:ingots/steel"
     }
   },
   "pattern": [

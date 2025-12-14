@@ -26,6 +26,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
     protected void registerStatesAndModels() {
         // Registering ingot blocks with their respective item models
         blockWithItem(ModBlocks.CHROMIUM_BLOCK);
+        blockWithItem(ModBlocks.TITANIUM_BLOCK);
+        blockWithItem(ModBlocks.STEEL_BLOCK);
+        blockWithItem(ModBlocks.TITA_CHROME_BLOCK);
 
         // Registering ingot ores with their respective item models
         simpleBlockWithItem(ModBlocks.CHROMIUM_ORE.get(), cubeAll(ModBlocks.CHROMIUM_ORE.get()));

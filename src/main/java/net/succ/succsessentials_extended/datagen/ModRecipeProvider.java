@@ -1,11 +1,11 @@
 package net.succ.succsessentials_extended.datagen;
 
-import com.simibubi.create.AllItems;
-import com.simibubi.create.Create;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.*;
@@ -17,6 +17,7 @@ import net.succ.succsessentials_extended.block.ModBlocks;
 import net.succ.succsessentials_extended.item.ModItems;
 import net.succ.succsessentials_extended.recipe.AlloyForgingRecipe;
 import net.succ.succsessentials_extended.recipe.InfusingRecipe;
+import net.succ.succsessentials_extended.util.ModTags;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -41,35 +42,43 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
         alloyForging(
                 recipeOutput,
-                ModItems.CHROMIUM_INGOT,
-                ModItems.TITANIUM_INGOT,
+                ModTags.Items.INGOTS_CHROMIUM,     // ANY chromium ingot
+                ModTags.Items.INGOTS_TITANIUM,     // ANY titanium ingot
                 ModItems.TITA_CHROME_INGOT,
-                "tita-chrome",
-                100, // 5 seconds
-                40 // FE/t
+                "tita_chrome",
+                100,
+                40
         );
 
         infusing(
                 recipeOutput,
-                Items.IRON_INGOT,
-                ModItems.COAL_DUST,
+                ModTags.Items.INGOTS_IRON,          // ANY iron ingot
+                ModTags.Items.DUSTS_COAL,                // ANY coal dust / dust
                 ModItems.STEEL_INGOT,
                 "steel",
-                400, // 20 seconds
-                120 // FE/t
+                400,
+                120
         );
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.ALLOY_FORGER.get(), 1)
                 .pattern("SPS")
                 .pattern("PFP")
                 .pattern("SPS")
+
+                // Panel block is still specific to your mod
                 .define('P', ModBlocks.PANEL_BLOCK)
-                .define('S', ModItems.STEEL_INGOT)
+
+                // ANY steel ingot from any mod
+                .define('S', Ingredient.of(ModTags.Items.INGOTS_STEEL))
+
+                // Vanilla blast furnace (kept specific on purpose)
                 .define('F', Blocks.BLAST_FURNACE)
+
                 .unlockedBy(getHasName(Blocks.BLAST_FURNACE), has(Blocks.BLAST_FURNACE))
-                .unlockedBy(getHasName(ModItems.STEEL_INGOT), has(ModItems.STEEL_INGOT))
+                .unlockedBy("has_steel_ingot", has(ModTags.Items.INGOTS_STEEL))
                 .unlockedBy(getHasName(ModBlocks.PANEL_BLOCK), has(ModBlocks.PANEL_BLOCK))
                 .save(recipeOutput);
+
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.PANEL_BLOCK.get(), 1)
                 .pattern("ISI")
@@ -88,7 +97,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("PFP")
                 .pattern("PSP")
                 .define('P', ModBlocks.PANEL_BLOCK)
-                .define('S', ModItems.STEEL_INGOT)
+                // ANY steel ingot from any mod
+                .define('S', Ingredient.of(ModTags.Items.INGOTS_STEEL))
                 .define('F', Blocks.FURNACE)
                 .unlockedBy(getHasName(Blocks.FURNACE), has(Blocks.FURNACE))
                 .unlockedBy(getHasName(ModBlocks.PANEL_BLOCK), has(ModBlocks.PANEL_BLOCK))
@@ -105,6 +115,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy(getHasName(ModBlocks.PANEL_BLOCK), has(ModBlocks.PANEL_BLOCK))
                 .unlockedBy(getHasName(Items.REDSTONE_BLOCK), has(Items.REDSTONE_BLOCK))
                 .save(recipeOutput);
+
     }
 
     protected static void oreSmelting(RecipeOutput recipeOutput, List<ItemLike> pIngredients, RecipeCategory pCategory, ItemLike pResult,
@@ -127,21 +138,23 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         }
     }
 
-    protected static void alloyForging(RecipeOutput recipeOutput,
-                                       ItemLike inputA,
-                                       ItemLike inputB,
-                                       ItemLike result,
-                                       String group,
-                                       int cookTime,
-                                       int energyPerTick) {
+    protected static void alloyForging(
+            RecipeOutput recipeOutput,
+            TagKey<Item> inputA,
+            TagKey<Item> inputB,
+            ItemLike result,
+            String group,
+            int cookTime,
+            int energyPerTick
+    ) {
 
         AlloyForgingRecipe recipe =
                 new AlloyForgingRecipe(
-                        Ingredient.of(inputA),     // First metal input
-                        Ingredient.of(inputB),     // Second metal input
-                        new ItemStack(result),     // Output item
-                        cookTime,                  // Alloying time (ticks)
-                        energyPerTick              // Energy cost per tick
+                        Ingredient.of(inputA),     // TAG-based input A
+                        Ingredient.of(inputB),     // TAG-based input B
+                        new ItemStack(result),
+                        cookTime,
+                        energyPerTick
                 );
 
         recipeOutput.accept(
@@ -152,25 +165,25 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 recipe,
                 null
         );
-
-
     }
 
-    protected static void infusing (RecipeOutput recipeOutput,
-                                       ItemLike inputA,
-                                       ItemLike inputB,
-                                       ItemLike result,
-                                       String group,
-                                       int cookTime,
-                                       int energyPerTick) {
+    protected static void infusing(
+            RecipeOutput recipeOutput,
+            TagKey<Item> inputA,
+            TagKey<Item> inputB,
+            ItemLike result,
+            String group,
+            int cookTime,
+            int energyPerTick
+    ) {
 
         InfusingRecipe recipe =
                 new InfusingRecipe(
-                        Ingredient.of(inputA),     // First metal input
-                        Ingredient.of(inputB),     // Second metal input
-                        new ItemStack(result),     // Output item
-                        cookTime,                  // Infusing time (ticks)
-                        energyPerTick              // Energy cost per tick
+                        Ingredient.of(inputA),     // TAG-based input A
+                        Ingredient.of(inputB),     // TAG-based input B
+                        new ItemStack(result),
+                        cookTime,
+                        energyPerTick
                 );
 
         recipeOutput.accept(
@@ -181,9 +194,6 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 recipe,
                 null
         );
-
-
     }
-
-
 }
+

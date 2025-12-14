@@ -34,6 +34,9 @@ public class ModBlockLootTablesProvider extends BlockLootSubProvider {
     protected void generate() {
         // Define loot tables for blocks that drop themselves
         dropSelf(ModBlocks.CHROMIUM_BLOCK.get());
+        dropSelf(ModBlocks.TITANIUM_BLOCK.get());
+        dropSelf(ModBlocks.TITA_CHROME_BLOCK.get());
+        dropSelf(ModBlocks.STEEL_BLOCK.get());
         dropSelf(ModBlocks.ALLOY_FORGER.get());
         dropSelf(ModBlocks.PANEL_BLOCK.get());
         dropSelf(ModBlocks.COAL_GENERATOR.get());
