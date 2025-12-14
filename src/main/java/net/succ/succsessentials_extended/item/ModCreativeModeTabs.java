@@ -29,8 +29,12 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.TITANIUM_INGOT);
                         output.accept(ModItems.RAW_TITANIUM);
                         output.accept(ModItems.TITANIUM_NUGGET);
+                        output.accept(ModItems.TITANIUM_DUST);
                         output.accept(ModItems.TITA_CHROME_INGOT);
                         output.accept(ModItems.TITA_CHROME_NUGGET);
+                        output.accept(ModItems.STEEL_INGOT);
+                        output.accept(ModItems.STEEL_NUGGET);
+                        output.accept(ModItems.COAL_DUST);
                     })
                     .build());
 
@@ -47,6 +51,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.DEEPSLATE_TITANIUM_ORE);
                         output.accept(ModBlocks.ALLOY_FORGER);
                         output.accept(ModBlocks.ELECTRIC_FURNACE);
+                        output.accept(ModBlocks.INFUSER);
                         output.accept(ModBlocks.COAL_GENERATOR);
                         output.accept(ModBlocks.PANEL_BLOCK);
                     })

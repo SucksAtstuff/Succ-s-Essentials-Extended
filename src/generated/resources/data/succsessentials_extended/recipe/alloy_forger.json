@@ -2,20 +2,20 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "C": {
-      "item": "succsessentials_extended:chromium_ingot"
-    },
     "F": {
       "item": "minecraft:blast_furnace"
     },
     "P": {
       "item": "succsessentials_extended:panel_block"
+    },
+    "S": {
+      "item": "succsessentials_extended:steel_ingot"
     }
   },
   "pattern": [
-    "CPC",
+    "SPS",
     "PFP",
-    "CPC"
+    "SPS"
   ],
   "result": {
     "count": 1,

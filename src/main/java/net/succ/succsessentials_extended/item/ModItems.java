@@ -28,10 +28,20 @@ public class ModItems {
             () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> TITANIUM_NUGGET = ITEMS.register("titanium_nugget",
             () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> TITANIUM_DUST = ITEMS.register("titanium_dust",
+            () -> new Item(new Item.Properties()));
 
     public static final DeferredItem<Item> TITA_CHROME_INGOT = ITEMS.register("tita-chrome_ingot",
             () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> TITA_CHROME_NUGGET = ITEMS.register("tita-chrome_nugget",
+            () -> new Item(new Item.Properties()));
+
+    public static final DeferredItem<Item> STEEL_INGOT = ITEMS.register("steel_ingot",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> STEEL_NUGGET = ITEMS.register("steel_nugget",
+            () -> new Item(new Item.Properties()));
+
+    public static final DeferredItem<Item> COAL_DUST = ITEMS.register("coal_dust",
             () -> new Item(new Item.Properties()));
 
     public static void register(IEventBus eventBus) {

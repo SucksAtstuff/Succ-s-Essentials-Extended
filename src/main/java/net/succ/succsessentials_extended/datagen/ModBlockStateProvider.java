@@ -32,13 +32,13 @@ public class ModBlockStateProvider extends BlockStateProvider {
         simpleBlockWithItem(ModBlocks.DEEPSLATE_CHROMIUM_ORE.get(), cubeAll(ModBlocks.DEEPSLATE_CHROMIUM_ORE.get()));
         simpleBlockWithItem(ModBlocks.TITANIUM_ORE.get(), cubeAll(ModBlocks.TITANIUM_ORE.get()));
         simpleBlockWithItem(ModBlocks.DEEPSLATE_TITANIUM_ORE.get(), cubeAll(ModBlocks.DEEPSLATE_TITANIUM_ORE.get()));
-        simpleBlockWithItem(ModBlocks.COAL_GENERATOR.get(), cubeAll(ModBlocks.COAL_GENERATOR.get()));
-
 
         panelBlock(ModBlocks.PANEL_BLOCK);
 
-        alloyForgerBlock(ModBlocks.ALLOY_FORGER);
-        electricFurnaceBlock(ModBlocks.ELECTRIC_FURNACE);
+        litOrientableBlock(ModBlocks.ALLOY_FORGER, "alloy_forger");
+        litOrientableBlock(ModBlocks.ELECTRIC_FURNACE, "electric_furnace");
+        litOrientableBlock(ModBlocks.COAL_GENERATOR, "coal_generator");
+        litOrientableBlock(ModBlocks.INFUSER, "infuser");
     }
 
     public void makeCrop(CropBlock block, String modelName, String textureName) {
@@ -68,13 +68,13 @@ public class ModBlockStateProvider extends BlockStateProvider {
         simpleBlock(deferredBlock.get(), models().cross(BuiltInRegistries.BLOCK.getKey(deferredBlock.get()).getPath(), blockTexture(deferredBlock.get())).renderType("cutout"));
     }
 
-    private void alloyForgerBlock(DeferredBlock<Block> block) {
+    private void litOrientableBlock(DeferredBlock<Block> block, String textureDir) {
 
-        // Base path for textures
-        ResourceLocation side  = modLoc("block/alloy_forger/alloy_forger_side");
-        ResourceLocation top   = modLoc("block/alloy_forger/alloy_forger_top");
-        ResourceLocation front = modLoc("block/alloy_forger/alloy_forger_front");
-        ResourceLocation frontOn = modLoc("block/alloy_forger/alloy_forger_front_on");
+        // Build texture paths dynamically from the folder name
+        ResourceLocation side     = modLoc("block/" + textureDir + "/" + textureDir + "_side");
+        ResourceLocation top      = modLoc("block/" + textureDir + "/" + textureDir + "_top");
+        ResourceLocation front    = modLoc("block/" + textureDir + "/" + textureDir + "_front");
+        ResourceLocation frontOn  = modLoc("block/" + textureDir + "/" + textureDir + "_front_on");
 
         // Unlit model
         ModelFile unlit = models().orientable(
@@ -92,8 +92,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 top
         );
 
-
-
+        // Blockstate logic (rotation + lit switch)
         getVariantBuilder(block.get())
                 .forAllStates(state -> {
 
@@ -113,56 +112,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
                             .build();
                 });
 
-        // Item model uses unlit model (vanilla behavior)
-        simpleBlockItem(block.get(), unlit);
-    }
-
-    private void electricFurnaceBlock(DeferredBlock<Block> block) {
-
-        // Base path for textures
-        ResourceLocation side  = modLoc("block/electric_furnace/electric_furnace_side");
-        ResourceLocation top   = modLoc("block/electric_furnace/electric_furnace_top");
-        ResourceLocation front = modLoc("block/electric_furnace/electric_furnace_front");
-        ResourceLocation frontOn = modLoc("block/electric_furnace/electric_furnace_front_on");
-
-        // Unlit model
-        ModelFile unlit = models().orientable(
-                block.getId().getPath(),
-                side,
-                front,
-                top
-        );
-
-        // Lit model
-        ModelFile lit = models().orientable(
-                block.getId().getPath() + "_on",
-                side,
-                frontOn,
-                top
-        );
-
-
-
-        getVariantBuilder(block.get())
-                .forAllStates(state -> {
-
-                    Direction facing = state.getValue(HorizontalDirectionalBlock.FACING);
-                    boolean litState = state.getValue(BlockStateProperties.LIT);
-
-                    int rotationY = switch (facing) {
-                        case SOUTH -> 180;
-                        case WEST  -> 270;
-                        case EAST  -> 90;
-                        default    -> 0; // NORTH
-                    };
-
-                    return ConfiguredModel.builder()
-                            .modelFile(litState ? lit : unlit)
-                            .rotationY(rotationY)
-                            .build();
-                });
-
-        // Item model uses unlit model (vanilla behavior)
+        // Item model always uses unlit variant
         simpleBlockItem(block.get(), unlit);
     }
 

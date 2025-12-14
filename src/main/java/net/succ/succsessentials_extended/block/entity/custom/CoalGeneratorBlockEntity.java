@@ -1,10 +1,8 @@
 package net.succ.succsessentials_extended.block.entity.custom;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.Connection;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
@@ -17,176 +15,158 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.neoforged.neoforge.energy.IEnergyStorage;
 import net.neoforged.neoforge.items.ItemStackHandler;
+import net.succ.succsessentials_extended.block.custom.ElectricFurnaceBlock;
 import net.succ.succsessentials_extended.block.entity.ModBlockEntities;
-import net.succ.succsessentials_extended.block.entity.energy.ModEnergyStorage;
-import net.succ.succsessentials_extended.block.entity.energy.ModEnergyUtil;
+import net.succ.succsessentials_extended.block.entity.base.AbstractGeneratorBlockEntity;
 import net.succ.succsessentials_extended.screen.custom.CoalGeneratorMenu;
 import org.jetbrains.annotations.Nullable;
 
-public class CoalGeneratorBlockEntity extends BlockEntity implements MenuProvider {
+/**
+ * ============================================================
+ * CoalGeneratorBlockEntity
+ *
+ * Simple fuel-based generator using coal items.
+ *
+ * Responsibilities kept here:
+ *  - Inventory
+ *  - Fuel validation
+ *  - Energy generation amount
+ *  - Block LIT state
+ *
+ * Responsibilities moved to AbstractGeneratorBlockEntity:
+ *  - Burn timing
+ *  - Energy storage
+ *  - Energy pushing
+ *  - NBT handling
+ * ============================================================
+ */
+public class CoalGeneratorBlockEntity extends AbstractGeneratorBlockEntity
+        implements MenuProvider {
+
+    /* ================= INVENTORY ================= */
+
+    private static final int INPUT_SLOT = 0;
+
     public final ItemStackHandler itemHandler = new ItemStackHandler(1) {
         @Override
         protected void onContentsChanged(int slot) {
             setChanged();
-            if(!level.isClientSide()) {
-                level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), 3);
+            if (!level.isClientSide()) {
+                level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 3);
             }
         }
     };
 
-    private static final int INPUT_SLOT = 0;
+    /* ================= DATA SYNC ================= */
 
-    protected final ContainerData data;
-    private int burnProgress = 160;
-    private int maxBurnProgress = 160;
-    private boolean isBurning = false;
+    private final ContainerData data = new ContainerData() {
+        @Override
+        public int get(int index) {
+            return switch (index) {
+                case 0 -> burnProgress;
+                case 1 -> maxBurnProgress;
+                default -> 0;
+            };
+        }
 
-    private static final int ENERGY_TRANSFER_AMOUNT = 320;
+        @Override
+        public void set(int index, int value) {
+            if (index == 0) burnProgress = value;
+            if (index == 1) maxBurnProgress = value;
+        }
 
-    private final ModEnergyStorage ENERGY_STORAGE = createEnergyStorage();
+        @Override
+        public int getCount() {
+            return 2;
+        }
+    };
 
-    private ModEnergyStorage createEnergyStorage(){
-        return new ModEnergyStorage(64000, 320) {
-            @Override
-            public void onEnergyChanged() {
-                setChanged();
-                getLevel().sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), 3);
-            }
-        };
+    /* ================= CONSTRUCTOR ================= */
+
+    public CoalGeneratorBlockEntity(BlockPos pos, BlockState state) {
+        super(
+                ModBlockEntities.COAL_GENERATOR_BE.get(),
+                pos,
+                state,
+                64000, // ENERGY CAPACITY
+                320,   // ENERGY TRANSFER RATE
+                160    // BURN TIME PER FUEL
+        );
     }
 
-    public CoalGeneratorBlockEntity(BlockPos pPos, BlockState pBlockState) {
-        super(ModBlockEntities.COAL_GENERATOR_BE.get(), pPos, pBlockState);
-        this.data = new ContainerData() {
-            @Override
-            public int get(int pIndex) {
-                return switch (pIndex) {
-                    case 0 -> CoalGeneratorBlockEntity.this.burnProgress;
-                    case 1 -> CoalGeneratorBlockEntity.this.maxBurnProgress;
-                    default -> 0;
-                };
-            }
+    /* ================= GENERATOR LOGIC ================= */
 
-            @Override
-            public void set(int pIndex, int pValue) {
-                switch (pIndex) {
-                    case 0 -> CoalGeneratorBlockEntity.this.burnProgress = pValue;
-                    case 1 -> CoalGeneratorBlockEntity.this.maxBurnProgress = pValue;
-                }
-            }
-
-            @Override
-            public int getCount() {
-                return 2;
-            }
-        };
+    /**
+     * Determines whether valid fuel exists.
+     */
+    @Override
+    protected boolean hasFuel() {
+        return itemHandler.getStackInSlot(INPUT_SLOT).is(ItemTags.COALS);
     }
 
-    public IEnergyStorage getEnergyStorage(@Nullable Direction direction){
-        return this.ENERGY_STORAGE;
+    /**
+     * Consumes one fuel item when burning starts.
+     */
+    @Override
+    protected void consumeFuel() {
+        itemHandler.extractItem(INPUT_SLOT, 1, false);
     }
+
+    /**
+     * Generates energy every tick while burning.
+     */
+    @Override
+    protected void generateEnergy() {
+        energyStorage.receiveEnergy(320, false);
+    }
+
+    /**
+     * Defines how much energy this generator can push per tick.
+     * Used by the generator base.
+     */
+    @Override
+    protected int getEnergyTransferRate() {
+        return 320;
+    }
+
+    /* ================= BLOCK STATE ================= */
+
+    @Override
+    protected void setLitState(boolean lit) {
+        if (level == null) return;
+
+        BlockState state = getBlockState();
+        if (state.getValue(ElectricFurnaceBlock.LIT) != lit) {
+            level.setBlock(worldPosition, state.setValue(ElectricFurnaceBlock.LIT, lit), 3);
+        }
+    }
+
+    /* ================= MENU ================= */
 
     @Override
     public Component getDisplayName() {
         return Component.literal("Coal Generator");
     }
 
+    @Nullable
     @Override
-    public @Nullable AbstractContainerMenu createMenu(int i, Inventory inventory, Player player) {
-        return new CoalGeneratorMenu(i, inventory, this, this.data);
+    public AbstractContainerMenu createMenu(int id, Inventory inv, Player player) {
+        return new CoalGeneratorMenu(id, inv, this, data);
     }
+
+    /* ================= DROPS ================= */
 
     public void drops() {
         SimpleContainer inventory = new SimpleContainer(itemHandler.getSlots());
-        for (int i = 0; i < itemHandler.getSlots(); i++){
+        for (int i = 0; i < itemHandler.getSlots(); i++) {
             inventory.setItem(i, itemHandler.getStackInSlot(i));
         }
-
-        Containers.dropContents(this.level, this.worldPosition, inventory);
+        Containers.dropContents(level, worldPosition, inventory);
     }
 
-    public void tick(Level level, BlockPos blockPos, BlockState blockState) {
-        if(hasFuelItemInSlot()) {
-            if(!isBurningFuel()) {
-                startBurning();
-            }
-        }
-
-        if(isBurningFuel()) {
-            increaseBurnTimer();
-            if(currentFuelDoneBurning()) {
-                resetBurning();
-            }
-            fillUpOnEnergy();
-        }
-
-        pushEnergyToNeighbourAbove();
-
-    }
-
-    private void pushEnergyToNeighbourAbove() {
-        if(ModEnergyUtil.doesBlockHaveEnergyStorage(this.worldPosition.above(), this.level)) {
-            ModEnergyUtil.move(this.worldPosition, this.worldPosition.above(), 320, this.level);
-        }
-    }
-
-    private boolean hasFuelItemInSlot() {
-        return this.itemHandler.getStackInSlot(INPUT_SLOT).is(ItemTags.COALS);
-    }
-
-    private boolean isBurningFuel() {
-        return isBurning;
-    }
-
-    private void startBurning() {
-        this.itemHandler.extractItem(INPUT_SLOT, 1, false);
-        isBurning = true;
-    }
-
-    private void increaseBurnTimer() {
-        this.burnProgress--;
-    }
-
-    private boolean currentFuelDoneBurning() {
-        return this.burnProgress <= 0;
-    }
-
-    private void resetBurning() {
-        isBurning = false;
-        this.burnProgress = 160;
-    }
-
-    private void fillUpOnEnergy() {
-        this.ENERGY_STORAGE.receiveEnergy(320, false);
-    }
-
-    @Override
-    protected void saveAdditional(CompoundTag pTag, HolderLookup.Provider pRegistries) {
-        pTag.put("coal_generator.inventory", itemHandler.serializeNBT(pRegistries));
-        pTag.putInt("coal_generator.burn_progress", burnProgress);
-        pTag.putInt("coal_generator.max_burn_progress", maxBurnProgress);
-
-        pTag.putInt("coal_generator.energy", ENERGY_STORAGE.getEnergyStored());
-
-        super.saveAdditional(pTag, pRegistries);
-    }
-
-    @Override
-    protected void loadAdditional(CompoundTag pTag, HolderLookup.Provider pRegistries) {
-        super.loadAdditional(pTag, pRegistries);
-        itemHandler.deserializeNBT(pRegistries, pTag.getCompound("coal_generator.inventory"));
-        ENERGY_STORAGE.setEnergy(pTag.getInt("coal_generator.energy"));
-
-        burnProgress = pTag.getInt("coal_generator.burn_progress");
-        maxBurnProgress = pTag.getInt("coal_generator.max_burn_progress");
-    }
+    /* ================= NETWORK ================= */
 
     @Nullable
     @Override
@@ -195,12 +175,7 @@ public class CoalGeneratorBlockEntity extends BlockEntity implements MenuProvide
     }
 
     @Override
-    public CompoundTag getUpdateTag(HolderLookup.Provider pRegistries) {
-        return saveWithoutMetadata(pRegistries);
-    }
-
-    @Override
-    public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket pkt, HolderLookup.Provider pRegistries) {
-        super.onDataPacket(net, pkt, pRegistries);
+    public CompoundTag getUpdateTag(HolderLookup.Provider registries) {
+        return saveWithoutMetadata(registries);
     }
 }

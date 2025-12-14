@@ -145,9 +145,15 @@ public class ModItemTagProvider extends ItemTagsProvider {
         tag(ModTags.Items.INGOTS)
                 .add(ModItems.CHROMIUM_INGOT.get())
                 .add(ModItems.TITANIUM_INGOT.get())
-                .add(ModItems.TITA_CHROME_INGOT.get());
+                .add(ModItems.TITA_CHROME_INGOT.get())
+                .add(ModItems.STEEL_INGOT.get());
 
-        // c:tools (all chromium tools)
+        // c:dusts (dust unification)
+        tag(ModTags.Items.DUSTS)
+                .add(ModItems.COAL_DUST.get())
+                .add(ModItems.TITANIUM_DUST.get());
+
+        // c:tools
         tag(ModTags.Items.TOOLS)
                 .add(ModItems.CHROMIUM_SWORD.get())
                 .add(ModItems.CHROMIUM_PICKAXE.get())

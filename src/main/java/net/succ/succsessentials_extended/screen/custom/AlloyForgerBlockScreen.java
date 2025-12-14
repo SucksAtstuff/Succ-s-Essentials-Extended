@@ -87,7 +87,7 @@ public class AlloyForgerBlockScreen extends AbstractContainerScreen<AlloyForgerB
         // Draw base GUI
         guiGraphics.blit(GUI_TEXTURE, x, y, 0, 0, imageWidth, imageHeight);
 
-        // ✅ Draw red fill energy bar
+        // Draw red fill energy bar
         energyInfoArea.render(guiGraphics);
 
         // Draw alloying progress arrow

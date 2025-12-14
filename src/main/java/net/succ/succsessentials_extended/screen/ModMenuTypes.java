@@ -12,6 +12,7 @@ import net.succ.succsessentials_extended.Succsessentials_extended;
 import net.succ.succsessentials_extended.screen.custom.AlloyForgerBlockMenu;
 import net.succ.succsessentials_extended.screen.custom.CoalGeneratorMenu;
 import net.succ.succsessentials_extended.screen.custom.ElectricFurnaceBlockMenu;
+import net.succ.succsessentials_extended.screen.custom.InfuserBlockMenu;
 
 public class ModMenuTypes {
     public static final DeferredRegister<MenuType<?>> MENUS =
@@ -25,6 +26,9 @@ public class ModMenuTypes {
 
     public static final DeferredHolder<MenuType<?>, MenuType<ElectricFurnaceBlockMenu>> ELECTRIC_FURNACE_MENU =
             registerMenuType("electric_furnace_menu", ElectricFurnaceBlockMenu::new);
+
+    public static final DeferredHolder<MenuType<?>, MenuType<InfuserBlockMenu>> INFUSER_MENU =
+            registerMenuType("infuser_menu", InfuserBlockMenu::new);
 
     private static <T extends AbstractContainerMenu>DeferredHolder<MenuType<?>, MenuType<T>> registerMenuType(String name,
                                                                                                               IContainerFactory<T> factory) {

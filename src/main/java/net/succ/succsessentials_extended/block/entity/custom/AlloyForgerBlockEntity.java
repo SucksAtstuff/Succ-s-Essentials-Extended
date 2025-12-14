@@ -1,7 +1,6 @@
 package net.succ.succsessentials_extended.block.entity.custom;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -17,14 +16,11 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.neoforged.neoforge.energy.IEnergyStorage;
 import net.neoforged.neoforge.items.ItemStackHandler;
 import net.succ.succsessentials_extended.block.custom.AlloyForgerBlock;
 import net.succ.succsessentials_extended.block.entity.ModBlockEntities;
-import net.succ.succsessentials_extended.block.entity.energy.ModEnergyStorage;
+import net.succ.succsessentials_extended.block.entity.base.AbstractPoweredMachineBlockEntity;
 import net.succ.succsessentials_extended.recipe.AlloyForgingRecipe;
 import net.succ.succsessentials_extended.recipe.AlloyForgingRecipeInput;
 import net.succ.succsessentials_extended.recipe.ModRecipes;
@@ -34,20 +30,30 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
 
-public class AlloyForgerBlockEntity extends BlockEntity implements MenuProvider {
+/**
+ * ============================================================
+ * AlloyForgerBlockEntity
+ *
+ * Uses AbstractPoweredMachineBlockEntity to inherit:
+ *  - Energy storage
+ *  - Progress ticking
+ *  - Energy consumption
+ *  - NBT save/load for machine data
+ *
+ * Only contains logic UNIQUE to alloy forging.
+ * ============================================================
+ */
+public class AlloyForgerBlockEntity extends AbstractPoweredMachineBlockEntity
+        implements MenuProvider {
 
     /* ================= SLOTS ================= */
+
     private static final int INPUT_A = 0;
     private static final int INPUT_B = 1;
     private static final int OUTPUT  = 2;
 
-    /* ================= ENERGY ================= */
-    private int energyPerTick = 20; // default fallback
-
-    private static final int ENERGY_CAPACITY = 64000;
-    private static final int ENERGY_TRANSFER = 320;
-
     /* ================= INVENTORY ================= */
+
     public final ItemStackHandler itemHandler = new ItemStackHandler(3) {
         @Override
         protected void onContentsChanged(int slot) {
@@ -67,22 +73,8 @@ public class AlloyForgerBlockEntity extends BlockEntity implements MenuProvider 
         }
     };
 
-    /* ================= ENERGY STORAGE ================= */
-    private final ModEnergyStorage energyStorage = new ModEnergyStorage(
-            ENERGY_CAPACITY, ENERGY_TRANSFER
-    ) {
-        @Override
-        public void onEnergyChanged() {
-            setChanged();
-            level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 3);
-        }
-    };
-
-    /* ================= PROGRESS ================= */
-    private int progress = 0;
-    private int maxProgress = 200;
-
     /* ================= DATA SYNC ================= */
+
     private final ContainerData data = new ContainerData() {
         @Override
         public int get(int index) {
@@ -108,39 +100,26 @@ public class AlloyForgerBlockEntity extends BlockEntity implements MenuProvider 
     };
 
     public AlloyForgerBlockEntity(BlockPos pos, BlockState state) {
-        super(ModBlockEntities.ALLOY_FORGER_BE.get(), pos, state);
-    }
-
-    public IEnergyStorage getEnergyStorage(@Nullable Direction side) {
-        return energyStorage;
-    }
-
-    /* ================= TICK ================= */
-    public void tick(Level level, BlockPos pos, BlockState state) {
-        if (hasRecipe() && hasEnoughEnergy()) {
-            progress++;
-            energyStorage.extractEnergy(energyPerTick, false);
-
-            if (progress >= maxProgress) {
-                craftItem();
-                progress = 0;
-            }
-
-            level.setBlockAndUpdate(pos, state.setValue(AlloyForgerBlock.LIT, true));
-        } else {
-            progress = 0;
-            energyPerTick = 20; // reset to default if recipe is invalid
-            level.setBlockAndUpdate(pos, state.setValue(AlloyForgerBlock.LIT, false));
-        }
+        super(
+                ModBlockEntities.ALLOY_FORGER_BE.get(),
+                pos,
+                state,
+                64000, // ENERGY CAPACITY
+                320    // ENERGY TRANSFER
+        );
     }
 
     /* ================= RECIPE ================= */
-    private boolean hasRecipe() {
+
+    @Override
+    protected boolean hasRecipe() {
         Optional<RecipeHolder<AlloyForgingRecipe>> recipe = getCurrentRecipe();
         if (recipe.isEmpty()) return false;
 
+        // Dynamic values per recipe (same as before)
         maxProgress = recipe.get().value().cookTime();
         energyPerTick = recipe.get().value().energyPerTick();
+
         return canInsertIntoOutput(recipe.get().value().output());
     }
 
@@ -155,25 +134,17 @@ public class AlloyForgerBlockEntity extends BlockEntity implements MenuProvider 
         );
     }
 
-    private void craftItem() {
+    @Override
+    protected void craftItem() {
         Optional<RecipeHolder<AlloyForgingRecipe>> recipe = getCurrentRecipe();
         if (recipe.isEmpty()) return;
 
         ItemStack result = recipe.get().value().output();
+
         itemHandler.extractItem(INPUT_A, 1, false);
         itemHandler.extractItem(INPUT_B, 1, false);
 
-        itemHandler.setStackInSlot(
-                OUTPUT,
-                new ItemStack(
-                        result.getItem(),
-                        itemHandler.getStackInSlot(OUTPUT).getCount() + result.getCount()
-                )
-        );
-    }
-
-    private boolean hasEnoughEnergy() {
-        return energyStorage.getEnergyStored() >= energyPerTick;
+        itemHandler.insertItem(OUTPUT, result.copy(), false);
     }
 
     private boolean canInsertIntoOutput(ItemStack stack) {
@@ -183,7 +154,20 @@ public class AlloyForgerBlockEntity extends BlockEntity implements MenuProvider 
         return output.getCount() + stack.getCount() <= output.getMaxStackSize();
     }
 
+    /* ================= BLOCK STATE ================= */
+
+    @Override
+    protected void setLitState(boolean lit) {
+        if (level == null) return;
+
+        BlockState state = getBlockState();
+        if (state.getValue(AlloyForgerBlock.LIT) != lit) {
+            level.setBlock(worldPosition, state.setValue(AlloyForgerBlock.LIT, lit), 3);
+        }
+    }
+
     /* ================= MENU ================= */
+
     @Override
     public Component getDisplayName() {
         return Component.translatable("block.succsessentials_extended.alloy_forger");
@@ -195,25 +179,7 @@ public class AlloyForgerBlockEntity extends BlockEntity implements MenuProvider 
         return new AlloyForgerBlockMenu(id, inv, this, data);
     }
 
-    /* ================= SAVE / LOAD ================= */
-    @Override
-    protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
-        tag.put("inventory", itemHandler.serializeNBT(registries));
-        tag.putInt("progress", progress);
-        tag.putInt("energy", energyStorage.getEnergyStored());
-        tag.putInt("energyPerTick", energyPerTick);
-        super.saveAdditional(tag, registries);
-    }
-
-    @Override
-    protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
-        itemHandler.deserializeNBT(registries, tag.getCompound("inventory"));
-        progress = tag.getInt("progress");
-        energyStorage.setEnergy(tag.getInt("energy"));
-        energyPerTick = tag.getInt("energyPerTick");
-        super.loadAdditional(tag, registries);
-    }
-
+    /* ================= DROPS ================= */
 
     public void drops() {
         SimpleContainer container = new SimpleContainer(itemHandler.getSlots());
@@ -222,6 +188,8 @@ public class AlloyForgerBlockEntity extends BlockEntity implements MenuProvider 
         }
         Containers.dropContents(level, worldPosition, container);
     }
+
+    /* ================= NETWORK SYNC ================= */
 
     @Nullable
     @Override

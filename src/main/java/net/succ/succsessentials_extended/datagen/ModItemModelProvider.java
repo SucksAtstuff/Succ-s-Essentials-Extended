@@ -46,13 +46,23 @@ public class ModItemModelProvider extends ItemModelProvider {
     protected void registerModels() {
         // Register models for ingots
         basicItem(ModItems.CHROMIUM_INGOT.get());
-        basicItem(ModItems.RAW_CHROMIUM.get());
-        basicItem(ModItems.CHROMIUM_NUGGET.get());
         basicItem(ModItems.TITANIUM_INGOT.get());
-        basicItem(ModItems.RAW_TITANIUM.get());
-        basicItem(ModItems.TITANIUM_NUGGET.get());
         basicItem(ModItems.TITA_CHROME_INGOT.get());
+        basicItem(ModItems.STEEL_INGOT.get());
+
+        // Register models for dusts
+        basicItem(ModItems.TITANIUM_DUST.get());
+        basicItem(ModItems.COAL_DUST.get());
+
+        // Register models for nuggets
+        basicItem(ModItems.CHROMIUM_NUGGET.get());
+        basicItem(ModItems.TITANIUM_NUGGET.get());
         basicItem(ModItems.TITA_CHROME_NUGGET.get());
+        basicItem(ModItems.STEEL_NUGGET.get());
+
+        // Register models for raw ore
+        basicItem(ModItems.RAW_CHROMIUM.get());
+        basicItem(ModItems.RAW_TITANIUM.get());
 
         // Register models for chromium tools
         handheldItem(ModItems.CHROMIUM_SWORD.get());
@@ -60,6 +70,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         handheldItem(ModItems.CHROMIUM_AXE.get());
         handheldItem(ModItems.CHROMIUM_SHOVEL.get());
         handheldItem(ModItems.CHROMIUM_HOE.get());
+
+
     }
 
     // Shoutout to El_Redstoniano for making this
@@ -155,5 +167,4 @@ public class ModItemModelProvider extends ItemModelProvider {
         this.withExistingParent(block.getId().getPath(), mcLoc("item/generated"))
                 .texture("layer0", modLoc("block/" + block.getId().getPath()));
     }
-
 }

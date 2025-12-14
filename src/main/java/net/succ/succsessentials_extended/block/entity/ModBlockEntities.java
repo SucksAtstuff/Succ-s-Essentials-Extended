@@ -10,6 +10,7 @@ import net.succ.succsessentials_extended.block.ModBlocks;
 import net.succ.succsessentials_extended.block.entity.custom.AlloyForgerBlockEntity;
 import net.succ.succsessentials_extended.block.entity.custom.CoalGeneratorBlockEntity;
 import net.succ.succsessentials_extended.block.entity.custom.ElectricFurnaceBlockEntity;
+import net.succ.succsessentials_extended.block.entity.custom.InfuserBlockEntity;
 
 import java.util.function.Supplier;
 
@@ -28,6 +29,10 @@ public class ModBlockEntities {
     public static final Supplier<BlockEntityType<ElectricFurnaceBlockEntity>> ELECTRIC_FURNACE_BE =
             BLOCK_ENTITIES.register("electric_furnace_be", () -> BlockEntityType.Builder.of(
                     ElectricFurnaceBlockEntity::new, ModBlocks.ELECTRIC_FURNACE.get()).build(null));
+
+    public static final Supplier<BlockEntityType<InfuserBlockEntity>> INFUSER_BE =
+            BLOCK_ENTITIES.register("infuser_be", () -> BlockEntityType.Builder.of(
+                    InfuserBlockEntity::new, ModBlocks.INFUSER.get()).build(null));
 
 
     public static void register(IEventBus eventBus){

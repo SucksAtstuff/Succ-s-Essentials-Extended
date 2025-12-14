@@ -28,6 +28,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.DEEPSLATE_TITANIUM_ORE.get())
                 .add(ModBlocks.ALLOY_FORGER.get())
                 .add(ModBlocks.PANEL_BLOCK.get())
+                .add(ModBlocks.INFUSER.get())
                 .add(ModBlocks.ELECTRIC_FURNACE.get());
 
         tag(ModTags.Blocks.PAXEL_MINEABLE)

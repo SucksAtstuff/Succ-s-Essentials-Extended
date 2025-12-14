@@ -16,6 +16,7 @@ import net.succ.succsessentials_extended.Succsessentials_extended;
 import net.succ.succsessentials_extended.block.ModBlocks;
 import net.succ.succsessentials_extended.item.ModItems;
 import net.succ.succsessentials_extended.recipe.AlloyForgingRecipe;
+import net.succ.succsessentials_extended.recipe.InfusingRecipe;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -44,20 +45,65 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 ModItems.TITANIUM_INGOT,
                 ModItems.TITA_CHROME_INGOT,
                 "tita-chrome",
+                100, // 5 seconds
+                40 // FE/t
+        );
+
+        infusing(
+                recipeOutput,
+                Items.IRON_INGOT,
+                ModItems.COAL_DUST,
+                ModItems.STEEL_INGOT,
+                "steel",
                 400, // 20 seconds
-                200 // FE/t
+                120 // FE/t
         );
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.ALLOY_FORGER.get(), 1)
-                .pattern("CPC")
+                .pattern("SPS")
                 .pattern("PFP")
-                .pattern("CPC")
-                .define('P',ModBlocks.PANEL_BLOCK)
-                .define('C', ModItems.CHROMIUM_INGOT)
+                .pattern("SPS")
+                .define('P', ModBlocks.PANEL_BLOCK)
+                .define('S', ModItems.STEEL_INGOT)
                 .define('F', Blocks.BLAST_FURNACE)
                 .unlockedBy(getHasName(Blocks.BLAST_FURNACE), has(Blocks.BLAST_FURNACE))
-                .unlockedBy(getHasName(ModItems.CHROMIUM_INGOT), has(ModItems.CHROMIUM_INGOT))
+                .unlockedBy(getHasName(ModItems.STEEL_INGOT), has(ModItems.STEEL_INGOT))
                 .unlockedBy(getHasName(ModBlocks.PANEL_BLOCK), has(ModBlocks.PANEL_BLOCK))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.PANEL_BLOCK.get(), 1)
+                .pattern("ISI")
+                .pattern("SRS")
+                .pattern("ISI")
+                .define('I', Items.IRON_INGOT)
+                .define('S', Items.COPPER_INGOT)
+                .define('R', Items.REDSTONE)
+                .unlockedBy(getHasName(Items.COPPER_INGOT), has(Items.COPPER_INGOT))
+                .unlockedBy(getHasName(Items.REDSTONE), has(Items.REDSTONE))
+                .unlockedBy(getHasName(Items.IRON_INGOT), has(Items.IRON_INGOT))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.ELECTRIC_FURNACE.get())
+                .pattern("PSP")
+                .pattern("PFP")
+                .pattern("PSP")
+                .define('P', ModBlocks.PANEL_BLOCK)
+                .define('S', ModItems.STEEL_INGOT)
+                .define('F', Blocks.FURNACE)
+                .unlockedBy(getHasName(Blocks.FURNACE), has(Blocks.FURNACE))
+                .unlockedBy(getHasName(ModBlocks.PANEL_BLOCK), has(ModBlocks.PANEL_BLOCK))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.COAL_GENERATOR.get())
+                .pattern("IPI")
+                .pattern("IFI")
+                .pattern("IRI")
+                .define('I', Items.IRON_INGOT)
+                .define('P', ModBlocks.PANEL_BLOCK)
+                .define('F', Blocks.FURNACE)
+                .define('R', Items.REDSTONE_BLOCK)
+                .unlockedBy(getHasName(ModBlocks.PANEL_BLOCK), has(ModBlocks.PANEL_BLOCK))
+                .unlockedBy(getHasName(Items.REDSTONE_BLOCK), has(Items.REDSTONE_BLOCK))
                 .save(recipeOutput);
     }
 
@@ -106,6 +152,37 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 recipe,
                 null
         );
+
+
+    }
+
+    protected static void infusing (RecipeOutput recipeOutput,
+                                       ItemLike inputA,
+                                       ItemLike inputB,
+                                       ItemLike result,
+                                       String group,
+                                       int cookTime,
+                                       int energyPerTick) {
+
+        InfusingRecipe recipe =
+                new InfusingRecipe(
+                        Ingredient.of(inputA),     // First metal input
+                        Ingredient.of(inputB),     // Second metal input
+                        new ItemStack(result),     // Output item
+                        cookTime,                  // Infusing time (ticks)
+                        energyPerTick              // Energy cost per tick
+                );
+
+        recipeOutput.accept(
+                ResourceLocation.fromNamespaceAndPath(
+                        Succsessentials_extended.MOD_ID,
+                        getItemName(result) + "_from_infusing"
+                ),
+                recipe,
+                null
+        );
+
+
     }
 
 

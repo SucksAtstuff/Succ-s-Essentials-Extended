@@ -6,6 +6,7 @@
   "block.succsessentials_extended.deepslate_chromium_ore": "Deepslate Chromium Ore",
   "block.succsessentials_extended.deepslate_titanium_ore": "Deepslate Titanium Ore",
   "block.succsessentials_extended.electric_furnace": "Electric Furnace",
+  "block.succsessentials_extended.infuser": "Infuser",
   "block.succsessentials_extended.panel_block": "Panel Block",
   "block.succsessentials_extended.titanium_ore": "Titanium Ore",
   "creativetab.succsessentials_extended.armor.tab": "Succ's Essentials Extended Armor",
@@ -26,10 +27,14 @@
   "item.succsessentials_extended.chromium_reinforced_hammer": "Chromium Reinforced Hammer",
   "item.succsessentials_extended.chromium_shovel": "Chromium Shovel",
   "item.succsessentials_extended.chromium_sword": "Chromium Sword",
+  "item.succsessentials_extended.coal_dust": "Coal Dust",
   "item.succsessentials_extended.raw_chromium": "Raw Chromium",
   "item.succsessentials_extended.raw_titanium": "Raw Titanium",
+  "item.succsessentials_extended.steel_ingot": "Steel Ingot",
+  "item.succsessentials_extended.steel_nugget": "Steel Nugget",
   "item.succsessentials_extended.tita-chrome_ingot": "Tita-chrome Ingot",
   "item.succsessentials_extended.tita-chrome_nugget": "Tita-chrome Nugget",
+  "item.succsessentials_extended.titanium_dust": "Titanium Dust",
   "item.succsessentials_extended.titanium_ingot": "Titanium Ingot",
   "item.succsessentials_extended.titanium_nugget": "Titanium Nugget"
 }

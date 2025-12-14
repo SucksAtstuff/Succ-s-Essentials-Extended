@@ -14,6 +14,7 @@ import net.succ.succsessentials_extended.Succsessentials_extended;
 import net.succ.succsessentials_extended.block.custom.AlloyForgerBlock;
 import net.succ.succsessentials_extended.block.custom.CoalGeneratorBlock;
 import net.succ.succsessentials_extended.block.custom.ElectricFurnaceBlock;
+import net.succ.succsessentials_extended.block.custom.InfuserBlock;
 import net.succ.succsessentials_extended.item.ModItems;
 
 import java.util.function.Supplier;
@@ -47,6 +48,9 @@ public class ModBlocks {
 
     public static final DeferredBlock<Block> ELECTRIC_FURNACE = registerBlock("electric_furnace",
             () -> new ElectricFurnaceBlock(BlockBehaviour.Properties.of().strength(3f).requiresCorrectToolForDrops()));
+
+    public static final DeferredBlock<Block> INFUSER = registerBlock("infuser",
+            () -> new InfuserBlock(BlockBehaviour.Properties.of().strength(3f).requiresCorrectToolForDrops()));
 
     public static final DeferredBlock<Block> PANEL_BLOCK = registerBlock("panel_block",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops()));

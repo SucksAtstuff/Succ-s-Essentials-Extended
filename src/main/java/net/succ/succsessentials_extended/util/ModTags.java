@@ -17,6 +17,8 @@ public class ModTags {
                 TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ores"));
         public static final TagKey<Item> INGOTS =
                 TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ingots"));
+        public static final TagKey<Item> DUSTS =
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "dusts"));
         public static final TagKey<Item> TOOLS =
                 TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "tools"));
         public static final TagKey<Item> MINING_TOOLS =

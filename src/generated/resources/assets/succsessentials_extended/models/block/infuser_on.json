@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "front": "succsessentials_extended:block/infuser/infuser_front_on",
+    "side": "succsessentials_extended:block/infuser/infuser_side",
+    "top": "succsessentials_extended:block/infuser/infuser_top"
+  }
+}
