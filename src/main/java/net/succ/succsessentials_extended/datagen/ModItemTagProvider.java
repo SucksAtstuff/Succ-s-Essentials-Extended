@@ -28,6 +28,46 @@ public class ModItemTagProvider extends ItemTagsProvider {
     @Override
     protected void addTags(HolderLookup.Provider provider) {
 
+
+        /* ===================================================================== */
+        /*                         STORAGE BLOCK ITEM TAGS                        */
+        /* ===================================================================== */
+
+        // Root storage blocks
+        tag(ModTags.Items.STORAGE_BLOCKS)
+                .addTag(ModTags.Items.STORAGE_CHROMIUM)
+                .addTag(ModTags.Items.STORAGE_TITANIUM)
+                .addTag(ModTags.Items.STORAGE_STEEL);
+
+        // Chromium
+        tag(ModTags.Items.STORAGE_CHROMIUM)
+                .add(ModBlocks.CHROMIUM_BLOCK.get().asItem());
+
+        // Titanium
+        tag(ModTags.Items.STORAGE_TITANIUM)
+                .add(ModBlocks.TITANIUM_BLOCK.get().asItem());
+
+        // Steel
+        tag(ModTags.Items.STORAGE_STEEL)
+                .add(ModBlocks.STEEL_BLOCK.get().asItem());
+
+        tag(ModTags.Items.STORAGE_IRON);
+        tag(ModTags.Items.STORAGE_GOLD);
+        tag(ModTags.Items.STORAGE_COPPER);
+        tag(ModTags.Items.STORAGE_TIN);
+        tag(ModTags.Items.STORAGE_LEAD);
+        tag(ModTags.Items.STORAGE_SILVER);
+        tag(ModTags.Items.STORAGE_NICKEL);
+        tag(ModTags.Items.STORAGE_ZINC);
+        tag(ModTags.Items.STORAGE_ALUMINUM);
+        tag(ModTags.Items.STORAGE_URANIUM);
+        tag(ModTags.Items.STORAGE_OSMIUM);
+        tag(ModTags.Items.STORAGE_BRONZE);
+        tag(ModTags.Items.STORAGE_BRASS);
+        tag(ModTags.Items.STORAGE_ELECTRUM);
+        tag(ModTags.Items.STORAGE_INVAR);
+        tag(ModTags.Items.STORAGE_CONSTANTAN);
+
         /* ===================================================================== */
         /*                           VANILLA TOOL TAGS                            */
         /* ===================================================================== */
@@ -284,6 +324,7 @@ public class ModItemTagProvider extends ItemTagsProvider {
         tag(ModTags.Items.PLATES_STEEL);
         tag(ModTags.Items.RODS_STEEL);
         tag(ModTags.Items.GEARS_STEEL);
+
 
         // Coal
         tag(ModTags.Items.DUSTS_COAL)
