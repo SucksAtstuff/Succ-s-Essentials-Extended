@@ -346,5 +346,11 @@ public class ModItemTagProvider extends ItemTagsProvider {
         // Coal
         tag(ModTags.Items.DUSTS_COAL)
                 .add(ModItems.COAL_DUST.get());
+
+        tag(ModTags.Items.FUELS)
+                .add(ModItems.COAL_DUST.get());
+        tag(ModTags.Items.BIO_FUELS)
+                .add(ModItems.BIO_MASS.get())
+                .add(ModItems.BIO_MASS_PELLET.get());
     }
 }

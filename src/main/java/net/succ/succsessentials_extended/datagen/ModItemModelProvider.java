@@ -71,7 +71,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         handheldItem(ModItems.CHROMIUM_SHOVEL.get());
         handheldItem(ModItems.CHROMIUM_HOE.get());
 
-
+        basicItem(ModItems.BIO_MASS.get());
+        basicItem(ModItems.BIO_MASS_PELLET.get());
     }
 
     // Shoutout to El_Redstoniano for making this

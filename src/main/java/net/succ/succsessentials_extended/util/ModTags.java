@@ -52,6 +52,11 @@ public class ModTags {
         public static final TagKey<Item> ENCHANTABLES =
                 TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "enchantables"));
 
+        public static final TagKey<Item> FUELS =
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "fuels"));
+        public static final TagKey<Item> BIO_FUELS =
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "fuels/bio"));
+
         /* ================= IRON ================= */
 
         public static final TagKey<Item> INGOTS_IRON =

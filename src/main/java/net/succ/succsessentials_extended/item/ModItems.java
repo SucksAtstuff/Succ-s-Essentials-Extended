@@ -44,6 +44,12 @@ public class ModItems {
     public static final DeferredItem<Item> COAL_DUST = ITEMS.register("coal_dust",
             () -> new Item(new Item.Properties()));
 
+    public static final DeferredItem<Item> BIO_MASS = ITEMS.register("bio_mass",
+            () -> new Item(new Item.Properties()));
+
+    public static final DeferredItem<Item> BIO_MASS_PELLET = ITEMS.register("bio_mass_pellet",
+            () -> new Item(new Item.Properties()));
+
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
     }

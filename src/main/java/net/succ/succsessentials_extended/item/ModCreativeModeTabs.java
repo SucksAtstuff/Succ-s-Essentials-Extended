@@ -61,6 +61,9 @@ public class ModCreativeModeTabs {
                                 /* ---------- DUSTS ---------- */
                                 output.accept(ModItems.TITANIUM_DUST);
                                 output.accept(ModItems.COAL_DUST);
+
+                                output.accept(ModItems.BIO_MASS);
+                                output.accept(ModItems.BIO_MASS_PELLET);
                             })
 
                             .build()
