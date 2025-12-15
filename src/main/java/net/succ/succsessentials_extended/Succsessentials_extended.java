@@ -120,9 +120,6 @@ public class Succsessentials_extended {
             event.register(ModMenuTypes.ELECTRIC_FURNACE_MENU.get(), ElectricFurnaceBlockScreen::new);
             event.register(ModMenuTypes.INFUSER_MENU.get(), InfuserBlockScreen::new);
             event.register(ModMenuTypes.PULVERIZER_MENU.get(), PulverizerBlockScreen::new);
-
-
-
         }
 
     }

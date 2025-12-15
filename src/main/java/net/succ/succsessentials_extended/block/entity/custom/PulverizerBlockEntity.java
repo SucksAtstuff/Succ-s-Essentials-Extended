@@ -15,7 +15,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.items.ItemStackHandler;
 import net.succ.succsessentials_extended.block.custom.PulverizerBlock;
@@ -27,19 +27,15 @@ import net.succ.succsessentials_extended.recipe.PulverizingRecipeInput;
 import net.succ.succsessentials_extended.screen.custom.PulverizerBlockMenu;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Optional;
+
 /**
  * ============================================================
  * PulverizerBlockEntity
  *
- * Uses AbstractPoweredMachineBlockEntity to inherit:
- *  - Energy storage
- *  - Progress ticking
- *  - Energy consumption
- *  - NBT save/load
+ * Energy-powered machine that crushes items into dusts
+ * and optional byproducts.
  *
- * Handles:
- *  - 1 input
- *  - 2 outputs (dust + byproduct)
  * ============================================================
  */
 public class PulverizerBlockEntity extends AbstractPoweredMachineBlockEntity
@@ -54,6 +50,7 @@ public class PulverizerBlockEntity extends AbstractPoweredMachineBlockEntity
     /* ================= INVENTORY ================= */
 
     public final ItemStackHandler itemHandler = new ItemStackHandler(3) {
+
         @Override
         protected void onContentsChanged(int slot) {
             setChanged();
@@ -62,19 +59,16 @@ public class PulverizerBlockEntity extends AbstractPoweredMachineBlockEntity
             }
         }
 
-
-
+        /**
+         * IMPORTANT:
+         * - Players & automation may ONLY insert into INPUT
+         * - Output slots are machine-controlled
+         */
         @Override
         public boolean isItemValid(int slot, ItemStack stack) {
             return slot == INPUT;
         }
     };
-
-    private boolean canInsert(ItemStack existing, ItemStack toInsert) {
-        if (existing.isEmpty()) return true;
-        if (!ItemStack.isSameItemSameComponents(existing, toInsert)) return false;
-        return existing.getCount() + toInsert.getCount() <= existing.getMaxStackSize();
-    }
 
     /* ================= DATA SYNC ================= */
 
@@ -102,28 +96,20 @@ public class PulverizerBlockEntity extends AbstractPoweredMachineBlockEntity
         }
     };
 
+    /* ================= CONSTRUCTOR ================= */
+
     public PulverizerBlockEntity(BlockPos pos, BlockState state) {
         super(
                 ModBlockEntities.PULVERIZER_BE.get(),
                 pos,
                 state,
-                64000, // ENERGY CAPACITY
-                320   // ENERGY TRANSFER
+                64000, // energy capacity
+                320    // energy transfer
         );
-
-        this.maxProgress = 200;
-        this.energyPerTick = 20;
     }
 
-    /* ================= RECIPE LOGIC ================= */
+    /* ================= RECIPE ================= */
 
-    /**
-     * Placeholder recipe check.
-     *
-     * This will later be replaced with:
-     *  - PulverizerRecipe lookup
-     *  - Output space validation
-     */
     @Override
     protected boolean hasRecipe() {
         if (level == null) return false;
@@ -131,61 +117,87 @@ public class PulverizerBlockEntity extends AbstractPoweredMachineBlockEntity
         ItemStack input = itemHandler.getStackInSlot(INPUT);
         if (input.isEmpty()) return false;
 
-        var recipeOpt = level.getRecipeManager().getRecipeFor(
-                ModRecipes.PULVERIZING_TYPE.get(),
-                new PulverizingRecipeInput(input),
-                level
-        );
+        Optional<PulverizingRecipe> recipeOpt =
+                level.getRecipeManager()
+                        .getRecipeFor(
+                                ModRecipes.PULVERIZING_TYPE.get(),
+                                new PulverizingRecipeInput(input),
+                                level
+                        )
+                        .map(holder -> holder.value());
 
         if (recipeOpt.isEmpty()) return false;
 
-        PulverizingRecipe recipe = recipeOpt.get().value();
+        PulverizingRecipe recipe = recipeOpt.get();
 
-        // Dynamic values per recipe
+        // dynamic values per recipe
         maxProgress = recipe.cookTime();
         energyPerTick = recipe.energyPerTick();
 
-        // Validate output slots BEFORE running
-        ItemStack primary = recipe.output();
-        ItemStack secondary = recipe.getByproduct();
-
-        return canInsert(itemHandler.getStackInSlot(OUTPUT_DUST), primary)
-                && (secondary.isEmpty()
-                || canInsert(itemHandler.getStackInSlot(OUTPUT_BYPRODUCT), secondary));
+        // validate outputs BEFORE running
+        return canInsert(OUTPUT_DUST, recipe.output())
+                && (recipe.byproduct().isEmpty()
+                || canInsert(OUTPUT_BYPRODUCT, recipe.byproduct()));
     }
 
-
-    /**
-     * Executes pulverization once progress completes.
-     */
     @Override
     protected void craftItem() {
         if (level == null) return;
 
-        var recipeOpt = level.getRecipeManager().getRecipeFor(
-                ModRecipes.PULVERIZING_TYPE.get(),
-                new PulverizingRecipeInput(itemHandler.getStackInSlot(INPUT)),
-                level
-        );
+        Optional<PulverizingRecipe> recipeOpt =
+                level.getRecipeManager()
+                        .getRecipeFor(
+                                ModRecipes.PULVERIZING_TYPE.get(),
+                                new PulverizingRecipeInput(itemHandler.getStackInSlot(INPUT)),
+                                level
+                        )
+                        .map(holder -> holder.value());
 
         if (recipeOpt.isEmpty()) return;
 
-        PulverizingRecipe recipe = recipeOpt.get().value();
+        PulverizingRecipe recipe = recipeOpt.get();
 
         ItemStack primary = recipe.output().copy();
-        ItemStack secondary = recipe.getByproduct();
+        ItemStack secondary = recipe.byproduct().copy();
 
-        // Consume input
+        // consume input
         itemHandler.extractItem(INPUT, 1, false);
 
-        // Insert outputs
-        itemHandler.insertItem(OUTPUT_DUST, primary, false);
+        // insert outputs (BYPASS isItemValid)
+        insertOutput(OUTPUT_DUST, primary);
 
         if (!secondary.isEmpty()) {
-            itemHandler.insertItem(OUTPUT_BYPRODUCT, secondary.copy(), false);
+            insertOutput(OUTPUT_BYPRODUCT, secondary);
         }
     }
 
+    /* ================= OUTPUT HELPERS ================= */
+
+    /**
+     * Checks whether a stack can be merged into the target slot.
+     */
+    private boolean canInsert(int slot, ItemStack stack) {
+        ItemStack existing = itemHandler.getStackInSlot(slot);
+
+        if (existing.isEmpty()) return true;
+        if (!ItemStack.isSameItemSameComponents(existing, stack)) return false;
+        return existing.getCount() + stack.getCount() <= existing.getMaxStackSize();
+    }
+
+    /**
+     * Inserts items into output slots without respecting isItemValid.
+     * This is REQUIRED for machine outputs.
+     */
+    private void insertOutput(int slot, ItemStack stack) {
+        ItemStack existing = itemHandler.getStackInSlot(slot);
+
+        if (existing.isEmpty()) {
+            itemHandler.setStackInSlot(slot, stack.copy());
+        } else {
+            existing.grow(stack.getCount());
+            itemHandler.setStackInSlot(slot, existing);
+        }
+    }
 
     /* ================= BLOCK STATE ================= */
 
@@ -195,11 +207,7 @@ public class PulverizerBlockEntity extends AbstractPoweredMachineBlockEntity
 
         BlockState state = getBlockState();
         if (state.getValue(PulverizerBlock.LIT) != lit) {
-            level.setBlock(
-                    worldPosition,
-                    state.setValue(PulverizerBlock.LIT, lit),
-                    3
-            );
+            level.setBlock(worldPosition, state.setValue(PulverizerBlock.LIT, lit), 3);
         }
     }
 
@@ -225,7 +233,6 @@ public class PulverizerBlockEntity extends AbstractPoweredMachineBlockEntity
         }
         Containers.dropContents(level, worldPosition, container);
     }
-
 
     /* ================= NETWORK SYNC ================= */
 
