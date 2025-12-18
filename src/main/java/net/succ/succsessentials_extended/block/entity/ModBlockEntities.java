@@ -23,6 +23,10 @@ public class ModBlockEntities {
             BLOCK_ENTITIES.register("coal_generator_be", () -> BlockEntityType.Builder.of(
                     CoalGeneratorBlockEntity::new, ModBlocks.COAL_GENERATOR.get()).build(null));
 
+    public static final Supplier<BlockEntityType<BiofuelGeneratorBlockEntity>> BIO_FUEL_GENERATOR_BE =
+            BLOCK_ENTITIES.register("bio_fuel_generator_be", () -> BlockEntityType.Builder.of(
+                    BiofuelGeneratorBlockEntity::new, ModBlocks.BIO_FUEL_GENERATOR.get()).build(null));
+
     public static final Supplier<BlockEntityType<ElectricFurnaceBlockEntity>> ELECTRIC_FURNACE_BE =
             BLOCK_ENTITIES.register("electric_furnace_be", () -> BlockEntityType.Builder.of(
                     ElectricFurnaceBlockEntity::new, ModBlocks.ELECTRIC_FURNACE.get()).build(null));

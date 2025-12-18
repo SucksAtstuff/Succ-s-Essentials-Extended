@@ -46,6 +46,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
         litOrientableBlock(ModBlocks.COAL_GENERATOR, "coal_generator");
         litOrientableBlock(ModBlocks.INFUSER, "infuser");
         litOrientableBlock(ModBlocks.PULVERIZER, "pulverizer");
+        litOrientableBlock(ModBlocks.BIO_FUEL_GENERATOR, "bio_fuel_generator");
+
     }
 
     public void makeCrop(CropBlock block, String modelName, String textureName) {

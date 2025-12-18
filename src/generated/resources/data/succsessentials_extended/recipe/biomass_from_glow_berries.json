@@ -1,0 +1,12 @@
+{
+  "type": "succsessentials_extended:pulverizing",
+  "cook_time": 60,
+  "energy_per_tick": 8,
+  "input": {
+    "item": "minecraft:glow_berries"
+  },
+  "result": {
+    "count": 1,
+    "id": "succsessentials_extended:bio_mass"
+  }
+}

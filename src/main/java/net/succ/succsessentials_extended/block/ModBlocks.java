@@ -67,6 +67,9 @@ public class ModBlocks {
     public static final DeferredBlock<Block> COAL_GENERATOR = registerBlock("coal_generator",
             () -> new CoalGeneratorBlock(BlockBehaviour.Properties.of().strength(3f).requiresCorrectToolForDrops()));
 
+    public static final DeferredBlock<Block> BIO_FUEL_GENERATOR = registerBlock("bio_fuel_generator",
+            () -> new BiofuelGeneratorBlock(BlockBehaviour.Properties.of().strength(3f).requiresCorrectToolForDrops()));
+
     public static final DeferredBlock<Block> TITA_CHROME_BLOCK = registerBlock("tita-chrome_block",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.NETHERITE_BLOCK).requiresCorrectToolForDrops()));
 

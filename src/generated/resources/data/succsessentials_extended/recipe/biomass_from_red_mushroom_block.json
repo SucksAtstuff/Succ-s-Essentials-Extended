@@ -1,0 +1,12 @@
+{
+  "type": "succsessentials_extended:pulverizing",
+  "cook_time": 60,
+  "energy_per_tick": 8,
+  "input": {
+    "item": "minecraft:red_mushroom_block"
+  },
+  "result": {
+    "count": 2,
+    "id": "succsessentials_extended:bio_mass"
+  }
+}

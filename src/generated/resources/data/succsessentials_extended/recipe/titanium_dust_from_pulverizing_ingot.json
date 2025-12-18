@@ -1,0 +1,12 @@
+{
+  "type": "succsessentials_extended:pulverizing",
+  "cook_time": 80,
+  "energy_per_tick": 10,
+  "input": {
+    "tag": "c:ingots/titanium"
+  },
+  "result": {
+    "count": 1,
+    "id": "succsessentials_extended:titanium_dust"
+  }
+}

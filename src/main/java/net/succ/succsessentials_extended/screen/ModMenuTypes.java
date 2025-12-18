@@ -21,6 +21,9 @@ public class ModMenuTypes {
     public static final DeferredHolder<MenuType<?>, MenuType<CoalGeneratorMenu>> COAL_GENERATOR_MENU =
             registerMenuType("coal_generator_menu", CoalGeneratorMenu::new);
 
+    public static final DeferredHolder<MenuType<?>, MenuType<BioFuelGeneratorMenu>> BIO_FUEL_GENERATOR_MENU =
+            registerMenuType("bio_fuel_generator_menu", BioFuelGeneratorMenu::new);
+
     public static final DeferredHolder<MenuType<?>, MenuType<ElectricFurnaceBlockMenu>> ELECTRIC_FURNACE_MENU =
             registerMenuType("electric_furnace_menu", ElectricFurnaceBlockMenu::new);
 

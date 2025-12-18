@@ -227,7 +227,8 @@ public class ModItemTagProvider extends ItemTagsProvider {
         tag(ModTags.Items.GEARS_CHROMIUM);
         tag(ModTags.Items.RAW_CHROMIUM).add(ModItems.RAW_CHROMIUM.get());
         tag(ModTags.Items.ORES_CHROMIUM)
-                .add(ModBlocks.CHROMIUM_ORE.get().asItem())
+                .add(ModBlocks.CHROMIUM_ORE.get().asItem());
+        tag(ModTags.Items.DEEPSLATE_ORES_CHROMIUM)
                 .add(ModBlocks.DEEPSLATE_CHROMIUM_ORE.get().asItem());
 
 
@@ -245,8 +246,10 @@ public class ModItemTagProvider extends ItemTagsProvider {
         tag(ModTags.Items.RAW_TITANIUM)
                 .add(ModItems.RAW_TITANIUM.get());
         tag(ModTags.Items.ORES_TITANIUM)
-                .add(ModBlocks.TITANIUM_ORE.get().asItem())
+                .add(ModBlocks.TITANIUM_ORE.get().asItem()) ;
+        tag(ModTags.Items.DEEPSLATE_ORES_TITANIUM)
                 .add(ModBlocks.DEEPSLATE_TITANIUM_ORE.get().asItem());
+
 
 
         // Tin
@@ -257,6 +260,7 @@ public class ModItemTagProvider extends ItemTagsProvider {
         tag(ModTags.Items.GEARS_TIN);
         tag(ModTags.Items.RAW_TIN);
         tag(ModTags.Items.ORES_TIN);
+        tag(ModTags.Items.DEEPSLATE_ORES_TIN);
 
         // Lead
         tag(ModTags.Items.NUGGETS_LEAD);
@@ -266,6 +270,7 @@ public class ModItemTagProvider extends ItemTagsProvider {
         tag(ModTags.Items.GEARS_LEAD);
         tag(ModTags.Items.RAW_LEAD);
         tag(ModTags.Items.ORES_LEAD);
+        tag(ModTags.Items.DEEPSLATE_ORES_LEAD);
 
         // Silver
         tag(ModTags.Items.NUGGETS_SILVER);
@@ -275,6 +280,7 @@ public class ModItemTagProvider extends ItemTagsProvider {
         tag(ModTags.Items.GEARS_SILVER);
         tag(ModTags.Items.RAW_SILVER);
         tag(ModTags.Items.ORES_SILVER);
+        tag(ModTags.Items.DEEPSLATE_ORES_SILVER);
 
         // Nickel
         tag(ModTags.Items.NUGGETS_NICKEL);
@@ -284,6 +290,7 @@ public class ModItemTagProvider extends ItemTagsProvider {
         tag(ModTags.Items.GEARS_NICKEL);
         tag(ModTags.Items.RAW_NICKEL);
         tag(ModTags.Items.ORES_NICKEL);
+        tag(ModTags.Items.DEEPSLATE_ORES_NICKEL);
 
         // Zinc
         tag(ModTags.Items.NUGGETS_ZINC);
@@ -293,6 +300,7 @@ public class ModItemTagProvider extends ItemTagsProvider {
         tag(ModTags.Items.GEARS_ZINC);
         tag(ModTags.Items.RAW_ZINC);
         tag(ModTags.Items.ORES_ZINC);
+        tag(ModTags.Items.DEEPSLATE_ORES_ZINC);
 
         // Aluminum
         tag(ModTags.Items.NUGGETS_ALUMINUM);
@@ -302,6 +310,7 @@ public class ModItemTagProvider extends ItemTagsProvider {
         tag(ModTags.Items.GEARS_ALUMINUM);
         tag(ModTags.Items.RAW_ALUMINUM);
         tag(ModTags.Items.ORES_ALUMINUM);
+        tag(ModTags.Items.DEEPSLATE_ORES_ALUMINUM);
 
         // Uranium
         tag(ModTags.Items.NUGGETS_URANIUM);
@@ -311,6 +320,7 @@ public class ModItemTagProvider extends ItemTagsProvider {
         tag(ModTags.Items.GEARS_URANIUM);
         tag(ModTags.Items.RAW_URANIUM);
         tag(ModTags.Items.ORES_URANIUM);
+        tag(ModTags.Items.DEEPSLATE_ORES_URANIUM);
 
         // Osmium
         tag(ModTags.Items.NUGGETS_OSMIUM);
@@ -320,6 +330,7 @@ public class ModItemTagProvider extends ItemTagsProvider {
         tag(ModTags.Items.GEARS_OSMIUM);
         tag(ModTags.Items.RAW_OSMIUM);
         tag(ModTags.Items.ORES_OSMIUM);
+        tag(ModTags.Items.DEEPSLATE_ORES_OSMIUM);
 
         // Steel
         tag(ModTags.Items.INGOTS_STEEL)

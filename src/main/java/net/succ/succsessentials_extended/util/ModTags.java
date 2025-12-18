@@ -75,6 +75,8 @@ public class ModTags {
                 TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "raw_materials/iron"));
         public static final TagKey<Item> ORES_IRON =
                 TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ores/iron"));
+        public static final TagKey<Item> DEEPSLATE_ORES_IRON =
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ores/iron/deepslate"));
         public static final TagKey<Item> STORAGE_IRON =
                 TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/iron"));
 
@@ -96,6 +98,8 @@ public class ModTags {
                 TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "raw_materials/gold"));
         public static final TagKey<Item> ORES_GOLD =
                 TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ores/gold"));
+        public static final TagKey<Item> DEEPSLATE_ORES_GOLD =
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ores/gold/deepslate"));
         public static final TagKey<Item> STORAGE_GOLD =
                 TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/gold"));
 
@@ -117,6 +121,8 @@ public class ModTags {
                 TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "raw_materials/copper"));
         public static final TagKey<Item> ORES_COPPER =
                 TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ores/copper"));
+        public static final TagKey<Item> DEEPSLATE_ORES_COPPER =
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ores/copper/deepslate"));
         public static final TagKey<Item> STORAGE_COPPER =
                 TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/copper"));
 
@@ -138,6 +144,8 @@ public class ModTags {
                 TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "raw_materials/tin"));
         public static final TagKey<Item> ORES_TIN =
                 TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ores/tin"));
+        public static final TagKey<Item> DEEPSLATE_ORES_TIN =
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ores/tin/deepslate"));
         public static final TagKey<Item> STORAGE_TIN =
                 TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/tin"));
 
@@ -159,6 +167,8 @@ public class ModTags {
                 TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "raw_materials/titanium"));
         public static final TagKey<Item> ORES_TITANIUM =
                 TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ores/titanium"));
+        public static final TagKey<Item> DEEPSLATE_ORES_TITANIUM =
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ores/titanium/deepslate"));
         public static final TagKey<Item> STORAGE_TITANIUM =
                 TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/titanium"));
 
@@ -180,6 +190,8 @@ public class ModTags {
                 TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "raw_materials/lead"));
         public static final TagKey<Item> ORES_LEAD =
                 TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ores/lead"));
+        public static final TagKey<Item> DEEPSLATE_ORES_LEAD =
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ores/lead/deepslate"));
         public static final TagKey<Item> STORAGE_LEAD =
                 TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/lead"));
 
@@ -201,6 +213,8 @@ public class ModTags {
                 TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "raw_materials/silver"));
         public static final TagKey<Item> ORES_SILVER =
                 TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ores/silver"));
+        public static final TagKey<Item> DEEPSLATE_ORES_SILVER =
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ores/silver/deepslate"));
         public static final TagKey<Item> STORAGE_SILVER =
                 TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/silver"));
 
@@ -222,6 +236,8 @@ public class ModTags {
                 TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "raw_materials/nickel"));
         public static final TagKey<Item> ORES_NICKEL =
                 TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ores/nickel"));
+        public static final TagKey<Item> DEEPSLATE_ORES_NICKEL =
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ores/nickel/deepslate"));
         public static final TagKey<Item> STORAGE_NICKEL =
                 TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/nickel"));
 
@@ -243,6 +259,8 @@ public class ModTags {
                 TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "raw_materials/zinc"));
         public static final TagKey<Item> ORES_ZINC =
                 TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ores/zinc"));
+        public static final TagKey<Item> DEEPSLATE_ORES_ZINC =
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ores/zinc/deepslate"));
         public static final TagKey<Item> STORAGE_ZINC =
                 TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/zinc"));
 
@@ -250,6 +268,8 @@ public class ModTags {
 
         public static final TagKey<Item> ORES_ALUMINUM =
                 TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ores/aluminum"));
+        public static final TagKey<Item> DEEPSLATE_ORES_ALUMINUM =
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ores/aluminum/deepslate"));
         public static final TagKey<Item> RAW_ALUMINUM =
                 TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "raw_materials/aluminum"));
         public static final TagKey<Item> INGOTS_ALUMINUM =
@@ -271,6 +291,8 @@ public class ModTags {
 
         public static final TagKey<Item> ORES_URANIUM =
                 TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ores/uranium"));
+        public static final TagKey<Item> DEEPSLATE_ORES_URANIUM =
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ores/uranium/deepslate"));
         public static final TagKey<Item> RAW_URANIUM =
                 TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "raw_materials/uranium"));
         public static final TagKey<Item> INGOTS_URANIUM =
@@ -292,6 +314,8 @@ public class ModTags {
 
         public static final TagKey<Item> ORES_OSMIUM =
                 TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ores/osmium"));
+        public static final TagKey<Item> DEEPSLATE_ORES_OSMIUM =
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ores/osmium/deepslate"));
         public static final TagKey<Item> RAW_OSMIUM =
                 TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "raw_materials/osmium"));
         public static final TagKey<Item> INGOTS_OSMIUM =
@@ -308,7 +332,6 @@ public class ModTags {
                 TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "gears/osmium"));
         public static final TagKey<Item> STORAGE_OSMIUM =
                 TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/osmium"));
-
 
         /* ================= CHROMIUM ================= */
 
@@ -328,6 +351,8 @@ public class ModTags {
                 TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "raw_materials/chromium"));
         public static final TagKey<Item> ORES_CHROMIUM =
                 TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ores/chromium"));
+        public static final TagKey<Item> DEEPSLATE_ORES_CHROMIUM =
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ores/chromium/deepslate"));
         public static final TagKey<Item> STORAGE_CHROMIUM =
                 TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/chromium"));
 
@@ -351,29 +376,21 @@ public class ModTags {
         /* ================= TITA-CHROME ================= */
 
         public static final TagKey<Item> INGOTS_TITA_CHROME =
-                TagKey.create(Registries.ITEM,
-                        ResourceLocation.fromNamespaceAndPath("c", "ingots/tita_chrome"));
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ingots/tita_chrome"));
         public static final TagKey<Item> NUGGETS_TITA_CHROME =
-                TagKey.create(Registries.ITEM,
-                        ResourceLocation.fromNamespaceAndPath("c", "nuggets/tita_chrome"));
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "nuggets/tita_chrome"));
         public static final TagKey<Item> DUSTS_TITA_CHROME =
-                TagKey.create(Registries.ITEM,
-                        ResourceLocation.fromNamespaceAndPath("c", "dusts/tita_chrome"));
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "dusts/tita_chrome"));
         public static final TagKey<Item> PLATES_TITA_CHROME =
-                TagKey.create(Registries.ITEM,
-                        ResourceLocation.fromNamespaceAndPath("c", "plates/tita_chrome"));
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "plates/tita_chrome"));
         public static final TagKey<Item> RODS_TITA_CHROME =
-                TagKey.create(Registries.ITEM,
-                        ResourceLocation.fromNamespaceAndPath("c", "rods/tita_chrome"));
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "rods/tita_chrome"));
         public static final TagKey<Item> GEARS_TITA_CHROME =
-                TagKey.create(Registries.ITEM,
-                        ResourceLocation.fromNamespaceAndPath("c", "gears/tita_chrome"));
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "gears/tita_chrome"));
         public static final TagKey<Item> ORES_TITA_CHROME =
-                TagKey.create(Registries.ITEM,
-                        ResourceLocation.fromNamespaceAndPath("c", "ores/tita_chrome"));
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ores/tita_chrome"));
         public static final TagKey<Item> STORAGE_TITA_CHROME =
-                TagKey.create(Registries.ITEM,
-                        ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/tita_chrome"));
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/tita_chrome"));
 
         /* ---------- BRONZE ---------- */
 
@@ -417,6 +434,7 @@ public class ModTags {
 
 
     public static class Blocks {
+
         public static final TagKey<Block> NEEDS_CHROMIUM_TOOL = createTag("needs_chromium_tool");
         public static final TagKey<Block> INCORRECT_FOR_CHROMIUM_TOOL = createTag("incorrect_for_chromium_tool");
 
@@ -433,6 +451,8 @@ public class ModTags {
 
         public static final TagKey<Block> ORES_IRON =
                 TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "ores/iron"));
+        public static final TagKey<Block> DEEPSLATE_ORES_IRON =
+                TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "ores/iron/deepslate"));
         public static final TagKey<Block> STORAGE_IRON =
                 TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/iron"));
 
@@ -440,6 +460,8 @@ public class ModTags {
 
         public static final TagKey<Block> ORES_GOLD =
                 TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "ores/gold"));
+        public static final TagKey<Block> DEEPSLATE_ORES_GOLD =
+                TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "ores/gold/deepslate"));
         public static final TagKey<Block> STORAGE_GOLD =
                 TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/gold"));
 
@@ -447,6 +469,8 @@ public class ModTags {
 
         public static final TagKey<Block> ORES_COPPER =
                 TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "ores/copper"));
+        public static final TagKey<Block> DEEPSLATE_ORES_COPPER =
+                TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "ores/copper/deepslate"));
         public static final TagKey<Block> STORAGE_COPPER =
                 TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/copper"));
 
@@ -454,6 +478,8 @@ public class ModTags {
 
         public static final TagKey<Block> ORES_TIN =
                 TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "ores/tin"));
+        public static final TagKey<Block> DEEPSLATE_ORES_TIN =
+                TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "ores/tin/deepslate"));
         public static final TagKey<Block> STORAGE_TIN =
                 TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/tin"));
 
@@ -461,6 +487,8 @@ public class ModTags {
 
         public static final TagKey<Block> ORES_LEAD =
                 TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "ores/lead"));
+        public static final TagKey<Block> DEEPSLATE_ORES_LEAD =
+                TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "ores/lead/deepslate"));
         public static final TagKey<Block> STORAGE_LEAD =
                 TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/lead"));
 
@@ -468,6 +496,8 @@ public class ModTags {
 
         public static final TagKey<Block> ORES_SILVER =
                 TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "ores/silver"));
+        public static final TagKey<Block> DEEPSLATE_ORES_SILVER =
+                TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "ores/silver/deepslate"));
         public static final TagKey<Block> STORAGE_SILVER =
                 TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/silver"));
 
@@ -475,6 +505,8 @@ public class ModTags {
 
         public static final TagKey<Block> ORES_NICKEL =
                 TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "ores/nickel"));
+        public static final TagKey<Block> DEEPSLATE_ORES_NICKEL =
+                TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "ores/nickel/deepslate"));
         public static final TagKey<Block> STORAGE_NICKEL =
                 TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/nickel"));
 
@@ -482,6 +514,8 @@ public class ModTags {
 
         public static final TagKey<Block> ORES_ZINC =
                 TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "ores/zinc"));
+        public static final TagKey<Block> DEEPSLATE_ORES_ZINC =
+                TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "ores/zinc/deepslate"));
         public static final TagKey<Block> STORAGE_ZINC =
                 TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/zinc"));
 
@@ -489,6 +523,8 @@ public class ModTags {
 
         public static final TagKey<Block> ORES_ALUMINUM =
                 TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "ores/aluminum"));
+        public static final TagKey<Block> DEEPSLATE_ORES_ALUMINUM =
+                TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "ores/aluminum/deepslate"));
         public static final TagKey<Block> STORAGE_ALUMINUM =
                 TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/aluminum"));
 
@@ -496,6 +532,8 @@ public class ModTags {
 
         public static final TagKey<Block> ORES_URANIUM =
                 TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "ores/uranium"));
+        public static final TagKey<Block> DEEPSLATE_ORES_URANIUM =
+                TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "ores/uranium/deepslate"));
         public static final TagKey<Block> STORAGE_URANIUM =
                 TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/uranium"));
 
@@ -503,6 +541,8 @@ public class ModTags {
 
         public static final TagKey<Block> ORES_OSMIUM =
                 TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "ores/osmium"));
+        public static final TagKey<Block> DEEPSLATE_ORES_OSMIUM =
+                TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "ores/osmium/deepslate"));
         public static final TagKey<Block> STORAGE_OSMIUM =
                 TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/osmium"));
 
@@ -545,6 +585,8 @@ public class ModTags {
 
         public static final TagKey<Block> ORES_CHROMIUM =
                 TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "ores/chromium"));
+        public static final TagKey<Block> DEEPSLATE_ORES_CHROMIUM =
+                TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "ores/chromium/deepslate"));
         public static final TagKey<Block> STORAGE_CHROMIUM =
                 TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/chromium"));
 
@@ -554,12 +596,10 @@ public class ModTags {
                 TagKey.create(Registries.BLOCK,
                         ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/tita_chrome"));
 
-
-        private static TagKey<Block> createTag (String name) {
-            return BlockTags.create(ResourceLocation.fromNamespaceAndPath(Succsessentials_extended.MOD_ID, name));
+        private static TagKey<Block> createTag(String name) {
+            return BlockTags.create(ResourceLocation.fromNamespaceAndPath(
+                    Succsessentials_extended.MOD_ID, name));
         }
-
-
     }
 
     public static class Structures {

@@ -1,6 +1,7 @@
 package net.succ.succsessentials_extended.datagen;
 
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
@@ -12,6 +13,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.ComposterBlock;
 import net.neoforged.neoforge.common.conditions.IConditionBuilder;
 import net.succ.succsessentials_extended.Succsessentials_extended;
 import net.succ.succsessentials_extended.block.ModBlocks;
@@ -20,6 +22,7 @@ import net.succ.succsessentials_extended.recipe.AlloyForgingRecipe;
 import net.succ.succsessentials_extended.recipe.InfusingRecipe;
 import net.succ.succsessentials_extended.recipe.PulverizingRecipe;
 import net.succ.succsessentials_extended.util.ModTags;
+import net.succ.succsessentials_extended.util.PulverizingSource;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -175,8 +178,31 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 ModItems.TITANIUM_DUST,
                 Blocks.COBBLESTONE,
                 200,
-                20
+                20,
+                PulverizingSource.ORE
         );
+
+
+        pulverizing(
+                recipeOutput,
+                ModTags.Items.DEEPSLATE_ORES_TITANIUM,
+                ModItems.TITANIUM_DUST,
+                Blocks.DEEPSLATE,
+                200,
+                20,
+                PulverizingSource.DEEPSLATE
+        );
+
+        pulverizing(
+                recipeOutput,
+                ModTags.Items.INGOTS_TITANIUM,
+                ModItems.TITANIUM_DUST,
+                null,
+                80,
+                10,
+                PulverizingSource.INGOT
+        );
+
 
         pulverizing(
                 recipeOutput,
@@ -184,7 +210,14 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 ModItems.COAL_DUST,
                 null,
                 80,
-                10
+                10,
+                PulverizingSource.COAL
+        );
+
+        compostableBiomassPulverizing(
+                recipeOutput,
+                60,   // cook time
+                8     // energy per tick
         );
 
     }
@@ -340,22 +373,23 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
     protected static void pulverizing(
             RecipeOutput recipeOutput,
-            TagKey<Item> input,          // input tag (ore / ingot / coal / etc)
-            ItemLike result,             // primary output (dust)
-            ItemLike byproduct,          // secondary output (may be null)
+            TagKey<Item> input,
+            ItemLike result,
+            ItemLike byproduct,
             int cookTime,
-            int energyPerTick
+            int energyPerTick,
+            PulverizingSource source
     ) {
 
-        // If no byproduct is desired, fall back to EMPTY
+        // Safely resolve optional byproduct
         ItemStack byproductStack =
                 byproduct == null ? ItemStack.EMPTY : new ItemStack(byproduct);
 
         PulverizingRecipe recipe =
                 new PulverizingRecipe(
-                        Ingredient.of(input),        // TAG-based input
-                        new ItemStack(result),       // primary output
-                        byproductStack,              // optional byproduct
+                        Ingredient.of(input),
+                        new ItemStack(result),
+                        byproductStack,
                         cookTime,
                         energyPerTick
                 );
@@ -363,11 +397,63 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         recipeOutput.accept(
                 ResourceLocation.fromNamespaceAndPath(
                         Succsessentials_extended.MOD_ID,
-                        getItemName(result) + "_from_pulverizing"
+                        getItemName(result)
+                                + "_from_pulverizing_"
+                                + source.id()
                 ),
                 recipe,
                 null
         );
+    }
+
+    protected void compostableBiomassPulverizing(
+            RecipeOutput recipeOutput,
+            int cookTime,
+            int energyPerTick
+    ) {
+
+        // Iterate using FastUtil's entry set to avoid lambda type inference issues
+        ComposterBlock.COMPOSTABLES.object2FloatEntrySet().forEach(entry -> {
+
+            // Explicit, hard-typed values — no ambiguity possible
+            Item item = entry.getKey().asItem();
+            float chance = entry.getFloatValue();
+
+            // Safety check
+            if (item == Items.AIR) {
+                return;
+            }
+
+            // Determine biomass output based on vanilla compost tiers
+            int biomassAmount;
+            if (chance >= 1.0f) {
+                biomassAmount = 3;
+            } else if (chance >= 0.65f) {
+                biomassAmount = 2;
+            } else {
+                biomassAmount = 1;
+            }
+
+            // Create pulverizing recipe
+            PulverizingRecipe recipe =
+                    new PulverizingRecipe(
+                            Ingredient.of(item), // Item implements ItemLike, safe
+                            new ItemStack(ModItems.BIO_MASS.get(), biomassAmount),
+                            ItemStack.EMPTY,
+                            cookTime,
+                            energyPerTick
+                    );
+
+            // Register recipe with stable registry-based ID
+            recipeOutput.accept(
+                    ResourceLocation.fromNamespaceAndPath(
+                            Succsessentials_extended.MOD_ID,
+                            "biomass_from_" + BuiltInRegistries.ITEM.getKey(item).getPath()
+                    ),
+                    recipe,
+                    null
+            );
+        });
     }
 }
 

@@ -24,7 +24,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.succ.succsessentials_extended.block.entity.ModBlockEntities;
-import net.succ.succsessentials_extended.block.entity.custom.CoalGeneratorBlockEntity;
+import net.succ.succsessentials_extended.block.entity.custom.BiofuelGeneratorBlockEntity;
 import org.jetbrains.annotations.Nullable;
 
 public class BiofuelGeneratorBlock extends BaseEntityBlock {
@@ -99,8 +99,8 @@ public class BiofuelGeneratorBlock extends BaseEntityBlock {
     public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
         if (pState.getBlock() != pNewState.getBlock()) {
             BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
-            if (blockEntity instanceof CoalGeneratorBlockEntity coalGeneratorBlockEntity) {
-                coalGeneratorBlockEntity.drops();
+            if (blockEntity instanceof BiofuelGeneratorBlockEntity BiofuelGeneratorBlockEntity) {
+                BiofuelGeneratorBlockEntity.drops();
             }
         }
 
@@ -112,8 +112,8 @@ public class BiofuelGeneratorBlock extends BaseEntityBlock {
                                               Player pPlayer, InteractionHand pHand, BlockHitResult pHitResult) {
         if (!pLevel.isClientSide()) {
             BlockEntity entity = pLevel.getBlockEntity(pPos);
-            if(entity instanceof CoalGeneratorBlockEntity coalGeneratorBlockEntity) {
-                pPlayer.openMenu(new SimpleMenuProvider(coalGeneratorBlockEntity, Component.literal("Coal Generator")), pPos);
+            if(entity instanceof BiofuelGeneratorBlockEntity BiofuelGeneratorBlockEntity) {
+                pPlayer.openMenu(new SimpleMenuProvider(BiofuelGeneratorBlockEntity, Component.literal("Bio Fuel Generator")), pPos);
             } else {
                 throw new IllegalStateException("Our Container provider is missing!");
             }
@@ -125,7 +125,7 @@ public class BiofuelGeneratorBlock extends BaseEntityBlock {
     @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
-        return new CoalGeneratorBlockEntity(blockPos, blockState);
+        return new BiofuelGeneratorBlockEntity(blockPos, blockState);
     }
 
     @Nullable
@@ -135,7 +135,7 @@ public class BiofuelGeneratorBlock extends BaseEntityBlock {
             return null;
         }
 
-        return createTickerHelper(pBlockEntityType, ModBlockEntities.COAL_GENERATOR_BE.get(),
-                ((level, blockPos, blockState, coalGeneratorBlockEntity) -> coalGeneratorBlockEntity.tick(level, blockPos, blockState)));
+        return createTickerHelper(pBlockEntityType, ModBlockEntities.BIO_FUEL_GENERATOR_BE.get(),
+                ((level, blockPos, blockState, BiofuelGeneratorBlockEntity) -> BiofuelGeneratorBlockEntity.tick(level, blockPos, blockState)));
     }
 }

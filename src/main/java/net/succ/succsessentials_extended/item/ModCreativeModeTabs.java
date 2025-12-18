@@ -114,6 +114,7 @@ public class ModCreativeModeTabs {
                                 output.accept(ModBlocks.INFUSER);
                                 output.accept(ModBlocks.PULVERIZER);
                                 output.accept(ModBlocks.COAL_GENERATOR);
+                                output.accept(ModBlocks.BIO_FUEL_GENERATOR);
 
                                 /* ---------- MISC / TECH BLOCKS ---------- */
                                 output.accept(ModBlocks.PANEL_BLOCK);

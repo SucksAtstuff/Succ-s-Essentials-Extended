@@ -20,14 +20,15 @@ import net.neoforged.neoforge.items.ItemStackHandler;
 import net.succ.succsessentials_extended.block.custom.ElectricFurnaceBlock;
 import net.succ.succsessentials_extended.block.entity.ModBlockEntities;
 import net.succ.succsessentials_extended.block.entity.base.AbstractGeneratorBlockEntity;
-import net.succ.succsessentials_extended.screen.custom.CoalGeneratorMenu;
+import net.succ.succsessentials_extended.screen.custom.BioFuelGeneratorMenu;
+import net.succ.succsessentials_extended.util.ModTags;
 import org.jetbrains.annotations.Nullable;
 
 /**
  * ============================================================
- * CoalGeneratorBlockEntity
+ * BioFuelBlockEntity
  *
- * Simple fuel-based generator using coal items.
+ * Simple fuel-based generator using bio mass items.
  *
  * Responsibilities kept here:
  *  - Inventory
@@ -87,12 +88,12 @@ public class BiofuelGeneratorBlockEntity extends AbstractGeneratorBlockEntity
 
     public BiofuelGeneratorBlockEntity(BlockPos pos, BlockState state) {
         super(
-                ModBlockEntities.COAL_GENERATOR_BE.get(),
+                ModBlockEntities.BIO_FUEL_GENERATOR_BE.get(),
                 pos,
                 state,
                 64000, // ENERGY CAPACITY
-                320,   // ENERGY TRANSFER RATE
-                160    // BURN TIME PER FUEL
+                640,   // ENERGY TRANSFER RATE
+                80    // BURN TIME PER FUEL
         );
     }
 
@@ -103,7 +104,7 @@ public class BiofuelGeneratorBlockEntity extends AbstractGeneratorBlockEntity
      */
     @Override
     protected boolean hasFuel() {
-        return itemHandler.getStackInSlot(INPUT_SLOT).is(ItemTags.COALS);
+        return itemHandler.getStackInSlot(INPUT_SLOT).is(ModTags.Items.BIO_FUELS);
     }
 
     /**
@@ -147,13 +148,13 @@ public class BiofuelGeneratorBlockEntity extends AbstractGeneratorBlockEntity
 
     @Override
     public Component getDisplayName() {
-        return Component.literal("Coal Generator");
+        return Component.literal("Bio Fuel Generator");
     }
 
     @Nullable
     @Override
     public AbstractContainerMenu createMenu(int id, Inventory inv, Player player) {
-        return new CoalGeneratorMenu(id, inv, this, data);
+        return new BioFuelGeneratorMenu(id, inv, this, data);
     }
 
     /* ================= DROPS ================= */

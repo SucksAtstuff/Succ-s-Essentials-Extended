@@ -28,6 +28,9 @@ public class ModBusEvents {
 
         event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK, ModBlockEntities.PULVERIZER_BE.get(), PulverizerBlockEntity::getEnergyStorage);
 
+        event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK, ModBlockEntities.BIO_FUEL_GENERATOR_BE.get(), BiofuelGeneratorBlockEntity::getEnergyStorage);
+
+
     }
 
     @SubscribeEvent
