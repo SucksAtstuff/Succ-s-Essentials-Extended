@@ -13,6 +13,8 @@
     "succsessentials_extended:tita-chrome_block",
     "succsessentials_extended:raw_chromium_block",
     "succsessentials_extended:raw_titanium_block",
-    "succsessentials_extended:electric_furnace"
+    "succsessentials_extended:electric_furnace",
+    "#minecraft:needs_diamond_tool",
+    "#minecraft:needs_iron_tool"
   ]
 }

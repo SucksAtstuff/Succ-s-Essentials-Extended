@@ -37,8 +37,11 @@ public class ModBlockLootTablesProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.TITANIUM_BLOCK.get());
         dropSelf(ModBlocks.TITA_CHROME_BLOCK.get());
         dropSelf(ModBlocks.STEEL_BLOCK.get());
+        dropSelf(ModBlocks.BRONZE_BLOCK.get());
         dropSelf(ModBlocks.RAW_CHROMIUM_BLOCK.get());
         dropSelf(ModBlocks.RAW_TITANIUM_BLOCK.get());
+        dropSelf(ModBlocks.RAW_TIN_BLOCK.get());
+        dropSelf(ModBlocks.TIN_BLOCK.get());
         dropSelf(ModBlocks.ALLOY_FORGER.get());
         dropSelf(ModBlocks.PANEL_BLOCK.get());
         dropSelf(ModBlocks.COAL_GENERATOR.get());
@@ -58,6 +61,11 @@ public class ModBlockLootTablesProvider extends BlockLootSubProvider {
                 block -> createOreDrop(ModBlocks.TITANIUM_ORE.get(), ModItems.RAW_TITANIUM.get()));
         add(ModBlocks.DEEPSLATE_TITANIUM_ORE.get(),
                 block -> createOreDrop(ModBlocks.DEEPSLATE_TITANIUM_ORE.get(), ModItems.RAW_TITANIUM.get()));
+
+        add(ModBlocks.TIN_ORE.get(),
+                block -> createOreDrop(ModBlocks.TIN_ORE.get(), ModItems.RAW_TIN.get()));
+        add(ModBlocks.DEEPSLATE_TIN_ORE.get(),
+                block -> createOreDrop(ModBlocks.DEEPSLATE_TIN_ORE.get(), ModItems.RAW_TIN.get()));
     }
 
     protected LootTable.Builder createMultipleOreDrops (Block pBlock, Item item, float minDrops, float maxDrops) {

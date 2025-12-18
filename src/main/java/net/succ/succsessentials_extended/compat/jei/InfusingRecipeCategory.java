@@ -1,11 +1,10 @@
-package net.succ.succsessentials_extended.compat;
+package net.succ.succsessentials_extended.compat.jei;
 
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
-import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.network.chat.Component;
@@ -18,17 +17,20 @@ import org.jetbrains.annotations.Nullable;
 
 public class InfusingRecipeCategory implements IRecipeCategory<InfusingRecipe> {
 
-    public static final ResourceLocation UID =
-            ResourceLocation.fromNamespaceAndPath(Succsessentials_extended.MOD_ID, "infusing");
-
     public static final RecipeType<InfusingRecipe> RECIPE_TYPE =
-            new RecipeType<>(UID, InfusingRecipe.class);
+            new RecipeType<>(
+                    ResourceLocation.fromNamespaceAndPath(
+                            Succsessentials_extended.MOD_ID,
+                            "infusing"
+                    ),
+                    InfusingRecipe.class
+            );
 
     private final IDrawable background;
     private final IDrawable icon;
 
     public InfusingRecipeCategory(IGuiHelper helper) {
-        this.background = helper.createDrawable(
+        background = helper.createDrawable(
                 ResourceLocation.fromNamespaceAndPath(
                         Succsessentials_extended.MOD_ID,
                         "textures/gui/container/infuser.png"
@@ -36,7 +38,7 @@ public class InfusingRecipeCategory implements IRecipeCategory<InfusingRecipe> {
                 0, 0, 176, 85
         );
 
-        this.icon = helper.createDrawableIngredient(
+        icon = helper.createDrawableIngredient(
                 VanillaTypes.ITEM_STACK,
                 new ItemStack(ModBlocks.INFUSER.get())
         );
@@ -63,22 +65,20 @@ public class InfusingRecipeCategory implements IRecipeCategory<InfusingRecipe> {
     }
 
     @Override
-    public void setRecipe(IRecipeLayoutBuilder builder,
-                          InfusingRecipe recipe,
-                          IFocusGroup focuses) {
+    public void setRecipe(
+            IRecipeLayoutBuilder builder,
+            InfusingRecipe recipe,
+            IFocusGroup focuses
+    ) {
+        JeiRenderHelper.addInputSlot(builder, 56, 25, recipe.getIngredients().get(0));
+        JeiRenderHelper.addInputSlot(builder, 56, 44, recipe.getIngredients().get(1));
 
-        builder.addSlot(RecipeIngredientRole.INPUT, 56, 25)
-                .addIngredients(recipe.getIngredients().get(0));
-
-        builder.addSlot(RecipeIngredientRole.INPUT, 56, 44)
-                .addIngredients(recipe.getIngredients().get(1));
-
-        builder.addSlot(RecipeIngredientRole.OUTPUT, 116, 35)
-                .addItemStack(recipe.output())
-                .addRichTooltipCallback((slotView, tooltip) -> {
-                    tooltip.add(
-                            Component.literal("Energy: " + recipe.getTotalEnergy() + " FE")
-                    );
-                });
+        JeiRenderHelper.addOutputSlot(
+                builder,
+                116,
+                35,
+                recipe.output(),
+                recipe.getTotalEnergy()
+        );
     }
 }

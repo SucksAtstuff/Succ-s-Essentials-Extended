@@ -45,22 +45,29 @@ public class ModCreativeModeTabs {
                                 /* ---------- RAW MATERIALS ---------- */
                                 output.accept(ModItems.RAW_CHROMIUM);
                                 output.accept(ModItems.RAW_TITANIUM);
+                                output.accept(ModItems.RAW_TIN);
 
                                 /* ---------- INGOTS ---------- */
                                 output.accept(ModItems.CHROMIUM_INGOT);
                                 output.accept(ModItems.TITANIUM_INGOT);
                                 output.accept(ModItems.STEEL_INGOT);
                                 output.accept(ModItems.TITA_CHROME_INGOT);
+                                output.accept(ModItems.BRONZE_INGOT);
+                                output.accept(ModItems.TIN_INGOT);
 
                                 /* ---------- NUGGETS ---------- */
                                 output.accept(ModItems.CHROMIUM_NUGGET);
                                 output.accept(ModItems.TITANIUM_NUGGET);
                                 output.accept(ModItems.STEEL_NUGGET);
                                 output.accept(ModItems.TITA_CHROME_NUGGET);
+                                output.accept(ModItems.BRONZE_NUGGET);
+                                output.accept(ModItems.TIN_NUGGET);
 
                                 /* ---------- DUSTS ---------- */
                                 output.accept(ModItems.TITANIUM_DUST);
                                 output.accept(ModItems.COAL_DUST);
+                                output.accept(ModItems.BRONZE_DUST);
+                                output.accept(ModItems.TIN_DUST);
 
                                 output.accept(ModItems.BIO_MASS);
                                 output.accept(ModItems.BIO_MASS_PELLET);
@@ -98,15 +105,20 @@ public class ModCreativeModeTabs {
                                 output.accept(ModBlocks.DEEPSLATE_CHROMIUM_ORE);
                                 output.accept(ModBlocks.TITANIUM_ORE);
                                 output.accept(ModBlocks.DEEPSLATE_TITANIUM_ORE);
+                                output.accept(ModBlocks.TIN_ORE);
+                                output.accept(ModBlocks.DEEPSLATE_TIN_ORE);
 
                                 /* ---------- STORAGE BLOCKS ---------- */
                                 output.accept(ModBlocks.CHROMIUM_BLOCK);
                                 output.accept(ModBlocks.TITANIUM_BLOCK);
                                 output.accept(ModBlocks.STEEL_BLOCK);
                                 output.accept(ModBlocks.TITA_CHROME_BLOCK);
+                                output.accept(ModBlocks.BRONZE_BLOCK);
+                                output.accept(ModBlocks.TIN_BLOCK);
 
                                 output.accept(ModBlocks.RAW_CHROMIUM_BLOCK);
                                 output.accept(ModBlocks.RAW_TITANIUM_BLOCK);
+                                output.accept(ModBlocks.RAW_TIN_BLOCK);
 
                                 /* ---------- MACHINES ---------- */
                                 output.accept(ModBlocks.ALLOY_FORGER);

@@ -29,15 +29,20 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockWithItem(ModBlocks.TITANIUM_BLOCK);
         blockWithItem(ModBlocks.STEEL_BLOCK);
         blockWithItem(ModBlocks.TITA_CHROME_BLOCK);
+        blockWithItem(ModBlocks.BRONZE_BLOCK);
+        blockWithItem(ModBlocks.TIN_BLOCK);
 
         blockWithItem(ModBlocks.RAW_CHROMIUM_BLOCK);
         blockWithItem(ModBlocks.RAW_TITANIUM_BLOCK);
+        blockWithItem(ModBlocks.RAW_TIN_BLOCK);
 
         // Registering ingot ores with their respective item models
         simpleBlockWithItem(ModBlocks.CHROMIUM_ORE.get(), cubeAll(ModBlocks.CHROMIUM_ORE.get()));
         simpleBlockWithItem(ModBlocks.DEEPSLATE_CHROMIUM_ORE.get(), cubeAll(ModBlocks.DEEPSLATE_CHROMIUM_ORE.get()));
         simpleBlockWithItem(ModBlocks.TITANIUM_ORE.get(), cubeAll(ModBlocks.TITANIUM_ORE.get()));
         simpleBlockWithItem(ModBlocks.DEEPSLATE_TITANIUM_ORE.get(), cubeAll(ModBlocks.DEEPSLATE_TITANIUM_ORE.get()));
+        simpleBlockWithItem(ModBlocks.TIN_ORE.get(), cubeAll(ModBlocks.TIN_ORE.get()));
+        simpleBlockWithItem(ModBlocks.DEEPSLATE_TIN_ORE.get(), cubeAll(ModBlocks.DEEPSLATE_TIN_ORE.get()));
 
         panelBlock(ModBlocks.PANEL_BLOCK);
 

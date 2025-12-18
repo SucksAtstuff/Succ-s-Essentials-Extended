@@ -37,6 +37,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
     protected void buildRecipes(RecipeOutput recipeOutput){
         List<ItemLike> CHROMIUM_SMELTABLES = List.of(ModItems.RAW_CHROMIUM, ModBlocks.CHROMIUM_ORE, ModBlocks.DEEPSLATE_CHROMIUM_ORE);
         List<ItemLike> TITANIUM_SMELTABLES = List.of(ModItems.RAW_TITANIUM, ModBlocks.TITANIUM_ORE, ModBlocks.DEEPSLATE_TITANIUM_ORE);
+        List<ItemLike> TIN_SMELTABLES = List.of(ModItems.RAW_TIN, ModBlocks.TIN_ORE, ModBlocks.DEEPSLATE_TIN_ORE);
 
 
         oreSmelting(recipeOutput, CHROMIUM_SMELTABLES, RecipeCategory.MISC, ModItems.CHROMIUM_INGOT.get(), 0.25f, 200, "chromium");
@@ -45,12 +46,29 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         oreSmelting(recipeOutput, TITANIUM_SMELTABLES, RecipeCategory.MISC, ModItems.TITANIUM_INGOT.get(), 0.25f, 200, "titanium");
         oreBlasting(recipeOutput, TITANIUM_SMELTABLES, RecipeCategory.MISC, ModItems.TITANIUM_INGOT.get(), 0.25f, 100, "titanium");
 
+        oreSmelting(recipeOutput, TIN_SMELTABLES, RecipeCategory.MISC, ModItems.TIN_INGOT.get(), 0.25f, 200, "tin");
+        oreBlasting(recipeOutput, TIN_SMELTABLES, RecipeCategory.MISC, ModItems.TIN_INGOT.get(), 0.25f, 100, "tin");
+
         alloyForging(
                 recipeOutput,
                 ModTags.Items.INGOTS_CHROMIUM,     // ANY chromium ingot
+                1,
                 ModTags.Items.INGOTS_TITANIUM,     // ANY titanium ingot
+                1,
                 ModItems.TITA_CHROME_INGOT,
-                "tita_chrome",
+                1,
+                100,
+                40
+        );
+
+        alloyForging(
+                recipeOutput,
+                ModTags.Items.INGOTS_COPPER,     // ANY chromium ingot
+                3,
+                ModTags.Items.INGOTS_TIN,     // ANY titanium ingot
+                1,
+                ModItems.BRONZE_INGOT,
+                4,
                 100,
                 40
         );
@@ -151,6 +169,24 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
         metalConversions(
                 recipeOutput,
+                ModTags.Items.INGOTS_BRONZE,
+                ModTags.Items.NUGGETS_BRONZE,
+                ModBlocks.BRONZE_BLOCK,
+                ModItems.BRONZE_NUGGET,
+                ModItems.BRONZE_INGOT
+        );
+
+        metalConversions(
+                recipeOutput,
+                ModTags.Items.INGOTS_TIN,
+                ModTags.Items.NUGGETS_TIN,
+                ModBlocks.TIN_BLOCK,
+                ModItems.TIN_NUGGET,
+                ModItems.TIN_INGOT
+        );
+
+        metalConversions(
+                recipeOutput,
                 ModTags.Items.INGOTS_TITA_CHROME,
                 ModTags.Items.NUGGETS_TITA_CHROME,
                 ModBlocks.TITA_CHROME_BLOCK,
@@ -163,6 +199,13 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 ModTags.Items.RAW_CHROMIUM,
                 ModBlocks.RAW_CHROMIUM_BLOCK,
                 ModItems.RAW_CHROMIUM
+        );
+
+        rawMaterialConversions(
+                recipeOutput,
+                ModTags.Items.RAW_TIN,
+                ModBlocks.RAW_TIN_BLOCK,
+                ModItems.RAW_TIN
         );
 
         rawMaterialConversions(
@@ -253,18 +296,22 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
     protected static void alloyForging(
             RecipeOutput recipeOutput,
             TagKey<Item> inputA,
+            int countA,
             TagKey<Item> inputB,
+            int countB,
             ItemLike result,
-            String group,
+            int resultCount,
             int cookTime,
             int energyPerTick
     ) {
 
         AlloyForgingRecipe recipe =
                 new AlloyForgingRecipe(
-                        Ingredient.of(inputA),     // TAG-based input A
-                        Ingredient.of(inputB),     // TAG-based input B
-                        new ItemStack(result),
+                        Ingredient.of(inputA),
+                        countA,
+                        Ingredient.of(inputB),
+                        countB,
+                        new ItemStack(result, resultCount),
                         cookTime,
                         energyPerTick
                 );
@@ -278,6 +325,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 null
         );
     }
+
 
     protected static void infusing(
             RecipeOutput recipeOutput,

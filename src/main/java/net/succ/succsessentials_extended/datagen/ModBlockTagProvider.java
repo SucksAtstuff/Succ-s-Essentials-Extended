@@ -39,7 +39,10 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.TITA_CHROME_BLOCK.get())
                 .add(ModBlocks.RAW_CHROMIUM_BLOCK.get())
                 .add(ModBlocks.RAW_TITANIUM_BLOCK.get())
-                .add(ModBlocks.ELECTRIC_FURNACE.get());
+                .add(ModBlocks.ELECTRIC_FURNACE.get())
+                .addTag(BlockTags.NEEDS_DIAMOND_TOOL)
+                .addTag(BlockTags.NEEDS_IRON_TOOL);
+
 
         tag(ModTags.Blocks.PAXEL_MINEABLE)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE)
@@ -61,6 +64,10 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         tag(ModTags.Blocks.NEEDS_CHROMIUM_TOOL);
 
         tag(BlockTags.NEEDS_DIAMOND_TOOL);
+        tag(BlockTags.NEEDS_IRON_TOOL)
+                .add(ModBlocks.TIN_ORE.get())
+                .add(ModBlocks.DEEPSLATE_TIN_ORE.get());
+
         tag(Tags.Blocks.NEEDS_NETHERITE_TOOL);
 
         /* ===================================================== */
@@ -98,12 +105,15 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.CHROMIUM_ORE.get())
                 .add(ModBlocks.DEEPSLATE_CHROMIUM_ORE.get())
                 .add(ModBlocks.TITANIUM_ORE.get())
-                .add(ModBlocks.DEEPSLATE_TITANIUM_ORE.get());
+                .add(ModBlocks.DEEPSLATE_TITANIUM_ORE.get())
+                .add(ModBlocks.TIN_ORE.get())
+                .add(ModBlocks.DEEPSLATE_TIN_ORE.get());
 
         tag(ModTags.Blocks.STORAGE_BLOCKS)
                 .add(ModBlocks.CHROMIUM_BLOCK.get())
                 .add(ModBlocks.TITANIUM_BLOCK.get())
                 .add(ModBlocks.STEEL_BLOCK.get())
+                .add(ModBlocks.TIN_BLOCK.get())
                 .add(ModBlocks.TITA_CHROME_BLOCK.get());
 
         /* ===================================================== */
@@ -118,7 +128,9 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         tag(ModTags.Blocks.ORES_IRON);
         tag(ModTags.Blocks.ORES_GOLD);
         tag(ModTags.Blocks.ORES_COPPER);
-        tag(ModTags.Blocks.ORES_TIN);
+        tag(ModTags.Blocks.ORES_TIN)
+                .add(ModBlocks.TIN_ORE.get())
+                .add(ModBlocks.DEEPSLATE_TIN_ORE.get());
         tag(ModTags.Blocks.ORES_LEAD);
         tag(ModTags.Blocks.ORES_SILVER);
         tag(ModTags.Blocks.ORES_NICKEL);
@@ -135,7 +147,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         tag(ModTags.Blocks.STORAGE_IRON);
         tag(ModTags.Blocks.STORAGE_GOLD);
         tag(ModTags.Blocks.STORAGE_COPPER);
-        tag(ModTags.Blocks.STORAGE_TIN);
+        tag(ModTags.Blocks.STORAGE_TIN).add(ModBlocks.TIN_BLOCK.get());
         tag(ModTags.Blocks.STORAGE_TITANIUM).add(ModBlocks.TITANIUM_BLOCK.get());
         tag(ModTags.Blocks.STORAGE_LEAD);
         tag(ModTags.Blocks.STORAGE_SILVER);
@@ -145,7 +157,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         tag(ModTags.Blocks.STORAGE_URANIUM);
         tag(ModTags.Blocks.STORAGE_OSMIUM);
         tag(ModTags.Blocks.STORAGE_STEEL).add(ModBlocks.STEEL_BLOCK.get());
-        tag(ModTags.Blocks.STORAGE_BRONZE);
+        tag(ModTags.Blocks.STORAGE_BRONZE).add(ModBlocks.BRONZE_BLOCK.get());
         tag(ModTags.Blocks.STORAGE_BRASS);
         tag(ModTags.Blocks.STORAGE_ELECTRUM);
         tag(ModTags.Blocks.STORAGE_INVAR);

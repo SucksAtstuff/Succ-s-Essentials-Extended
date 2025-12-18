@@ -41,6 +41,23 @@ public class ModItems {
     public static final DeferredItem<Item> STEEL_NUGGET = ITEMS.register("steel_nugget",
             () -> new Item(new Item.Properties()));
 
+    public static final DeferredItem<Item> BRONZE_INGOT = ITEMS.register("bronze_ingot",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> BRONZE_NUGGET = ITEMS.register("bronze_nugget",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> BRONZE_DUST = ITEMS.register("bronze_dust",
+            () -> new Item(new Item.Properties()));
+
+    public static final DeferredItem<Item> RAW_TIN = ITEMS.register("raw_tin",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> TIN_INGOT = ITEMS.register("tin_ingot",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> TIN_NUGGET = ITEMS.register("tin_nugget",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> TIN_DUST = ITEMS.register("tin_dust",
+            () -> new Item(new Item.Properties()));
+
+
     public static final DeferredItem<Item> COAL_DUST = ITEMS.register("coal_dust",
             () -> new Item(new Item.Properties()));
 

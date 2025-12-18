@@ -2,6 +2,8 @@
   "values": [
     "#c:storage_blocks/chromium",
     "#c:storage_blocks/titanium",
+    "#c:storage_blocks/bronze",
+    "#c:storage_blocks/tin",
     "#c:storage_blocks/steel"
   ]
 }

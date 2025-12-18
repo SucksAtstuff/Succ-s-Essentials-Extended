@@ -16,19 +16,20 @@ import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 
 public record AlloyForgingRecipe(
-        Ingredient inputA,   // first metal
-        Ingredient inputB,   // second metal
-        ItemStack output,     // alloy result
+        Ingredient inputA,     // first metal type
+        int countA,            // required amount of A
+        Ingredient inputB,     // second metal type
+        int countB,            // required amount of B
+        ItemStack output,      // alloy result (count = output amount)
         int cookTime,
         int energyPerTick
-
 ) implements Recipe<AlloyForgingRecipeInput> {
 
     @Override
     public NonNullList<Ingredient> getIngredients() {
         NonNullList<Ingredient> list = NonNullList.create();
 
-        // Order matters for JEI / recipe display
+        // JEI only cares about ingredient types, not counts
         list.add(inputA);
         list.add(inputB);
 
@@ -41,18 +42,24 @@ public record AlloyForgingRecipe(
             return false;
         }
 
-        ItemStack stackA = input.getItem(0);
-        ItemStack stackB = input.getItem(1);
+        ItemStack stack0 = input.getItem(0);
+        ItemStack stack1 = input.getItem(1);
 
-        // Case 1: A in slot 0, B in slot 1
-        boolean normalOrder =
-                inputA.test(stackA) && inputB.test(stackB);
+        // Normal order: A in slot 0, B in slot 1
+        boolean normal =
+                inputA.test(stack0) &&
+                        stack0.getCount() >= countA &&
+                        inputB.test(stack1) &&
+                        stack1.getCount() >= countB;
 
-        // Case 2: A in slot 1, B in slot 0
-        boolean swappedOrder =
-                inputA.test(stackB) && inputB.test(stackA);
+        // Swapped order: A in slot 1, B in slot 0
+        boolean swapped =
+                inputA.test(stack1) &&
+                        stack1.getCount() >= countA &&
+                        inputB.test(stack0) &&
+                        stack0.getCount() >= countB;
 
-        return normalOrder || swappedOrder;
+        return normal || swapped;
     }
 
     public int getTotalEnergy() {
@@ -61,6 +68,7 @@ public record AlloyForgingRecipe(
 
     @Override
     public ItemStack assemble(AlloyForgingRecipeInput input, HolderLookup.Provider registries) {
+        // Output amount already encoded in ItemStack
         return output.copy();
     }
 
@@ -90,8 +98,12 @@ public record AlloyForgingRecipe(
                 RecordCodecBuilder.mapCodec(inst -> inst.group(
                         Ingredient.CODEC_NONEMPTY.fieldOf("input_a")
                                 .forGetter(AlloyForgingRecipe::inputA),
+                        Codec.INT.optionalFieldOf("count_a", 1)
+                                .forGetter(AlloyForgingRecipe::countA),
                         Ingredient.CODEC_NONEMPTY.fieldOf("input_b")
                                 .forGetter(AlloyForgingRecipe::inputB),
+                        Codec.INT.optionalFieldOf("count_b", 1)
+                                .forGetter(AlloyForgingRecipe::countB),
                         ItemStack.CODEC.fieldOf("result")
                                 .forGetter(AlloyForgingRecipe::output),
                         Codec.INT.optionalFieldOf("cook_time", 200)
@@ -100,17 +112,46 @@ public record AlloyForgingRecipe(
                                 .forGetter(AlloyForgingRecipe::energyPerTick)
                 ).apply(inst, AlloyForgingRecipe::new));
 
-
         public static final StreamCodec<RegistryFriendlyByteBuf, AlloyForgingRecipe> STREAM_CODEC =
-                StreamCodec.composite(
-                        Ingredient.CONTENTS_STREAM_CODEC, AlloyForgingRecipe::inputA,
-                        Ingredient.CONTENTS_STREAM_CODEC, AlloyForgingRecipe::inputB,
-                        ItemStack.STREAM_CODEC, AlloyForgingRecipe::output,
-                        ByteBufCodecs.INT, AlloyForgingRecipe::cookTime,
-                        ByteBufCodecs.INT, AlloyForgingRecipe::energyPerTick,
-                        AlloyForgingRecipe::new
-                );
+                StreamCodec.of(
+                        // ================= WRITE =================
+                        (buf, recipe) -> {
+                            Ingredient.CONTENTS_STREAM_CODEC.encode(buf, recipe.inputA());
+                            buf.writeInt(recipe.countA());
+                            Ingredient.CONTENTS_STREAM_CODEC.encode(buf, recipe.inputB());
+                            buf.writeInt(recipe.countB());
+                            ItemStack.STREAM_CODEC.encode(buf, recipe.output());
+                            buf.writeInt(recipe.cookTime());
+                            buf.writeInt(recipe.energyPerTick());
+                        },
 
+                        // ================= READ =================
+                        buf -> {
+                            Ingredient inputA =
+                                    Ingredient.CONTENTS_STREAM_CODEC.decode(buf);
+                            int countA = buf.readInt();
+
+                            Ingredient inputB =
+                                    Ingredient.CONTENTS_STREAM_CODEC.decode(buf);
+                            int countB = buf.readInt();
+
+                            ItemStack output =
+                                    ItemStack.STREAM_CODEC.decode(buf);
+
+                            int cookTime = buf.readInt();
+                            int energyPerTick = buf.readInt();
+
+                            return new AlloyForgingRecipe(
+                                    inputA,
+                                    countA,
+                                    inputB,
+                                    countB,
+                                    output,
+                                    cookTime,
+                                    energyPerTick
+                            );
+                        }
+                );
 
 
         @Override

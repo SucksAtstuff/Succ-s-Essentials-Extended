@@ -55,6 +55,7 @@ public class AlloyForgerBlockEntity extends AbstractPoweredMachineBlockEntity
     /* ================= INVENTORY ================= */
 
     public final ItemStackHandler itemHandler = new ItemStackHandler(3) {
+
         @Override
         protected void onContentsChanged(int slot) {
             setChanged();
@@ -67,11 +68,25 @@ public class AlloyForgerBlockEntity extends AbstractPoweredMachineBlockEntity
         public boolean isItemValid(int slot, ItemStack stack) {
             return switch (slot) {
                 case INPUT_A, INPUT_B -> stack.is(ModTags.Items.INGOTS);
-                case OUTPUT -> false;
+                case OUTPUT -> false; // players / automation cannot insert
                 default -> false;
             };
         }
+
+        @Override
+        public ItemStack insertItem(int slot, ItemStack stack, boolean simulate) {
+            // Allow MACHINE insertion into output slot
+            if (slot == OUTPUT) {
+                return super.insertItem(slot, stack, simulate);
+            }
+
+            // Default behavior for inputs
+            return isItemValid(slot, stack)
+                    ? super.insertItem(slot, stack, simulate)
+                    : stack;
+        }
     };
+
 
     /* ================= DATA SYNC ================= */
 
@@ -116,11 +131,14 @@ public class AlloyForgerBlockEntity extends AbstractPoweredMachineBlockEntity
         Optional<RecipeHolder<AlloyForgingRecipe>> recipe = getCurrentRecipe();
         if (recipe.isEmpty()) return false;
 
-        // Dynamic values per recipe (same as before)
-        maxProgress = recipe.get().value().cookTime();
-        energyPerTick = recipe.get().value().energyPerTick();
+        AlloyForgingRecipe value = recipe.get().value();
 
-        return canInsertIntoOutput(recipe.get().value().output());
+        // Pull dynamic values from the recipe
+        maxProgress = value.cookTime();
+        energyPerTick = value.energyPerTick();
+
+        // Ensure output slot can accept the FULL result stack
+        return canOutputResult(itemHandler, OUTPUT, value.output());
     }
 
     private Optional<RecipeHolder<AlloyForgingRecipe>> getCurrentRecipe() {
@@ -139,18 +157,40 @@ public class AlloyForgerBlockEntity extends AbstractPoweredMachineBlockEntity
         Optional<RecipeHolder<AlloyForgingRecipe>> recipe = getCurrentRecipe();
         if (recipe.isEmpty()) return;
 
-        ItemStack result = recipe.get().value().output();
+        AlloyForgingRecipe value = recipe.get().value();
 
-        itemHandler.extractItem(INPUT_A, 1, false);
-        itemHandler.extractItem(INPUT_B, 1, false);
+        ItemStack stackA = itemHandler.getStackInSlot(INPUT_A);
+        ItemStack stackB = itemHandler.getStackInSlot(INPUT_B);
 
-        itemHandler.insertItem(OUTPUT, result.copy(), false);
+        ItemStack result = value.output().copy();
+
+        // Determine order (slot order does not matter)
+        boolean normalOrder =
+                value.inputA().test(stackA) &&
+                        value.inputB().test(stackB);
+
+        // Consume inputs using recipe-defined counts
+        if (normalOrder) {
+            itemHandler.extractItem(INPUT_A, value.countA(), false);
+            itemHandler.extractItem(INPUT_B, value.countB(), false);
+        } else {
+            itemHandler.extractItem(INPUT_A, value.countB(), false);
+            itemHandler.extractItem(INPUT_B, value.countA(), false);
+        }
+
+        // ===== SAFE MACHINE OUTPUT =====
+        // This bypasses slot validation and includes overflow protection
+        outputResult(itemHandler, OUTPUT, result);
     }
+
+
 
     private boolean canInsertIntoOutput(ItemStack stack) {
         ItemStack output = itemHandler.getStackInSlot(OUTPUT);
+
         if (output.isEmpty()) return true;
         if (!ItemStack.isSameItemSameComponents(output, stack)) return false;
+
         return output.getCount() + stack.getCount() <= output.getMaxStackSize();
     }
 

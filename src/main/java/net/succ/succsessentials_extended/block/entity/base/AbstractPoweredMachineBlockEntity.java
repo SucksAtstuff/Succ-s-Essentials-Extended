@@ -4,13 +4,16 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.energy.IEnergyStorage;
+import net.neoforged.neoforge.items.ItemStackHandler;
 import net.succ.succsessentials_extended.block.entity.energy.ModEnergyStorage;
 import org.jetbrains.annotations.Nullable;
+import net.succ.succsessentials_extended.util.MachineOutputHelper;
 
 /**
  * ============================================================
@@ -121,5 +124,25 @@ public abstract class AbstractPoweredMachineBlockEntity extends BlockEntity {
         energyPerTick = tag.getInt("energyPerTick");
         energyStorage.setEnergy(tag.getInt("energy"));
         super.loadAdditional(tag, registries);
+    }
+
+    protected boolean canOutputResult(
+            ItemStackHandler handler,
+            int outputSlot,
+            ItemStack result
+    ) {
+        return MachineOutputHelper.canOutput(handler, outputSlot, result);
+    }
+
+    /**
+     * Safely outputs a recipe result into the machine output slot.
+     * This bypasses slot validation and prevents voiding.
+     */
+    protected void outputResult(
+            ItemStackHandler handler,
+            int outputSlot,
+            ItemStack result
+    ) {
+        MachineOutputHelper.output(handler, outputSlot, result);
     }
 }

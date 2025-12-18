@@ -37,6 +37,8 @@ public class ModItemTagProvider extends ItemTagsProvider {
         tag(ModTags.Items.STORAGE_BLOCKS)
                 .addTag(ModTags.Items.STORAGE_CHROMIUM)
                 .addTag(ModTags.Items.STORAGE_TITANIUM)
+                .addTag(ModTags.Items.STORAGE_BRONZE)
+                .addTag(ModTags.Items.STORAGE_TIN)
                 .addTag(ModTags.Items.STORAGE_STEEL);
 
         // Chromium
@@ -60,7 +62,7 @@ public class ModItemTagProvider extends ItemTagsProvider {
         tag(ModTags.Items.STORAGE_IRON);
         tag(ModTags.Items.STORAGE_GOLD);
         tag(ModTags.Items.STORAGE_COPPER);
-        tag(ModTags.Items.STORAGE_TIN);
+        tag(ModTags.Items.STORAGE_TIN).add(ModBlocks.TIN_BLOCK.get().asItem());
         tag(ModTags.Items.STORAGE_LEAD);
         tag(ModTags.Items.STORAGE_SILVER);
         tag(ModTags.Items.STORAGE_NICKEL);
@@ -68,7 +70,7 @@ public class ModItemTagProvider extends ItemTagsProvider {
         tag(ModTags.Items.STORAGE_ALUMINUM);
         tag(ModTags.Items.STORAGE_URANIUM);
         tag(ModTags.Items.STORAGE_OSMIUM);
-        tag(ModTags.Items.STORAGE_BRONZE);
+        tag(ModTags.Items.STORAGE_BRONZE).add(ModBlocks.BRONZE_BLOCK.get().asItem());
         tag(ModTags.Items.STORAGE_BRASS);
         tag(ModTags.Items.STORAGE_ELECTRUM);
         tag(ModTags.Items.STORAGE_INVAR);
@@ -150,28 +152,37 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 .add(ModItems.CHROMIUM_INGOT.get())
                 .add(ModItems.TITANIUM_INGOT.get())
                 .add(ModItems.TITA_CHROME_INGOT.get())
+                .add(ModItems.BRONZE_INGOT.get())
+                .add(ModItems.TIN_INGOT.get())
                 .add(ModItems.STEEL_INGOT.get());
 
         tag(ModTags.Items.NUGGETS)
                 .add(ModItems.CHROMIUM_NUGGET.get())
                 .add(ModItems.TITANIUM_NUGGET.get())
                 .add(ModItems.STEEL_NUGGET.get())
+                .add(ModItems.TIN_NUGGET.get())
+                .add(ModItems.BRONZE_NUGGET.get())
                 .add(ModItems.TITA_CHROME_NUGGET.get());
 
 
         tag(ModTags.Items.DUSTS)
                 .add(ModItems.COAL_DUST.get())
+                .add(ModItems.BRONZE_DUST.get())
+                .add(ModItems.TIN_DUST.get())
                 .add(ModItems.TITANIUM_DUST.get());
 
         tag(ModTags.Items.RAW_MATERIALS)
                 .add(ModItems.RAW_CHROMIUM.get())
+                .add(ModItems.RAW_TIN.get())
                 .add(ModItems.RAW_TITANIUM.get());
 
         tag(ModTags.Items.ORES)
                 .add(ModBlocks.CHROMIUM_ORE.get().asItem())
                 .add(ModBlocks.DEEPSLATE_CHROMIUM_ORE.get().asItem())
                 .add(ModBlocks.TITANIUM_ORE.get().asItem())
-                .add(ModBlocks.DEEPSLATE_TITANIUM_ORE.get().asItem());
+                .add(ModBlocks.DEEPSLATE_TITANIUM_ORE.get().asItem())
+                .add(ModBlocks.TIN_ORE.get().asItem())
+                .add(ModBlocks.DEEPSLATE_TIN_ORE.get().asItem());
 
         tag(ModTags.Items.PLATES);
         tag(ModTags.Items.RODS);
@@ -251,16 +262,16 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 .add(ModBlocks.DEEPSLATE_TITANIUM_ORE.get().asItem());
 
 
-
         // Tin
-        tag(ModTags.Items.NUGGETS_TIN);
-        tag(ModTags.Items.DUSTS_TIN);
+        tag(ModTags.Items.INGOTS_TIN).add(ModItems.TIN_INGOT.get());
+        tag(ModTags.Items.NUGGETS_TIN).add(ModItems.TIN_NUGGET.get());
+        tag(ModTags.Items.DUSTS_TIN).add(ModItems.TIN_DUST.get());
         tag(ModTags.Items.PLATES_TIN);
         tag(ModTags.Items.RODS_TIN);
         tag(ModTags.Items.GEARS_TIN);
-        tag(ModTags.Items.RAW_TIN);
-        tag(ModTags.Items.ORES_TIN);
-        tag(ModTags.Items.DEEPSLATE_ORES_TIN);
+        tag(ModTags.Items.RAW_TIN).add(ModItems.RAW_TIN.get());
+        tag(ModTags.Items.ORES_TIN).add(ModBlocks.TIN_ORE.get().asItem());
+        tag(ModTags.Items.DEEPSLATE_ORES_TIN).add(ModBlocks.DEEPSLATE_TIN_ORE.get().asItem());
 
         // Lead
         tag(ModTags.Items.NUGGETS_LEAD);
@@ -301,6 +312,17 @@ public class ModItemTagProvider extends ItemTagsProvider {
         tag(ModTags.Items.RAW_ZINC);
         tag(ModTags.Items.ORES_ZINC);
         tag(ModTags.Items.DEEPSLATE_ORES_ZINC);
+
+        // Bronze
+        tag(ModTags.Items.INGOTS_BRONZE)
+                .add(ModItems.BRONZE_INGOT.get());
+        tag(ModTags.Items.NUGGETS_BRONZE)
+                .add(ModItems.BRONZE_NUGGET.get());
+        tag(ModTags.Items.DUSTS_BRONZE)
+                .add(ModItems.BRONZE_DUST.get());
+        tag(ModTags.Items.PLATES_BRONZE);
+        tag(ModTags.Items.RODS_BRONZE);
+        tag(ModTags.Items.GEARS_BRONZE);
 
         // Aluminum
         tag(ModTags.Items.NUGGETS_ALUMINUM);

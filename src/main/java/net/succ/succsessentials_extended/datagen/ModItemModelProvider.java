@@ -49,20 +49,27 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.TITANIUM_INGOT.get());
         basicItem(ModItems.TITA_CHROME_INGOT.get());
         basicItem(ModItems.STEEL_INGOT.get());
+        basicItem(ModItems.BRONZE_INGOT.get());
+        basicItem(ModItems.TIN_INGOT.get());
 
         // Register models for dusts
         basicItem(ModItems.TITANIUM_DUST.get());
         basicItem(ModItems.COAL_DUST.get());
+        basicItem(ModItems.BRONZE_DUST.get());
+        basicItem(ModItems.TIN_DUST.get());
 
         // Register models for nuggets
         basicItem(ModItems.CHROMIUM_NUGGET.get());
         basicItem(ModItems.TITANIUM_NUGGET.get());
         basicItem(ModItems.TITA_CHROME_NUGGET.get());
         basicItem(ModItems.STEEL_NUGGET.get());
+        basicItem(ModItems.BRONZE_NUGGET.get());
+        basicItem(ModItems.TIN_NUGGET.get());
 
         // Register models for raw ore
         basicItem(ModItems.RAW_CHROMIUM.get());
         basicItem(ModItems.RAW_TITANIUM.get());
+        basicItem(ModItems.RAW_TIN.get());
 
         // Register models for chromium tools
         handheldItem(ModItems.CHROMIUM_SWORD.get());

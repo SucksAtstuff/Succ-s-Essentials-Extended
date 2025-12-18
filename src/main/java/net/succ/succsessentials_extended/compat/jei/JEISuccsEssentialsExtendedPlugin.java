@@ -1,4 +1,4 @@
-package net.succ.succsessentials_extended.compat;
+package net.succ.succsessentials_extended.compat.jei;
 
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
@@ -13,6 +13,7 @@ import net.succ.succsessentials_extended.Succsessentials_extended;
 import net.succ.succsessentials_extended.recipe.AlloyForgingRecipe;
 import net.succ.succsessentials_extended.recipe.InfusingRecipe;
 import net.succ.succsessentials_extended.recipe.ModRecipes;
+import net.succ.succsessentials_extended.recipe.PulverizingRecipe;
 import net.succ.succsessentials_extended.screen.custom.AlloyForgerBlockScreen;
 import net.succ.succsessentials_extended.screen.custom.InfuserBlockScreen;
 
@@ -34,7 +35,8 @@ public class JEISuccsEssentialsExtendedPlugin implements IModPlugin {
 
         registration.addRecipeCategories(
                 new AlloyForgingRecipeCategory(guiHelper),
-                new InfusingRecipeCategory(guiHelper)
+                new InfusingRecipeCategory(guiHelper),
+                new PulverizingRecipeCategory(guiHelper)
         );
     }
 
@@ -50,8 +52,14 @@ public class JEISuccsEssentialsExtendedPlugin implements IModPlugin {
                 recipeManager.getAllRecipesFor(ModRecipes.INFUSING_TYPE.get())
                         .stream().map(RecipeHolder::value).toList();
 
+        List<PulverizingRecipe> pulverizingRecipes =
+                recipeManager.getAllRecipesFor(ModRecipes.PULVERIZING_TYPE.get())
+                        .stream().map(RecipeHolder::value).toList();
+
         registration.addRecipes(AlloyForgingRecipeCategory.RECIPE_TYPE, alloyRecipes);
         registration.addRecipes(InfusingRecipeCategory.RECIPE_TYPE, infusingRecipes);
+        registration.addRecipes(PulverizingRecipeCategory.RECIPE_TYPE, pulverizingRecipes);
+
     }
 
     @Override

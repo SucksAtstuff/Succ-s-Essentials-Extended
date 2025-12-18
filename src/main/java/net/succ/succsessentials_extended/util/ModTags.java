@@ -394,8 +394,27 @@ public class ModTags {
 
         /* ---------- BRONZE ---------- */
 
+        public static final TagKey<Item> INGOTS_BRONZE =
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ingots/bronze"));
+
+        public static final TagKey<Item> NUGGETS_BRONZE =
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "nuggets/bronze"));
+
+        public static final TagKey<Item> DUSTS_BRONZE =
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "dusts/bronze"));
+
+        public static final TagKey<Item> PLATES_BRONZE =
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "plates/bronze"));
+
+        public static final TagKey<Item> RODS_BRONZE =
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "rods/bronze"));
+
+        public static final TagKey<Item> GEARS_BRONZE =
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "gears/bronze"));
+
         public static final TagKey<Item> STORAGE_BRONZE =
                 TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/bronze"));
+
 
         /* ---------- BRASS ---------- */
 

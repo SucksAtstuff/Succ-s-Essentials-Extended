@@ -30,20 +30,6 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
 
-/**
- * ============================================================
- * InfuserBlockEntity
- *
- * Slow, energy-hungry machine that combines:
- *  - 1 ingot
- *  - 1 dust
- *
- * Uses AbstractPoweredMachineBlockEntity for:
- *  - Energy storage
- *  - Progress ticking
- *  - NBT save/load
- * ============================================================
- */
 public class InfuserBlockEntity extends AbstractPoweredMachineBlockEntity
         implements MenuProvider {
 
@@ -101,20 +87,17 @@ public class InfuserBlockEntity extends AbstractPoweredMachineBlockEntity
         }
     };
 
-    /* ================= CONSTRUCTOR ================= */
-
     public InfuserBlockEntity(BlockPos pos, BlockState state) {
         super(
                 ModBlockEntities.INFUSER_BE.get(),
                 pos,
                 state,
-                128000, // ENERGY CAPACITY (larger than alloy forger)
-                640     // ENERGY TRANSFER (hungry machine)
+                128000,
+                640
         );
 
-        // Default behavior: slow & expensive
-        this.maxProgress = 400;   // slow
-        this.energyPerTick = 80;  // power-hungry
+        this.maxProgress = 400;
+        this.energyPerTick = 80;
     }
 
     /* ================= RECIPE ================= */
@@ -124,11 +107,13 @@ public class InfuserBlockEntity extends AbstractPoweredMachineBlockEntity
         Optional<RecipeHolder<InfusingRecipe>> recipe = getCurrentRecipe();
         if (recipe.isEmpty()) return false;
 
-        // Recipe-defined values override defaults if present
-        maxProgress = recipe.get().value().cookTime();
-        energyPerTick = recipe.get().value().energyPerTick();
+        InfusingRecipe value = recipe.get().value();
 
-        return canInsertIntoOutput(recipe.get().value().output());
+        maxProgress = value.cookTime();
+        energyPerTick = value.energyPerTick();
+
+        // ✅ USE CENTRALIZED OVERFLOW CHECK
+        return canOutputResult(itemHandler, OUTPUT, value.output());
     }
 
     private Optional<RecipeHolder<InfusingRecipe>> getCurrentRecipe() {
@@ -147,29 +132,15 @@ public class InfuserBlockEntity extends AbstractPoweredMachineBlockEntity
         Optional<RecipeHolder<InfusingRecipe>> recipe = getCurrentRecipe();
         if (recipe.isEmpty()) return;
 
-        ItemStack result = recipe.get().value().output();
+        InfusingRecipe value = recipe.get().value();
+        ItemStack result = value.output().copy();
 
         // Consume inputs
         itemHandler.extractItem(INPUT_INGOT, 1, false);
         itemHandler.extractItem(INPUT_DUST, 1, false);
 
-        // Manually handle output to avoid silent insert failures
-        ItemStack output = itemHandler.getStackInSlot(OUTPUT);
-
-        if (output.isEmpty()) {
-            itemHandler.setStackInSlot(OUTPUT, result.copy());
-        } else {
-            output.grow(result.getCount());
-            itemHandler.setStackInSlot(OUTPUT, output);
-        }
-    }
-
-
-    private boolean canInsertIntoOutput(ItemStack stack) {
-        ItemStack output = itemHandler.getStackInSlot(OUTPUT);
-        if (output.isEmpty()) return true;
-        if (!ItemStack.isSameItemSameComponents(output, stack)) return false;
-        return output.getCount() + stack.getCount() <= output.getMaxStackSize();
+        // ✅ SAFE MACHINE OUTPUT
+        outputResult(itemHandler, OUTPUT, result);
     }
 
     /* ================= BLOCK STATE ================= */
