@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_raw": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#c:raw_materials/nickel"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "succsessentials_extended:raw_nickel_block_from_raw_items"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_raw"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "succsessentials_extended:raw_nickel_block_from_raw_items"
+    ]
+  }
+}

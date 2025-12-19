@@ -2,9 +2,19 @@
   "values": [
     "succsessentials_extended:chromium_nugget",
     "succsessentials_extended:titanium_nugget",
-    "succsessentials_extended:steel_nugget",
     "succsessentials_extended:tin_nugget",
+    "succsessentials_extended:tungsten_nugget",
+    "succsessentials_extended:cobalt_nugget",
+    "succsessentials_extended:osmium_nugget",
+    "succsessentials_extended:zinc_nugget",
+    "succsessentials_extended:silver_nugget",
+    "succsessentials_extended:nickel_nugget",
+    "succsessentials_extended:steel_nugget",
     "succsessentials_extended:bronze_nugget",
+    "succsessentials_extended:brass_nugget",
+    "succsessentials_extended:electrum_nugget",
+    "succsessentials_extended:invar_nugget",
+    "succsessentials_extended:constantan_nugget",
     "succsessentials_extended:tita-chrome_nugget"
   ]
 }

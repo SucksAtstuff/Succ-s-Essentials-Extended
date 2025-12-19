@@ -1,8 +1,21 @@
 {
   "values": [
     "succsessentials_extended:coal_dust",
-    "succsessentials_extended:bronze_dust",
+    "succsessentials_extended:chromium_dust",
+    "succsessentials_extended:titanium_dust",
     "succsessentials_extended:tin_dust",
-    "succsessentials_extended:titanium_dust"
+    "succsessentials_extended:tungsten_dust",
+    "succsessentials_extended:cobalt_dust",
+    "succsessentials_extended:osmium_dust",
+    "succsessentials_extended:zinc_dust",
+    "succsessentials_extended:silver_dust",
+    "succsessentials_extended:nickel_dust",
+    "succsessentials_extended:steel_dust",
+    "succsessentials_extended:bronze_dust",
+    "succsessentials_extended:brass_dust",
+    "succsessentials_extended:electrum_dust",
+    "succsessentials_extended:invar_dust",
+    "succsessentials_extended:constantan_dust",
+    "succsessentials_extended:tita-chrome_dust"
   ]
 }

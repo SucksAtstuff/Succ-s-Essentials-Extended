@@ -3,19 +3,23 @@ package net.succ.succsessentials_extended.compat.jei;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.registration.IGuiHandlerRegistration;
+import mezz.jei.api.registration.IRecipeCatalystRegistration;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeManager;
 import net.succ.succsessentials_extended.Succsessentials_extended;
+import net.succ.succsessentials_extended.block.ModBlocks;
 import net.succ.succsessentials_extended.recipe.AlloyForgingRecipe;
 import net.succ.succsessentials_extended.recipe.InfusingRecipe;
 import net.succ.succsessentials_extended.recipe.ModRecipes;
 import net.succ.succsessentials_extended.recipe.PulverizingRecipe;
 import net.succ.succsessentials_extended.screen.custom.AlloyForgerBlockScreen;
 import net.succ.succsessentials_extended.screen.custom.InfuserBlockScreen;
+import net.succ.succsessentials_extended.screen.custom.PulverizerBlockScreen;
 
 import java.util.List;
 
@@ -74,6 +78,31 @@ public class JEISuccsEssentialsExtendedPlugin implements IModPlugin {
                 InfuserBlockScreen.class,
                 79, 34, 24, 16,
                 InfusingRecipeCategory.RECIPE_TYPE
+        );
+
+        registration.addRecipeClickArea(
+                PulverizerBlockScreen.class,
+                79, 34, 24, 16,
+                PulverizingRecipeCategory.RECIPE_TYPE
+        );
+    }
+
+    @Override
+    public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
+
+        registration.addRecipeCatalyst(
+                new ItemStack(ModBlocks.ALLOY_FORGER.get()),
+                AlloyForgingRecipeCategory.RECIPE_TYPE
+        );
+
+        registration.addRecipeCatalyst(
+                new ItemStack(ModBlocks.INFUSER.get()),
+                InfusingRecipeCategory.RECIPE_TYPE
+        );
+
+        registration.addRecipeCatalyst(
+                new ItemStack(ModBlocks.PULVERIZER.get()),
+                PulverizingRecipeCategory.RECIPE_TYPE
         );
     }
 }

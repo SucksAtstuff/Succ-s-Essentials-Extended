@@ -1,0 +1,15 @@
+{
+  "type": "succsessentials_extended:alloy_forging",
+  "cook_time": 100,
+  "energy_per_tick": 40,
+  "input_a": {
+    "tag": "c:ingots/gold"
+  },
+  "input_b": {
+    "tag": "c:ingots/silver"
+  },
+  "result": {
+    "count": 2,
+    "id": "succsessentials_extended:electrum_ingot"
+  }
+}

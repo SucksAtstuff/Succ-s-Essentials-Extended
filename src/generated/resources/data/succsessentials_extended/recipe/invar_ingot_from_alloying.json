@@ -1,0 +1,16 @@
+{
+  "type": "succsessentials_extended:alloy_forging",
+  "cook_time": 120,
+  "count_a": 2,
+  "energy_per_tick": 50,
+  "input_a": {
+    "tag": "c:ingots/iron"
+  },
+  "input_b": {
+    "tag": "c:ingots/nickel"
+  },
+  "result": {
+    "count": 3,
+    "id": "succsessentials_extended:invar_ingot"
+  }
+}

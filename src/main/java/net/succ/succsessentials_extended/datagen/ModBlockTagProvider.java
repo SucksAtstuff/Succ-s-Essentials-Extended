@@ -26,23 +26,73 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         /* ===================================================== */
 
         tag(BlockTags.MINEABLE_WITH_PICKAXE)
+                // Chromium
                 .add(ModBlocks.CHROMIUM_ORE.get())
                 .add(ModBlocks.DEEPSLATE_CHROMIUM_ORE.get())
+                .add(ModBlocks.CHROMIUM_BLOCK.get())
+                .add(ModBlocks.RAW_CHROMIUM_BLOCK.get())
+
+                // Titanium
                 .add(ModBlocks.TITANIUM_ORE.get())
                 .add(ModBlocks.DEEPSLATE_TITANIUM_ORE.get())
+                .add(ModBlocks.TITANIUM_BLOCK.get())
+                .add(ModBlocks.RAW_TITANIUM_BLOCK.get())
+
+                // Tin
+                .add(ModBlocks.TIN_ORE.get())
+                .add(ModBlocks.DEEPSLATE_TIN_ORE.get())
+                .add(ModBlocks.TIN_BLOCK.get())
+
+                // Tungsten
+                .add(ModBlocks.TUNGSTEN_ORE.get())
+                .add(ModBlocks.DEEPSLATE_TUNGSTEN_ORE.get())
+                .add(ModBlocks.TUNGSTEN_BLOCK.get())
+                .add(ModBlocks.RAW_TUNGSTEN_BLOCK.get())
+
+                // Cobalt
+                .add(ModBlocks.COBALT_ORE.get())
+                .add(ModBlocks.DEEPSLATE_COBALT_ORE.get())
+                .add(ModBlocks.COBALT_BLOCK.get())
+                .add(ModBlocks.RAW_COBALT_BLOCK.get())
+
+                // Osmium
+                .add(ModBlocks.OSMIUM_ORE.get())
+                .add(ModBlocks.DEEPSLATE_OSMIUM_ORE.get())
+                .add(ModBlocks.OSMIUM_BLOCK.get())
+                .add(ModBlocks.RAW_OSMIUM_BLOCK.get())
+
+                // Zinc
+                .add(ModBlocks.ZINC_ORE.get())
+                .add(ModBlocks.DEEPSLATE_ZINC_ORE.get())
+                .add(ModBlocks.ZINC_BLOCK.get())
+                .add(ModBlocks.RAW_ZINC_BLOCK.get())
+
+                // Silver
+                .add(ModBlocks.SILVER_ORE.get())
+                .add(ModBlocks.DEEPSLATE_SILVER_ORE.get())
+                .add(ModBlocks.SILVER_BLOCK.get())
+                .add(ModBlocks.RAW_SILVER_BLOCK.get())
+
+                // Nickel
+                .add(ModBlocks.NICKEL_ORE.get())
+                .add(ModBlocks.DEEPSLATE_NICKEL_ORE.get())
+                .add(ModBlocks.NICKEL_BLOCK.get())
+                .add(ModBlocks.RAW_NICKEL_BLOCK.get())
+
+                // Alloys
+                .add(ModBlocks.STEEL_BLOCK.get())
+                .add(ModBlocks.BRONZE_BLOCK.get())
+                .add(ModBlocks.TITA_CHROME_BLOCK.get())
+
+                // Machines
                 .add(ModBlocks.ALLOY_FORGER.get())
                 .add(ModBlocks.PANEL_BLOCK.get())
                 .add(ModBlocks.INFUSER.get())
-                .add(ModBlocks.CHROMIUM_BLOCK.get())
-                .add(ModBlocks.TITANIUM_BLOCK.get())
-                .add(ModBlocks.STEEL_BLOCK.get())
-                .add(ModBlocks.TITA_CHROME_BLOCK.get())
-                .add(ModBlocks.RAW_CHROMIUM_BLOCK.get())
-                .add(ModBlocks.RAW_TITANIUM_BLOCK.get())
                 .add(ModBlocks.ELECTRIC_FURNACE.get())
+
+                // Tool tiers
                 .addTag(BlockTags.NEEDS_DIAMOND_TOOL)
                 .addTag(BlockTags.NEEDS_IRON_TOOL);
-
 
         tag(ModTags.Blocks.PAXEL_MINEABLE)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE)
@@ -53,14 +103,14 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         /*                  TOOL REQUIREMENTS                    */
         /* ===================================================== */
 
-        // Intentionally referencing addon/base mod tag — DO NOT TOUCH
+        // External mod — DO NOT TOUCH
         tag(net.succ.succsmod.util.ModTags.Blocks.NEEDS_ATHERIUM_TOOL)
                 .add(ModBlocks.CHROMIUM_ORE.get())
                 .add(ModBlocks.DEEPSLATE_CHROMIUM_ORE.get())
                 .add(ModBlocks.TITANIUM_ORE.get())
                 .add(ModBlocks.DEEPSLATE_TITANIUM_ORE.get());
 
-        // Your mod’s custom chromium tier
+        // Your mod
         tag(ModTags.Blocks.NEEDS_CHROMIUM_TOOL);
 
         tag(BlockTags.NEEDS_DIAMOND_TOOL);
@@ -94,7 +144,6 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .addTag(BlockTags.NEEDS_DIAMOND_TOOL);
 
         tag(BlockTags.INCORRECT_FOR_NETHERITE_TOOL);
-
         tag(ModTags.Blocks.INCORRECT_FOR_CHROMIUM_TOOL);
 
         /* ===================================================== */
@@ -102,93 +151,112 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         /* ===================================================== */
 
         tag(ModTags.Blocks.ORES)
-                .add(ModBlocks.CHROMIUM_ORE.get())
-                .add(ModBlocks.DEEPSLATE_CHROMIUM_ORE.get())
-                .add(ModBlocks.TITANIUM_ORE.get())
-                .add(ModBlocks.DEEPSLATE_TITANIUM_ORE.get())
-                .add(ModBlocks.TIN_ORE.get())
-                .add(ModBlocks.DEEPSLATE_TIN_ORE.get());
+                .addTag(ModTags.Blocks.ORES_CHROMIUM)
+                .addTag(ModTags.Blocks.ORES_TITANIUM)
+                .addTag(ModTags.Blocks.ORES_TIN)
+                .addTag(ModTags.Blocks.ORES_TUNGSTEN)
+                .addTag(ModTags.Blocks.ORES_COBALT)
+                .addTag(ModTags.Blocks.ORES_OSMIUM)
+                .addTag(ModTags.Blocks.ORES_ZINC)
+                .addTag(ModTags.Blocks.ORES_SILVER)
+                .addTag(ModTags.Blocks.ORES_NICKEL);
 
         tag(ModTags.Blocks.STORAGE_BLOCKS)
-                .add(ModBlocks.CHROMIUM_BLOCK.get())
-                .add(ModBlocks.TITANIUM_BLOCK.get())
-                .add(ModBlocks.STEEL_BLOCK.get())
-                .add(ModBlocks.TIN_BLOCK.get())
-                .add(ModBlocks.TITA_CHROME_BLOCK.get());
-
-        /* ===================================================== */
-        /*              MATERIAL-SPECIFIC ORE TAGS               */
-        /* ===================================================== */
+                .addTag(ModTags.Blocks.STORAGE_IRON)
+                .addTag(ModTags.Blocks.STORAGE_GOLD)
+                .addTag(ModTags.Blocks.STORAGE_COPPER)
+                .addTag(ModTags.Blocks.STORAGE_TIN)
+                .addTag(ModTags.Blocks.STORAGE_CHROMIUM)
+                .addTag(ModTags.Blocks.STORAGE_TITANIUM)
+                .addTag(ModTags.Blocks.STORAGE_STEEL)
+                .addTag(ModTags.Blocks.STORAGE_BRONZE)
+                .addTag(ModTags.Blocks.STORAGE_BRASS)
+                .addTag(ModTags.Blocks.STORAGE_ELECTRUM)
+                .addTag(ModTags.Blocks.STORAGE_INVAR)
+                .addTag(ModTags.Blocks.STORAGE_CONSTANTAN)
+                .addTag(ModTags.Blocks.STORAGE_ZINC)
+                .addTag(ModTags.Blocks.STORAGE_OSMIUM)
+                .addTag(ModTags.Blocks.STORAGE_URANIUM)
+                .addTag(ModTags.Blocks.STORAGE_ALUMINUM)
+                .addTag(ModTags.Blocks.STORAGE_NICKEL)
+                .addTag(ModTags.Blocks.STORAGE_SILVER)
+                .addTag(ModTags.Blocks.STORAGE_LEAD)
+                .addTag(ModTags.Blocks.STORAGE_BLOCKS_TITA_CHROME)
+                .addTag(ModTags.Blocks.STORAGE_TUNGSTEN)
+                .addTag(ModTags.Blocks.STORAGE_COBALT);
 
         tag(ModTags.Blocks.ORES_CHROMIUM)
                 .add(ModBlocks.CHROMIUM_ORE.get())
                 .add(ModBlocks.DEEPSLATE_CHROMIUM_ORE.get());
-
-
-        tag(ModTags.Blocks.ORES_IRON);
-        tag(ModTags.Blocks.ORES_GOLD);
-        tag(ModTags.Blocks.ORES_COPPER);
+        tag(ModTags.Blocks.ORES_TITANIUM)
+                .add(ModBlocks.TITANIUM_ORE.get())
+                .add(ModBlocks.DEEPSLATE_TITANIUM_ORE.get());
         tag(ModTags.Blocks.ORES_TIN)
                 .add(ModBlocks.TIN_ORE.get())
                 .add(ModBlocks.DEEPSLATE_TIN_ORE.get());
-        tag(ModTags.Blocks.ORES_LEAD);
-        tag(ModTags.Blocks.ORES_SILVER);
-        tag(ModTags.Blocks.ORES_NICKEL);
-        tag(ModTags.Blocks.ORES_ZINC);
+        tag(ModTags.Blocks.ORES_TUNGSTEN)
+                .add(ModBlocks.TUNGSTEN_ORE.get())
+                .add(ModBlocks.DEEPSLATE_TUNGSTEN_ORE.get());
+        tag(ModTags.Blocks.ORES_COBALT)
+                .add(ModBlocks.COBALT_ORE.get())
+                .add(ModBlocks.DEEPSLATE_COBALT_ORE.get());
+        tag(ModTags.Blocks.ORES_OSMIUM)
+                .add(ModBlocks.OSMIUM_ORE.get())
+                .add(ModBlocks.DEEPSLATE_OSMIUM_ORE.get());
+        tag(ModTags.Blocks.ORES_ZINC)
+                .add(ModBlocks.ZINC_ORE.get())
+                .add(ModBlocks.DEEPSLATE_ZINC_ORE.get());
+        tag(ModTags.Blocks.ORES_SILVER)
+                .add(ModBlocks.SILVER_ORE.get())
+                .add(ModBlocks.DEEPSLATE_SILVER_ORE.get());
+        tag(ModTags.Blocks.ORES_NICKEL)
+                .add(ModBlocks.NICKEL_ORE.get())
+                .add(ModBlocks.DEEPSLATE_NICKEL_ORE.get());
+
         tag(ModTags.Blocks.ORES_ALUMINUM);
         tag(ModTags.Blocks.ORES_URANIUM);
-        tag(ModTags.Blocks.ORES_OSMIUM);
-        tag(ModTags.Blocks.ORES_CHROMIUM);
 
-        /* ===================================================== */
-        /*           MATERIAL-SPECIFIC STORAGE BLOCK TAGS         */
-        /* ===================================================== */
 
-        tag(ModTags.Blocks.STORAGE_IRON);
-        tag(ModTags.Blocks.STORAGE_GOLD);
-        tag(ModTags.Blocks.STORAGE_COPPER);
-        tag(ModTags.Blocks.STORAGE_TIN).add(ModBlocks.TIN_BLOCK.get());
-        tag(ModTags.Blocks.STORAGE_TITANIUM).add(ModBlocks.TITANIUM_BLOCK.get());
-        tag(ModTags.Blocks.STORAGE_LEAD);
-        tag(ModTags.Blocks.STORAGE_SILVER);
-        tag(ModTags.Blocks.STORAGE_NICKEL);
-        tag(ModTags.Blocks.STORAGE_ZINC);
+
+
+        tag(ModTags.Blocks.STORAGE_CHROMIUM)
+                .add(ModBlocks.CHROMIUM_BLOCK.get());
+        tag(ModTags.Blocks.STORAGE_TITANIUM)
+                .add(ModBlocks.TITANIUM_BLOCK.get());
+        tag(ModTags.Blocks.STORAGE_TIN)
+                .add(ModBlocks.TIN_BLOCK.get());
+        tag(ModTags.Blocks.STORAGE_TUNGSTEN)
+                .add(ModBlocks.TUNGSTEN_BLOCK.get());
+        tag(ModTags.Blocks.STORAGE_COBALT)
+                .add(ModBlocks.COBALT_BLOCK.get());
+        tag(ModTags.Blocks.STORAGE_OSMIUM)
+                .add(ModBlocks.OSMIUM_BLOCK.get());
+        tag(ModTags.Blocks.STORAGE_ZINC)
+                .add(ModBlocks.ZINC_BLOCK.get());
         tag(ModTags.Blocks.STORAGE_ALUMINUM);
         tag(ModTags.Blocks.STORAGE_URANIUM);
-        tag(ModTags.Blocks.STORAGE_OSMIUM);
-        tag(ModTags.Blocks.STORAGE_STEEL).add(ModBlocks.STEEL_BLOCK.get());
-        tag(ModTags.Blocks.STORAGE_BRONZE).add(ModBlocks.BRONZE_BLOCK.get());
-        tag(ModTags.Blocks.STORAGE_BRASS);
-        tag(ModTags.Blocks.STORAGE_ELECTRUM);
-        tag(ModTags.Blocks.STORAGE_INVAR);
-        tag(ModTags.Blocks.STORAGE_CONSTANTAN);
-        tag(ModTags.Blocks.STORAGE_CHROMIUM).add(ModBlocks.CHROMIUM_BLOCK.get());
-        tag(ModTags.Blocks.STORAGE_BLOCKS_TITA_CHROME).add(ModBlocks.TITA_CHROME_BLOCK.get());
+        tag(ModTags.Blocks.STORAGE_STEEL)
+                .add(ModBlocks.STEEL_BLOCK.get());
+        tag(ModTags.Blocks.STORAGE_BRONZE)
+                .add(ModBlocks.BRONZE_BLOCK.get());
+        tag(ModTags.Blocks.STORAGE_BRASS)
+                .add(ModBlocks.BRASS_BLOCK.get());
+        tag(ModTags.Blocks.STORAGE_ELECTRUM)
+                .add(ModBlocks.ELECTRUM_BLOCK.get());
+        tag(ModTags.Blocks.STORAGE_INVAR)
+                .add(ModBlocks.INVAR_BLOCK.get());
+        tag(ModTags.Blocks.STORAGE_CONSTANTAN)
+                .add(ModBlocks.CONSTANTAN_BLOCK.get());
+        tag(ModTags.Blocks.STORAGE_BLOCKS_TITA_CHROME)
+                .add(ModBlocks.TITA_CHROME_BLOCK.get());
+        tag(ModTags.Blocks.STORAGE_LEAD);
+        tag(ModTags.Blocks.STORAGE_SILVER)
+                .add(ModBlocks.SILVER_BLOCK.get())
+                .add(ModBlocks.RAW_SILVER_BLOCK.get());
+        tag(ModTags.Blocks.STORAGE_NICKEL)
+                .add(ModBlocks.NICKEL_BLOCK.get())
+                .add(ModBlocks.RAW_NICKEL_BLOCK.get());
 
-        /* ===================================================== */
-        /*          VANILLA TAGS — INITIALIZED EMPTY              */
-        /* ===================================================== */
-
-        tag(BlockTags.LOGS);
-        tag(BlockTags.LOGS_THAT_BURN);
-        tag(BlockTags.LOGS);
-        tag(BlockTags.WOODEN_BUTTONS);
-        tag(BlockTags.WOODEN_DOORS);
-        tag(BlockTags.WOODEN_SLABS);
-        tag(BlockTags.WOODEN_STAIRS);
-        tag(BlockTags.WOODEN_TRAPDOORS);
-        tag(BlockTags.WOODEN_PRESSURE_PLATES);
-        tag(BlockTags.WOODEN_FENCES);
-        tag(BlockTags.FENCES);
-        tag(BlockTags.FENCE_GATES);
-        tag(BlockTags.SAPLINGS);
-        tag(BlockTags.LEAVES);
-        tag(BlockTags.CLIMBABLE);
-        tag(BlockTags.MINEABLE_WITH_SHOVEL);
-        tag(BlockTags.MINEABLE_WITH_AXE);
-        tag(BlockTags.MINEABLE_WITH_HOE);
-        tag(BlockTags.SWORD_EFFICIENT);
-        tag(BlockTags.ENDERMAN_HOLDABLE);
-        tag(BlockTags.REPLACEABLE_BY_TREES);
     }
+
 }

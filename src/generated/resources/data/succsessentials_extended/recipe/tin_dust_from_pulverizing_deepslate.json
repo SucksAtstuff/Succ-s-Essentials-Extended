@@ -1,0 +1,14 @@
+{
+  "type": "succsessentials_extended:pulverizing",
+  "byproduct": {
+    "count": 1,
+    "id": "minecraft:deepslate"
+  },
+  "input": {
+    "tag": "c:ores/tin/deepslate"
+  },
+  "result": {
+    "count": 1,
+    "id": "succsessentials_extended:tin_dust"
+  }
+}

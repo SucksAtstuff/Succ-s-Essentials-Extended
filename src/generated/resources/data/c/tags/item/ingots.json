@@ -2,9 +2,19 @@
   "values": [
     "succsessentials_extended:chromium_ingot",
     "succsessentials_extended:titanium_ingot",
-    "succsessentials_extended:tita-chrome_ingot",
-    "succsessentials_extended:bronze_ingot",
     "succsessentials_extended:tin_ingot",
-    "succsessentials_extended:steel_ingot"
+    "succsessentials_extended:tungsten_ingot",
+    "succsessentials_extended:cobalt_ingot",
+    "succsessentials_extended:osmium_ingot",
+    "succsessentials_extended:zinc_ingot",
+    "succsessentials_extended:silver_ingot",
+    "succsessentials_extended:nickel_ingot",
+    "succsessentials_extended:steel_ingot",
+    "succsessentials_extended:bronze_ingot",
+    "succsessentials_extended:brass_ingot",
+    "succsessentials_extended:electrum_ingot",
+    "succsessentials_extended:invar_ingot",
+    "succsessentials_extended:constantan_ingot",
+    "succsessentials_extended:tita-chrome_ingot"
   ]
 }

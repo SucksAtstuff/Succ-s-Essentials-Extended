@@ -396,47 +396,134 @@ public class ModTags {
 
         public static final TagKey<Item> INGOTS_BRONZE =
                 TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ingots/bronze"));
-
         public static final TagKey<Item> NUGGETS_BRONZE =
                 TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "nuggets/bronze"));
-
         public static final TagKey<Item> DUSTS_BRONZE =
                 TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "dusts/bronze"));
-
         public static final TagKey<Item> PLATES_BRONZE =
                 TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "plates/bronze"));
-
         public static final TagKey<Item> RODS_BRONZE =
                 TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "rods/bronze"));
-
         public static final TagKey<Item> GEARS_BRONZE =
                 TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "gears/bronze"));
-
         public static final TagKey<Item> STORAGE_BRONZE =
                 TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/bronze"));
+
+        /* ================= TUNGSTEN ================= */
+
+        public static final TagKey<Item> INGOTS_TUNGSTEN =
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ingots/tungsten"));
+        public static final TagKey<Item> NUGGETS_TUNGSTEN =
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "nuggets/tungsten"));
+        public static final TagKey<Item> DUSTS_TUNGSTEN =
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "dusts/tungsten"));
+        public static final TagKey<Item> RAW_TUNGSTEN =
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "raw_materials/tungsten"));
+        public static final TagKey<Item> ORES_TUNGSTEN =
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ores/tungsten"));
+        public static final TagKey<Item> DEEPSLATE_ORES_TUNGSTEN =
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ores/tungsten/deepslate"));
+        public static final TagKey<Item> PLATES_TUNGSTEN =
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "plates/tungsten"));
+        public static final TagKey<Item> RODS_TUNGSTEN =
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "rods/tungsten"));
+        public static final TagKey<Item> GEARS_TUNGSTEN =
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "gears/tungsten"));
+        public static final TagKey<Item> STORAGE_TUNGSTEN =
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/tungsten"));
+
+
+        /* ================= COBALT ================= */
+
+        public static final TagKey<Item> INGOTS_COBALT =
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ingots/cobalt"));
+        public static final TagKey<Item> NUGGETS_COBALT =
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "nuggets/cobalt"));
+        public static final TagKey<Item> DUSTS_COBALT =
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "dusts/cobalt"));
+        public static final TagKey<Item> RAW_COBALT =
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "raw_materials/cobalt"));
+        public static final TagKey<Item> ORES_COBALT =
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ores/cobalt"));
+        public static final TagKey<Item> DEEPSLATE_ORES_COBALT =
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ores/cobalt/deepslate"));
+        public static final TagKey<Item> PLATES_COBALT =
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "plates/cobalt"));
+        public static final TagKey<Item> RODS_COBALT =
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "rods/cobalt"));
+        public static final TagKey<Item> GEARS_COBALT =
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "gears/cobalt"));
+        public static final TagKey<Item> STORAGE_COBALT =
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/cobalt"));
 
 
         /* ---------- BRASS ---------- */
 
         public static final TagKey<Item> STORAGE_BRASS =
                 TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/brass"));
+        public static final TagKey<Item> INGOTS_BRASS =
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ingots/brass"));
+        public static final TagKey<Item> NUGGETS_BRASS =
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "nuggets/brass"));
+        public static final TagKey<Item> DUSTS_BRASS =
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "dusts/brass"));
+        public static final TagKey<Item> PLATES_BRASS =
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "plates/brass"));
+        public static final TagKey<Item> RODS_BRASS =
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "rods/brass"));
+        public static final TagKey<Item> GEARS_BRASS =
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "gears/brass"));
+
 
         /* ---------- ELECTRUM ---------- */
 
+        public static final TagKey<Item> PLATES_ELECTRUM =
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "plates/electrum"));
+        public static final TagKey<Item> RODS_ELECTRUM =
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "rods/electrum"));
+        public static final TagKey<Item> GEARS_ELECTRUM =
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "gears/electrum"));
         public static final TagKey<Item> STORAGE_ELECTRUM =
                 TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/electrum"));
+        public static final TagKey<Item> INGOTS_ELECTRUM =
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ingots/electrum"));
+        public static final TagKey<Item> NUGGETS_ELECTRUM =
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "nuggets/electrum"));
+        public static final TagKey<Item> DUSTS_ELECTRUM =
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "dusts/electrum"));
 
         /* ---------- INVAR ---------- */
-
+        public static final TagKey<Item> PLATES_INVAR =
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "plates/invar"));
+        public static final TagKey<Item> RODS_INVAR =
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "rods/invar"));
+        public static final TagKey<Item> GEARS_INVAR =
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "gears/invar"));
         public static final TagKey<Item> STORAGE_INVAR =
                 TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/invar"));
+        public static final TagKey<Item> INGOTS_INVAR =
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ingots/invar"));
+        public static final TagKey<Item> NUGGETS_INVAR =
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "nuggets/invar"));
+        public static final TagKey<Item> DUSTS_INVAR =
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "dusts/invar"));
 
         /* ---------- CONSTANTAN ---------- */
 
+        public static final TagKey<Item> PLATES_CONSTANTAN =
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "plates/constantan"));
+        public static final TagKey<Item> RODS_CONSTANTAN =
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "rods/constantan"));
+        public static final TagKey<Item> GEARS_CONSTANTAN =
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "gears/constantan"));
         public static final TagKey<Item> STORAGE_CONSTANTAN =
                 TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/constantan"));
-
-
+        public static final TagKey<Item> INGOTS_CONSTANTAN =
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ingots/constantan"));
+        public static final TagKey<Item> NUGGETS_CONSTANTAN =
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "nuggets/constantan"));
+        public static final TagKey<Item> DUSTS_CONSTANTAN =
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "dusts/constantan"));
 
         /* ================= COAL ================= */
 
@@ -502,6 +589,15 @@ public class ModTags {
         public static final TagKey<Block> STORAGE_TIN =
                 TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/tin"));
 
+        /* ================= TITANIUM ================= */
+
+        public static final TagKey<Block> ORES_TITANIUM =
+                TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "ores/titanium"));
+        public static final TagKey<Block> DEEPSLATE_ORES_TITANIUM =
+                TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "ores/titanium/deepslate"));
+        public static final TagKey<Block> STORAGE_TITANIUM =
+                TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/titanium"));
+
         /* ================= LEAD ================= */
 
         public static final TagKey<Block> ORES_LEAD =
@@ -565,15 +661,28 @@ public class ModTags {
         public static final TagKey<Block> STORAGE_OSMIUM =
                 TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/osmium"));
 
+        /* ================= TUNGSTEN ================= */
+
+        public static final TagKey<Block> ORES_TUNGSTEN =
+                TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "ores/tungsten"));
+        public static final TagKey<Block> DEEPSLATE_ORES_TUNGSTEN =
+                TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "ores/tungsten/deepslate"));
+        public static final TagKey<Block> STORAGE_TUNGSTEN =
+                TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/tungsten"));
+
+        /* ================= COBALT ================= */
+
+        public static final TagKey<Block> ORES_COBALT =
+                TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "ores/cobalt"));
+        public static final TagKey<Block> DEEPSLATE_ORES_COBALT =
+                TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "ores/cobalt/deepslate"));
+        public static final TagKey<Block> STORAGE_COBALT =
+                TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/cobalt"));
+
         /* ================= STEEL ================= */
 
         public static final TagKey<Block> STORAGE_STEEL =
                 TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/steel"));
-
-        /* ================= TITANIUM ================= */
-
-        public static final TagKey<Block> STORAGE_TITANIUM =
-                TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/titanium"));
 
         /* ================= BRONZE ================= */
 

@@ -1,0 +1,11 @@
+{
+  "type": "succsessentials_extended:pulverizing",
+  "cook_time": 120,
+  "input": {
+    "tag": "c:ingots/tita_chrome"
+  },
+  "result": {
+    "count": 1,
+    "id": "succsessentials_extended:tita-chrome_dust"
+  }
+}

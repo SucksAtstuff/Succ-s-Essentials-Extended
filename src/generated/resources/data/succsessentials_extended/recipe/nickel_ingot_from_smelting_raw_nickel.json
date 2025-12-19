@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 0.25,
+  "group": "nickel",
+  "ingredient": {
+    "item": "succsessentials_extended:raw_nickel"
+  },
+  "result": {
+    "count": 1,
+    "id": "succsessentials_extended:nickel_ingot"
+  }
+}

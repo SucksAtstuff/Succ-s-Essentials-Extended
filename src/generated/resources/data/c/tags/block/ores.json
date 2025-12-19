@@ -1,10 +1,13 @@
 {
   "values": [
-    "succsessentials_extended:chromium_ore",
-    "succsessentials_extended:deepslate_chromium_ore",
-    "succsessentials_extended:titanium_ore",
-    "succsessentials_extended:deepslate_titanium_ore",
-    "succsessentials_extended:tin_ore",
-    "succsessentials_extended:deepslate_tin_ore"
+    "#c:ores/chromium",
+    "#c:ores/titanium",
+    "#c:ores/tin",
+    "#c:ores/tungsten",
+    "#c:ores/cobalt",
+    "#c:ores/osmium",
+    "#c:ores/zinc",
+    "#c:ores/silver",
+    "#c:ores/nickel"
   ]
 }

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_deepslate_tungsten_ore": {
+      "conditions": {
+        "items": [
+          {
+            "items": "succsessentials_extended:deepslate_tungsten_ore"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "succsessentials_extended:tungsten_ingot_from_smelting_deepslate_tungsten_ore"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_deepslate_tungsten_ore"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "succsessentials_extended:tungsten_ingot_from_smelting_deepslate_tungsten_ore"
+    ]
+  }
+}

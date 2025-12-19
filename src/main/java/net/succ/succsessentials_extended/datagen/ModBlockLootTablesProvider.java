@@ -24,69 +24,133 @@ public class ModBlockLootTablesProvider extends BlockLootSubProvider {
 
     protected ModBlockLootTablesProvider(HolderLookup.Provider registries) {
         super(Set.of(), FeatureFlags.REGISTRY.allFlags(), registries);
-        HolderLookup.RegistryLookup<Enchantment> enchantments = this.registries.lookupOrThrow(Registries.ENCHANTMENT);
-
     }
-
-
 
     @Override
     protected void generate() {
-        // Define loot tables for blocks that drop themselves
+
+        /* =====================================================================
+         *                           SELF-DROPPING BLOCKS
+         * ===================================================================== */
+
+        // Storage blocks
         dropSelf(ModBlocks.CHROMIUM_BLOCK.get());
         dropSelf(ModBlocks.TITANIUM_BLOCK.get());
-        dropSelf(ModBlocks.TITA_CHROME_BLOCK.get());
+        dropSelf(ModBlocks.TIN_BLOCK.get());
+        dropSelf(ModBlocks.TUNGSTEN_BLOCK.get());
+        dropSelf(ModBlocks.COBALT_BLOCK.get());
+        dropSelf(ModBlocks.OSMIUM_BLOCK.get());
+        dropSelf(ModBlocks.ZINC_BLOCK.get());
+        dropSelf(ModBlocks.SILVER_BLOCK.get());
+        dropSelf(ModBlocks.NICKEL_BLOCK.get());
+
+        // Alloy blocks
         dropSelf(ModBlocks.STEEL_BLOCK.get());
         dropSelf(ModBlocks.BRONZE_BLOCK.get());
+        dropSelf(ModBlocks.BRASS_BLOCK.get());
+        dropSelf(ModBlocks.ELECTRUM_BLOCK.get());
+        dropSelf(ModBlocks.INVAR_BLOCK.get());
+        dropSelf(ModBlocks.CONSTANTAN_BLOCK.get());
+        dropSelf(ModBlocks.TITA_CHROME_BLOCK.get());
+
+        // Raw blocks
         dropSelf(ModBlocks.RAW_CHROMIUM_BLOCK.get());
         dropSelf(ModBlocks.RAW_TITANIUM_BLOCK.get());
         dropSelf(ModBlocks.RAW_TIN_BLOCK.get());
-        dropSelf(ModBlocks.TIN_BLOCK.get());
+        dropSelf(ModBlocks.RAW_TUNGSTEN_BLOCK.get());
+        dropSelf(ModBlocks.RAW_COBALT_BLOCK.get());
+        dropSelf(ModBlocks.RAW_OSMIUM_BLOCK.get());
+        dropSelf(ModBlocks.RAW_ZINC_BLOCK.get());
+        dropSelf(ModBlocks.RAW_SILVER_BLOCK.get());
+        dropSelf(ModBlocks.RAW_NICKEL_BLOCK.get());
+
+        // Machines / tech
         dropSelf(ModBlocks.ALLOY_FORGER.get());
-        dropSelf(ModBlocks.PANEL_BLOCK.get());
-        dropSelf(ModBlocks.COAL_GENERATOR.get());
-        dropSelf(ModBlocks.BIO_FUEL_GENERATOR.get());
+        dropSelf(ModBlocks.PULVERIZER.get());
         dropSelf(ModBlocks.ELECTRIC_FURNACE.get());
         dropSelf(ModBlocks.INFUSER.get());
-        dropSelf(ModBlocks.PULVERIZER.get());
+        dropSelf(ModBlocks.COAL_GENERATOR.get());
+        dropSelf(ModBlocks.BIO_FUEL_GENERATOR.get());
+        dropSelf(ModBlocks.PANEL_BLOCK.get());
 
+        /* =====================================================================
+         *                           ORE DROPS
+         * ===================================================================== */
 
-        // Define loot tables for ores that drop items similar to diamond ores
+        // Chromium
         add(ModBlocks.CHROMIUM_ORE.get(),
-                block -> createOreDrop(ModBlocks.CHROMIUM_ORE.get(), ModItems.RAW_CHROMIUM.get()));
+                block -> createOreDrop(block, ModItems.RAW_CHROMIUM.get()));
         add(ModBlocks.DEEPSLATE_CHROMIUM_ORE.get(),
-                block -> createOreDrop(ModBlocks.DEEPSLATE_CHROMIUM_ORE.get(), ModItems.RAW_CHROMIUM.get()));
+                block -> createOreDrop(block, ModItems.RAW_CHROMIUM.get()));
 
+        // Titanium
         add(ModBlocks.TITANIUM_ORE.get(),
-                block -> createOreDrop(ModBlocks.TITANIUM_ORE.get(), ModItems.RAW_TITANIUM.get()));
+                block -> createOreDrop(block, ModItems.RAW_TITANIUM.get()));
         add(ModBlocks.DEEPSLATE_TITANIUM_ORE.get(),
-                block -> createOreDrop(ModBlocks.DEEPSLATE_TITANIUM_ORE.get(), ModItems.RAW_TITANIUM.get()));
+                block -> createOreDrop(block, ModItems.RAW_TITANIUM.get()));
 
+        // Tin
         add(ModBlocks.TIN_ORE.get(),
-                block -> createOreDrop(ModBlocks.TIN_ORE.get(), ModItems.RAW_TIN.get()));
+                block -> createOreDrop(block, ModItems.RAW_TIN.get()));
         add(ModBlocks.DEEPSLATE_TIN_ORE.get(),
-                block -> createOreDrop(ModBlocks.DEEPSLATE_TIN_ORE.get(), ModItems.RAW_TIN.get()));
+                block -> createOreDrop(block, ModItems.RAW_TIN.get()));
+
+        // Tungsten
+        add(ModBlocks.TUNGSTEN_ORE.get(),
+                block -> createOreDrop(block, ModItems.RAW_TUNGSTEN.get()));
+        add(ModBlocks.DEEPSLATE_TUNGSTEN_ORE.get(),
+                block -> createOreDrop(block, ModItems.RAW_TUNGSTEN.get()));
+
+        // Cobalt
+        add(ModBlocks.COBALT_ORE.get(),
+                block -> createOreDrop(block, ModItems.RAW_COBALT.get()));
+        add(ModBlocks.DEEPSLATE_COBALT_ORE.get(),
+                block -> createOreDrop(block, ModItems.RAW_COBALT.get()));
+
+        // Osmium
+        add(ModBlocks.OSMIUM_ORE.get(),
+                block -> createOreDrop(block, ModItems.RAW_OSMIUM.get()));
+        add(ModBlocks.DEEPSLATE_OSMIUM_ORE.get(),
+                block -> createOreDrop(block, ModItems.RAW_OSMIUM.get()));
+
+        // Zinc
+        add(ModBlocks.ZINC_ORE.get(),
+                block -> createOreDrop(block, ModItems.RAW_ZINC.get()));
+        add(ModBlocks.DEEPSLATE_ZINC_ORE.get(),
+                block -> createOreDrop(block, ModItems.RAW_ZINC.get()));
+
+        // Silver
+        add(ModBlocks.SILVER_ORE.get(),
+                block -> createOreDrop(block, ModItems.RAW_SILVER.get()));
+        add(ModBlocks.DEEPSLATE_SILVER_ORE.get(),
+                block -> createOreDrop(block, ModItems.RAW_SILVER.get()));
+
+        // Nickel
+        add(ModBlocks.NICKEL_ORE.get(),
+                block -> createOreDrop(block, ModItems.RAW_NICKEL.get()));
+        add(ModBlocks.DEEPSLATE_NICKEL_ORE.get(),
+                block -> createOreDrop(block, ModItems.RAW_NICKEL.get()));
     }
 
-    protected LootTable.Builder createMultipleOreDrops (Block pBlock, Item item, float minDrops, float maxDrops) {
-        HolderLookup.RegistryLookup<Enchantment> registryLookup = this.registries.lookupOrThrow(Registries.ENCHANTMENT);
-        return this.createSilkTouchDispatchTable(pBlock,
-                this.applyExplosionDecay(pBlock, LootItem.lootTableItem(item)
-                        .apply(SetItemCountFunction.setCount(UniformGenerator.between(minDrops,maxDrops)))
-                        .apply(ApplyBonusCount.addOreBonusCount(registryLookup.getOrThrow(Enchantments.FORTUNE)))));
-    }
+    /* =====================================================================
+     *                           HELPERS
+     * ===================================================================== */
 
-    private LootItemCondition.Builder doesNotHaveShearsOrSilkTouch() {
-        return this.hasShearsOrSilkTouch().invert();
-    }
+    protected LootTable.Builder createMultipleOreDrops(Block block, Item item, float min, float max) {
+        HolderLookup.RegistryLookup<Enchantment> enchantments =
+                this.registries.lookupOrThrow(Registries.ENCHANTMENT);
 
-    private LootItemCondition.Builder hasShearsOrSilkTouch() {
-        return HAS_SHEARS.or(this.hasSilkTouch());
+        return this.createSilkTouchDispatchTable(block,
+                this.applyExplosionDecay(block,
+                        LootItem.lootTableItem(item)
+                                .apply(SetItemCountFunction.setCount(
+                                        UniformGenerator.between(min, max)))
+                                .apply(ApplyBonusCount.addOreBonusCount(
+                                        enchantments.getOrThrow(Enchantments.FORTUNE)))));
     }
 
     @Override
-    protected Iterable<Block> getKnownBlocks(){
+    protected Iterable<Block> getKnownBlocks() {
         return ModBlocks.BLOCKS.getEntries().stream().map(Holder::value)::iterator;
     }
-
 }
