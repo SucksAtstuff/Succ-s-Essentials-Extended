@@ -1,17 +1,22 @@
-package net.succ.succsessentials_extended.compat.jei;
+package net.succ.succsessentials_extended.compat.jei.category;
 
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
+import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.succ.succsessentials_extended.Succsessentials_extended;
 import net.succ.succsessentials_extended.block.ModBlocks;
+import net.succ.succsessentials_extended.compat.jei.layout.JeiRenderHelper;
+import net.succ.succsessentials_extended.compat.jei.layout.MachineLayout;
+import net.succ.succsessentials_extended.compat.jei.layout.MachineLayouts;
 import net.succ.succsessentials_extended.recipe.PulverizingRecipe;
 import org.jetbrains.annotations.Nullable;
 
@@ -70,17 +75,19 @@ public class PulverizingRecipeCategory implements IRecipeCategory<PulverizingRec
             PulverizingRecipe recipe,
             IFocusGroup focuses
     ) {
+        MachineLayout layout = MachineLayouts.PULVERIZER;
+
         JeiRenderHelper.addInputSlot(
                 builder,
-                56,
-                35,
+                layout.inputX(),
+                layout.inputY(),
                 recipe.input()
         );
 
         JeiRenderHelper.addOutputSlot(
                 builder,
-                104,
-                35,
+                layout.outputX(),
+                layout.outputY(),
                 recipe.output(),
                 recipe.getTotalEnergy()
         );
@@ -88,11 +95,50 @@ public class PulverizingRecipeCategory implements IRecipeCategory<PulverizingRec
         if (!recipe.byproduct().isEmpty()) {
             JeiRenderHelper.addOutputSlot(
                     builder,
-                    128,
-                    35,
+                    layout.byproductX(),
+                    layout.byproductY(),
                     recipe.byproduct(),
                     recipe.getTotalEnergy()
             );
         }
+    }
+
+    @Override
+    public void draw(
+            PulverizingRecipe recipe,
+            IRecipeSlotsView slots,
+            GuiGraphics graphics,
+            double mouseX,
+            double mouseY
+    ) {
+        MachineLayout layout = MachineLayouts.PULVERIZER;
+
+        JeiRenderHelper.drawEnergyBar(
+                graphics,
+                recipe.getTotalEnergy(),
+                layout.energyBarX(),
+                layout.energyBarY()
+        );
+
+        if (JeiRenderHelper.isMouseOverEnergyBar(
+                mouseX,
+                mouseY,
+                layout.energyBarX(),
+                layout.energyBarY()
+        )) {
+            JeiRenderHelper.drawEnergyTooltip(
+                    graphics,
+                    mouseX,
+                    mouseY,
+                    recipe.getTotalEnergy()
+            );
+        }
+
+        JeiRenderHelper.drawEnergyText(
+                graphics,
+                recipe.getTotalEnergy(),
+                6,
+                72
+        );
     }
 }

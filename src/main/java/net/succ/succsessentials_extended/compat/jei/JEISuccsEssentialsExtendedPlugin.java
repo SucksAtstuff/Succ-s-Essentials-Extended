@@ -11,13 +11,20 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeManager;
+import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.item.crafting.SmeltingRecipe;
 import net.succ.succsessentials_extended.Succsessentials_extended;
 import net.succ.succsessentials_extended.block.ModBlocks;
+import net.succ.succsessentials_extended.compat.jei.category.AlloyForgingRecipeCategory;
+import net.succ.succsessentials_extended.compat.jei.category.ElectricFurnaceRecipeCategory;
+import net.succ.succsessentials_extended.compat.jei.category.InfusingRecipeCategory;
+import net.succ.succsessentials_extended.compat.jei.category.PulverizingRecipeCategory;
 import net.succ.succsessentials_extended.recipe.AlloyForgingRecipe;
 import net.succ.succsessentials_extended.recipe.InfusingRecipe;
 import net.succ.succsessentials_extended.recipe.ModRecipes;
 import net.succ.succsessentials_extended.recipe.PulverizingRecipe;
 import net.succ.succsessentials_extended.screen.custom.AlloyForgerBlockScreen;
+import net.succ.succsessentials_extended.screen.custom.ElectricFurnaceBlockScreen;
 import net.succ.succsessentials_extended.screen.custom.InfuserBlockScreen;
 import net.succ.succsessentials_extended.screen.custom.PulverizerBlockScreen;
 
@@ -40,7 +47,9 @@ public class JEISuccsEssentialsExtendedPlugin implements IModPlugin {
         registration.addRecipeCategories(
                 new AlloyForgingRecipeCategory(guiHelper),
                 new InfusingRecipeCategory(guiHelper),
-                new PulverizingRecipeCategory(guiHelper)
+                new PulverizingRecipeCategory(guiHelper),
+                new ElectricFurnaceRecipeCategory(guiHelper)
+
         );
     }
 
@@ -60,10 +69,16 @@ public class JEISuccsEssentialsExtendedPlugin implements IModPlugin {
                 recipeManager.getAllRecipesFor(ModRecipes.PULVERIZING_TYPE.get())
                         .stream().map(RecipeHolder::value).toList();
 
+        List<SmeltingRecipe> smeltingRecipes =
+                recipeManager.getAllRecipesFor(RecipeType.SMELTING)
+                        .stream()
+                        .map(RecipeHolder::value)
+                        .toList();
+
         registration.addRecipes(AlloyForgingRecipeCategory.RECIPE_TYPE, alloyRecipes);
         registration.addRecipes(InfusingRecipeCategory.RECIPE_TYPE, infusingRecipes);
         registration.addRecipes(PulverizingRecipeCategory.RECIPE_TYPE, pulverizingRecipes);
-
+        registration.addRecipes(ElectricFurnaceRecipeCategory.RECIPE_TYPE, smeltingRecipes);
     }
 
     @Override
@@ -85,6 +100,13 @@ public class JEISuccsEssentialsExtendedPlugin implements IModPlugin {
                 79, 34, 24, 16,
                 PulverizingRecipeCategory.RECIPE_TYPE
         );
+
+        registration.addRecipeClickArea(
+                ElectricFurnaceBlockScreen.class,
+                79, 34, 24, 16,
+                ElectricFurnaceRecipeCategory.RECIPE_TYPE
+
+        );
     }
 
     @Override
@@ -103,6 +125,11 @@ public class JEISuccsEssentialsExtendedPlugin implements IModPlugin {
         registration.addRecipeCatalyst(
                 new ItemStack(ModBlocks.PULVERIZER.get()),
                 PulverizingRecipeCategory.RECIPE_TYPE
+        );
+
+        registration.addRecipeCatalyst(
+                new ItemStack(ModBlocks.ELECTRIC_FURNACE.get()),
+                ElectricFurnaceRecipeCategory.RECIPE_TYPE
         );
     }
 }

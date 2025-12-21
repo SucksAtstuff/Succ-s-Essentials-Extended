@@ -1,4 +1,4 @@
-package net.succ.succsessentials_extended.compat.jei;
+package net.succ.succsessentials_extended.compat.jei.category;
 
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
@@ -14,7 +14,9 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.succ.succsessentials_extended.Succsessentials_extended;
 import net.succ.succsessentials_extended.block.ModBlocks;
-import net.succ.succsessentials_extended.compat.jei.JeiRenderHelper;
+import net.succ.succsessentials_extended.compat.jei.layout.JeiRenderHelper;
+import net.succ.succsessentials_extended.compat.jei.layout.MachineLayout;
+import net.succ.succsessentials_extended.compat.jei.layout.MachineLayouts;
 import net.succ.succsessentials_extended.recipe.AlloyForgingRecipe;
 import org.jetbrains.annotations.Nullable;
 
@@ -28,9 +30,6 @@ public class AlloyForgingRecipeCategory implements IRecipeCategory<AlloyForgingR
                     ),
                     AlloyForgingRecipe.class
             );
-
-    private static final int A_X = 56, A_Y = 25;
-    private static final int B_X = 56, B_Y = 44;
 
     private final IDrawable background;
     private final IDrawable icon;
@@ -76,13 +75,26 @@ public class AlloyForgingRecipeCategory implements IRecipeCategory<AlloyForgingR
             AlloyForgingRecipe recipe,
             IFocusGroup focuses
     ) {
-        JeiRenderHelper.addInputSlot(builder, A_X, A_Y, recipe.inputA());
-        JeiRenderHelper.addInputSlot(builder, B_X, B_Y, recipe.inputB());
+        MachineLayout layout = MachineLayouts.ALLOY_FORGER;
+
+        JeiRenderHelper.addInputSlot(
+                builder,
+                layout.inputX(),
+                layout.inputY(),
+                recipe.inputA()
+        );
+
+        JeiRenderHelper.addInputSlot(
+                builder,
+                layout.secondaryInputX(),
+                layout.secondaryInputY(),
+                recipe.inputB()
+        );
 
         JeiRenderHelper.addOutputSlot(
                 builder,
-                116,
-                35,
+                layout.outputX(),
+                layout.outputY(),
                 recipe.output(),
                 recipe.getTotalEnergy()
         );
@@ -96,8 +108,48 @@ public class AlloyForgingRecipeCategory implements IRecipeCategory<AlloyForgingR
             double mouseX,
             double mouseY
     ) {
-        JeiRenderHelper.drawEnergyText(graphics, recipe.getTotalEnergy(), 6, 72);
-        JeiRenderHelper.drawStackCountOverlay(graphics, recipe.countA(), A_X, A_Y);
-        JeiRenderHelper.drawStackCountOverlay(graphics, recipe.countB(), B_X, B_Y);
+        MachineLayout layout = MachineLayouts.ALLOY_FORGER;
+
+        JeiRenderHelper.drawEnergyBar(
+                graphics,
+                recipe.getTotalEnergy(),
+                layout.energyBarX(),
+                layout.energyBarY()
+        );
+
+        if (JeiRenderHelper.isMouseOverEnergyBar(
+                mouseX,
+                mouseY,
+                layout.energyBarX(),
+                layout.energyBarY()
+        )) {
+            JeiRenderHelper.drawEnergyTooltip(
+                    graphics,
+                    mouseX,
+                    mouseY,
+                    recipe.getTotalEnergy()
+            );
+        }
+
+        JeiRenderHelper.drawEnergyText(
+                graphics,
+                recipe.getTotalEnergy(),
+                6,
+                72
+        );
+
+        JeiRenderHelper.drawStackCountOverlay(
+                graphics,
+                recipe.countA(),
+                layout.inputX(),
+                layout.inputY()
+        );
+
+        JeiRenderHelper.drawStackCountOverlay(
+                graphics,
+                recipe.countB(),
+                layout.secondaryInputX(),
+                layout.secondaryInputY()
+        );
     }
 }
