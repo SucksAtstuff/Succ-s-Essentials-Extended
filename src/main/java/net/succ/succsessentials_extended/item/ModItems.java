@@ -180,10 +180,10 @@ public class ModItems {
     public static final DeferredItem<Item> COAL_DUST = ITEMS.register("coal_dust",
             () -> new Item(new Item.Properties()));
 
-    public static final DeferredItem<Item> BIO_MASS = ITEMS.register("bio_mass",
+    public static final DeferredItem<Item> BIOMASS = ITEMS.register("biomass",
             () -> new Item(new Item.Properties()));
 
-    public static final DeferredItem<Item> BIO_MASS_PELLET = ITEMS.register("bio_mass_pellet",
+    public static final DeferredItem<Item> BIOMASS_PELLET = ITEMS.register("biomass_pellet",
             () -> new Item(new Item.Properties()));
 
     public static void register(IEventBus eventBus) {

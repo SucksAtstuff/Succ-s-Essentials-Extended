@@ -38,7 +38,7 @@ public class ModBlocks {
                     BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE_EMERALD_ORE).requiresCorrectToolForDrops()));
     public static final DeferredBlock<Block> RAW_CHROMIUM_BLOCK = registerBlock("raw_chromium_block",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.RAW_IRON_BLOCK).requiresCorrectToolForDrops()));
-    public static final DeferredBlock<Block> CHROMIUM_BLOCK = registerBlock("chromium_block",
+    public static final DeferredBlock<Block> CHROMIUM_BLOCK = registerBlock("block_of_chromium",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.NETHERITE_BLOCK).requiresCorrectToolForDrops()));
 
     // ---------- TITANIUM ----------
@@ -50,7 +50,7 @@ public class ModBlocks {
                     BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE_EMERALD_ORE).requiresCorrectToolForDrops()));
     public static final DeferredBlock<Block> RAW_TITANIUM_BLOCK = registerBlock("raw_titanium_block",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.RAW_IRON_BLOCK).requiresCorrectToolForDrops()));
-    public static final DeferredBlock<Block> TITANIUM_BLOCK = registerBlock("titanium_block",
+    public static final DeferredBlock<Block> TITANIUM_BLOCK = registerBlock("block_of_titanium",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.NETHERITE_BLOCK).requiresCorrectToolForDrops()));
 
     // ---------- TIN ----------
@@ -62,7 +62,7 @@ public class ModBlocks {
                     BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE_IRON_ORE).requiresCorrectToolForDrops()));
     public static final DeferredBlock<Block> RAW_TIN_BLOCK = registerBlock("raw_tin_block",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.RAW_IRON_BLOCK).requiresCorrectToolForDrops()));
-    public static final DeferredBlock<Block> TIN_BLOCK = registerBlock("tin_block",
+    public static final DeferredBlock<Block> TIN_BLOCK = registerBlock("block_of_tin",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops()));
 
     // ---------- TUNGSTEN ----------
@@ -74,7 +74,7 @@ public class ModBlocks {
                     BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE_DIAMOND_ORE).requiresCorrectToolForDrops()));
     public static final DeferredBlock<Block> RAW_TUNGSTEN_BLOCK = registerBlock("raw_tungsten_block",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.RAW_IRON_BLOCK).requiresCorrectToolForDrops()));
-    public static final DeferredBlock<Block> TUNGSTEN_BLOCK = registerBlock("tungsten_block",
+    public static final DeferredBlock<Block> TUNGSTEN_BLOCK = registerBlock("block_of_tungsten",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.NETHERITE_BLOCK).requiresCorrectToolForDrops()));
 
     // ---------- COBALT ----------
@@ -86,7 +86,7 @@ public class ModBlocks {
                     BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE_DIAMOND_ORE).requiresCorrectToolForDrops()));
     public static final DeferredBlock<Block> RAW_COBALT_BLOCK = registerBlock("raw_cobalt_block",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.RAW_IRON_BLOCK).requiresCorrectToolForDrops()));
-    public static final DeferredBlock<Block> COBALT_BLOCK = registerBlock("cobalt_block",
+    public static final DeferredBlock<Block> COBALT_BLOCK = registerBlock("block_of_cobalt",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops()));
 
     // ---------- OSMIUM ----------
@@ -98,7 +98,7 @@ public class ModBlocks {
                     BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE_DIAMOND_ORE).requiresCorrectToolForDrops()));
     public static final DeferredBlock<Block> RAW_OSMIUM_BLOCK = registerBlock("raw_osmium_block",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.RAW_IRON_BLOCK).requiresCorrectToolForDrops()));
-    public static final DeferredBlock<Block> OSMIUM_BLOCK = registerBlock("osmium_block",
+    public static final DeferredBlock<Block> OSMIUM_BLOCK = registerBlock("block_of_osmium",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops()));
 
     // ---------- ZINC ----------
@@ -110,7 +110,7 @@ public class ModBlocks {
                     BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE_COPPER_ORE).requiresCorrectToolForDrops()));
     public static final DeferredBlock<Block> RAW_ZINC_BLOCK = registerBlock("raw_zinc_block",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.RAW_COPPER_BLOCK).requiresCorrectToolForDrops()));
-    public static final DeferredBlock<Block> ZINC_BLOCK = registerBlock("zinc_block",
+    public static final DeferredBlock<Block> ZINC_BLOCK = registerBlock("block_of_zinc",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_BLOCK).requiresCorrectToolForDrops()));
 
     // ---------- SILVER ----------
@@ -122,7 +122,7 @@ public class ModBlocks {
                     BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE_IRON_ORE).requiresCorrectToolForDrops()));
     public static final DeferredBlock<Block> RAW_SILVER_BLOCK = registerBlock("raw_silver_block",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.RAW_IRON_BLOCK).requiresCorrectToolForDrops()));
-    public static final DeferredBlock<Block> SILVER_BLOCK = registerBlock("silver_block",
+    public static final DeferredBlock<Block> SILVER_BLOCK = registerBlock("block_of_silver",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops()));
 
     // ---------- NICKEL ----------
@@ -134,26 +134,26 @@ public class ModBlocks {
                     BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE_IRON_ORE).requiresCorrectToolForDrops()));
     public static final DeferredBlock<Block> RAW_NICKEL_BLOCK = registerBlock("raw_nickel_block",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.RAW_IRON_BLOCK).requiresCorrectToolForDrops()));
-    public static final DeferredBlock<Block> NICKEL_BLOCK = registerBlock("nickel_block",
+    public static final DeferredBlock<Block> NICKEL_BLOCK = registerBlock("block_of_nickel",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops()));
 
     /* =====================================================================
      *                           ALLOY BLOCKS
      * ===================================================================== */
 
-    public static final DeferredBlock<Block> STEEL_BLOCK = registerBlock("steel_block",
+    public static final DeferredBlock<Block> STEEL_BLOCK = registerBlock("block_of_steel",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops()));
-    public static final DeferredBlock<Block> BRONZE_BLOCK = registerBlock("bronze_block",
+    public static final DeferredBlock<Block> BRONZE_BLOCK = registerBlock("block_of_bronze",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops()));
-    public static final DeferredBlock<Block> BRASS_BLOCK = registerBlock("brass_block",
+    public static final DeferredBlock<Block> BRASS_BLOCK = registerBlock("block_of_brass",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops()));
-    public static final DeferredBlock<Block> ELECTRUM_BLOCK = registerBlock("electrum_block",
+    public static final DeferredBlock<Block> ELECTRUM_BLOCK = registerBlock("block_of_electrum",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.GOLD_BLOCK).requiresCorrectToolForDrops()));
-    public static final DeferredBlock<Block> INVAR_BLOCK = registerBlock("invar_block",
+    public static final DeferredBlock<Block> INVAR_BLOCK = registerBlock("block_of_invar",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops()));
-    public static final DeferredBlock<Block> CONSTANTAN_BLOCK = registerBlock("constantan_block",
+    public static final DeferredBlock<Block> CONSTANTAN_BLOCK = registerBlock("block_of_constantan",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops()));
-    public static final DeferredBlock<Block> TITA_CHROME_BLOCK = registerBlock("tita-chrome_block",
+    public static final DeferredBlock<Block> TITA_CHROME_BLOCK = registerBlock("block_of_tita-chrome",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.NETHERITE_BLOCK).requiresCorrectToolForDrops()));
 
     /* =====================================================================

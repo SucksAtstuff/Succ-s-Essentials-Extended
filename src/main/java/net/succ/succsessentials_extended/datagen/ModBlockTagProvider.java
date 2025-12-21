@@ -217,8 +217,6 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         tag(ModTags.Blocks.ORES_URANIUM);
 
 
-
-
         tag(ModTags.Blocks.STORAGE_CHROMIUM)
                 .add(ModBlocks.CHROMIUM_BLOCK.get());
         tag(ModTags.Blocks.STORAGE_TITANIUM)

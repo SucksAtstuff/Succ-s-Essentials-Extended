@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "succsessentials_extended:item/bio_mass_pellet"
-  }
-}

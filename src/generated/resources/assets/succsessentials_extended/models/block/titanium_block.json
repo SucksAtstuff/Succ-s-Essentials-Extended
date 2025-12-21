@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/cube_all",
-  "textures": {
-    "all": "succsessentials_extended:block/titanium_block"
-  }
-}

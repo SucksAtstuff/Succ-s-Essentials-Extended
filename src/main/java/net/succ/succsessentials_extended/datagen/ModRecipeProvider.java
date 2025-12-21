@@ -40,16 +40,15 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
          *                           SMELTING / BLASTING
          * ===================================================================== */
 
-        List<ItemLike> CHROMIUM_SMELTABLES = List.of(ModItems.RAW_CHROMIUM, ModBlocks.CHROMIUM_ORE, ModBlocks.DEEPSLATE_CHROMIUM_ORE);
-        List<ItemLike> TITANIUM_SMELTABLES = List.of(ModItems.RAW_TITANIUM, ModBlocks.TITANIUM_ORE, ModBlocks.DEEPSLATE_TITANIUM_ORE);
-        List<ItemLike> TIN_SMELTABLES = List.of(ModItems.RAW_TIN, ModBlocks.TIN_ORE, ModBlocks.DEEPSLATE_TIN_ORE);
-
-        List<ItemLike> TUNGSTEN_SMELTABLES = List.of(ModItems.RAW_TUNGSTEN, ModBlocks.TUNGSTEN_ORE, ModBlocks.DEEPSLATE_TUNGSTEN_ORE);
-        List<ItemLike> COBALT_SMELTABLES = List.of(ModItems.RAW_COBALT, ModBlocks.COBALT_ORE, ModBlocks.DEEPSLATE_COBALT_ORE);
-        List<ItemLike> OSMIUM_SMELTABLES = List.of(ModItems.RAW_OSMIUM, ModBlocks.OSMIUM_ORE, ModBlocks.DEEPSLATE_OSMIUM_ORE);
-        List<ItemLike> ZINC_SMELTABLES = List.of(ModItems.RAW_ZINC, ModBlocks.ZINC_ORE, ModBlocks.DEEPSLATE_ZINC_ORE);
-        List<ItemLike> SILVER_SMELTABLES = List.of(ModItems.RAW_SILVER, ModBlocks.SILVER_ORE, ModBlocks.DEEPSLATE_SILVER_ORE);
-        List<ItemLike> NICKEL_SMELTABLES = List.of(ModItems.RAW_NICKEL, ModBlocks.NICKEL_ORE, ModBlocks.DEEPSLATE_NICKEL_ORE);
+        List<ItemLike> CHROMIUM_SMELTABLES = List.of(ModItems.RAW_CHROMIUM, ModItems.CHROMIUM_DUST, ModBlocks.CHROMIUM_ORE, ModBlocks.DEEPSLATE_CHROMIUM_ORE);
+        List<ItemLike> TITANIUM_SMELTABLES = List.of(ModItems.RAW_TITANIUM, ModItems.TITANIUM_DUST, ModBlocks.TITANIUM_ORE, ModBlocks.DEEPSLATE_TITANIUM_ORE);
+        List<ItemLike> TIN_SMELTABLES = List.of(ModItems.RAW_TIN, ModItems.TIN_DUST, ModBlocks.TIN_ORE, ModBlocks.DEEPSLATE_TIN_ORE);
+        List<ItemLike> TUNGSTEN_SMELTABLES = List.of(ModItems.RAW_TUNGSTEN, ModItems.TUNGSTEN_DUST, ModBlocks.TUNGSTEN_ORE, ModBlocks.DEEPSLATE_TUNGSTEN_ORE);
+        List<ItemLike> COBALT_SMELTABLES = List.of(ModItems.RAW_COBALT, ModItems.COBALT_DUST, ModBlocks.COBALT_ORE, ModBlocks.DEEPSLATE_COBALT_ORE);
+        List<ItemLike> OSMIUM_SMELTABLES = List.of(ModItems.RAW_OSMIUM, ModItems.OSMIUM_DUST, ModBlocks.OSMIUM_ORE, ModBlocks.DEEPSLATE_OSMIUM_ORE);
+        List<ItemLike> ZINC_SMELTABLES = List.of(ModItems.RAW_ZINC, ModItems.ZINC_DUST, ModBlocks.ZINC_ORE, ModBlocks.DEEPSLATE_ZINC_ORE);
+        List<ItemLike> SILVER_SMELTABLES = List.of(ModItems.RAW_SILVER, ModItems.SILVER_DUST, ModBlocks.SILVER_ORE, ModBlocks.DEEPSLATE_SILVER_ORE);
+        List<ItemLike> NICKEL_SMELTABLES = List.of(ModItems.RAW_NICKEL, ModItems.NICKEL_DUST, ModBlocks.NICKEL_ORE, ModBlocks.DEEPSLATE_NICKEL_ORE);
 
         oreSmelting(recipeOutput, CHROMIUM_SMELTABLES, RecipeCategory.MISC, ModItems.CHROMIUM_INGOT.get(), 0.25f, 200, "chromium");
         oreBlasting(recipeOutput, CHROMIUM_SMELTABLES, RecipeCategory.MISC, ModItems.CHROMIUM_INGOT.get(), 0.25f, 100, "chromium");
@@ -224,6 +223,42 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('R', Items.REDSTONE_BLOCK)
                 .unlockedBy(getHasName(ModBlocks.PANEL_BLOCK), has(ModBlocks.PANEL_BLOCK))
                 .unlockedBy(getHasName(Items.REDSTONE_BLOCK), has(Items.REDSTONE_BLOCK))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.PULVERIZER.get())
+                .pattern("SPS")
+                .pattern("PFP")
+                .pattern("SRS")
+                .define('S', Ingredient.of(ModTags.Items.INGOTS_STEEL))
+                .define('P', ModBlocks.PANEL_BLOCK)
+                .define('F', Blocks.PISTON)
+                .define('R', Items.REDSTONE)
+                .unlockedBy(getHasName(Blocks.PISTON), has(Blocks.PISTON))
+                .unlockedBy(getHasName(ModBlocks.PANEL_BLOCK), has(ModBlocks.PANEL_BLOCK))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.INFUSER.get())
+                .pattern("SPS")
+                .pattern("PFP")
+                .pattern("SRS")
+                .define('S', Ingredient.of(ModTags.Items.INGOTS_STEEL))
+                .define('P', ModBlocks.PANEL_BLOCK)
+                .define('F', Blocks.SMOKER)
+                .define('R', Items.REDSTONE)
+                .unlockedBy(getHasName(Blocks.SMOKER), has(Blocks.SMOKER))
+                .unlockedBy(getHasName(ModBlocks.PANEL_BLOCK), has(ModBlocks.PANEL_BLOCK))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.BIO_FUEL_GENERATOR.get())
+                .pattern("SPS")
+                .pattern("SFS")
+                .pattern("SRS")
+                .define('S', ModItems.STEEL_INGOT)
+                .define('P', ModBlocks.PANEL_BLOCK)
+                .define('F', Blocks.COMPOSTER)
+                .define('R', Items.REDSTONE_BLOCK)
+                .unlockedBy(getHasName(Blocks.COMPOSTER), has(Blocks.COMPOSTER))
+                .unlockedBy(getHasName(ModBlocks.PANEL_BLOCK), has(ModBlocks.PANEL_BLOCK))
                 .save(recipeOutput);
 
         /* =====================================================================
@@ -581,7 +616,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             PulverizingRecipe recipe =
                     new PulverizingRecipe(
                             Ingredient.of(item),
-                            new ItemStack(ModItems.BIO_MASS.get(), biomassAmount),
+                            new ItemStack(ModItems.BIOMASS.get(), biomassAmount),
                             ItemStack.EMPTY,
                             cookTime,
                             energyPerTick

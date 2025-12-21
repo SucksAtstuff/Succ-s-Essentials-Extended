@@ -51,12 +51,31 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.STEEL_INGOT.get());
         basicItem(ModItems.BRONZE_INGOT.get());
         basicItem(ModItems.TIN_INGOT.get());
+        basicItem(ModItems.BRASS_INGOT.get());
+        basicItem(ModItems.ELECTRUM_INGOT.get());
+        basicItem(ModItems.INVAR_INGOT.get());
+        basicItem(ModItems.CONSTANTAN_INGOT.get());
+        basicItem(ModItems.TUNGSTEN_INGOT.get());
+        basicItem(ModItems.COBALT_INGOT.get());
+        basicItem(ModItems.OSMIUM_INGOT.get());
+        basicItem(ModItems.ZINC_INGOT.get());
 
         // Register models for dusts
+        basicItem(ModItems.CHROMIUM_DUST.get());
         basicItem(ModItems.TITANIUM_DUST.get());
+        basicItem(ModItems.STEEL_DUST.get());
+        basicItem(ModItems.TITA_CHROME_DUST.get());
         basicItem(ModItems.COAL_DUST.get());
         basicItem(ModItems.BRONZE_DUST.get());
         basicItem(ModItems.TIN_DUST.get());
+        basicItem(ModItems.BRASS_DUST.get());
+        basicItem(ModItems.ELECTRUM_DUST.get());
+        basicItem(ModItems.INVAR_DUST.get());
+        basicItem(ModItems.CONSTANTAN_DUST.get());
+        basicItem(ModItems.TUNGSTEN_DUST.get());
+        basicItem(ModItems.COBALT_DUST.get());
+        basicItem(ModItems.OSMIUM_DUST.get());
+        basicItem(ModItems.ZINC_DUST.get());
 
         // Register models for nuggets
         basicItem(ModItems.CHROMIUM_NUGGET.get());
@@ -65,11 +84,23 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.STEEL_NUGGET.get());
         basicItem(ModItems.BRONZE_NUGGET.get());
         basicItem(ModItems.TIN_NUGGET.get());
+        basicItem(ModItems.BRASS_NUGGET.get());
+        basicItem(ModItems.ELECTRUM_NUGGET.get());
+        basicItem(ModItems.INVAR_NUGGET.get());
+        basicItem(ModItems.CONSTANTAN_NUGGET.get());
+        basicItem(ModItems.TUNGSTEN_NUGGET.get());
+        basicItem(ModItems.COBALT_NUGGET.get());
+        basicItem(ModItems.OSMIUM_NUGGET.get());
+        basicItem(ModItems.ZINC_NUGGET.get());
 
         // Register models for raw ore
         basicItem(ModItems.RAW_CHROMIUM.get());
         basicItem(ModItems.RAW_TITANIUM.get());
         basicItem(ModItems.RAW_TIN.get());
+        basicItem(ModItems.RAW_TUNGSTEN.get());
+        basicItem(ModItems.RAW_COBALT.get());
+        basicItem(ModItems.RAW_OSMIUM.get());
+        basicItem(ModItems.RAW_ZINC.get());
 
         // Register models for chromium tools
         handheldItem(ModItems.CHROMIUM_SWORD.get());
@@ -78,8 +109,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         handheldItem(ModItems.CHROMIUM_SHOVEL.get());
         handheldItem(ModItems.CHROMIUM_HOE.get());
 
-        basicItem(ModItems.BIO_MASS.get());
-        basicItem(ModItems.BIO_MASS_PELLET.get());
+        basicItem(ModItems.BIOMASS.get());
+        basicItem(ModItems.BIOMASS_PELLET.get());
     }
 
     // Shoutout to El_Redstoniano for making this

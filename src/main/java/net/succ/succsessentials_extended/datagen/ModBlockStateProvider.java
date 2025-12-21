@@ -31,10 +31,22 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockWithItem(ModBlocks.TITA_CHROME_BLOCK);
         blockWithItem(ModBlocks.BRONZE_BLOCK);
         blockWithItem(ModBlocks.TIN_BLOCK);
+        blockWithItem(ModBlocks.BRASS_BLOCK);
+        blockWithItem(ModBlocks.ELECTRUM_BLOCK);
+        blockWithItem(ModBlocks.INVAR_BLOCK);
+        blockWithItem(ModBlocks.CONSTANTAN_BLOCK);
+        blockWithItem(ModBlocks.TUNGSTEN_BLOCK);
+        blockWithItem(ModBlocks.COBALT_BLOCK);
+        blockWithItem(ModBlocks.OSMIUM_BLOCK);
+        blockWithItem(ModBlocks.ZINC_BLOCK);
 
         blockWithItem(ModBlocks.RAW_CHROMIUM_BLOCK);
         blockWithItem(ModBlocks.RAW_TITANIUM_BLOCK);
         blockWithItem(ModBlocks.RAW_TIN_BLOCK);
+        blockWithItem(ModBlocks.RAW_TUNGSTEN_BLOCK);
+        blockWithItem(ModBlocks.RAW_COBALT_BLOCK);
+        blockWithItem(ModBlocks.RAW_OSMIUM_BLOCK);
+        blockWithItem(ModBlocks.RAW_ZINC_BLOCK);
 
         // Registering ingot ores with their respective item models
         simpleBlockWithItem(ModBlocks.CHROMIUM_ORE.get(), cubeAll(ModBlocks.CHROMIUM_ORE.get()));
@@ -43,6 +55,14 @@ public class ModBlockStateProvider extends BlockStateProvider {
         simpleBlockWithItem(ModBlocks.DEEPSLATE_TITANIUM_ORE.get(), cubeAll(ModBlocks.DEEPSLATE_TITANIUM_ORE.get()));
         simpleBlockWithItem(ModBlocks.TIN_ORE.get(), cubeAll(ModBlocks.TIN_ORE.get()));
         simpleBlockWithItem(ModBlocks.DEEPSLATE_TIN_ORE.get(), cubeAll(ModBlocks.DEEPSLATE_TIN_ORE.get()));
+        simpleBlockWithItem(ModBlocks.TUNGSTEN_ORE.get(), cubeAll(ModBlocks.TUNGSTEN_ORE.get()));
+        simpleBlockWithItem(ModBlocks.DEEPSLATE_TUNGSTEN_ORE.get(), cubeAll(ModBlocks.DEEPSLATE_TUNGSTEN_ORE.get()));
+        simpleBlockWithItem(ModBlocks.COBALT_ORE.get(), cubeAll(ModBlocks.COBALT_ORE.get()));
+        simpleBlockWithItem(ModBlocks.DEEPSLATE_COBALT_ORE.get(), cubeAll(ModBlocks.DEEPSLATE_COBALT_ORE.get()));
+        simpleBlockWithItem(ModBlocks.OSMIUM_ORE.get(), cubeAll(ModBlocks.OSMIUM_ORE.get()));
+        simpleBlockWithItem(ModBlocks.DEEPSLATE_OSMIUM_ORE.get(), cubeAll(ModBlocks.DEEPSLATE_OSMIUM_ORE.get()));
+        simpleBlockWithItem(ModBlocks.ZINC_ORE.get(), cubeAll(ModBlocks.ZINC_ORE.get()));
+        simpleBlockWithItem(ModBlocks.DEEPSLATE_ZINC_ORE.get(), cubeAll(ModBlocks.DEEPSLATE_ZINC_ORE.get()));
 
         panelBlock(ModBlocks.PANEL_BLOCK);
 

@@ -199,8 +199,8 @@ public class ModCreativeModeTabs {
                                 /*                          MISC                          */
                                 /* ===================================================== */
 
-                                output.accept(ModItems.BIO_MASS);
-                                output.accept(ModItems.BIO_MASS_PELLET);
+                                output.accept(ModItems.BIOMASS);
+                                output.accept(ModItems.BIOMASS_PELLET);
                             })
 
                             .build()

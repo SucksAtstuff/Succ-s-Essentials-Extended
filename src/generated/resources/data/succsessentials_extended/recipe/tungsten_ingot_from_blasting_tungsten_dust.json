@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "cookingtime": 150,
+  "experience": 0.35,
+  "group": "tungsten",
+  "ingredient": {
+    "item": "succsessentials_extended:tungsten_dust"
+  },
+  "result": {
+    "count": 1,
+    "id": "succsessentials_extended:tungsten_ingot"
+  }
+}

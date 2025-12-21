@@ -35,35 +35,26 @@ public class ModLangProvider extends LanguageProvider {
 
         // ======================================================================
         // 1. AUTOMATIC ITEMS
-        //    - Skip BlockItems (their lang is handled by the BLOCKS section)
-        //    - Skip any items that have a manual override later in this file
         // ======================================================================
         ModItems.ITEMS.getEntries().forEach(entry -> {
-            Item item = entry.get();                 // The actual Item instance
-            String path = entry.getId().getPath();   // Registry path, e.g. "atherium_sword"
+            Item item = entry.get();
+            String path = entry.getId().getPath();
 
-            // --- 1) Skip block items (BlockItem uses the block.* lang key) ---
-            if (item instanceof BlockItem) {
-                return; // Blocks are handled in the BLOCKS section below
-            }
+            if (item instanceof BlockItem) return;
 
-            // --- 2) Skip items with manual overrides in section 9 ---
-            if (path.equals("atherium_helmet")       // custom: "Atherium Crown"
+            if (path.equals("atherium_helmet")
                     || path.equals("funky_music_disc")
                     || path.equals("clear_mud_disc")
                     || path.equals("bass_music_disc")
-                    || path.equals("rock_candy")) {  // custom: "'Rock Candy'"
+                    || path.equals("rock_candy")) {
                 return;
             }
 
-            // Everything else: generate "nice" name from registry path
             add(item.getDescriptionId(), format(path));
         });
 
         // ======================================================================
         // 2. AUTOMATIC BLOCKS
-        //    - All blocks, including ores and woodsets
-        //    - Their BlockItems use the same lang key, but we skipped those above
         // ======================================================================
         ModBlocks.BLOCKS.getEntries().forEach(entry ->
                 add(entry.get().getDescriptionId(), format(entry.getId().getPath()))
@@ -74,17 +65,13 @@ public class ModLangProvider extends LanguageProvider {
         // ======================================================================
         ModEntities.ENTRIES.forEach(supplier -> {
             EntityType<?> type = supplier.get();
-
-
             add(type.getDescriptionId(), format(type.toShortString()));
         });
 
         // ======================================================================
         // 4. AUTOMATIC BIOMES
         // ======================================================================
-        List<ResourceKey<Biome>> BIOME_KEYS = List.of(
-
-        );
+        List<ResourceKey<Biome>> BIOME_KEYS = List.of();
 
         BIOME_KEYS.forEach(key ->
                 add("biome." + Succsessentials_extended.MOD_ID + "." + key.location().getPath(),
@@ -94,9 +81,7 @@ public class ModLangProvider extends LanguageProvider {
         // ======================================================================
         // 5. AUTOMATIC ENCHANTMENTS
         // ======================================================================
-        List<ResourceKey<Enchantment>> ENCHANT_KEYS = List.of(
-
-        );
+        List<ResourceKey<Enchantment>> ENCHANT_KEYS = List.of();
 
         ENCHANT_KEYS.forEach(key ->
                 add("enchantment." + Succsessentials_extended.MOD_ID + "." + key.location().getPath(),
@@ -107,8 +92,7 @@ public class ModLangProvider extends LanguageProvider {
         // 6. AUTOMATIC EFFECTS
         // ======================================================================
         ModEffects.MOB_EFFECTS.getEntries().forEach(entry ->
-                add(entry.get().getDescriptionId(),
-                        format(entry.getId().getPath()))
+                add(entry.get().getDescriptionId(), format(entry.getId().getPath()))
         );
 
         // ======================================================================
@@ -130,59 +114,16 @@ public class ModLangProvider extends LanguageProvider {
         AllSuccAdvancements.provideLang(this::add);
 
         // ======================================================================
-        // 9. MANUAL OVERRIDES
-        //    (These have matching skips in the automatic sections above!)
+        // 9. CREATIVE MODE TAB (FIXED)
         // ======================================================================
 
-        // --- Items needing special names ---
-
-
-        // --- Music discs ---
-
-
-        // --- Tooltips ---
-
-
-        // --- Keybinds ---
-
-
-        // --- Smithing Template ---
-
-
-        // --- Paintings (manual because not auto-generated) ---
-
-
-        // --- Special Cases ---
-
-
-        // ======================================================================
-        // 10. CREATIVE MODE TABS
-        // ======================================================================
-        ModCreativeModeTabs.CREATIVE_MODE_TAB.getEntries().forEach(entry -> {
-            String path = entry.getId().getPath();  // e.g. "succs_essentials_tab_gems"
-
-            // Your creative tabs use:
-            //   creativetab.succsessentials.<category>.tab
-            //
-            // Example:
-            //   creativetab.succsessentials.gems.tab
-            //
-            // So we must convert "succs_essentials_tab_gems" → "gems"
-
-            String clean = path.replace("succsessentials_extended_tab_", ""); // "gems"
-
-            // Build proper lang key
-            String key = "creativetab." + Succsessentials_extended.MOD_ID + "." + clean + ".tab";
-
-            // Convert "gems" → "Gems"
-            String name = format(clean);
-
-            add(key, "Succ's Essentials Extended " + name);
-        });
-
+        // Must EXACTLY match:
+        // Component.translatable("creativetab.succsessentials_extended")
+        add(
+                "creativetab.succsessentials_extended",
+                "Succ's Essentials Extended"
+        );
     }
-
-
 
     // Converts "ruby_pickaxe" → "Ruby Pickaxe"
     private static String format(String id) {
