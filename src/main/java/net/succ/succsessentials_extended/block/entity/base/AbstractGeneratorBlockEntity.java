@@ -9,28 +9,17 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.energy.IEnergyStorage;
-import net.succ.succsessentials_extended.block.entity.energy.ModEnergyStorage;
-import net.succ.succsessentials_extended.block.entity.energy.ModEnergyUtil;
+import net.succ.succsessentials_extended.util.energy.ModEnergyStorage;
+import net.succ.succsessentials_extended.util.energy.ModEnergyUtil;
 import org.jetbrains.annotations.Nullable;
 
 /**
  * ============================================================
  * AbstractGeneratorBlockEntity
- *
- * Base class for ALL fuel-based generators.
- *
- * Handles:
- *  - Energy storage
- *  - Burn logic
- *  - Energy generation
- *  - Energy pushing
- *  - NBT save/load
- *
- * FIX:
- *  - Energy pushing is no longer tied to burning state
  * ============================================================
  */
-public abstract class AbstractGeneratorBlockEntity extends BlockEntity {
+public abstract class AbstractGeneratorBlockEntity
+        extends BlockEntity {
 
     /* ================= ENERGY ================= */
 
@@ -76,10 +65,6 @@ public abstract class AbstractGeneratorBlockEntity extends BlockEntity {
 
     public void tick(Level level, BlockPos pos, BlockState state) {
 
-        /* --------------------------------------------------
-           FUEL + BURN LOGIC (GENERATION ONLY)
-           -------------------------------------------------- */
-
         if (hasFuel() && !isBurning) {
             consumeFuel();
             isBurning = true;
@@ -94,18 +79,9 @@ public abstract class AbstractGeneratorBlockEntity extends BlockEntity {
             }
         }
 
-        /* --------------------------------------------------
-           ENERGY OUTPUT (ALWAYS RUNS)
-           -------------------------------------------------- */
-
-        // FIX: Energy is pushed even when not burning
         if (energyStorage.getEnergyStored() > 0) {
             pushEnergy();
         }
-
-        /* --------------------------------------------------
-           BLOCKSTATE (LIT)
-           -------------------------------------------------- */
 
         setLitState(isBurning);
     }
@@ -117,14 +93,6 @@ public abstract class AbstractGeneratorBlockEntity extends BlockEntity {
 
     /* ================= ENERGY PUSHING ================= */
 
-    /**
-     * Default behavior:
-     *  - Push energy to the block ABOVE
-     *  - Uses ModEnergyUtil
-     *
-     * IMPORTANT:
-     *  - This is no longer tied to burning state
-     */
     protected void pushEnergy() {
         if (level == null) return;
 
@@ -137,18 +105,20 @@ public abstract class AbstractGeneratorBlockEntity extends BlockEntity {
 
     /**
      * How much energy this generator can push per tick.
-     * Allows tier-based scaling later.
      */
     protected abstract int getEnergyTransferRate();
+
+    /**
+     * How much energy this generator PRODUCES per tick.
+     * Used exclusively for tooltip display.
+     */
+    public abstract int getPowerGenerationRate();
 
     /* ================= ABSTRACT HOOKS ================= */
 
     protected abstract boolean hasFuel();
-
     protected abstract void consumeFuel();
-
     protected abstract void generateEnergy();
-
     protected abstract void setLitState(boolean lit);
 
     /* ================= SAVE / LOAD ================= */

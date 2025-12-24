@@ -30,17 +30,25 @@ import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.succ.succsessentials_extended.api.machine.MachineTier;
+import net.succ.succsessentials_extended.api.machine.TieredMachine;
 import net.succ.succsessentials_extended.block.entity.ModBlockEntities;
 import net.succ.succsessentials_extended.block.entity.custom.AlloyForgerBlockEntity;
 import org.jetbrains.annotations.Nullable;
 
-public class AlloyForgerBlock extends BaseEntityBlock {
+public class AlloyForgerBlock extends BaseEntityBlock
+        implements TieredMachine {
 
     /* ==========================================================
        BLOCKSTATE PROPERTIES
        ========================================================== */
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final BooleanProperty LIT = BlockStateProperties.LIT;
+
+    /* ==========================================================
+       MACHINE METADATA
+       ========================================================== */
+    private final MachineTier tier;
 
     public static final MapCodec<AlloyForgerBlock> CODEC =
             simpleCodec(AlloyForgerBlock::new);
@@ -51,13 +59,40 @@ public class AlloyForgerBlock extends BaseEntityBlock {
     public static final VoxelShape SHAPE =
             Block.box(0, 0, 0, 16, 16, 16);
 
-    public AlloyForgerBlock(Properties properties) {
+    /**
+     * Main constructor (used by registry).
+     */
+    public AlloyForgerBlock(Properties properties, MachineTier tier) {
         super(properties);
+        this.tier = tier;
+
+        this.registerDefaultState(
+                this.stateDefinition.any()
+                        .setValue(FACING, Direction.NORTH)
+                        .setValue(LIT, false)
+        );
+    }
+
+    /**
+     * Codec constructor.
+     * Must be deterministic.
+     */
+    private AlloyForgerBlock(Properties properties) {
+        this(properties, MachineTier.BASIC);
     }
 
     @Override
     protected MapCodec<? extends BaseEntityBlock> codec() {
         return CODEC;
+    }
+
+    /* ==========================================================
+       API
+       ========================================================== */
+
+    @Override
+    public MachineTier getTier() {
+        return tier;
     }
 
     /* ==========================================================
@@ -215,7 +250,6 @@ public class AlloyForgerBlock extends BaseEntityBlock {
                 0.0, 0.0, 0.0
         );
 
-        // Occasionally spit out item particles from INPUT A
         if (level.getBlockEntity(pos) instanceof AlloyForgerBlockEntity be &&
                 !be.itemHandler.getStackInSlot(0).isEmpty()) {
 
@@ -232,3 +266,4 @@ public class AlloyForgerBlock extends BaseEntityBlock {
         }
     }
 }
+

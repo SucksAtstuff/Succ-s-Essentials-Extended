@@ -23,27 +23,15 @@ import net.succ.succsessentials_extended.block.entity.base.AbstractGeneratorBloc
 import net.succ.succsessentials_extended.screen.custom.CoalGeneratorMenu;
 import org.jetbrains.annotations.Nullable;
 
-/**
- * ============================================================
- * CoalGeneratorBlockEntity
- *
- * Simple fuel-based generator using coal items.
- *
- * Responsibilities kept here:
- *  - Inventory
- *  - Fuel validation
- *  - Energy generation amount
- *  - Block LIT state
- *
- * Responsibilities moved to AbstractGeneratorBlockEntity:
- *  - Burn timing
- *  - Energy storage
- *  - Energy pushing
- *  - NBT handling
- * ============================================================
- */
 public class CoalGeneratorBlockEntity extends AbstractGeneratorBlockEntity
         implements MenuProvider {
+
+    /* ================= CONSTANTS ================= */
+
+    /** Energy generated per tick */
+    public static final int POWER_GENERATION_RATE = 80;   // FE/t
+    public static final int BURN_TIME = 160;
+
 
     /* ================= INVENTORY ================= */
 
@@ -90,45 +78,37 @@ public class CoalGeneratorBlockEntity extends AbstractGeneratorBlockEntity
                 ModBlockEntities.COAL_GENERATOR_BE.get(),
                 pos,
                 state,
-                64000, // ENERGY CAPACITY
-                320,   // ENERGY TRANSFER RATE
-                160    // BURN TIME PER FUEL
+                64000,          // ENERGY CAPACITY
+                POWER_GENERATION_RATE, // ENERGY TRANSFER RATE
+                BURN_TIME             // BURN TIME PER FUEL
         );
     }
 
     /* ================= GENERATOR LOGIC ================= */
 
-    /**
-     * Determines whether valid fuel exists.
-     */
     @Override
     protected boolean hasFuel() {
         return itemHandler.getStackInSlot(INPUT_SLOT).is(ItemTags.COALS);
     }
 
-    /**
-     * Consumes one fuel item when burning starts.
-     */
     @Override
     protected void consumeFuel() {
         itemHandler.extractItem(INPUT_SLOT, 1, false);
     }
 
-    /**
-     * Generates energy every tick while burning.
-     */
     @Override
     protected void generateEnergy() {
-        energyStorage.receiveEnergy(320, false);
+        energyStorage.receiveEnergy(POWER_GENERATION_RATE, false);
     }
 
-    /**
-     * Defines how much energy this generator can push per tick.
-     * Used by the generator base.
-     */
     @Override
     protected int getEnergyTransferRate() {
-        return 320;
+        return POWER_GENERATION_RATE;
+    }
+
+    @Override
+    public int getPowerGenerationRate() {
+        return POWER_GENERATION_RATE;
     }
 
     /* ================= BLOCK STATE ================= */

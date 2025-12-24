@@ -29,24 +29,30 @@ import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.succ.succsessentials_extended.api.machine.MachineTier;
+import net.succ.succsessentials_extended.api.machine.TieredMachine;
 import net.succ.succsessentials_extended.block.entity.ModBlockEntities;
 import net.succ.succsessentials_extended.block.entity.custom.PulverizerBlockEntity;
 import org.jetbrains.annotations.Nullable;
 
-public class PulverizerBlock extends BaseEntityBlock {
+public class PulverizerBlock extends BaseEntityBlock
+        implements TieredMachine {
 
     /* ==========================================================
        BLOCKSTATE PROPERTIES
        ========================================================== */
 
-    // Horizontal facing, same as furnace-style blocks
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
-
-    // Lit property to indicate active processing
     public static final BooleanProperty LIT = BlockStateProperties.LIT;
 
     /* ==========================================================
-       CODEC (REQUIRED FOR MODERN BLOCKS)
+       MACHINE METADATA (API)
+       ========================================================== */
+
+    private final MachineTier tier;
+
+    /* ==========================================================
+       CODEC
        ========================================================== */
 
     public static final MapCodec<PulverizerBlock> CODEC =
@@ -56,17 +62,43 @@ public class PulverizerBlock extends BaseEntityBlock {
        SHAPE
        ========================================================== */
 
-    // Simple full cube, keeps things easy for now
     public static final VoxelShape SHAPE =
             Block.box(0, 0, 0, 16, 16, 16);
 
-    public PulverizerBlock(Properties properties) {
+    /**
+     * Explicit tier constructor (Option B).
+     */
+    public PulverizerBlock(Properties properties, MachineTier tier) {
         super(properties);
+        this.tier = tier;
+
+        this.registerDefaultState(
+                this.stateDefinition.any()
+                        .setValue(FACING, Direction.NORTH)
+                        .setValue(LIT, false)
+        );
+    }
+
+    /**
+     * Codec constructor.
+     * Must NOT depend on registries or external data.
+     */
+    private PulverizerBlock(Properties properties) {
+        this(properties, MachineTier.BASIC);
     }
 
     @Override
     protected MapCodec<? extends BaseEntityBlock> codec() {
         return CODEC;
+    }
+
+    /* ==========================================================
+       API
+       ========================================================== */
+
+    @Override
+    public MachineTier getTier() {
+        return tier;
     }
 
     /* ==========================================================
@@ -126,7 +158,6 @@ public class PulverizerBlock extends BaseEntityBlock {
                          BlockState newState,
                          boolean isMoving) {
 
-        // Drop inventory contents when the block is broken
         if (state.getBlock() != newState.getBlock()) {
             BlockEntity blockEntity = level.getBlockEntity(pos);
             if (blockEntity instanceof PulverizerBlockEntity pulverizer) {
@@ -188,7 +219,7 @@ public class PulverizerBlock extends BaseEntityBlock {
     }
 
     /* ==========================================================
-       PARTICLES & SOUND (ACTIVE STATE)
+       PARTICLES & SOUND
        ========================================================== */
 
     @Override
@@ -203,7 +234,6 @@ public class PulverizerBlock extends BaseEntityBlock {
         double y = pos.getY();
         double z = pos.getZ() + 0.5;
 
-        // Occasional grinding sound
         if (random.nextDouble() < 0.1) {
             level.playLocalSound(
                     x, y, z,
@@ -223,7 +253,6 @@ public class PulverizerBlock extends BaseEntityBlock {
         double yOffset = random.nextDouble() * 6.0 / 16.0;
         double zOffset = axis == Direction.Axis.Z ? direction.getStepZ() * 0.52 : offset;
 
-        // Dusty smoke particles
         level.addParticle(
                 ParticleTypes.SMOKE,
                 x + xOffset,

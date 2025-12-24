@@ -1,8 +1,12 @@
 package net.succ.succsessentials_extended.block;
 
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.DropExperienceBlock;
@@ -11,9 +15,15 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.succ.succsessentials_extended.Succsessentials_extended;
+import net.succ.succsessentials_extended.api.machine.GeneratorMachine;
+import net.succ.succsessentials_extended.api.machine.MachineTier;
+import net.succ.succsessentials_extended.api.machine.TieredMachine;
 import net.succ.succsessentials_extended.block.custom.*;
+import net.succ.succsessentials_extended.block.entity.custom.BiofuelGeneratorBlockEntity;
+import net.succ.succsessentials_extended.block.entity.custom.CoalGeneratorBlockEntity;
 import net.succ.succsessentials_extended.item.ModItems;
 
+import java.util.List;
 import java.util.function.Supplier;
 
 public class ModBlocks {
@@ -160,20 +170,21 @@ public class ModBlocks {
      *                           MACHINES / TECH
      * ===================================================================== */
 
-    public static final DeferredBlock<Block> ALLOY_FORGER = registerBlock("alloy_forger",
-            () -> new AlloyForgerBlock(BlockBehaviour.Properties.of().strength(3f).requiresCorrectToolForDrops()));
-    public static final DeferredBlock<Block> PULVERIZER = registerBlock("pulverizer",
-            () -> new PulverizerBlock(BlockBehaviour.Properties.of().strength(3f).requiresCorrectToolForDrops()));
-    public static final DeferredBlock<Block> ELECTRIC_FURNACE = registerBlock("electric_furnace",
-            () -> new ElectricFurnaceBlock(BlockBehaviour.Properties.of().strength(3f).requiresCorrectToolForDrops()));
-    public static final DeferredBlock<Block> INFUSER = registerBlock("infuser",
-            () -> new InfuserBlock(BlockBehaviour.Properties.of().strength(3f).requiresCorrectToolForDrops()));
-    public static final DeferredBlock<Block> COAL_GENERATOR = registerBlock("coal_generator",
-            () -> new CoalGeneratorBlock(BlockBehaviour.Properties.of().strength(3f).requiresCorrectToolForDrops()));
-    public static final DeferredBlock<Block> BIO_FUEL_GENERATOR = registerBlock("bio_fuel_generator",
-            () -> new BiofuelGeneratorBlock(BlockBehaviour.Properties.of().strength(3f).requiresCorrectToolForDrops()));
+    public static final DeferredBlock<Block> ALLOY_FORGER = registerMachineBlock("alloy_forger",
+            () -> new AlloyForgerBlock(BlockBehaviour.Properties.of().strength(3f).requiresCorrectToolForDrops(), MachineTier.BASIC));
+    public static final DeferredBlock<Block> PULVERIZER = registerMachineBlock("pulverizer",
+            () -> new PulverizerBlock(BlockBehaviour.Properties.of().strength(3f).requiresCorrectToolForDrops(), MachineTier.BASIC));
+    public static final DeferredBlock<Block> ELECTRIC_FURNACE = registerMachineBlock("electric_furnace",
+            () -> new ElectricFurnaceBlock(BlockBehaviour.Properties.of().strength(3f).requiresCorrectToolForDrops(), MachineTier.BASIC));
+    public static final DeferredBlock<Block> INFUSER = registerMachineBlock("infuser",
+            () -> new InfuserBlock(BlockBehaviour.Properties.of().strength(3f).requiresCorrectToolForDrops(), MachineTier.BASIC));
+    public static final DeferredBlock<Block> COAL_GENERATOR = registerMachineBlock("coal_generator",
+            () -> new CoalGeneratorBlock(BlockBehaviour.Properties.of().strength(3f).requiresCorrectToolForDrops(), MachineTier.BASIC, CoalGeneratorBlockEntity.POWER_GENERATION_RATE));
+    public static final DeferredBlock<Block> BIO_FUEL_GENERATOR = registerMachineBlock("bio_fuel_generator",
+            () -> new BiofuelGeneratorBlock(BlockBehaviour.Properties.of().strength(3f).requiresCorrectToolForDrops(), MachineTier.BASIC, BiofuelGeneratorBlockEntity.POWER_GENERATION_RATE));
     public static final DeferredBlock<Block> PANEL_BLOCK = registerBlock("panel_block",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops()));
+
 
     /* =====================================================================
      *                        INTERNAL REGISTRATION
@@ -185,9 +196,77 @@ public class ModBlocks {
         return toReturn;
     }
 
+    private static <T extends Block> DeferredBlock<T> registerMachineBlock(
+            String name,
+            Supplier<T> block
+    ) {
+        DeferredBlock<T> toReturn = BLOCKS.register(name, block);
+        registerMachineBlockItem(name, toReturn);
+        return toReturn;
+    }
+
+
+
+
     private static <T extends Block> void registerBlockItem(String name, DeferredBlock<T> block) {
         ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
     }
+
+    private static <T extends Block> void registerMachineBlockItem(
+            String name,
+            DeferredBlock<T> block
+    ) {
+        ModItems.ITEMS.register(name, () ->
+                new BlockItem(block.get(), new Item.Properties()) {
+
+                    @Override
+                    public void appendHoverText(
+                            ItemStack stack,
+                            TooltipContext context,
+                            List<Component> tooltipComponents,
+                            TooltipFlag tooltipFlag
+                    ) {
+                        super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+
+                        Block b = block.get();
+
+                        // -------------------------------
+                        // Tier tooltip
+                        // -------------------------------
+                        if (b instanceof TieredMachine tiered) {
+                            tooltipComponents.add(
+                                    Component.literal("Tier: ")
+                                            .withStyle(ChatFormatting.DARK_GRAY)
+                                            .append(
+                                                    Component.literal(tiered.getTier().name())
+                                                            .withStyle(tiered.getTier().color())
+                                            )
+                            );
+                        }
+
+                        // -------------------------------
+                        // Generator tooltip
+                        // -------------------------------
+                        if (b instanceof GeneratorMachine generator) {
+                            tooltipComponents.add(
+                                    Component.literal("Generation: ")
+                                            .withStyle(ChatFormatting.DARK_GRAY)
+                                            .append(
+                                                    Component.literal(generator.getGenerationRate() + " FE/t")
+                                                            .withStyle(ChatFormatting.AQUA)
+                                            )
+                            );
+                        }
+                    }
+                }
+        );
+    }
+
+
+
+
+
+
 
     public static void register(IEventBus eventBus) {
         BLOCKS.register(eventBus);

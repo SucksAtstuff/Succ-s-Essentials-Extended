@@ -1,4 +1,4 @@
-package net.succ.succsessentials_extended.block.entity.energy;
+package net.succ.succsessentials_extended.util.energy;
 
 import net.neoforged.neoforge.energy.EnergyStorage;
 

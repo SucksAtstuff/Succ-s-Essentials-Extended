@@ -2,6 +2,7 @@ package net.succ.succsessentials_extended.block.custom;
 
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
@@ -23,31 +24,88 @@ import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.succ.succsessentials_extended.api.machine.GeneratorMachine;
+import net.succ.succsessentials_extended.api.machine.MachineTier;
+import net.succ.succsessentials_extended.api.machine.TieredMachine;
 import net.succ.succsessentials_extended.block.entity.ModBlockEntities;
 import net.succ.succsessentials_extended.block.entity.custom.BiofuelGeneratorBlockEntity;
 import org.jetbrains.annotations.Nullable;
 
-public class BiofuelGeneratorBlock extends BaseEntityBlock {
+public class BiofuelGeneratorBlock extends BaseEntityBlock
+        implements TieredMachine, GeneratorMachine {
+
     /* ==========================================================
-    BLOCKSTATE PROPERTIES
-    ========================================================== */
+       BLOCKSTATE PROPERTIES
+       ========================================================== */
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final BooleanProperty LIT = BlockStateProperties.LIT;
 
+    /* ==========================================================
+       MACHINE METADATA (API)
+       ========================================================== */
+    private final MachineTier tier;
+    private final int generationRate;
 
+    /* ==========================================================
+       CODEC
+       ========================================================== */
     public static final MapCodec<BiofuelGeneratorBlock> CODEC =
             simpleCodec(BiofuelGeneratorBlock::new);
 
     /* ==========================================================
-        SHAPE (FULL BLOCK LIKE FURNACE)
-        ========================================================== */
+       SHAPE
+       ========================================================== */
     public static final VoxelShape SHAPE =
             Block.box(0, 0, 0, 16, 16, 16);
 
+    /**
+     * Explicit constructor (Option B).
+     */
+    public BiofuelGeneratorBlock(Properties properties,
+                                 MachineTier tier,
+                                 int generationRate) {
+        super(properties);
+        this.tier = tier;
+        this.generationRate = generationRate;
+
+        this.registerDefaultState(
+                this.stateDefinition.any()
+                        .setValue(FACING, Direction.NORTH)
+                        .setValue(LIT, false)
+        );
+    }
+
+    /**
+     * Codec constructor.
+     * Must be deterministic and registry-safe.
+     */
+    private BiofuelGeneratorBlock(Properties properties) {
+        this(properties, MachineTier.BASIC, BiofuelGeneratorBlockEntity.POWER_GENERATION_RATE);
+    }
+
+    @Override
+    protected MapCodec<? extends BaseEntityBlock> codec() {
+        return CODEC;
+    }
 
     /* ==========================================================
-     FACING
-     ========================================================== */
+       API
+       ========================================================== */
+
+    @Override
+    public MachineTier getTier() {
+        return tier;
+    }
+
+    @Override
+    public int getGenerationRate() {
+        return BiofuelGeneratorBlockEntity.POWER_GENERATION_RATE;
+    }
+
+    /* ==========================================================
+       BLOCKSTATE / SHAPE
+       ========================================================== */
+
     @Override
     protected BlockState rotate(BlockState state, Rotation rotation) {
         return state.setValue(FACING, rotation.rotate(state.getValue(FACING)));
@@ -79,63 +137,82 @@ public class BiofuelGeneratorBlock extends BaseEntityBlock {
         builder.add(FACING, LIT);
     }
 
+    /* ==========================================================
+       BLOCK ENTITY
+       ========================================================== */
 
-    public BiofuelGeneratorBlock(Properties properties) {
-        super(properties);
+    @Nullable
+    @Override
+    public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+        return new BiofuelGeneratorBlockEntity(pos, state);
     }
 
     @Override
-    protected MapCodec<? extends BaseEntityBlock> codec() {
-        return CODEC;
-    }
-
-
-    @Override
-    public RenderShape getRenderShape(BlockState pState) {
+    protected RenderShape getRenderShape(BlockState state) {
         return RenderShape.MODEL;
     }
 
     @Override
-    public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
-        if (pState.getBlock() != pNewState.getBlock()) {
-            BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
-            if (blockEntity instanceof BiofuelGeneratorBlockEntity BiofuelGeneratorBlockEntity) {
-                BiofuelGeneratorBlockEntity.drops();
+    public void onRemove(BlockState state,
+                         Level level,
+                         BlockPos pos,
+                         BlockState newState,
+                         boolean isMoving) {
+        if (state.getBlock() != newState.getBlock()) {
+            BlockEntity blockEntity = level.getBlockEntity(pos);
+            if (blockEntity instanceof BiofuelGeneratorBlockEntity generator) {
+                generator.drops();
             }
         }
-
-        super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
+        super.onRemove(state, level, pos, newState, isMoving);
     }
 
+    /* ==========================================================
+       PLAYER INTERACTION
+       ========================================================== */
+
     @Override
-    protected ItemInteractionResult useItemOn(ItemStack pStack, BlockState pState, Level pLevel, BlockPos pPos,
-                                              Player pPlayer, InteractionHand pHand, BlockHitResult pHitResult) {
-        if (!pLevel.isClientSide()) {
-            BlockEntity entity = pLevel.getBlockEntity(pPos);
-            if(entity instanceof BiofuelGeneratorBlockEntity BiofuelGeneratorBlockEntity) {
-                pPlayer.openMenu(new SimpleMenuProvider(BiofuelGeneratorBlockEntity, Component.literal("Bio Fuel Generator")), pPos);
+    protected ItemInteractionResult useItemOn(ItemStack stack,
+                                              BlockState state,
+                                              Level level,
+                                              BlockPos pos,
+                                              Player player,
+                                              InteractionHand hand,
+                                              BlockHitResult hit) {
+
+        if (!level.isClientSide()) {
+            BlockEntity entity = level.getBlockEntity(pos);
+            if (entity instanceof BiofuelGeneratorBlockEntity generator) {
+                player.openMenu(
+                        new SimpleMenuProvider(
+                                generator,
+                                Component.literal("Bio Fuel Generator")
+                        ),
+                        pos
+                );
             } else {
-                throw new IllegalStateException("Our Container provider is missing!");
+                throw new IllegalStateException("Biofuel Generator container provider missing!");
             }
         }
 
-        return ItemInteractionResult.sidedSuccess(pLevel.isClientSide());
+        return ItemInteractionResult.sidedSuccess(level.isClientSide());
     }
+
+    /* ==========================================================
+       SERVER TICKING
+       ========================================================== */
 
     @Nullable
     @Override
-    public BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
-        return new BiofuelGeneratorBlockEntity(blockPos, blockState);
-    }
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level,
+                                                                  BlockState state,
+                                                                  BlockEntityType<T> type) {
+        if (level.isClientSide()) return null;
 
-    @Nullable
-    @Override
-    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType) {
-        if(pLevel.isClientSide()) {
-            return null;
-        }
-
-        return createTickerHelper(pBlockEntityType, ModBlockEntities.BIO_FUEL_GENERATOR_BE.get(),
-                ((level, blockPos, blockState, BiofuelGeneratorBlockEntity) -> BiofuelGeneratorBlockEntity.tick(level, blockPos, blockState)));
+        return createTickerHelper(
+                type,
+                ModBlockEntities.BIO_FUEL_GENERATOR_BE.get(),
+                (lvl, pos, st, be) -> be.tick(lvl, pos, st)
+        );
     }
 }

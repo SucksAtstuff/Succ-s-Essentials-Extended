@@ -23,14 +23,14 @@ import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.succ.succsessentials_extended.api.machine.MachineTier;
+import net.succ.succsessentials_extended.api.machine.TieredMachine;
 import net.succ.succsessentials_extended.block.entity.ModBlockEntities;
-import net.succ.succsessentials_extended.block.entity.custom.AlloyForgerBlockEntity;
 import net.succ.succsessentials_extended.block.entity.custom.ElectricFurnaceBlockEntity;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Properties;
-
-public class ElectricFurnaceBlock extends BaseEntityBlock {
+public class ElectricFurnaceBlock extends BaseEntityBlock
+        implements TieredMachine {
 
     /* ==========================================================
       BLOCKSTATE PROPERTIES
@@ -38,6 +38,10 @@ public class ElectricFurnaceBlock extends BaseEntityBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final BooleanProperty LIT = BlockStateProperties.LIT;
 
+    /* ==========================================================
+      MACHINE METADATA (API)
+      ========================================================== */
+    private final MachineTier tier;
 
     public static final MapCodec<ElectricFurnaceBlock> CODEC =
             simpleCodec(ElectricFurnaceBlock::new);
@@ -48,9 +52,15 @@ public class ElectricFurnaceBlock extends BaseEntityBlock {
     public static final VoxelShape SHAPE =
             Block.box(0, 0, 0, 16, 16, 16);
 
-
-    public ElectricFurnaceBlock(Properties properties) {
+    /**
+     * Primary constructor used by registration.
+     *
+     * Tier is injected here and stored immutably.
+     */
+    public ElectricFurnaceBlock(Properties properties, MachineTier tier) {
         super(properties);
+        this.tier = tier;
+
         this.registerDefaultState(
                 this.stateDefinition.any()
                         .setValue(FACING, Direction.NORTH)
@@ -58,9 +68,28 @@ public class ElectricFurnaceBlock extends BaseEntityBlock {
         );
     }
 
+    /**
+     * Codec constructor.
+     *
+     * IMPORTANT:
+     * Codec constructors MUST NOT contain logic.
+     * Tier must be hardcoded or derived safely.
+     */
+    private ElectricFurnaceBlock(Properties properties) {
+        this(properties, MachineTier.BASIC);
+    }
+
     @Override
     protected MapCodec<? extends BaseEntityBlock> codec() {
         return CODEC;
+    }
+
+    /* ==========================================================
+      API
+      ========================================================== */
+    @Override
+    public MachineTier getTier() {
+        return tier;
     }
 
     /* ==========================================================
@@ -171,5 +200,4 @@ public class ElectricFurnaceBlock extends BaseEntityBlock {
                 (lvl, pos, st, be) -> be.tick(lvl, pos, st)
         );
     }
-
 }

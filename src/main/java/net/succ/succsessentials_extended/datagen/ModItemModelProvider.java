@@ -59,6 +59,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.COBALT_INGOT.get());
         basicItem(ModItems.OSMIUM_INGOT.get());
         basicItem(ModItems.ZINC_INGOT.get());
+        basicItem(ModItems.NICKEL_INGOT.get());
+        basicItem(ModItems.SILVER_INGOT.get());
 
         // Register models for dusts
         basicItem(ModItems.CHROMIUM_DUST.get());
@@ -76,6 +78,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.COBALT_DUST.get());
         basicItem(ModItems.OSMIUM_DUST.get());
         basicItem(ModItems.ZINC_DUST.get());
+        basicItem(ModItems.NICKEL_DUST.get());
+        basicItem(ModItems.SILVER_DUST.get());
 
         // Register models for nuggets
         basicItem(ModItems.CHROMIUM_NUGGET.get());
@@ -92,6 +96,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.COBALT_NUGGET.get());
         basicItem(ModItems.OSMIUM_NUGGET.get());
         basicItem(ModItems.ZINC_NUGGET.get());
+        basicItem(ModItems.NICKEL_NUGGET.get());
+        basicItem(ModItems.SILVER_NUGGET.get());
 
         // Register models for raw ore
         basicItem(ModItems.RAW_CHROMIUM.get());
@@ -101,6 +107,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.RAW_COBALT.get());
         basicItem(ModItems.RAW_OSMIUM.get());
         basicItem(ModItems.RAW_ZINC.get());
+        basicItem(ModItems.RAW_NICKEL.get());
+        basicItem(ModItems.RAW_SILVER.get());
 
         // Register models for chromium tools
         handheldItem(ModItems.CHROMIUM_SWORD.get());

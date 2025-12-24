@@ -7,7 +7,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.world.Containers;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleContainer;
@@ -45,6 +44,11 @@ import org.jetbrains.annotations.Nullable;
  */
 public class BiofuelGeneratorBlockEntity extends AbstractGeneratorBlockEntity
         implements MenuProvider {
+
+    public static final int POWER_GENERATION_RATE = 160;  // FE/t
+    public static final int BURN_TIME = 80;
+
+
 
     /* ================= INVENTORY ================= */
 
@@ -93,7 +97,7 @@ public class BiofuelGeneratorBlockEntity extends AbstractGeneratorBlockEntity
                 state,
                 64000, // ENERGY CAPACITY
                 640,   // ENERGY TRANSFER RATE
-                80    // BURN TIME PER FUEL
+                BURN_TIME    // BURN TIME PER FUEL
         );
     }
 
@@ -120,7 +124,7 @@ public class BiofuelGeneratorBlockEntity extends AbstractGeneratorBlockEntity
      */
     @Override
     protected void generateEnergy() {
-        energyStorage.receiveEnergy(320, false);
+        energyStorage.receiveEnergy(POWER_GENERATION_RATE, false);
     }
 
     /**
@@ -129,7 +133,12 @@ public class BiofuelGeneratorBlockEntity extends AbstractGeneratorBlockEntity
      */
     @Override
     protected int getEnergyTransferRate() {
-        return 320;
+        return POWER_GENERATION_RATE;
+    }
+
+    @Override
+    public int getPowerGenerationRate() {
+        return POWER_GENERATION_RATE;
     }
 
     /* ================= BLOCK STATE ================= */

@@ -11,24 +11,17 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.energy.IEnergyStorage;
 import net.neoforged.neoforge.items.ItemStackHandler;
-import net.succ.succsessentials_extended.block.entity.energy.ModEnergyStorage;
+import net.succ.succsessentials_extended.util.energy.ModEnergyStorage;
 import org.jetbrains.annotations.Nullable;
 import net.succ.succsessentials_extended.util.MachineOutputHelper;
 
 /**
  * ============================================================
  * AbstractPoweredMachineBlockEntity
- *
- * Base class for ALL energy-consuming machines.
- * Handles:
- *  - Energy storage
- *  - Progress logic
- *  - NBT save/load
- *  - Shared ticking
- *
  * ============================================================
  */
-public abstract class AbstractPoweredMachineBlockEntity extends BlockEntity {
+public abstract class AbstractPoweredMachineBlockEntity
+        extends BlockEntity{
 
     /* ================= ENERGY ================= */
 
@@ -90,10 +83,6 @@ public abstract class AbstractPoweredMachineBlockEntity extends BlockEntity {
         }
     }
 
-    /**
-     * Allows machines with dynamic energy usage (like Alloy Forger)
-     * to reset energy usage when idle.
-     */
     protected void resetEnergyUsage() {
         energyPerTick = 20;
     }
@@ -101,9 +90,7 @@ public abstract class AbstractPoweredMachineBlockEntity extends BlockEntity {
     /* ================= ABSTRACT HOOKS ================= */
 
     protected abstract boolean hasRecipe();
-
     protected abstract void craftItem();
-
     protected abstract void setLitState(boolean lit);
 
     /* ================= SAVE / LOAD ================= */
@@ -134,10 +121,6 @@ public abstract class AbstractPoweredMachineBlockEntity extends BlockEntity {
         return MachineOutputHelper.canOutput(handler, outputSlot, result);
     }
 
-    /**
-     * Safely outputs a recipe result into the machine output slot.
-     * This bypasses slot validation and prevents voiding.
-     */
     protected void outputResult(
             ItemStackHandler handler,
             int outputSlot,

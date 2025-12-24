@@ -1,5 +1,8 @@
 package net.succ.succsessentials_extended.datagen;
 
+import com.simibubi.create.AllRecipeTypes;
+import com.simibubi.create.content.processing.recipe.ProcessingOutput;
+import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
@@ -24,6 +27,12 @@ import net.succ.succsessentials_extended.recipe.PulverizingRecipe;
 import net.succ.succsessentials_extended.util.ModTags;
 import net.succ.succsessentials_extended.util.PulverizingSource;
 
+import com.simibubi.create.foundation.data.recipe.ProcessingRecipeGen;
+import com.simibubi.create.foundation.data.recipe.CrushingRecipeGen;
+
+
+
+
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
@@ -35,6 +44,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
     @Override
     protected void buildRecipes(RecipeOutput recipeOutput){
+
 
         /* =====================================================================
          *                           SMELTING / BLASTING
@@ -49,6 +59,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         List<ItemLike> ZINC_SMELTABLES = List.of(ModItems.RAW_ZINC, ModItems.ZINC_DUST, ModBlocks.ZINC_ORE, ModBlocks.DEEPSLATE_ZINC_ORE);
         List<ItemLike> SILVER_SMELTABLES = List.of(ModItems.RAW_SILVER, ModItems.SILVER_DUST, ModBlocks.SILVER_ORE, ModBlocks.DEEPSLATE_SILVER_ORE);
         List<ItemLike> NICKEL_SMELTABLES = List.of(ModItems.RAW_NICKEL, ModItems.NICKEL_DUST, ModBlocks.NICKEL_ORE, ModBlocks.DEEPSLATE_NICKEL_ORE);
+
+
 
         oreSmelting(recipeOutput, CHROMIUM_SMELTABLES, RecipeCategory.MISC, ModItems.CHROMIUM_INGOT.get(), 0.25f, 200, "chromium");
         oreBlasting(recipeOutput, CHROMIUM_SMELTABLES, RecipeCategory.MISC, ModItems.CHROMIUM_INGOT.get(), 0.25f, 100, "chromium");
@@ -397,6 +409,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         pulverizing(recipeOutput, ModTags.Items.INGOTS_TITA_CHROME, ModItems.TITA_CHROME_DUST,
                 null, 120, 20, PulverizingSource.INGOT);
 
+
+
         /* ---------- MISC ---------- */
 
         pulverizing(recipeOutput, ItemTags.COALS, ModItems.COAL_DUST,
@@ -632,4 +646,5 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             );
         });
     }
+
 }
