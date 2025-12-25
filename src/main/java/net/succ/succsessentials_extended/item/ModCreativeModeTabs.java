@@ -105,6 +105,22 @@ public class ModCreativeModeTabs {
                                 output.accept(ModItems.CONSTANTAN_DUST);
                                 output.accept(ModItems.TITA_CHROME_DUST);
                                 output.accept(ModItems.COAL_DUST);
+                                output.accept(ModItems.COPPER_DUST);
+                                output.accept(ModItems.IRON_DUST);
+                                output.accept(ModItems.GOLD_DUST);
+                                output.accept(ModItems.DIAMOND_DUST);
+
+                                /* ===================================================== */
+                                /*                        MACHINE ITEMS                  */
+                                /* ===================================================== */
+
+                                output.accept(ModItems.CIRCUIT_BOARD);
+                                output.accept(ModItems.ADVANCED_CIRCUIT_BOARD);
+                                output.accept(ModItems.GOLD_WIRE);
+                                output.accept(ModItems.ELECTRUM_WIRE);
+                                output.accept(ModItems.EMPTY_SPOOL);
+                                output.accept(ModItems.SPEED_MODULE);
+                                output.accept(ModItems.EFFICIENCY_MODULE);
 
                                 /* ===================================================== */
                                 /*                          ORES                          */

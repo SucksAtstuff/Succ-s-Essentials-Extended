@@ -80,6 +80,10 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.ZINC_DUST.get());
         basicItem(ModItems.NICKEL_DUST.get());
         basicItem(ModItems.SILVER_DUST.get());
+        basicItem(ModItems.COPPER_DUST.get());
+        basicItem(ModItems.IRON_DUST.get());
+        basicItem(ModItems.GOLD_DUST.get());
+        basicItem(ModItems.DIAMOND_DUST.get());
 
         // Register models for nuggets
         basicItem(ModItems.CHROMIUM_NUGGET.get());
@@ -117,8 +121,18 @@ public class ModItemModelProvider extends ItemModelProvider {
         handheldItem(ModItems.CHROMIUM_SHOVEL.get());
         handheldItem(ModItems.CHROMIUM_HOE.get());
 
+        // Register models for misc items
         basicItem(ModItems.BIOMASS.get());
         basicItem(ModItems.BIOMASS_PELLET.get());
+
+        // Register models for machine items
+        basicItem(ModItems.CIRCUIT_BOARD.get());
+        basicItem(ModItems.ADVANCED_CIRCUIT_BOARD.get());
+        basicItem(ModItems.GOLD_WIRE.get());
+        basicItem(ModItems.ELECTRUM_WIRE.get());
+        basicItem(ModItems.EMPTY_SPOOL.get());
+        basicItem(ModItems.EFFICIENCY_MODULE.get());
+        basicItem(ModItems.SPEED_MODULE.get());
     }
 
     // Shoutout to El_Redstoniano for making this

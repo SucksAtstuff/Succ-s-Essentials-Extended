@@ -22,6 +22,21 @@ public class ModItems {
     /* =====================================================================
      *                           ORE MATERIALS
      * ===================================================================== */
+    /* ---------- COPPER ---------- */
+    public static final DeferredItem<Item> COPPER_DUST = ITEMS.register("copper_dust",
+            () -> new Item(new Item.Properties()));
+
+    /* ---------- IRON ---------- */
+    public static final DeferredItem<Item> IRON_DUST = ITEMS.register("iron_dust",
+            () -> new Item(new Item.Properties()));
+
+    /* ---------- GOLD ---------- */
+    public static final DeferredItem<Item> GOLD_DUST = ITEMS.register("gold_dust",
+            () -> new Item(new Item.Properties()));
+
+    /* ---------- DIAMOND ---------- */
+    public static final DeferredItem<Item> DIAMOND_DUST = ITEMS.register("diamond_dust",
+            () -> new Item(new Item.Properties()));
 
     /* ---------- CHROMIUM ---------- */
     public static final DeferredItem<Item> RAW_CHROMIUM = ITEMS.register("raw_chromium",
@@ -189,6 +204,31 @@ public class ModItems {
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
     }
+
+    /* =====================================================================
+     *                           MISC MACHINE ITEMS
+     * ===================================================================== */
+
+    public static final DeferredItem<Item> CIRCUIT_BOARD = ITEMS.register("circuit_board",
+            () -> new Item(new Item.Properties()));
+
+    public static final DeferredItem<Item> ADVANCED_CIRCUIT_BOARD = ITEMS.register("advanced_circuit_board",
+            () -> new Item(new Item.Properties()));
+
+    public static final DeferredItem<Item> GOLD_WIRE = ITEMS.register("gold_wire",
+            () -> new Item(new Item.Properties()));
+
+    public static final DeferredItem<Item> ELECTRUM_WIRE = ITEMS.register("electrum_wire",
+            () -> new Item(new Item.Properties()));
+
+    public static final DeferredItem<Item> EMPTY_SPOOL = ITEMS.register("empty_spool",
+            () -> new Item(new Item.Properties()));
+
+    public static final DeferredItem<Item> SPEED_MODULE = ITEMS.register("speed_module",
+            () -> new Item(new Item.Properties()));
+
+    public static final DeferredItem<Item> EFFICIENCY_MODULE = ITEMS.register("efficiency_module",
+            () -> new Item(new Item.Properties()));
 
     /* =====================================================================
      *                           TOOL & WEAPON TIERS

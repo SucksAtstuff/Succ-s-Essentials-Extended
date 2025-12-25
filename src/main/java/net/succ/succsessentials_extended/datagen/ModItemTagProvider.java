@@ -237,6 +237,10 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 .add(ModItems.TITA_CHROME_NUGGET.get());
 
         tag(ModTags.Items.DUSTS)
+                .add(ModItems.COPPER_DUST.get())
+                .add(ModItems.IRON_DUST.get())
+                .add(ModItems.GOLD_DUST.get())
+                .add(ModItems.DIAMOND_DUST.get())
                 .add(ModItems.COAL_DUST.get())
                 .add(ModItems.CHROMIUM_DUST.get())
                 .add(ModItems.TITANIUM_DUST.get())
@@ -289,7 +293,18 @@ public class ModItemTagProvider extends ItemTagsProvider {
         tag(ModTags.Items.PLATES);
         tag(ModTags.Items.RODS);
         tag(ModTags.Items.GEARS);
+        tag(ModTags.Items.WIRES)
+                .addTag(ModTags.Items.WIRES_METAL);
+        tag(ModTags.Items.WIRES_METAL)
+                .add(ModItems.GOLD_WIRE.get())
+                .add(ModItems.ELECTRUM_WIRE.get());
 
+        tag(ModTags.Items.CIRCUITS)
+                .add(ModItems.CIRCUIT_BOARD.get())
+                .add(ModItems.ADVANCED_CIRCUIT_BOARD.get());
+        tag(ModTags.Items.BASIC_CIRCUITS).add(ModItems.CIRCUIT_BOARD.get());
+        tag(ModTags.Items.ADVANCED_CIRCUITS).add(ModItems.ADVANCED_CIRCUIT_BOARD.get());
+        tag(ModTags.Items.ELITE_CIRCUITS);
 
         /* ===================================================================== */
         /*                           TOOL / ARMOR TAGS                            */
@@ -331,6 +346,21 @@ public class ModItemTagProvider extends ItemTagsProvider {
         /* ===================================================================== */
         /*                     MATERIAL-SPECIFIC TAG INITIALIZATION               */
         /* ===================================================================== */
+
+        // Copper
+        tag(ModTags.Items.WIRES_COPPER);
+        tag(ModTags.Items.DUSTS_COPPER).add(ModItems.COPPER_DUST.get());
+
+        // Iron
+        tag(ModTags.Items.WIRES_IRON);
+        tag(ModTags.Items.DUSTS_IRON).add(ModItems.IRON_DUST.get());
+
+        // Gold
+        tag(ModTags.Items.WIRES_GOLD).add(ModItems.GOLD_WIRE.get());
+        tag(ModTags.Items.DUSTS_GOLD).add(ModItems.GOLD_DUST.get());
+
+        // Diamond
+        tag(ModTags.Items.DUSTS_DIAMOND).add(ModItems.DIAMOND_DUST.get());;
 
         // Chromium
         tag(ModTags.Items.INGOTS_CHROMIUM).add(ModItems.CHROMIUM_INGOT.get());
@@ -428,6 +458,7 @@ public class ModItemTagProvider extends ItemTagsProvider {
         tag(ModTags.Items.PLATES_ELECTRUM);
         tag(ModTags.Items.RODS_ELECTRUM);
         tag(ModTags.Items.GEARS_ELECTRUM);
+        tag(ModTags.Items.WIRES_ELECTRUM).add(ModItems.ELECTRUM_WIRE.get());
 
         // Invar
         tag(ModTags.Items.INGOTS_INVAR).add(ModItems.INVAR_INGOT.get());

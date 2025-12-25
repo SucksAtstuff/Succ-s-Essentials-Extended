@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "cookingtime": 100,
+  "experience": 0.25,
+  "group": "tita-chrome",
+  "ingredient": {
+    "item": "succsessentials_extended:tita-chrome_dust"
+  },
+  "result": {
+    "count": 1,
+    "id": "succsessentials_extended:tita-chrome_ingot"
+  }
+}

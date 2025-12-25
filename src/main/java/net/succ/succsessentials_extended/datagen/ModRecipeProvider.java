@@ -59,8 +59,16 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         List<ItemLike> ZINC_SMELTABLES = List.of(ModItems.RAW_ZINC, ModItems.ZINC_DUST, ModBlocks.ZINC_ORE, ModBlocks.DEEPSLATE_ZINC_ORE);
         List<ItemLike> SILVER_SMELTABLES = List.of(ModItems.RAW_SILVER, ModItems.SILVER_DUST, ModBlocks.SILVER_ORE, ModBlocks.DEEPSLATE_SILVER_ORE);
         List<ItemLike> NICKEL_SMELTABLES = List.of(ModItems.RAW_NICKEL, ModItems.NICKEL_DUST, ModBlocks.NICKEL_ORE, ModBlocks.DEEPSLATE_NICKEL_ORE);
-
-
+        List<ItemLike> STEEL_SMELTABLES = List.of(ModItems.STEEL_DUST);
+        List<ItemLike> BRONZE_SMELTABLES = List.of(ModItems.BRONZE_DUST);
+        List<ItemLike> BRASS_SMELTABLES = List.of(ModItems.BRASS_DUST);
+        List<ItemLike> ELECTRUM_SMELTABLES = List.of(ModItems.ELECTRUM_DUST);
+        List<ItemLike> INVAR_SMELTABLES = List.of(ModItems.INVAR_DUST);
+        List<ItemLike> CONSTANTAN_SMELTABELS = List.of(ModItems.CONSTANTAN_DUST);
+        List<ItemLike> TITA_CHROME_SMELTABLES = List.of(ModItems.TITA_CHROME_DUST);
+        List<ItemLike> COPPER_SMELTABLES = List.of(ModItems.COPPER_DUST);
+        List<ItemLike> IRON_SMELTABLES = List.of(ModItems.IRON_DUST);
+        List<ItemLike> GOLD_SMELTABLES = List.of(ModItems.GOLD_DUST);
 
         oreSmelting(recipeOutput, CHROMIUM_SMELTABLES, RecipeCategory.MISC, ModItems.CHROMIUM_INGOT.get(), 0.25f, 200, "chromium");
         oreBlasting(recipeOutput, CHROMIUM_SMELTABLES, RecipeCategory.MISC, ModItems.CHROMIUM_INGOT.get(), 0.25f, 100, "chromium");
@@ -88,6 +96,36 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
         oreSmelting(recipeOutput, NICKEL_SMELTABLES, RecipeCategory.MISC, ModItems.NICKEL_INGOT.get(), 0.25f, 200, "nickel");
         oreBlasting(recipeOutput, NICKEL_SMELTABLES, RecipeCategory.MISC, ModItems.NICKEL_INGOT.get(), 0.25f, 100, "nickel");
+
+        oreSmelting(recipeOutput, STEEL_SMELTABLES, RecipeCategory.MISC, ModItems.STEEL_INGOT.get(), 0.25f, 200, "steel");
+        oreBlasting(recipeOutput, STEEL_SMELTABLES, RecipeCategory.MISC, ModItems.STEEL_INGOT.get(), 0.25f, 100, "steel");
+
+        oreSmelting(recipeOutput, BRONZE_SMELTABLES, RecipeCategory.MISC, ModItems.BRONZE_INGOT.get(), 0.25f, 200, "bronze");
+        oreBlasting(recipeOutput, BRONZE_SMELTABLES, RecipeCategory.MISC, ModItems.BRONZE_INGOT.get(), 0.25f, 100, "bronze");
+
+        oreSmelting(recipeOutput, BRASS_SMELTABLES, RecipeCategory.MISC, ModItems.BRASS_INGOT.get(), 0.25f, 200, "brass");
+        oreBlasting(recipeOutput, BRASS_SMELTABLES, RecipeCategory.MISC, ModItems.BRASS_INGOT.get(), 0.25f, 100, "brass");
+
+        oreSmelting(recipeOutput, ELECTRUM_SMELTABLES, RecipeCategory.MISC, ModItems.ELECTRUM_INGOT.get(), 0.25f, 200, "electrum");
+        oreBlasting(recipeOutput, ELECTRUM_SMELTABLES, RecipeCategory.MISC, ModItems.ELECTRUM_INGOT.get(), 0.25f, 100, "electrum");
+
+        oreSmelting(recipeOutput, INVAR_SMELTABLES, RecipeCategory.MISC, ModItems.INVAR_INGOT.get(), 0.25f, 200, "invar");
+        oreBlasting(recipeOutput, INVAR_SMELTABLES, RecipeCategory.MISC, ModItems.INVAR_INGOT.get(), 0.25f, 100, "invar");
+
+        oreSmelting(recipeOutput, CONSTANTAN_SMELTABELS, RecipeCategory.MISC, ModItems.CONSTANTAN_INGOT.get(), 0.25f, 200, "constantan");
+        oreBlasting(recipeOutput, CONSTANTAN_SMELTABELS, RecipeCategory.MISC, ModItems.CONSTANTAN_INGOT.get(), 0.25f, 100, "constantan");
+
+        oreSmelting(recipeOutput, TITA_CHROME_SMELTABLES, RecipeCategory.MISC, ModItems.TITA_CHROME_INGOT.get(), 0.25f, 200, "tita-chrome");
+        oreBlasting(recipeOutput, TITA_CHROME_SMELTABLES, RecipeCategory.MISC, ModItems.TITA_CHROME_INGOT.get(), 0.25f, 100, "tita-chrome");
+
+        oreSmelting(recipeOutput, COPPER_SMELTABLES, RecipeCategory.MISC, Items.COPPER_INGOT, 0.25f, 200, "copper");
+        oreBlasting(recipeOutput, COPPER_SMELTABLES, RecipeCategory.MISC, Items.COPPER_INGOT, 0.25f, 100, "copper");
+
+        oreSmelting(recipeOutput, IRON_SMELTABLES, RecipeCategory.MISC, Items.IRON_INGOT, 0.25f, 200, "iron");
+        oreBlasting(recipeOutput, IRON_SMELTABLES, RecipeCategory.MISC, Items.IRON_INGOT, 0.25f, 100, "iron");
+
+        oreSmelting(recipeOutput, GOLD_SMELTABLES, RecipeCategory.MISC, Items.GOLD_INGOT, 0.25f, 200, "gold");
+        oreBlasting(recipeOutput, GOLD_SMELTABLES, RecipeCategory.MISC, Items.GOLD_INGOT, 0.25f, 100, "gold");
 
         /* =====================================================================
          *                           ALLOYING / INFUSING
@@ -129,6 +167,40 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 400,
                 120
         );
+
+        infusing(
+                recipeOutput,
+                ModTags.Items.INGOTS_STEEL,
+                ModTags.Items.DUSTS_REDSTONE,
+                ModItems.CIRCUIT_BOARD,
+                "machine",
+                400,
+                120
+        );
+
+        upgradeRecipe(
+                recipeOutput,
+                ModTags.Items.BASIC_CIRCUITS, // Base item
+                ModItems.ADVANCED_CIRCUIT_BOARD.get(), // Result
+                ModTags.Items.WIRES_GOLD // Upgrade Item
+        );
+
+        upgradeModuleRecipe(
+                recipeOutput,
+                ModTags.Items.DUSTS_OSMIUM,
+                ModItems.SPEED_MODULE.get(),
+                ModTags.Items.WIRES_ELECTRUM,   // horizontal
+                ModTags.Items.WIRES_GOLD      // vertical
+        );
+
+        upgradeModuleRecipe(
+                recipeOutput,
+                ModTags.Items.DUSTS_GOLD,
+                ModItems.EFFICIENCY_MODULE.get(),
+                ModTags.Items.WIRES_ELECTRUM,   // horizontal
+                ModTags.Items.WIRES_GOLD      // vertical
+        );
+
 
         // ---------- BRASS ----------
         // Classic brass: copper + zinc
@@ -646,5 +718,63 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             );
         });
     }
+
+    protected static void upgradeRecipe(
+            RecipeOutput recipeOutput,
+            TagKey<Item> baseItem,     // Item being upgraded (center)
+            ItemLike resultItem,       // Upgraded result
+            TagKey<Item> upgradeItem   // Left & right item
+    ) {
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, resultItem)
+                // Middle row
+                .pattern("   ")
+                .pattern("UCU")
+                .pattern("   ")
+                .define('C', Ingredient.of(baseItem))
+                .define('U', Ingredient.of(upgradeItem))
+                // Unlock when base item is obtained
+                .unlockedBy("has_base", has(baseItem))
+                // <result>_from_<base>_upgrade
+                .save(
+                        recipeOutput,
+                        ResourceLocation.fromNamespaceAndPath(
+                                Succsessentials_extended.MOD_ID,
+                                getItemName(resultItem) + "_upgrade"
+                        )
+                );
+    }
+
+
+    protected static void upgradeModuleRecipe(
+            RecipeOutput recipeOutput,
+            TagKey<Item> baseItem,          // Core dust
+            ItemLike resultItem,            // Upgrade module
+            TagKey<Item> horizontalItem,    // Left & right
+            TagKey<Item> verticalItem       // Top & bottom
+    ) {
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, resultItem)
+                // Top
+                .pattern(" V ")
+                // Middle
+                .pattern("HCH")
+                // Bottom
+                .pattern(" V ")
+                .define('C', Ingredient.of(baseItem))
+                .define('H', Ingredient.of(horizontalItem))
+                .define('V', Ingredient.of(verticalItem))
+                // Unlock when base item is obtained
+                .unlockedBy("has_base", has(baseItem))
+                // <result>_from_<base>_module
+                .save(
+                        recipeOutput,
+                        ResourceLocation.fromNamespaceAndPath(
+                                Succsessentials_extended.MOD_ID,
+                                getItemName(resultItem) + "_module"
+                        )
+                );
+    }
+
 
 }

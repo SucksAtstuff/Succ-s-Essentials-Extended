@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "tag": "c:dusts/gold"
+    },
+    "H": {
+      "tag": "c:wires/electrum"
+    },
+    "V": {
+      "tag": "c:wires/gold"
+    }
+  },
+  "pattern": [
+    " V ",
+    "HCH",
+    " V "
+  ],
+  "result": {
+    "count": 1,
+    "id": "succsessentials_extended:efficiency_module"
+  }
+}
