@@ -2,12 +2,12 @@
   "type": "succsessentials_extended:pulverizing",
   "byproduct": {
     "count": 1,
-    "id": "minecraft:deepslate"
+    "id": "minecraft:cobbled_deepslate"
   },
   "cook_time": 240,
   "energy_per_tick": 25,
   "input": {
-    "tag": "c:ores/tungsten/deepslate"
+    "item": "succsessentials_extended:deepslate_tungsten_ore"
   },
   "result": {
     "count": 1,

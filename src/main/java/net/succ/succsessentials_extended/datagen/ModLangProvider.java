@@ -114,14 +114,32 @@ public class ModLangProvider extends LanguageProvider {
         AllSuccAdvancements.provideLang(this::add);
 
         // ======================================================================
-        // 9. CREATIVE MODE TAB (FIXED)
+        // 9. CREATIVE MODE TAB
         // ======================================================================
-
-        // Must EXACTLY match:
-        // Component.translatable("creativetab.succsessentials_extended")
         add(
                 "creativetab.succsessentials_extended",
                 "Succ's Essentials Extended"
+        );
+
+        // ======================================================================
+        // 10. JEI CATEGORIES
+        // ======================================================================
+        addJeiCategory("pulverizing", "Pulverizing");
+        addJeiCategory("alloying", "Alloying");
+        addJeiCategory("electric_smelting", "Machine Smelting");
+        addJeiCategory("infusing", "Infusing");
+        addJeiCategory("hammering", "Hammering");
+        addJeiCategory("wire_cutting", "Wire Cutting");
+    }
+
+    /**
+     * Helper for JEI category translation keys.
+     * Format: jei.<modid>.<category>
+     */
+    private void addJeiCategory(String categoryId, String displayName) {
+        add(
+                "jei." + Succsessentials_extended.MOD_ID + "." + categoryId,
+                displayName
         );
     }
 

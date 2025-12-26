@@ -1,3 +1,14 @@
 {
-  "values": []
+  "values": [
+    "succsessentials_extended:block_of_steel",
+    "succsessentials_extended:block_of_invar",
+    "succsessentials_extended:block_of_constantan",
+    "succsessentials_extended:block_of_electrum",
+    "succsessentials_extended:cobalt_ore",
+    "succsessentials_extended:deepslate_cobalt_ore",
+    "succsessentials_extended:osmium_ore",
+    "succsessentials_extended:deepslate_osmium_ore",
+    "succsessentials_extended:titanium_ore",
+    "succsessentials_extended:deepslate_titanium_ore"
+  ]
 }

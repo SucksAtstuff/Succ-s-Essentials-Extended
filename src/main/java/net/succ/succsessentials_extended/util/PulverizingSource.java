@@ -8,7 +8,7 @@ package net.succ.succsessentials_extended.util;
  */
 public enum PulverizingSource {
 
-    ORE("ore"),
+    STONE("stone"),
     DEEPSLATE("deepslate"),
     RAW("raw"),
     COAL("coal"),

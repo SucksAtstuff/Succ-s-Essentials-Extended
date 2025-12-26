@@ -44,64 +44,134 @@ public class ModItemModelProvider extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
-        // Register models for ingots
-        basicItem(ModItems.CHROMIUM_INGOT.get());
-        basicItem(ModItems.TITANIUM_INGOT.get());
-        basicItem(ModItems.TITA_CHROME_INGOT.get());
-        basicItem(ModItems.STEEL_INGOT.get());
-        basicItem(ModItems.BRONZE_INGOT.get());
-        basicItem(ModItems.TIN_INGOT.get());
-        basicItem(ModItems.BRASS_INGOT.get());
-        basicItem(ModItems.ELECTRUM_INGOT.get());
-        basicItem(ModItems.INVAR_INGOT.get());
-        basicItem(ModItems.CONSTANTAN_INGOT.get());
-        basicItem(ModItems.TUNGSTEN_INGOT.get());
-        basicItem(ModItems.COBALT_INGOT.get());
-        basicItem(ModItems.OSMIUM_INGOT.get());
-        basicItem(ModItems.ZINC_INGOT.get());
-        basicItem(ModItems.NICKEL_INGOT.get());
-        basicItem(ModItems.SILVER_INGOT.get());
+        /* =====================================================================
+         *                           REGULAR METALS
+         * ===================================================================== */
 
-        // Register models for dusts
-        basicItem(ModItems.CHROMIUM_DUST.get());
-        basicItem(ModItems.TITANIUM_DUST.get());
-        basicItem(ModItems.STEEL_DUST.get());
-        basicItem(ModItems.TITA_CHROME_DUST.get());
-        basicItem(ModItems.COAL_DUST.get());
-        basicItem(ModItems.BRONZE_DUST.get());
-        basicItem(ModItems.TIN_DUST.get());
-        basicItem(ModItems.BRASS_DUST.get());
-        basicItem(ModItems.ELECTRUM_DUST.get());
-        basicItem(ModItems.INVAR_DUST.get());
-        basicItem(ModItems.CONSTANTAN_DUST.get());
-        basicItem(ModItems.TUNGSTEN_DUST.get());
-        basicItem(ModItems.COBALT_DUST.get());
-        basicItem(ModItems.OSMIUM_DUST.get());
-        basicItem(ModItems.ZINC_DUST.get());
-        basicItem(ModItems.NICKEL_DUST.get());
-        basicItem(ModItems.SILVER_DUST.get());
+        registerMetalSet(
+                ModItems.CHROMIUM_INGOT,
+                ModItems.CHROMIUM_DUST,
+                ModItems.CHROMIUM_NUGGET,
+                ModItems.CHROMIUM_PLATE
+        );
+
+        registerMetalSet(
+                ModItems.TITANIUM_INGOT,
+                ModItems.TITANIUM_DUST,
+                ModItems.TITANIUM_NUGGET,
+                ModItems.TITANIUM_PLATE
+        );
+
+        registerMetalSet(
+                ModItems.TIN_INGOT,
+                ModItems.TIN_DUST,
+                ModItems.TIN_NUGGET,
+                ModItems.TIN_PLATE
+        );
+
+        registerMetalSet(
+                ModItems.TUNGSTEN_INGOT,
+                ModItems.TUNGSTEN_DUST,
+                ModItems.TUNGSTEN_NUGGET,
+                ModItems.TUNGSTEN_PLATE
+        );
+
+        registerMetalSet(
+                ModItems.COBALT_INGOT,
+                ModItems.COBALT_DUST,
+                ModItems.COBALT_NUGGET,
+                ModItems.COBALT_PLATE
+        );
+
+        registerMetalSet(
+                ModItems.OSMIUM_INGOT,
+                ModItems.OSMIUM_DUST,
+                ModItems.OSMIUM_NUGGET,
+                ModItems.OSMIUM_PLATE
+        );
+
+        registerMetalSet(
+                ModItems.ZINC_INGOT,
+                ModItems.ZINC_DUST,
+                ModItems.ZINC_NUGGET,
+                ModItems.ZINC_PLATE
+        );
+
+        registerMetalSet(
+                ModItems.NICKEL_INGOT,
+                ModItems.NICKEL_DUST,
+                ModItems.NICKEL_NUGGET,
+                ModItems.NICKEL_PLATE
+        );
+
+        registerMetalSet(
+                ModItems.SILVER_INGOT,
+                ModItems.SILVER_DUST,
+                ModItems.SILVER_NUGGET,
+                ModItems.SILVER_PLATE
+        );
+
+        /* =====================================================================
+         *                           ALLOYS
+         * ===================================================================== */
+
+        registerAlloySet(
+                ModItems.STEEL_INGOT,
+                ModItems.STEEL_DUST,
+                ModItems.STEEL_NUGGET,
+                ModItems.STEEL_PLATE
+        );
+
+        registerAlloySet(
+                ModItems.BRONZE_INGOT,
+                ModItems.BRONZE_DUST,
+                ModItems.BRONZE_NUGGET,
+                ModItems.BRONZE_PLATE
+        );
+
+        registerAlloySet(
+                ModItems.BRASS_INGOT,
+                ModItems.BRASS_DUST,
+                ModItems.BRASS_NUGGET,
+                ModItems.BRASS_PLATE
+        );
+
+        registerAlloySet(
+                ModItems.ELECTRUM_INGOT,
+                ModItems.ELECTRUM_DUST,
+                ModItems.ELECTRUM_NUGGET,
+                ModItems.ELECTRUM_PLATE
+        );
+
+        registerAlloySet(
+                ModItems.INVAR_INGOT,
+                ModItems.INVAR_DUST,
+                ModItems.INVAR_NUGGET,
+                ModItems.INVAR_PLATE
+        );
+
+        registerAlloySet(
+                ModItems.CONSTANTAN_INGOT,
+                ModItems.CONSTANTAN_DUST,
+                ModItems.CONSTANTAN_NUGGET,
+                ModItems.CONSTANTAN_PLATE
+        );
+
+        registerAlloySet(
+                ModItems.TITA_CHROME_INGOT,
+                ModItems.TITA_CHROME_DUST,
+                ModItems.TITA_CHROME_NUGGET,
+                ModItems.TITA_CHROME_PLATE
+        );
         basicItem(ModItems.COPPER_DUST.get());
         basicItem(ModItems.IRON_DUST.get());
         basicItem(ModItems.GOLD_DUST.get());
         basicItem(ModItems.DIAMOND_DUST.get());
+        basicItem(ModItems.COAL_DUST.get());
 
-        // Register models for nuggets
-        basicItem(ModItems.CHROMIUM_NUGGET.get());
-        basicItem(ModItems.TITANIUM_NUGGET.get());
-        basicItem(ModItems.TITA_CHROME_NUGGET.get());
-        basicItem(ModItems.STEEL_NUGGET.get());
-        basicItem(ModItems.BRONZE_NUGGET.get());
-        basicItem(ModItems.TIN_NUGGET.get());
-        basicItem(ModItems.BRASS_NUGGET.get());
-        basicItem(ModItems.ELECTRUM_NUGGET.get());
-        basicItem(ModItems.INVAR_NUGGET.get());
-        basicItem(ModItems.CONSTANTAN_NUGGET.get());
-        basicItem(ModItems.TUNGSTEN_NUGGET.get());
-        basicItem(ModItems.COBALT_NUGGET.get());
-        basicItem(ModItems.OSMIUM_NUGGET.get());
-        basicItem(ModItems.ZINC_NUGGET.get());
-        basicItem(ModItems.NICKEL_NUGGET.get());
-        basicItem(ModItems.SILVER_NUGGET.get());
+        basicItem(ModItems.COPPER_PLATE.get());
+        basicItem(ModItems.IRON_PLATE.get());
+        basicItem(ModItems.GOLD_PLATE.get());
 
         // Register models for raw ore
         basicItem(ModItems.RAW_CHROMIUM.get());
@@ -124,13 +194,21 @@ public class ModItemModelProvider extends ItemModelProvider {
         // Register models for misc items
         basicItem(ModItems.BIOMASS.get());
         basicItem(ModItems.BIOMASS_PELLET.get());
+        basicItem(ModItems.WIRE_CUTTER.get());
+        basicItem(ModItems.HAMMER.get());
 
         // Register models for machine items
         basicItem(ModItems.CIRCUIT_BOARD.get());
         basicItem(ModItems.ADVANCED_CIRCUIT_BOARD.get());
+        basicItem(ModItems.IRON_WIRE.get());
+        basicItem(ModItems.COPPER_WIRE.get());
         basicItem(ModItems.GOLD_WIRE.get());
         basicItem(ModItems.ELECTRUM_WIRE.get());
         basicItem(ModItems.EMPTY_SPOOL.get());
+        basicItem(ModItems.IRON_SPOOL.get());
+        basicItem(ModItems.COPPER_SPOOL.get());
+        basicItem(ModItems.GOLD_SPOOL.get());
+        basicItem(ModItems.ELECTRUM_SPOOL.get());
         basicItem(ModItems.EFFICIENCY_MODULE.get());
         basicItem(ModItems.SPEED_MODULE.get());
     }
@@ -227,5 +305,29 @@ public class ModItemModelProvider extends ItemModelProvider {
     public void blockItemFromBlockTexture(DeferredBlock<Block> block) {
         this.withExistingParent(block.getId().getPath(), mcLoc("item/generated"))
                 .texture("layer0", modLoc("block/" + block.getId().getPath()));
+    }
+
+    private void registerMetalSet(
+            DeferredItem<?> ingot,
+            DeferredItem<?> dust,
+            DeferredItem<?> nugget,
+            DeferredItem<?> plate
+    ) {
+        basicItem(ingot.get());
+        basicItem(dust.get());
+        basicItem(nugget.get());
+        basicItem(plate.get());
+    }
+
+    private void registerAlloySet(
+            DeferredItem<?> ingot,
+            DeferredItem<?> dust,
+            DeferredItem<?> nugget,
+            DeferredItem<?> plate
+    ) {
+        basicItem(ingot.get());
+        basicItem(dust.get());
+        basicItem(nugget.get());
+        basicItem(plate.get());
     }
 }

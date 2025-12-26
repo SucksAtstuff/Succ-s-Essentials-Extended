@@ -21,8 +21,8 @@ import net.succ.succsessentials_extended.block.custom.PulverizerBlock;
 import net.succ.succsessentials_extended.block.entity.ModBlockEntities;
 import net.succ.succsessentials_extended.block.entity.base.AbstractPoweredMachineBlockEntity;
 import net.succ.succsessentials_extended.recipe.ModRecipes;
-import net.succ.succsessentials_extended.recipe.PulverizingRecipe;
-import net.succ.succsessentials_extended.recipe.PulverizingRecipeInput;
+import net.succ.succsessentials_extended.recipe.pulverizing.PulverizingRecipe;
+import net.succ.succsessentials_extended.recipe.pulverizing.PulverizingRecipeInput;
 import net.succ.succsessentials_extended.screen.custom.PulverizerBlockMenu;
 import org.jetbrains.annotations.Nullable;
 

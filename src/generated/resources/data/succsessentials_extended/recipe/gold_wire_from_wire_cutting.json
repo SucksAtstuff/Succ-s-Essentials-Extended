@@ -1,0 +1,13 @@
+{
+  "type": "succsessentials_extended:wire_cutting",
+  "cutter": {
+    "tag": "c:tools/wire_cutters"
+  },
+  "input": {
+    "tag": "c:plates/gold"
+  },
+  "result": {
+    "count": 3,
+    "id": "succsessentials_extended:gold_wire"
+  }
+}

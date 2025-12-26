@@ -15,23 +15,21 @@ import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.item.crafting.SmeltingRecipe;
 import net.succ.succsessentials_extended.Succsessentials_extended;
 import net.succ.succsessentials_extended.block.ModBlocks;
-import net.succ.succsessentials_extended.compat.jei.category.AlloyForgingRecipeCategory;
-import net.succ.succsessentials_extended.compat.jei.category.ElectricFurnaceRecipeCategory;
-import net.succ.succsessentials_extended.compat.jei.category.InfusingRecipeCategory;
-import net.succ.succsessentials_extended.compat.jei.category.PulverizingRecipeCategory;
-import net.succ.succsessentials_extended.recipe.AlloyForgingRecipe;
-import net.succ.succsessentials_extended.recipe.InfusingRecipe;
+import net.succ.succsessentials_extended.compat.jei.category.*;
+import net.succ.succsessentials_extended.item.ModItems;
 import net.succ.succsessentials_extended.recipe.ModRecipes;
-import net.succ.succsessentials_extended.recipe.PulverizingRecipe;
-import net.succ.succsessentials_extended.screen.custom.AlloyForgerBlockScreen;
-import net.succ.succsessentials_extended.screen.custom.ElectricFurnaceBlockScreen;
-import net.succ.succsessentials_extended.screen.custom.InfuserBlockScreen;
-import net.succ.succsessentials_extended.screen.custom.PulverizerBlockScreen;
+import net.succ.succsessentials_extended.recipe.alloyforging.AlloyForgingRecipe;
+import net.succ.succsessentials_extended.recipe.hammering.HammerRecipe;
+import net.succ.succsessentials_extended.recipe.infusing.InfusingRecipe;
+import net.succ.succsessentials_extended.recipe.pulverizing.PulverizingRecipe;
+import net.succ.succsessentials_extended.recipe.wirecutting.WireCutterRecipe;
+import net.succ.succsessentials_extended.screen.custom.*;
 
 import java.util.List;
 
 @JeiPlugin
 public class JEISuccsEssentialsExtendedPlugin implements IModPlugin {
+
     @Override
     public ResourceLocation getPluginUid() {
         return ResourceLocation.fromNamespaceAndPath(
@@ -39,6 +37,10 @@ public class JEISuccsEssentialsExtendedPlugin implements IModPlugin {
                 "jei_plugin"
         );
     }
+
+    /* ============================================================
+     *                        CATEGORIES
+     * ============================================================ */
 
     @Override
     public void registerCategories(IRecipeCategoryRegistration registration) {
@@ -48,14 +50,22 @@ public class JEISuccsEssentialsExtendedPlugin implements IModPlugin {
                 new AlloyForgingRecipeCategory(guiHelper),
                 new InfusingRecipeCategory(guiHelper),
                 new PulverizingRecipeCategory(guiHelper),
-                new ElectricFurnaceRecipeCategory(guiHelper)
+                new ElectricFurnaceRecipeCategory(guiHelper),
 
+                // Hand processing
+                new HammeringCategory(guiHelper),
+                new WireCuttingCategory(guiHelper)
         );
     }
 
+    /* ============================================================
+     *                         RECIPES
+     * ============================================================ */
+
     @Override
     public void registerRecipes(IRecipeRegistration registration) {
-        RecipeManager recipeManager = Minecraft.getInstance().level.getRecipeManager();
+        RecipeManager recipeManager =
+                Minecraft.getInstance().level.getRecipeManager();
 
         List<AlloyForgingRecipe> alloyRecipes =
                 recipeManager.getAllRecipesFor(ModRecipes.ALLOY_FORGING_TYPE.get())
@@ -71,15 +81,29 @@ public class JEISuccsEssentialsExtendedPlugin implements IModPlugin {
 
         List<SmeltingRecipe> smeltingRecipes =
                 recipeManager.getAllRecipesFor(RecipeType.SMELTING)
-                        .stream()
-                        .map(RecipeHolder::value)
-                        .toList();
+                        .stream().map(RecipeHolder::value).toList();
+
+        List<HammerRecipe> hammeringRecipes =
+                recipeManager.getAllRecipesFor(ModRecipes.HAMMERING_TYPE.get())
+                        .stream().map(RecipeHolder::value).toList();
+
+        List<WireCutterRecipe> wireCuttingRecipes =
+                recipeManager.getAllRecipesFor(ModRecipes.WIRE_CUTTING_TYPE.get())
+                        .stream().map(RecipeHolder::value).toList();
 
         registration.addRecipes(AlloyForgingRecipeCategory.RECIPE_TYPE, alloyRecipes);
         registration.addRecipes(InfusingRecipeCategory.RECIPE_TYPE, infusingRecipes);
         registration.addRecipes(PulverizingRecipeCategory.RECIPE_TYPE, pulverizingRecipes);
         registration.addRecipes(ElectricFurnaceRecipeCategory.RECIPE_TYPE, smeltingRecipes);
+
+        // Hand processing
+        registration.addRecipes(HammeringCategory.RECIPE_TYPE, hammeringRecipes);
+        registration.addRecipes(WireCuttingCategory.RECIPE_TYPE, wireCuttingRecipes);
     }
+
+    /* ============================================================
+     *                       GUI CLICK AREAS
+     * ============================================================ */
 
     @Override
     public void registerGuiHandlers(IGuiHandlerRegistration registration) {
@@ -105,9 +129,12 @@ public class JEISuccsEssentialsExtendedPlugin implements IModPlugin {
                 ElectricFurnaceBlockScreen.class,
                 79, 34, 24, 16,
                 ElectricFurnaceRecipeCategory.RECIPE_TYPE
-
         );
     }
+
+    /* ============================================================
+     *                       CATALYSTS
+     * ============================================================ */
 
     @Override
     public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
@@ -130,6 +157,17 @@ public class JEISuccsEssentialsExtendedPlugin implements IModPlugin {
         registration.addRecipeCatalyst(
                 new ItemStack(ModBlocks.ELECTRIC_FURNACE.get()),
                 ElectricFurnaceRecipeCategory.RECIPE_TYPE
+        );
+
+        // Hand tools as catalysts (VERY recommended)
+        registration.addRecipeCatalyst(
+                new ItemStack(ModItems.HAMMER.get()),
+                HammeringCategory.RECIPE_TYPE
+        );
+
+        registration.addRecipeCatalyst(
+                new ItemStack(ModItems.WIRE_CUTTER.get()),
+                WireCuttingCategory.RECIPE_TYPE
         );
     }
 }

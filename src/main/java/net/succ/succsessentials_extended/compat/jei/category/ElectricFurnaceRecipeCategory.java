@@ -62,7 +62,7 @@ public class ElectricFurnaceRecipeCategory implements IRecipeCategory<SmeltingRe
 
     @Override
     public Component getTitle() {
-        return Component.translatable("block.succsessentials_extended.electric_furnace");
+        return Component.translatable("jei.succsessentials_extended.electric_smelting");
     }
 
     @Override

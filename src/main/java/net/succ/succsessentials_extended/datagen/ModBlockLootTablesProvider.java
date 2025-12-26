@@ -74,7 +74,7 @@ public class ModBlockLootTablesProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.PANEL_BLOCK.get());
 
         /* =====================================================================
-         *                           ORE DROPS
+         *                           STONE DROPS
          * ===================================================================== */
 
         // Chromium

@@ -1,8 +1,5 @@
 package net.succ.succsessentials_extended.datagen;
 
-import com.simibubi.create.AllRecipeTypes;
-import com.simibubi.create.content.processing.recipe.ProcessingOutput;
-import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
@@ -21,26 +18,57 @@ import net.neoforged.neoforge.common.conditions.IConditionBuilder;
 import net.succ.succsessentials_extended.Succsessentials_extended;
 import net.succ.succsessentials_extended.block.ModBlocks;
 import net.succ.succsessentials_extended.item.ModItems;
-import net.succ.succsessentials_extended.recipe.AlloyForgingRecipe;
-import net.succ.succsessentials_extended.recipe.InfusingRecipe;
-import net.succ.succsessentials_extended.recipe.PulverizingRecipe;
+import net.succ.succsessentials_extended.recipe.alloyforging.AlloyForgingRecipe;
+import net.succ.succsessentials_extended.recipe.hammering.HammerRecipe;
+import net.succ.succsessentials_extended.recipe.infusing.InfusingRecipe;
+import net.succ.succsessentials_extended.recipe.pulverizing.PulverizingRecipe;
+import net.succ.succsessentials_extended.recipe.wirecutting.WireCutterRecipe;
 import net.succ.succsessentials_extended.util.ModTags;
 import net.succ.succsessentials_extended.util.PulverizingSource;
-
-import com.simibubi.create.foundation.data.recipe.ProcessingRecipeGen;
-import com.simibubi.create.foundation.data.recipe.CrushingRecipeGen;
-
-
 
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
+import java.util.function.Supplier;
 
 public class ModRecipeProvider extends RecipeProvider implements IConditionBuilder {
 
     public ModRecipeProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
         super(output, registries);
     }
+
+
+    /* =====================================================================
+     *                          DATA RECORDS
+     * ===================================================================== */
+
+    /**
+     * Immutable data holder describing how an ore pulverizes.
+     * One entry produces BOTH stone and deepslate recipes.
+     */
+    private static record OrePulverizingData(
+            Supplier<? extends ItemLike> stoneOre,
+            Supplier<? extends ItemLike> deepslateOre,
+            Supplier<? extends ItemLike> dust,
+            int cookTime,
+            int energy
+    ) {}
+
+    /**
+     * Central table for all ore pulverizing recipes.
+     * Changing balance here updates both variants.
+     */
+    private static final OrePulverizingData[] ORE_PULVERIZING = {
+            new OrePulverizingData(ModBlocks.CHROMIUM_ORE, ModBlocks.DEEPSLATE_CHROMIUM_ORE, ModItems.CHROMIUM_DUST, 200, 20),
+            new OrePulverizingData(ModBlocks.TITANIUM_ORE, ModBlocks.DEEPSLATE_TITANIUM_ORE, ModItems.TITANIUM_DUST, 200, 20),
+            new OrePulverizingData(ModBlocks.TIN_ORE, ModBlocks.DEEPSLATE_TIN_ORE, ModItems.TIN_DUST, 200, 20),
+            new OrePulverizingData(ModBlocks.TUNGSTEN_ORE, ModBlocks.DEEPSLATE_TUNGSTEN_ORE, ModItems.TUNGSTEN_DUST, 240, 25),
+            new OrePulverizingData(ModBlocks.COBALT_ORE, ModBlocks.DEEPSLATE_COBALT_ORE, ModItems.COBALT_DUST, 200, 20),
+            new OrePulverizingData(ModBlocks.OSMIUM_ORE, ModBlocks.DEEPSLATE_OSMIUM_ORE, ModItems.OSMIUM_DUST, 200, 20),
+            new OrePulverizingData(ModBlocks.ZINC_ORE, ModBlocks.DEEPSLATE_ZINC_ORE, ModItems.ZINC_DUST, 180, 15),
+            new OrePulverizingData(ModBlocks.SILVER_ORE, ModBlocks.DEEPSLATE_SILVER_ORE, ModItems.SILVER_DUST, 180, 15),
+            new OrePulverizingData(ModBlocks.NICKEL_ORE, ModBlocks.DEEPSLATE_NICKEL_ORE, ModItems.NICKEL_DUST, 180, 15)
+    };
 
     @Override
     protected void buildRecipes(RecipeOutput recipeOutput){
@@ -189,7 +217,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 recipeOutput,
                 ModTags.Items.DUSTS_OSMIUM,
                 ModItems.SPEED_MODULE.get(),
-                ModTags.Items.WIRES_ELECTRUM,   // horizontal
+                ModTags.Items.WIRES_COPPER,   // horizontal
                 ModTags.Items.WIRES_GOLD      // vertical
         );
 
@@ -197,7 +225,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 recipeOutput,
                 ModTags.Items.DUSTS_GOLD,
                 ModItems.EFFICIENCY_MODULE.get(),
-                ModTags.Items.WIRES_ELECTRUM,   // horizontal
+                ModTags.Items.WIRES_COPPER,   // horizontal
                 ModTags.Items.WIRES_GOLD      // vertical
         );
 
@@ -387,108 +415,61 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
          *                           PULVERIZING
          * ===================================================================== */
 
-        /* ---------- ORES ---------- */
+        /* ---------- ORES (generated from data table) ---------- */
 
-        // Chromium
-        pulverizing(recipeOutput, ModTags.Items.ORES_CHROMIUM, ModItems.CHROMIUM_DUST,
-                Blocks.COBBLESTONE, 200, 20, PulverizingSource.ORE);
-        pulverizing(recipeOutput, ModTags.Items.DEEPSLATE_ORES_CHROMIUM, ModItems.CHROMIUM_DUST,
-                Blocks.DEEPSLATE, 200, 20, PulverizingSource.DEEPSLATE);
+        for (OrePulverizingData data : ORE_PULVERIZING) {
 
-        // Titanium
-        pulverizing(recipeOutput, ModTags.Items.ORES_TITANIUM, ModItems.TITANIUM_DUST,
-                Blocks.COBBLESTONE, 200, 20, PulverizingSource.ORE);
-        pulverizing(recipeOutput, ModTags.Items.DEEPSLATE_ORES_TITANIUM, ModItems.TITANIUM_DUST,
-                Blocks.DEEPSLATE, 200, 20, PulverizingSource.DEEPSLATE);
+            // Stone ore variant → cobblestone byproduct
+            pulverizing(
+                    recipeOutput,
+                    Ingredient.of(data.stoneOre().get().asItem()),
+                    data.dust().get(),
+                    Blocks.COBBLESTONE,
+                    data.cookTime(),
+                    data.energy(),
+                    PulverizingSource.STONE
+            );
 
-        // Tin
-        pulverizing(recipeOutput, ModTags.Items.ORES_TIN, ModItems.TIN_DUST,
-                Blocks.COBBLESTONE, 200, 20, PulverizingSource.ORE);
-        pulverizing(recipeOutput, ModTags.Items.DEEPSLATE_ORES_TIN, ModItems.TIN_DUST,
-                Blocks.DEEPSLATE, 200, 20, PulverizingSource.DEEPSLATE);
-
-        // Tungsten
-        pulverizing(recipeOutput, ModTags.Items.ORES_TUNGSTEN, ModItems.TUNGSTEN_DUST,
-                Blocks.COBBLESTONE, 240, 25, PulverizingSource.ORE);
-        pulverizing(recipeOutput, ModTags.Items.DEEPSLATE_ORES_TUNGSTEN, ModItems.TUNGSTEN_DUST,
-                Blocks.DEEPSLATE, 240, 25, PulverizingSource.DEEPSLATE);
-
-        // Cobalt
-        pulverizing(recipeOutput, ModTags.Items.ORES_COBALT, ModItems.COBALT_DUST,
-                Blocks.COBBLESTONE, 200, 20, PulverizingSource.ORE);
-        pulverizing(recipeOutput, ModTags.Items.DEEPSLATE_ORES_COBALT, ModItems.COBALT_DUST,
-                Blocks.DEEPSLATE, 200, 20, PulverizingSource.DEEPSLATE);
-
-        // Osmium
-        pulverizing(recipeOutput, ModTags.Items.ORES_OSMIUM, ModItems.OSMIUM_DUST,
-                Blocks.COBBLESTONE, 200, 20, PulverizingSource.ORE);
-        pulverizing(recipeOutput, ModTags.Items.DEEPSLATE_ORES_OSMIUM, ModItems.OSMIUM_DUST,
-                Blocks.DEEPSLATE, 200, 20, PulverizingSource.DEEPSLATE);
-
-        // Zinc
-        pulverizing(recipeOutput, ModTags.Items.ORES_ZINC, ModItems.ZINC_DUST,
-                Blocks.COBBLESTONE, 180, 15, PulverizingSource.ORE);
-        pulverizing(recipeOutput, ModTags.Items.DEEPSLATE_ORES_ZINC, ModItems.ZINC_DUST,
-                Blocks.DEEPSLATE, 180, 15, PulverizingSource.DEEPSLATE);
-
-        // Silver
-        pulverizing(recipeOutput, ModTags.Items.ORES_SILVER, ModItems.SILVER_DUST,
-                Blocks.COBBLESTONE, 180, 15, PulverizingSource.ORE);
-        pulverizing(recipeOutput, ModTags.Items.DEEPSLATE_ORES_SILVER, ModItems.SILVER_DUST,
-                Blocks.DEEPSLATE, 180, 15, PulverizingSource.DEEPSLATE);
-
-        // Nickel
-        pulverizing(recipeOutput, ModTags.Items.ORES_NICKEL, ModItems.NICKEL_DUST,
-                Blocks.COBBLESTONE, 180, 15, PulverizingSource.ORE);
-        pulverizing(recipeOutput, ModTags.Items.DEEPSLATE_ORES_NICKEL, ModItems.NICKEL_DUST,
-                Blocks.DEEPSLATE, 180, 15, PulverizingSource.DEEPSLATE);
+            // Deepslate ore variant → deepslate byproduct
+            pulverizing(
+                    recipeOutput,
+                    Ingredient.of(data.deepslateOre().get().asItem()),
+                    data.dust().get(),
+                    Blocks.COBBLED_DEEPSLATE,
+                    data.cookTime(),
+                    data.energy(),
+                    PulverizingSource.DEEPSLATE
+            );
+        }
 
         /* ---------- INGOTS ---------- */
 
-        pulverizing(recipeOutput, ModTags.Items.INGOTS_CHROMIUM, ModItems.CHROMIUM_DUST,
-                null, 80, 10, PulverizingSource.INGOT);
-        pulverizing(recipeOutput, ModTags.Items.INGOTS_TITANIUM, ModItems.TITANIUM_DUST,
-                null, 80, 10, PulverizingSource.INGOT);
-        pulverizing(recipeOutput, ModTags.Items.INGOTS_TIN, ModItems.TIN_DUST,
-                null, 80, 10, PulverizingSource.INGOT);
-        pulverizing(recipeOutput, ModTags.Items.INGOTS_TUNGSTEN, ModItems.TUNGSTEN_DUST,
-                null, 100, 15, PulverizingSource.INGOT);
-        pulverizing(recipeOutput, ModTags.Items.INGOTS_COBALT, ModItems.COBALT_DUST,
-                null, 80, 10, PulverizingSource.INGOT);
-        pulverizing(recipeOutput, ModTags.Items.INGOTS_OSMIUM, ModItems.OSMIUM_DUST,
-                null, 80, 10, PulverizingSource.INGOT);
-        pulverizing(recipeOutput, ModTags.Items.INGOTS_ZINC, ModItems.ZINC_DUST,
-                null, 60, 8, PulverizingSource.INGOT);
-        pulverizing(recipeOutput, ModTags.Items.INGOTS_SILVER, ModItems.SILVER_DUST,
-                null, 60, 8, PulverizingSource.INGOT);
-        pulverizing(recipeOutput, ModTags.Items.INGOTS_NICKEL, ModItems.NICKEL_DUST,
-                null, 60, 8, PulverizingSource.INGOT);
+        pulverizing(recipeOutput, Ingredient.of(ModTags.Items.INGOTS_CHROMIUM), ModItems.CHROMIUM_DUST, null, 80, 10, PulverizingSource.INGOT);
+        pulverizing(recipeOutput, Ingredient.of(ModTags.Items.INGOTS_TITANIUM), ModItems.TITANIUM_DUST, null, 80, 10, PulverizingSource.INGOT);
+        pulverizing(recipeOutput, Ingredient.of(ModTags.Items.INGOTS_TIN), ModItems.TIN_DUST, null, 80, 10, PulverizingSource.INGOT);
+        pulverizing(recipeOutput, Ingredient.of(ModTags.Items.INGOTS_TUNGSTEN), ModItems.TUNGSTEN_DUST, null, 100, 15, PulverizingSource.INGOT);
+        pulverizing(recipeOutput, Ingredient.of(ModTags.Items.INGOTS_COBALT), ModItems.COBALT_DUST, null, 80, 10, PulverizingSource.INGOT);
+        pulverizing(recipeOutput, Ingredient.of(ModTags.Items.INGOTS_OSMIUM), ModItems.OSMIUM_DUST, null, 80, 10, PulverizingSource.INGOT);
+        pulverizing(recipeOutput, Ingredient.of(ModTags.Items.INGOTS_ZINC), ModItems.ZINC_DUST, null, 60, 8, PulverizingSource.INGOT);
+        pulverizing(recipeOutput, Ingredient.of(ModTags.Items.INGOTS_SILVER), ModItems.SILVER_DUST, null, 60, 8, PulverizingSource.INGOT);
+        pulverizing(recipeOutput, Ingredient.of(ModTags.Items.INGOTS_NICKEL), ModItems.NICKEL_DUST, null, 60, 8, PulverizingSource.INGOT);
 
         /* ---------- ALLOY INGOTS ---------- */
 
-        pulverizing(recipeOutput, ModTags.Items.INGOTS_STEEL, ModItems.STEEL_DUST,
-                null, 100, 15, PulverizingSource.INGOT);
-        pulverizing(recipeOutput, ModTags.Items.INGOTS_BRONZE, ModItems.BRONZE_DUST,
-                null, 80, 10, PulverizingSource.INGOT);
-        pulverizing(recipeOutput, ModTags.Items.INGOTS_BRASS, ModItems.BRASS_DUST,
-                null, 80, 10, PulverizingSource.INGOT);
-        pulverizing(recipeOutput, ModTags.Items.INGOTS_ELECTRUM, ModItems.ELECTRUM_DUST,
-                null, 80, 10, PulverizingSource.INGOT);
-        pulverizing(recipeOutput, ModTags.Items.INGOTS_INVAR, ModItems.INVAR_DUST,
-                null, 100, 15, PulverizingSource.INGOT);
-        pulverizing(recipeOutput, ModTags.Items.INGOTS_CONSTANTAN, ModItems.CONSTANTAN_DUST,
-                null, 100, 15, PulverizingSource.INGOT);
-        pulverizing(recipeOutput, ModTags.Items.INGOTS_TITA_CHROME, ModItems.TITA_CHROME_DUST,
-                null, 120, 20, PulverizingSource.INGOT);
-
-
+        pulverizing(recipeOutput, Ingredient.of(ModTags.Items.INGOTS_STEEL), ModItems.STEEL_DUST, null, 100, 15, PulverizingSource.INGOT);
+        pulverizing(recipeOutput, Ingredient.of(ModTags.Items.INGOTS_BRONZE), ModItems.BRONZE_DUST, null, 80, 10, PulverizingSource.INGOT);
+        pulverizing(recipeOutput, Ingredient.of(ModTags.Items.INGOTS_BRASS), ModItems.BRASS_DUST, null, 80, 10, PulverizingSource.INGOT);
+        pulverizing(recipeOutput, Ingredient.of(ModTags.Items.INGOTS_ELECTRUM), ModItems.ELECTRUM_DUST, null, 80, 10, PulverizingSource.INGOT);
+        pulverizing(recipeOutput, Ingredient.of(ModTags.Items.INGOTS_INVAR), ModItems.INVAR_DUST, null, 100, 15, PulverizingSource.INGOT);
+        pulverizing(recipeOutput, Ingredient.of(ModTags.Items.INGOTS_CONSTANTAN), ModItems.CONSTANTAN_DUST, null, 100, 15, PulverizingSource.INGOT);
+        pulverizing(recipeOutput, Ingredient.of(ModTags.Items.INGOTS_TITA_CHROME), ModItems.TITA_CHROME_DUST, null, 120, 20, PulverizingSource.INGOT);
 
         /* ---------- MISC ---------- */
 
-        pulverizing(recipeOutput, ItemTags.COALS, ModItems.COAL_DUST,
-                null, 80, 10, PulverizingSource.COAL);
+        pulverizing(recipeOutput, Ingredient.of(ItemTags.COALS), ModItems.COAL_DUST, null, 80, 10, PulverizingSource.COAL);
 
         compostableBiomassPulverizing(recipeOutput, 60, 8);
+        basicMetalProcessing(recipeOutput);
     }
 
     /* =====================================================================
@@ -647,13 +628,38 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             ItemLike result,
             ItemLike byproduct,
             int cookTime,
-            int energyPerTick,
-            PulverizingSource source
+            int energyPerTick
     ) {
 
+        // ------------------------------------------------------------
+        // Build the byproduct stack (or empty if you pass null)
+        // ------------------------------------------------------------
         ItemStack byproductStack =
                 byproduct == null ? ItemStack.EMPTY : new ItemStack(byproduct);
 
+        // ------------------------------------------------------------
+        // Infer the source from the byproduct item you pass.
+        //
+        // Rule:
+        // - If you pass DEEPSLATE (or COBBLED_DEEPSLATE), treat as "deepslate"
+        // - Otherwise, treat as "stone"
+        //
+        // This lets you use ONE ore tag (stone + deepslate),
+        // and only differ recipes by the byproduct you pass.
+        // ------------------------------------------------------------
+        PulverizingSource inferredSource;
+
+        if (byproduct != null
+                && (byproduct.asItem() == Blocks.DEEPSLATE.asItem()
+                || byproduct.asItem() == Blocks.COBBLED_DEEPSLATE.asItem())) {
+            inferredSource = PulverizingSource.DEEPSLATE;
+        } else {
+            inferredSource = PulverizingSource.STONE;
+        }
+
+        // ------------------------------------------------------------
+        // Create the recipe object
+        // ------------------------------------------------------------
         PulverizingRecipe recipe =
                 new PulverizingRecipe(
                         Ingredient.of(input),
@@ -663,6 +669,55 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                         energyPerTick
                 );
 
+        // ------------------------------------------------------------
+        // Register with an ID that includes the inferred source
+        // ------------------------------------------------------------
+        recipeOutput.accept(
+                ResourceLocation.fromNamespaceAndPath(
+                        Succsessentials_extended.MOD_ID,
+                        getItemName(result)
+                                + "_from_pulverizing_"
+                                + inferredSource.id()
+                ),
+                recipe,
+                null
+        );
+    }
+
+
+    protected static void pulverizing(
+            RecipeOutput recipeOutput,
+            Ingredient input,
+            ItemLike result,
+            ItemLike byproduct,
+            int cookTime,
+            int energyPerTick,
+            PulverizingSource source
+    ) {
+
+        // ------------------------------------------------------------
+        // Build the byproduct stack.
+        // If no byproduct is supplied, use an empty stack.
+        // ------------------------------------------------------------
+        ItemStack byproductStack =
+                byproduct == null ? ItemStack.EMPTY : new ItemStack(byproduct);
+
+        // ------------------------------------------------------------
+        // Create the pulverizing recipe definition
+        // ------------------------------------------------------------
+        PulverizingRecipe recipe =
+                new PulverizingRecipe(
+                        input,
+                        new ItemStack(result),
+                        byproductStack,
+                        cookTime,
+                        energyPerTick
+                );
+
+        // ------------------------------------------------------------
+        // Register the recipe using a deterministic ID
+        // based on output item + source type
+        // ------------------------------------------------------------
         recipeOutput.accept(
                 ResourceLocation.fromNamespaceAndPath(
                         Succsessentials_extended.MOD_ID,
@@ -674,6 +729,10 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 null
         );
     }
+
+
+
+
 
     protected void compostableBiomassPulverizing(
             RecipeOutput recipeOutput,
@@ -776,5 +835,86 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 );
     }
 
+    protected static void hammering(
+            RecipeOutput recipeOutput,
+            TagKey<Item> input,          // ingot tag
+            ItemLike result,             // plate
+            int resultCount,
+            int durabilityCost
+    ) {
 
+        HammerRecipe recipe =
+                new HammerRecipe(
+                        Ingredient.of(input),
+                        Ingredient.of(ModTags.Items.HAMMERS),
+                        new ItemStack(result, resultCount),
+                        durabilityCost
+                );
+
+        recipeOutput.accept(
+                ResourceLocation.fromNamespaceAndPath(
+                        Succsessentials_extended.MOD_ID,
+                        getItemName(result) + "_from_hammering"
+                ),
+                recipe,
+                null
+        );
+    }
+
+    protected static void wireCutting(
+            RecipeOutput recipeOutput,
+            TagKey<Item> input,          // plate tag
+            ItemLike result,             // wire
+            int resultCount,
+            int durabilityCost
+    ) {
+
+        WireCutterRecipe recipe =
+                new WireCutterRecipe(
+                        Ingredient.of(input),
+                        Ingredient.of(ModTags.Items.WIRE_CUTTERS),
+                        new ItemStack(result, resultCount),
+                        durabilityCost
+                );
+
+        recipeOutput.accept(
+                ResourceLocation.fromNamespaceAndPath(
+                        Succsessentials_extended.MOD_ID,
+                        getItemName(result) + "_from_wire_cutting"
+                ),
+                recipe,
+                null
+        );
+    }
+
+    private static void basicMetalProcessing(RecipeOutput recipeOutput) {
+
+        hammering(recipeOutput, ModTags.Items.INGOTS_IRON, ModItems.IRON_PLATE.get(), 1, 1);
+        wireCutting(recipeOutput, ModTags.Items.PLATES_IRON, ModItems.IRON_WIRE.get(), 2, 1);
+
+        hammering(recipeOutput, ModTags.Items.INGOTS_COPPER, ModItems.COPPER_PLATE.get(), 1, 1);
+        wireCutting(recipeOutput, ModTags.Items.PLATES_COPPER, ModItems.COPPER_WIRE.get(), 2, 1);
+
+        hammering(recipeOutput, ModTags.Items.INGOTS_GOLD, ModItems.GOLD_PLATE.get(), 1, 1);
+        wireCutting(recipeOutput, ModTags.Items.PLATES_GOLD, ModItems.GOLD_WIRE.get(), 3, 1);
+
+        hammering(recipeOutput, ModTags.Items.INGOTS_ELECTRUM, ModItems.ELECTRUM_PLATE.get(), 1, 1);
+        wireCutting(recipeOutput, ModTags.Items.PLATES_ELECTRUM, ModItems.ELECTRUM_WIRE.get(), 3, 1);
+
+        hammering(recipeOutput, ModTags.Items.INGOTS_CHROMIUM, ModItems.CHROMIUM_PLATE.get(), 1, 1);
+        hammering(recipeOutput, ModTags.Items.INGOTS_TITANIUM, ModItems.TITANIUM_PLATE.get(), 1, 1);
+        hammering(recipeOutput, ModTags.Items.INGOTS_TIN, ModItems.TIN_PLATE.get(), 1, 1);
+        hammering(recipeOutput, ModTags.Items.INGOTS_TUNGSTEN, ModItems.TUNGSTEN_PLATE.get(), 1, 1);
+        hammering(recipeOutput, ModTags.Items.INGOTS_COBALT, ModItems.COBALT_PLATE.get(), 1, 1);
+        hammering(recipeOutput, ModTags.Items.INGOTS_OSMIUM, ModItems.OSMIUM_PLATE.get(), 1, 1);
+        hammering(recipeOutput, ModTags.Items.INGOTS_ZINC, ModItems.ZINC_PLATE.get(), 1, 1);
+        hammering(recipeOutput, ModTags.Items.INGOTS_SILVER, ModItems.SILVER_PLATE.get(), 1, 1);
+        hammering(recipeOutput, ModTags.Items.INGOTS_NICKEL, ModItems.NICKEL_PLATE.get(), 1, 1);
+        hammering(recipeOutput, ModTags.Items.INGOTS_STEEL, ModItems.STEEL_PLATE.get(), 1, 1);
+        hammering(recipeOutput, ModTags.Items.INGOTS_BRONZE, ModItems.BRONZE_PLATE.get(), 1, 1);
+        hammering(recipeOutput, ModTags.Items.INGOTS_BRASS, ModItems.BRASS_PLATE.get(), 1, 1);
+        hammering(recipeOutput, ModTags.Items.INGOTS_INVAR, ModItems.INVAR_PLATE.get(), 1, 1);
+        hammering(recipeOutput, ModTags.Items.INGOTS_CONSTANTAN, ModItems.CONSTANTAN_PLATE.get(), 1, 1);
+        hammering(recipeOutput, ModTags.Items.INGOTS_TITA_CHROME, ModItems.TITA_CHROME_PLATE.get(), 1, 1);
+    }
 }

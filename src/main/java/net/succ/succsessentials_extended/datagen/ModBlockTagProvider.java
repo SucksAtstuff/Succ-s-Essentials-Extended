@@ -102,89 +102,85 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         /* ===================================================== */
         /*                  TOOL REQUIREMENTS                    */
         /* ===================================================== */
+        tag(BlockTags.NEEDS_IRON_TOOL)
+                .add(ModBlocks.BRONZE_BLOCK.get())
+                .add(ModBlocks.BRASS_BLOCK.get())
+                .add(ModBlocks.TIN_ORE.get())
+                .add(ModBlocks.DEEPSLATE_TIN_ORE.get())
+                .add(ModBlocks.ZINC_ORE.get())
+                .add(ModBlocks.DEEPSLATE_ZINC_ORE.get())
+                .add(ModBlocks.SILVER_ORE.get())
+                .add(ModBlocks.DEEPSLATE_SILVER_ORE.get())
+                .add(ModBlocks.NICKEL_ORE.get())
+                .add(ModBlocks.DEEPSLATE_NICKEL_ORE.get());
 
-        // External mod — DO NOT TOUCH
-        tag(net.succ.succsmod.util.ModTags.Blocks.NEEDS_ATHERIUM_TOOL)
-                .add(ModBlocks.CHROMIUM_ORE.get())
-                .add(ModBlocks.DEEPSLATE_CHROMIUM_ORE.get())
+        tag(BlockTags.NEEDS_DIAMOND_TOOL)
+                .add(ModBlocks.STEEL_BLOCK.get())
+                .add(ModBlocks.INVAR_BLOCK.get())
+                .add(ModBlocks.CONSTANTAN_BLOCK.get())
+                .add(ModBlocks.ELECTRUM_BLOCK.get())
+                .add(ModBlocks.COBALT_ORE.get())
+                .add(ModBlocks.DEEPSLATE_COBALT_ORE.get())
+                .add(ModBlocks.OSMIUM_ORE.get())
+                .add(ModBlocks.DEEPSLATE_OSMIUM_ORE.get())
                 .add(ModBlocks.TITANIUM_ORE.get())
                 .add(ModBlocks.DEEPSLATE_TITANIUM_ORE.get());
 
-        // Your mod
-        tag(ModTags.Blocks.NEEDS_CHROMIUM_TOOL);
+        tag(Tags.Blocks.NEEDS_NETHERITE_TOOL)
+                .add(ModBlocks.TUNGSTEN_ORE.get())
+                .add(ModBlocks.DEEPSLATE_TUNGSTEN_ORE.get());
 
-        tag(BlockTags.NEEDS_DIAMOND_TOOL);
-        tag(BlockTags.NEEDS_IRON_TOOL)
-                .add(ModBlocks.TIN_ORE.get())
-                .add(ModBlocks.DEEPSLATE_TIN_ORE.get());
+        tag(net.succ.succsmod.util.ModTags.Blocks.NEEDS_ATHERIUM_TOOL)
+                .add(ModBlocks.CHROMIUM_ORE.get())
+                .add(ModBlocks.DEEPSLATE_CHROMIUM_ORE.get());
 
-        tag(Tags.Blocks.NEEDS_NETHERITE_TOOL);
+        tag(ModTags.Blocks.NEEDS_CHROMIUM_TOOL)
+                .add(ModBlocks.TITA_CHROME_BLOCK.get());
+
 
         /* ===================================================== */
         /*              INCORRECT TOOL ENFORCEMENT               */
         /* ===================================================== */
 
+        // Diamond tools cannot mine Netherite-tier blocks
         tag(BlockTags.INCORRECT_FOR_DIAMOND_TOOL)
-                .addTag(Tags.Blocks.NEEDS_NETHERITE_TOOL);
-
-        tag(BlockTags.INCORRECT_FOR_GOLD_TOOL)
                 .addTag(Tags.Blocks.NEEDS_NETHERITE_TOOL)
-                .addTag(BlockTags.NEEDS_DIAMOND_TOOL);
+                .addTag(net.succ.succsmod.util.ModTags.Blocks.NEEDS_ATHERIUM_TOOL);
 
+        // Iron tools cannot mine Diamond+ blocks
         tag(BlockTags.INCORRECT_FOR_IRON_TOOL)
+                .addTag(BlockTags.NEEDS_DIAMOND_TOOL)
                 .addTag(Tags.Blocks.NEEDS_NETHERITE_TOOL)
-                .addTag(BlockTags.NEEDS_DIAMOND_TOOL);
+                .addTag(net.succ.succsmod.util.ModTags.Blocks.NEEDS_ATHERIUM_TOOL);
 
+        // Stone tools cannot mine Iron+ blocks
         tag(BlockTags.INCORRECT_FOR_STONE_TOOL)
+                .addTag(BlockTags.NEEDS_IRON_TOOL)
+                .addTag(BlockTags.NEEDS_DIAMOND_TOOL)
                 .addTag(Tags.Blocks.NEEDS_NETHERITE_TOOL)
-                .addTag(BlockTags.NEEDS_DIAMOND_TOOL);
+                .addTag(net.succ.succsmod.util.ModTags.Blocks.NEEDS_ATHERIUM_TOOL);
 
+        // Wooden tools cannot mine Stone+ blocks
         tag(BlockTags.INCORRECT_FOR_WOODEN_TOOL)
+                .addTag(BlockTags.NEEDS_IRON_TOOL)
+                .addTag(BlockTags.NEEDS_DIAMOND_TOOL)
                 .addTag(Tags.Blocks.NEEDS_NETHERITE_TOOL)
-                .addTag(BlockTags.NEEDS_DIAMOND_TOOL);
+                .addTag(net.succ.succsmod.util.ModTags.Blocks.NEEDS_ATHERIUM_TOOL);
 
-        tag(BlockTags.INCORRECT_FOR_NETHERITE_TOOL);
-        tag(ModTags.Blocks.INCORRECT_FOR_CHROMIUM_TOOL);
+        // Gold tools are worse than Iron
+        tag(BlockTags.INCORRECT_FOR_GOLD_TOOL)
+                .addTag(BlockTags.NEEDS_IRON_TOOL)
+                .addTag(BlockTags.NEEDS_DIAMOND_TOOL)
+                .addTag(Tags.Blocks.NEEDS_NETHERITE_TOOL)
+                .addTag(net.succ.succsmod.util.ModTags.Blocks.NEEDS_ATHERIUM_TOOL);
+
+        // Netherite tools still cannot mine Atherium-gated blocks
+        tag(BlockTags.INCORRECT_FOR_NETHERITE_TOOL)
+                .addTag(net.succ.succsmod.util.ModTags.Blocks.NEEDS_ATHERIUM_TOOL);
 
         /* ===================================================== */
         /*                   ROOT C: BLOCK TAGS                  */
         /* ===================================================== */
-
-        tag(ModTags.Blocks.ORES)
-                .addTag(ModTags.Blocks.ORES_CHROMIUM)
-                .addTag(ModTags.Blocks.ORES_TITANIUM)
-                .addTag(ModTags.Blocks.ORES_TIN)
-                .addTag(ModTags.Blocks.ORES_TUNGSTEN)
-                .addTag(ModTags.Blocks.ORES_COBALT)
-                .addTag(ModTags.Blocks.ORES_OSMIUM)
-                .addTag(ModTags.Blocks.ORES_ZINC)
-                .addTag(ModTags.Blocks.ORES_SILVER)
-                .addTag(ModTags.Blocks.ORES_NICKEL);
-
-        tag(ModTags.Blocks.STORAGE_BLOCKS)
-                .addTag(ModTags.Blocks.STORAGE_IRON)
-                .addTag(ModTags.Blocks.STORAGE_GOLD)
-                .addTag(ModTags.Blocks.STORAGE_COPPER)
-                .addTag(ModTags.Blocks.STORAGE_TIN)
-                .addTag(ModTags.Blocks.STORAGE_CHROMIUM)
-                .addTag(ModTags.Blocks.STORAGE_TITANIUM)
-                .addTag(ModTags.Blocks.STORAGE_STEEL)
-                .addTag(ModTags.Blocks.STORAGE_BRONZE)
-                .addTag(ModTags.Blocks.STORAGE_BRASS)
-                .addTag(ModTags.Blocks.STORAGE_ELECTRUM)
-                .addTag(ModTags.Blocks.STORAGE_INVAR)
-                .addTag(ModTags.Blocks.STORAGE_CONSTANTAN)
-                .addTag(ModTags.Blocks.STORAGE_ZINC)
-                .addTag(ModTags.Blocks.STORAGE_OSMIUM)
-                .addTag(ModTags.Blocks.STORAGE_URANIUM)
-                .addTag(ModTags.Blocks.STORAGE_ALUMINUM)
-                .addTag(ModTags.Blocks.STORAGE_NICKEL)
-                .addTag(ModTags.Blocks.STORAGE_SILVER)
-                .addTag(ModTags.Blocks.STORAGE_LEAD)
-                .addTag(ModTags.Blocks.STORAGE_BLOCKS_TITA_CHROME)
-                .addTag(ModTags.Blocks.STORAGE_TUNGSTEN)
-                .addTag(ModTags.Blocks.STORAGE_COBALT);
-
         tag(ModTags.Blocks.ORES_CHROMIUM)
                 .add(ModBlocks.CHROMIUM_ORE.get())
                 .add(ModBlocks.DEEPSLATE_CHROMIUM_ORE.get());
@@ -216,44 +212,45 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         tag(ModTags.Blocks.ORES_ALUMINUM);
         tag(ModTags.Blocks.ORES_URANIUM);
 
-
-        tag(ModTags.Blocks.STORAGE_CHROMIUM)
-                .add(ModBlocks.CHROMIUM_BLOCK.get());
-        tag(ModTags.Blocks.STORAGE_TITANIUM)
-                .add(ModBlocks.TITANIUM_BLOCK.get());
-        tag(ModTags.Blocks.STORAGE_TIN)
-                .add(ModBlocks.TIN_BLOCK.get());
-        tag(ModTags.Blocks.STORAGE_TUNGSTEN)
-                .add(ModBlocks.TUNGSTEN_BLOCK.get());
-        tag(ModTags.Blocks.STORAGE_COBALT)
-                .add(ModBlocks.COBALT_BLOCK.get());
-        tag(ModTags.Blocks.STORAGE_OSMIUM)
-                .add(ModBlocks.OSMIUM_BLOCK.get());
-        tag(ModTags.Blocks.STORAGE_ZINC)
-                .add(ModBlocks.ZINC_BLOCK.get());
+        tag(ModTags.Blocks.STORAGE_CHROMIUM).add(ModBlocks.CHROMIUM_BLOCK.get());
+        tag(ModTags.Blocks.STORAGE_TITANIUM).add(ModBlocks.TITANIUM_BLOCK.get());
+        tag(ModTags.Blocks.STORAGE_TIN).add(ModBlocks.TIN_BLOCK.get());
+        tag(ModTags.Blocks.STORAGE_TUNGSTEN).add(ModBlocks.TUNGSTEN_BLOCK.get());
+        tag(ModTags.Blocks.STORAGE_COBALT).add(ModBlocks.COBALT_BLOCK.get());
+        tag(ModTags.Blocks.STORAGE_OSMIUM).add(ModBlocks.OSMIUM_BLOCK.get());
+        tag(ModTags.Blocks.STORAGE_ZINC).add(ModBlocks.ZINC_BLOCK.get());
         tag(ModTags.Blocks.STORAGE_ALUMINUM);
         tag(ModTags.Blocks.STORAGE_URANIUM);
-        tag(ModTags.Blocks.STORAGE_STEEL)
-                .add(ModBlocks.STEEL_BLOCK.get());
-        tag(ModTags.Blocks.STORAGE_BRONZE)
-                .add(ModBlocks.BRONZE_BLOCK.get());
-        tag(ModTags.Blocks.STORAGE_BRASS)
-                .add(ModBlocks.BRASS_BLOCK.get());
-        tag(ModTags.Blocks.STORAGE_ELECTRUM)
-                .add(ModBlocks.ELECTRUM_BLOCK.get());
-        tag(ModTags.Blocks.STORAGE_INVAR)
-                .add(ModBlocks.INVAR_BLOCK.get());
-        tag(ModTags.Blocks.STORAGE_CONSTANTAN)
-                .add(ModBlocks.CONSTANTAN_BLOCK.get());
-        tag(ModTags.Blocks.STORAGE_BLOCKS_TITA_CHROME)
-                .add(ModBlocks.TITA_CHROME_BLOCK.get());
+        tag(ModTags.Blocks.STORAGE_STEEL).add(ModBlocks.STEEL_BLOCK.get());
+        tag(ModTags.Blocks.STORAGE_BRONZE).add(ModBlocks.BRONZE_BLOCK.get());
+        tag(ModTags.Blocks.STORAGE_BRASS).add(ModBlocks.BRASS_BLOCK.get());
+        tag(ModTags.Blocks.STORAGE_ELECTRUM).add(ModBlocks.ELECTRUM_BLOCK.get());
+        tag(ModTags.Blocks.STORAGE_INVAR).add(ModBlocks.INVAR_BLOCK.get());
+        tag(ModTags.Blocks.STORAGE_CONSTANTAN).add(ModBlocks.CONSTANTAN_BLOCK.get());
+        tag(ModTags.Blocks.STORAGE_BLOCKS_TITA_CHROME).add(ModBlocks.TITA_CHROME_BLOCK.get());
         tag(ModTags.Blocks.STORAGE_LEAD);
-        tag(ModTags.Blocks.STORAGE_SILVER)
-                .add(ModBlocks.SILVER_BLOCK.get())
-                .add(ModBlocks.RAW_SILVER_BLOCK.get());
-        tag(ModTags.Blocks.STORAGE_NICKEL)
-                .add(ModBlocks.NICKEL_BLOCK.get())
-                .add(ModBlocks.RAW_NICKEL_BLOCK.get());
+        tag(ModTags.Blocks.STORAGE_SILVER).add(ModBlocks.SILVER_BLOCK.get());
+        tag(ModTags.Blocks.STORAGE_NICKEL).add(ModBlocks.NICKEL_BLOCK.get());
+
+        tag(ModTags.Blocks.STORAGE_RAW_CHROMIUM).add(ModBlocks.RAW_CHROMIUM_BLOCK.get());
+
+        tag(ModTags.Blocks.STORAGE_RAW_TITANIUM).add(ModBlocks.RAW_TITANIUM_BLOCK.get());
+
+        tag(ModTags.Blocks.STORAGE_RAW_TIN).add(ModBlocks.RAW_TIN_BLOCK.get());
+
+        tag(ModTags.Blocks.STORAGE_RAW_TUNGSTEN).add(ModBlocks.RAW_TUNGSTEN_BLOCK.get());
+
+        tag(ModTags.Blocks.STORAGE_RAW_COBALT).add(ModBlocks.RAW_COBALT_BLOCK.get());
+
+        tag(ModTags.Blocks.STORAGE_RAW_OSMIUM).add(ModBlocks.RAW_OSMIUM_BLOCK.get());
+
+        tag(ModTags.Blocks.STORAGE_RAW_ZINC).add(ModBlocks.RAW_ZINC_BLOCK.get());
+
+        tag(ModTags.Blocks.STORAGE_RAW_SILVER).add(ModBlocks.RAW_SILVER_BLOCK.get());
+
+        tag(ModTags.Blocks.STORAGE_RAW_NICKEL).add(ModBlocks.RAW_NICKEL_BLOCK.get());
+
+
 
     }
 

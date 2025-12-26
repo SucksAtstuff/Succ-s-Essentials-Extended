@@ -7,6 +7,11 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.succ.succsessentials_extended.Succsessentials_extended;
+import net.succ.succsessentials_extended.recipe.alloyforging.AlloyForgingRecipe;
+import net.succ.succsessentials_extended.recipe.hammering.HammerRecipe;
+import net.succ.succsessentials_extended.recipe.infusing.InfusingRecipe;
+import net.succ.succsessentials_extended.recipe.pulverizing.PulverizingRecipe;
+import net.succ.succsessentials_extended.recipe.wirecutting.WireCutterRecipe;
 
 public class ModRecipes {
     public static final DeferredRegister<RecipeSerializer<?>> SERIALIZERS =
@@ -41,6 +46,26 @@ public class ModRecipes {
                 @Override
                 public String toString() {
                     return "pulverizing";
+                }
+            });
+
+    public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<HammerRecipe>> HAMMERING_SERIALIZER =
+            SERIALIZERS.register("hammering", HammerRecipe.Serializer::new);
+    public static final DeferredHolder<RecipeType<?>, RecipeType<HammerRecipe>> HAMMERING_TYPE =
+            TYPES.register("hammering", () -> new RecipeType<HammerRecipe>() {
+                @Override
+                public String toString() {
+                    return "hammering";
+                }
+            });
+
+    public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<WireCutterRecipe>> WIRE_CUTTING_SERIALIZER =
+            SERIALIZERS.register("wire_cutting", WireCutterRecipe.Serializer::new);
+    public static final DeferredHolder<RecipeType<?>, RecipeType<WireCutterRecipe>> WIRE_CUTTING_TYPE =
+            TYPES.register("wire_cutting", () -> new RecipeType<WireCutterRecipe>() {
+                @Override
+                public String toString() {
+                    return "wire_cutting";
                 }
             });
 

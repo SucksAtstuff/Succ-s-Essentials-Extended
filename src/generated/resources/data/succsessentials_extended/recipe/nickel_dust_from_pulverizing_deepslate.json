@@ -2,12 +2,12 @@
   "type": "succsessentials_extended:pulverizing",
   "byproduct": {
     "count": 1,
-    "id": "minecraft:deepslate"
+    "id": "minecraft:cobbled_deepslate"
   },
   "cook_time": 180,
   "energy_per_tick": 15,
   "input": {
-    "tag": "c:ores/nickel/deepslate"
+    "item": "succsessentials_extended:deepslate_nickel_ore"
   },
   "result": {
     "count": 1,

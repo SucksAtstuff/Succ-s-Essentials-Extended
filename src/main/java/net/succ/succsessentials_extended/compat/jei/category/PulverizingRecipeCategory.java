@@ -17,7 +17,7 @@ import net.succ.succsessentials_extended.block.ModBlocks;
 import net.succ.succsessentials_extended.compat.jei.layout.JeiRenderHelper;
 import net.succ.succsessentials_extended.compat.jei.layout.MachineLayout;
 import net.succ.succsessentials_extended.compat.jei.layout.MachineLayouts;
-import net.succ.succsessentials_extended.recipe.PulverizingRecipe;
+import net.succ.succsessentials_extended.recipe.pulverizing.PulverizingRecipe;
 import org.jetbrains.annotations.Nullable;
 
 public class PulverizingRecipeCategory implements IRecipeCategory<PulverizingRecipe> {
@@ -56,7 +56,7 @@ public class PulverizingRecipeCategory implements IRecipeCategory<PulverizingRec
 
     @Override
     public Component getTitle() {
-        return Component.translatable("block.succsessentials_extended.pulverizer");
+        return Component.translatable("jei.succsessentials_extended.pulverizing");
     }
 
     @Override

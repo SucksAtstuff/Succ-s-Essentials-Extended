@@ -17,7 +17,7 @@ import net.succ.succsessentials_extended.block.ModBlocks;
 import net.succ.succsessentials_extended.compat.jei.layout.JeiRenderHelper;
 import net.succ.succsessentials_extended.compat.jei.layout.MachineLayout;
 import net.succ.succsessentials_extended.compat.jei.layout.MachineLayouts;
-import net.succ.succsessentials_extended.recipe.InfusingRecipe;
+import net.succ.succsessentials_extended.recipe.infusing.InfusingRecipe;
 import org.jetbrains.annotations.Nullable;
 
 public class InfusingRecipeCategory implements IRecipeCategory<InfusingRecipe> {
@@ -56,7 +56,7 @@ public class InfusingRecipeCategory implements IRecipeCategory<InfusingRecipe> {
 
     @Override
     public Component getTitle() {
-        return Component.translatable("block.succsessentials_extended.infuser");
+        return Component.translatable("jei.succsessentials_extended.infusing");
     }
 
     @Override

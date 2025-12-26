@@ -111,16 +111,49 @@ public class ModCreativeModeTabs {
                                 output.accept(ModItems.DIAMOND_DUST);
 
                                 /* ===================================================== */
+                                /*                          PLATES                       */
+                                /* ===================================================== */
+
+                                output.accept(ModItems.COPPER_PLATE);
+                                output.accept(ModItems.IRON_PLATE);
+                                output.accept(ModItems.GOLD_PLATE);
+                                output.accept(ModItems.CHROMIUM_PLATE);
+                                output.accept(ModItems.TITANIUM_PLATE);
+                                output.accept(ModItems.TIN_PLATE);
+                                output.accept(ModItems.TUNGSTEN_PLATE);
+                                output.accept(ModItems.COBALT_PLATE);
+                                output.accept(ModItems.OSMIUM_PLATE);
+                                output.accept(ModItems.ZINC_PLATE);
+                                output.accept(ModItems.SILVER_PLATE);
+                                output.accept(ModItems.NICKEL_PLATE);
+
+                                output.accept(ModItems.STEEL_PLATE);
+                                output.accept(ModItems.BRONZE_PLATE);
+                                output.accept(ModItems.BRASS_PLATE);
+                                output.accept(ModItems.ELECTRUM_PLATE);
+                                output.accept(ModItems.INVAR_PLATE);
+                                output.accept(ModItems.CONSTANTAN_PLATE);
+                                output.accept(ModItems.TITA_CHROME_PLATE);
+
+                                /* ===================================================== */
                                 /*                        MACHINE ITEMS                  */
                                 /* ===================================================== */
 
                                 output.accept(ModItems.CIRCUIT_BOARD);
                                 output.accept(ModItems.ADVANCED_CIRCUIT_BOARD);
+                                output.accept(ModItems.COPPER_WIRE);
+                                output.accept(ModItems.IRON_WIRE);
                                 output.accept(ModItems.GOLD_WIRE);
                                 output.accept(ModItems.ELECTRUM_WIRE);
                                 output.accept(ModItems.EMPTY_SPOOL);
+                                output.accept(ModItems.COPPER_SPOOL);
+                                output.accept(ModItems.IRON_SPOOL);
+                                output.accept(ModItems.GOLD_SPOOL);
+                                output.accept(ModItems.ELECTRUM_SPOOL);
                                 output.accept(ModItems.SPEED_MODULE);
                                 output.accept(ModItems.EFFICIENCY_MODULE);
+                                output.accept(ModItems.HAMMER);
+                                output.accept(ModItems.WIRE_CUTTER);
 
                                 /* ===================================================== */
                                 /*                          ORES                          */

@@ -1,6 +1,14 @@
 {
   "values": [
+    "succsessentials_extended:block_of_bronze",
+    "succsessentials_extended:block_of_brass",
     "succsessentials_extended:tin_ore",
-    "succsessentials_extended:deepslate_tin_ore"
+    "succsessentials_extended:deepslate_tin_ore",
+    "succsessentials_extended:zinc_ore",
+    "succsessentials_extended:deepslate_zinc_ore",
+    "succsessentials_extended:silver_ore",
+    "succsessentials_extended:deepslate_silver_ore",
+    "succsessentials_extended:nickel_ore",
+    "succsessentials_extended:deepslate_nickel_ore"
   ]
 }

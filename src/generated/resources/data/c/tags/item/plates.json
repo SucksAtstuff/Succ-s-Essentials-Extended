@@ -1,3 +1,23 @@
 {
-  "values": []
+  "values": [
+    "#c:plates/copper",
+    "#c:plates/iron",
+    "#c:plates/gold",
+    "#c:plates/chromium",
+    "#c:plates/titanium",
+    "#c:plates/tin",
+    "#c:plates/tungsten",
+    "#c:plates/cobalt",
+    "#c:plates/osmium",
+    "#c:plates/zinc",
+    "#c:plates/silver",
+    "#c:plates/nickel",
+    "#c:plates/steel",
+    "#c:plates/bronze",
+    "#c:plates/brass",
+    "#c:plates/electrum",
+    "#c:plates/invar",
+    "#c:plates/constantan",
+    "#c:plates/tita_chrome"
+  ]
 }
