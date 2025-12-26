@@ -16,41 +16,41 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.succ.succsessentials_extended.Succsessentials_extended;
 import net.succ.succsessentials_extended.item.ModItems;
-import net.succ.succsessentials_extended.recipe.wirecutting.WireCutterRecipe;
+import net.succ.succsessentials_extended.recipe.hammering.HammerRecipe;
 import net.succ.succsessentials_extended.util.ModTags;
 import org.jetbrains.annotations.Nullable;
 
-public class WireCuttingCategory implements IRecipeCategory<WireCutterRecipe> {
+public class HammeringRecipeCategory implements IRecipeCategory<HammerRecipe> {
 
-    public static final RecipeType<WireCutterRecipe> RECIPE_TYPE =
+    public static final RecipeType<HammerRecipe> RECIPE_TYPE =
             new RecipeType<>(
                     ResourceLocation.fromNamespaceAndPath(
                             Succsessentials_extended.MOD_ID,
-                            "wire_cutting"
+                            "hammering"
                     ),
-                    WireCutterRecipe.class
+                    HammerRecipe.class
             );
 
     private final IDrawable background;
     private final IDrawable icon;
 
-    public WireCuttingCategory(IGuiHelper helper) {
+    public HammeringRecipeCategory(IGuiHelper helper) {
         background = helper.createBlankDrawable(150, 50);
 
         icon = helper.createDrawableIngredient(
                 VanillaTypes.ITEM_STACK,
-                new ItemStack(ModItems.WIRE_CUTTER.get())
+                new ItemStack(ModItems.HAMMER.get())
         );
     }
 
     @Override
-    public RecipeType<WireCutterRecipe> getRecipeType() {
+    public RecipeType<HammerRecipe> getRecipeType() {
         return RECIPE_TYPE;
     }
 
     @Override
     public Component getTitle() {
-        return Component.translatable("jei.succsessentials_extended.wire_cutting");
+        return Component.translatable("jei.succsessentials_extended.hammering");
     }
 
     @Override
@@ -66,25 +66,25 @@ public class WireCuttingCategory implements IRecipeCategory<WireCutterRecipe> {
     @Override
     public void setRecipe(
             IRecipeLayoutBuilder builder,
-            WireCutterRecipe recipe,
+            HammerRecipe recipe,
             IFocusGroup focuses
     ) {
-        // Input plate
+        // Input ingot
         builder.addSlot(RecipeIngredientRole.INPUT, 20, 18)
                 .addIngredients(recipe.input());
 
-        // Wire cutter tool
+        // Hammer tool (tag-based)
         builder.addSlot(RecipeIngredientRole.INPUT, 50, 18)
-                .addIngredients(Ingredient.of(ModTags.Items.WIRE_CUTTERS));
+                .addIngredients(Ingredient.of(ModTags.Items.HAMMERS));
 
-        // Output wire
-        builder.addSlot(mezz.jei.api.recipe.RecipeIngredientRole.OUTPUT, 110, 18)
+        // Output plate
+        builder.addSlot(RecipeIngredientRole.OUTPUT, 110, 18)
                 .addItemStack(recipe.output());
     }
 
     @Override
     public void draw(
-            WireCutterRecipe recipe,
+            HammerRecipe recipe,
             IRecipeSlotsView slots,
             GuiGraphics graphics,
             double mouseX,

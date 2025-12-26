@@ -69,6 +69,8 @@ public class ModBlockLootTablesProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.PULVERIZER.get());
         dropSelf(ModBlocks.ELECTRIC_FURNACE.get());
         dropSelf(ModBlocks.INFUSER.get());
+        dropSelf(ModBlocks.WIRE_DRAWER.get());
+        dropSelf(ModBlocks.ROLLING_MILL.get());
         dropSelf(ModBlocks.COAL_GENERATOR.get());
         dropSelf(ModBlocks.BIO_FUEL_GENERATOR.get());
         dropSelf(ModBlocks.PANEL_BLOCK.get());

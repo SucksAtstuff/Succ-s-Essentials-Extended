@@ -62,4 +62,30 @@ public final class MachineLayouts {
                     -1, -1,   // no byproduct
                     11, 11    // energy bar
             );
+
+
+    /**
+     * ROLLING MILL
+     */
+    public static final MachineLayout ROLLING_MILL =
+            new MachineLayout(
+                    56, 35,   // input
+                    -1, -1,   // no secondary input
+                    116, 35,  // output
+                    -1, -1,   // no byproduct
+                    11, 11    // energy bar
+            );
+
+    /**
+     * WIRE DRAWER
+     */
+    public static final MachineLayout WIRE_DRAWER =
+            new MachineLayout(
+                    56, 35,   // input
+                    -1, -1,   // no secondary input
+                    116, 35,  // output
+                    -1, -1,   // no byproduct
+                    11, 11    // energy bar
+            );
+
 }

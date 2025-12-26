@@ -30,19 +30,6 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
 
-/**
- * ============================================================
- * AlloyForgerBlockEntity
- *
- * Uses AbstractPoweredMachineBlockEntity to inherit:
- *  - Energy storage
- *  - Progress ticking
- *  - Energy consumption
- *  - NBT save/load for machine data
- *
- * Only contains logic UNIQUE to alloy forging.
- * ============================================================
- */
 public class AlloyForgerBlockEntity extends AbstractPoweredMachineBlockEntity
         implements MenuProvider {
 
@@ -86,7 +73,6 @@ public class AlloyForgerBlockEntity extends AbstractPoweredMachineBlockEntity
                     : stack;
         }
     };
-
 
     /* ================= DATA SYNC ================= */
 
@@ -133,9 +119,13 @@ public class AlloyForgerBlockEntity extends AbstractPoweredMachineBlockEntity
 
         AlloyForgingRecipe value = recipe.get().value();
 
-        // Pull dynamic values from the recipe
-        maxProgress = value.cookTime();
-        energyPerTick = value.energyPerTick();
+        // ============================================================
+        // IMPORTANT: Store BASE recipe values (before upgrades),
+        // then apply your upgrade math in one place.
+        // ============================================================
+        baseMaxProgress = value.cookTime();
+        baseEnergyPerTick = value.energyPerTick();
+        recalculateUpgrades();
 
         // Ensure output slot can accept the FULL result stack
         return canOutputResult(itemHandler, OUTPUT, value.output());
@@ -182,8 +172,6 @@ public class AlloyForgerBlockEntity extends AbstractPoweredMachineBlockEntity
         // This bypasses slot validation and includes overflow protection
         outputResult(itemHandler, OUTPUT, result);
     }
-
-
 
     private boolean canInsertIntoOutput(ItemStack stack) {
         ItemStack output = itemHandler.getStackInSlot(OUTPUT);

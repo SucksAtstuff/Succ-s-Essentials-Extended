@@ -23,6 +23,8 @@ public class BioFuelGeneratorScreen extends AbstractContainerScreen<BioFuelGener
 
     public BioFuelGeneratorScreen(BioFuelGeneratorMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
+
+        this.imageHeight = 198;
     }
 
     @Override

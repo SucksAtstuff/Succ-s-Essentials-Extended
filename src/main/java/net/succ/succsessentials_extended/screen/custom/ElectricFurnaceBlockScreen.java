@@ -8,19 +8,33 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.succ.succsessentials_extended.Succsessentials_extended;
+import net.succ.succsessentials_extended.api.screen.BaseUpgradeableMachineScreen;
 import net.succ.succsessentials_extended.screen.renderer.EnergyDisplayTooltipArea;
 import net.succ.succsessentials_extended.util.MouseUtil;
 
+import java.util.List;
 import java.util.Optional;
 
 public class ElectricFurnaceBlockScreen
-        extends AbstractContainerScreen<ElectricFurnaceBlockMenu> {
+        extends BaseUpgradeableMachineScreen<ElectricFurnaceBlockMenu> {
 
     private static final ResourceLocation GUI_TEXTURE =
             ResourceLocation.fromNamespaceAndPath(
                     Succsessentials_extended.MOD_ID,
                     "textures/gui/container/electric_furnace.png"
             );
+
+    /* ================= UPGRADE SLOTS (GUI-RELATIVE) ================= */
+
+    private static final int UPGRADE_SPEED_X = 8;
+    private static final int UPGRADE_SPEED_Y = 175;
+
+    private static final int UPGRADE_EFF_X = 26;
+    private static final int UPGRADE_EFF_Y = 175;
+
+    private static final int SLOT_SIZE = 18;
+    private static final int TOOLTIP_Y_OFFSET = 40;
+
 
     /* ================= ENERGY BAR ================= */
 
@@ -30,6 +44,8 @@ public class ElectricFurnaceBlockScreen
                                       Inventory inv,
                                       Component title) {
         super(menu, inv, title);
+
+        this.imageHeight = 198;
     }
 
     @Override
@@ -96,15 +112,28 @@ public class ElectricFurnaceBlockScreen
     /* ================= LABELS ================= */
 
     @Override
-    protected void renderLabels(GuiGraphics guiGraphics,
-                                int mouseX,
-                                int mouseY) {
-
+    protected void renderLabels(
+            GuiGraphics guiGraphics,
+            int mouseX,
+            int mouseY
+    ) {
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
 
-        renderEnergyAreaTooltip(guiGraphics, mouseX, mouseY, x, y);
+        // energy tooltip (unchanged)
+        if (MouseUtil.isMouseOver(mouseX, mouseY, x + 11, y + 11, 8, 64)) {
+            guiGraphics.renderTooltip(
+                    this.font,
+                    energyInfoArea.getTooltips(),
+                    Optional.empty(),
+                    mouseX - x,
+                    mouseY - y
+            );
+        }
+
+        renderUpgradeTooltips(guiGraphics, mouseX, mouseY);
     }
+
 
     /* ================= BACKGROUND ================= */
 
@@ -124,7 +153,7 @@ public class ElectricFurnaceBlockScreen
         // Base GUI
         guiGraphics.blit(GUI_TEXTURE, x, y, 0, 0, imageWidth, imageHeight);
 
-        // ✅ Energy bar (identical to Alloy Forger)
+        // Energy bar (identical to Alloy Forger)
         energyInfoArea.render(guiGraphics);
 
         // Furnace progress arrow

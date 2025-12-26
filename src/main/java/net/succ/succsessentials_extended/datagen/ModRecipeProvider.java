@@ -22,7 +22,9 @@ import net.succ.succsessentials_extended.recipe.alloyforging.AlloyForgingRecipe;
 import net.succ.succsessentials_extended.recipe.hammering.HammerRecipe;
 import net.succ.succsessentials_extended.recipe.infusing.InfusingRecipe;
 import net.succ.succsessentials_extended.recipe.pulverizing.PulverizingRecipe;
+import net.succ.succsessentials_extended.recipe.rollingmill.RollingMillRecipe;
 import net.succ.succsessentials_extended.recipe.wirecutting.WireCutterRecipe;
+import net.succ.succsessentials_extended.recipe.wiredrawing.WireDrawingRecipe;
 import net.succ.succsessentials_extended.util.ModTags;
 import net.succ.succsessentials_extended.util.PulverizingSource;
 
@@ -887,6 +889,65 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         );
     }
 
+    protected static void wireDrawing(
+            RecipeOutput recipeOutput,
+            TagKey<Item> input,
+            ItemLike result,
+            int resultCount,
+            int cookTime,
+            int energyPerTick
+    ) {
+
+        WireDrawingRecipe recipe =
+                new WireDrawingRecipe(
+                        Ingredient.of(input),
+                        1, // inputCount: 1 plate
+                        new ItemStack(result, resultCount),
+                        cookTime,
+                        energyPerTick
+                );
+
+        recipeOutput.accept(
+                ResourceLocation.fromNamespaceAndPath(
+                        Succsessentials_extended.MOD_ID,
+                        getItemName(result) + "_from_wire_drawing"
+                ),
+                recipe,
+                null
+        );
+    }
+
+
+    protected static void rollingMill(
+            RecipeOutput recipeOutput,
+            TagKey<Item> input,      // ingot tag
+            ItemLike result,         // plate
+            int resultCount,
+            int cookTime,
+            int energyPerTick
+    ) {
+
+        RollingMillRecipe recipe =
+                new RollingMillRecipe(
+                        Ingredient.of(input),
+                        1, // inputCount: 1 ingot
+                        new ItemStack(result, resultCount),
+                        cookTime,
+                        energyPerTick
+                );
+
+        recipeOutput.accept(
+                ResourceLocation.fromNamespaceAndPath(
+                        Succsessentials_extended.MOD_ID,
+                        getItemName(result) + "_from_rolling_mill"
+                ),
+                recipe,
+                null
+        );
+    }
+
+
+
     private static void basicMetalProcessing(RecipeOutput recipeOutput) {
 
         hammering(recipeOutput, ModTags.Items.INGOTS_IRON, ModItems.IRON_PLATE.get(), 1, 1);
@@ -916,5 +977,27 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         hammering(recipeOutput, ModTags.Items.INGOTS_INVAR, ModItems.INVAR_PLATE.get(), 1, 1);
         hammering(recipeOutput, ModTags.Items.INGOTS_CONSTANTAN, ModItems.CONSTANTAN_PLATE.get(), 1, 1);
         hammering(recipeOutput, ModTags.Items.INGOTS_TITA_CHROME, ModItems.TITA_CHROME_PLATE.get(), 1, 1);
+
+
+        rollingMill(recipeOutput, ModTags.Items.INGOTS_IRON, ModItems.IRON_PLATE.get(), 1, 80, 20);
+        rollingMill(recipeOutput, ModTags.Items.INGOTS_COPPER, ModItems.COPPER_PLATE.get(), 1, 80, 20);
+        rollingMill(recipeOutput, ModTags.Items.INGOTS_GOLD, ModItems.GOLD_PLATE.get(), 1, 80, 20);
+        rollingMill(recipeOutput, ModTags.Items.INGOTS_ELECTRUM, ModItems.ELECTRUM_PLATE.get(), 1, 80, 20);
+
+        rollingMill(recipeOutput, ModTags.Items.INGOTS_CHROMIUM, ModItems.CHROMIUM_PLATE.get(), 1, 100, 25);
+        rollingMill(recipeOutput, ModTags.Items.INGOTS_TITANIUM, ModItems.TITANIUM_PLATE.get(), 1, 100, 25);
+        rollingMill(recipeOutput, ModTags.Items.INGOTS_TUNGSTEN, ModItems.TUNGSTEN_PLATE.get(), 1, 120, 30);
+
+        rollingMill(recipeOutput, ModTags.Items.INGOTS_STEEL, ModItems.STEEL_PLATE.get(), 1, 100, 25);
+        rollingMill(recipeOutput, ModTags.Items.INGOTS_BRONZE, ModItems.BRONZE_PLATE.get(), 1, 80, 20);
+        rollingMill(recipeOutput, ModTags.Items.INGOTS_BRASS, ModItems.BRASS_PLATE.get(), 1, 80, 20);
+        rollingMill(recipeOutput, ModTags.Items.INGOTS_INVAR, ModItems.INVAR_PLATE.get(), 1, 100, 25);
+        rollingMill(recipeOutput, ModTags.Items.INGOTS_CONSTANTAN, ModItems.CONSTANTAN_PLATE.get(), 1, 100, 25);
+        rollingMill(recipeOutput, ModTags.Items.INGOTS_TITA_CHROME, ModItems.TITA_CHROME_PLATE.get(), 1, 120, 30);
+
+        wireDrawing(recipeOutput, ModTags.Items.PLATES_IRON, ModItems.IRON_WIRE.get(), 2, 60, 15);
+        wireDrawing(recipeOutput, ModTags.Items.PLATES_COPPER, ModItems.COPPER_WIRE.get(), 2, 60, 15);
+        wireDrawing(recipeOutput, ModTags.Items.PLATES_GOLD, ModItems.GOLD_WIRE.get(), 3, 60, 15);
+        wireDrawing(recipeOutput, ModTags.Items.PLATES_ELECTRUM, ModItems.ELECTRUM_WIRE.get(), 3, 60, 15);
     }
 }

@@ -16,6 +16,8 @@ import net.succ.succsessentials_extended.effect.ModEffects;
 import net.succ.succsessentials_extended.entity.ModEntities;
 import net.succ.succsessentials_extended.item.ModCreativeModeTabs;
 import net.succ.succsessentials_extended.item.ModItems;
+import net.succ.succsessentials_extended.painting.ModPaintings;
+import net.succ.succsessentials_extended.painting.PaintingInfo;
 import net.succ.succsessentials_extended.potion.ModPotions;
 
 import java.util.List;
@@ -130,6 +132,24 @@ public class ModLangProvider extends LanguageProvider {
         addJeiCategory("infusing", "Infusing");
         addJeiCategory("hammering", "Hammering");
         addJeiCategory("wire_cutting", "Wire Cutting");
+        addJeiCategory("wire_drawing", "Wire Drawing");
+        addJeiCategory("rolling_mill", "Rolling Mill");
+
+        // ======================================================================
+        // 11. AUTOMATIC PAINTINGS
+        // ======================================================================
+        for (PaintingInfo info : ModPaintings.PAINTING_INFOS) {
+
+            String baseKey =
+                    "painting." + Succsessentials_extended.MOD_ID + "." + info.id();
+
+            // Painting title
+            add(baseKey + ".title", info.title());
+
+            // Painting author
+            add(baseKey + ".author", info.author());
+        }
+
     }
 
     /**

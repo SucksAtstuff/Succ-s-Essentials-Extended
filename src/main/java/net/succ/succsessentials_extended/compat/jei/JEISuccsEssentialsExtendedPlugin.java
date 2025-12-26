@@ -22,7 +22,9 @@ import net.succ.succsessentials_extended.recipe.alloyforging.AlloyForgingRecipe;
 import net.succ.succsessentials_extended.recipe.hammering.HammerRecipe;
 import net.succ.succsessentials_extended.recipe.infusing.InfusingRecipe;
 import net.succ.succsessentials_extended.recipe.pulverizing.PulverizingRecipe;
+import net.succ.succsessentials_extended.recipe.rollingmill.RollingMillRecipe;
 import net.succ.succsessentials_extended.recipe.wirecutting.WireCutterRecipe;
+import net.succ.succsessentials_extended.recipe.wiredrawing.WireDrawingRecipe;
 import net.succ.succsessentials_extended.screen.custom.*;
 
 import java.util.List;
@@ -51,10 +53,12 @@ public class JEISuccsEssentialsExtendedPlugin implements IModPlugin {
                 new InfusingRecipeCategory(guiHelper),
                 new PulverizingRecipeCategory(guiHelper),
                 new ElectricFurnaceRecipeCategory(guiHelper),
+                new RollingMillRecipeCategory(guiHelper),
+                new WireDrawingRecipeCategory(guiHelper),
 
                 // Hand processing
-                new HammeringCategory(guiHelper),
-                new WireCuttingCategory(guiHelper)
+                new HammeringRecipeCategory(guiHelper),
+                new WireCuttingRecipeCategory(guiHelper)
         );
     }
 
@@ -91,14 +95,24 @@ public class JEISuccsEssentialsExtendedPlugin implements IModPlugin {
                 recipeManager.getAllRecipesFor(ModRecipes.WIRE_CUTTING_TYPE.get())
                         .stream().map(RecipeHolder::value).toList();
 
+        List<RollingMillRecipe> rollingMillRecipes =
+                recipeManager.getAllRecipesFor(ModRecipes.ROLLING_MILL_TYPE.get())
+                        .stream().map(RecipeHolder::value).toList();
+
+        List<WireDrawingRecipe> wireDrawingRecipes =
+                recipeManager.getAllRecipesFor(ModRecipes.WIRE_DRAWING_TYPE.get())
+                        .stream().map(RecipeHolder::value).toList();
+
         registration.addRecipes(AlloyForgingRecipeCategory.RECIPE_TYPE, alloyRecipes);
         registration.addRecipes(InfusingRecipeCategory.RECIPE_TYPE, infusingRecipes);
         registration.addRecipes(PulverizingRecipeCategory.RECIPE_TYPE, pulverizingRecipes);
         registration.addRecipes(ElectricFurnaceRecipeCategory.RECIPE_TYPE, smeltingRecipes);
+        registration.addRecipes(RollingMillRecipeCategory.RECIPE_TYPE, rollingMillRecipes);
+        registration.addRecipes(WireDrawingRecipeCategory.RECIPE_TYPE, wireDrawingRecipes);
 
         // Hand processing
-        registration.addRecipes(HammeringCategory.RECIPE_TYPE, hammeringRecipes);
-        registration.addRecipes(WireCuttingCategory.RECIPE_TYPE, wireCuttingRecipes);
+        registration.addRecipes(HammeringRecipeCategory.RECIPE_TYPE, hammeringRecipes);
+        registration.addRecipes(WireCuttingRecipeCategory.RECIPE_TYPE, wireCuttingRecipes);
     }
 
     /* ============================================================
@@ -107,6 +121,7 @@ public class JEISuccsEssentialsExtendedPlugin implements IModPlugin {
 
     @Override
     public void registerGuiHandlers(IGuiHandlerRegistration registration) {
+
         registration.addRecipeClickArea(
                 AlloyForgerBlockScreen.class,
                 79, 34, 24, 16,
@@ -130,7 +145,20 @@ public class JEISuccsEssentialsExtendedPlugin implements IModPlugin {
                 79, 34, 24, 16,
                 ElectricFurnaceRecipeCategory.RECIPE_TYPE
         );
+
+        registration.addRecipeClickArea(
+                RollingMillBlockScreen.class,
+                79, 34, 24, 16,
+                RollingMillRecipeCategory.RECIPE_TYPE
+        );
+
+        registration.addRecipeClickArea(
+                WireDrawerBlockScreen.class,
+                79, 34, 24, 16,
+                WireDrawingRecipeCategory.RECIPE_TYPE
+        );
     }
+
 
     /* ============================================================
      *                       CATALYSTS
@@ -159,15 +187,26 @@ public class JEISuccsEssentialsExtendedPlugin implements IModPlugin {
                 ElectricFurnaceRecipeCategory.RECIPE_TYPE
         );
 
-        // Hand tools as catalysts (VERY recommended)
+        registration.addRecipeCatalyst(
+                new ItemStack(ModBlocks.ROLLING_MILL.get()),
+                RollingMillRecipeCategory.RECIPE_TYPE
+        );
+
+        registration.addRecipeCatalyst(
+                new ItemStack(ModBlocks.WIRE_DRAWER.get()),
+                WireDrawingRecipeCategory.RECIPE_TYPE
+        );
+
+        // Hand tools
         registration.addRecipeCatalyst(
                 new ItemStack(ModItems.HAMMER.get()),
-                HammeringCategory.RECIPE_TYPE
+                HammeringRecipeCategory.RECIPE_TYPE
         );
 
         registration.addRecipeCatalyst(
                 new ItemStack(ModItems.WIRE_CUTTER.get()),
-                WireCuttingCategory.RECIPE_TYPE
+                WireCuttingRecipeCategory.RECIPE_TYPE
         );
     }
+
 }

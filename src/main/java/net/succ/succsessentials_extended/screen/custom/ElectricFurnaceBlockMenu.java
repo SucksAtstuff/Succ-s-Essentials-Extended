@@ -8,11 +8,14 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.neoforged.neoforge.items.SlotItemHandler;
+import net.succ.succsessentials_extended.api.machine.UpgradeableMachine;
+import net.succ.succsessentials_extended.api.screen.BaseUpgradeableMachineMenu;
 import net.succ.succsessentials_extended.block.ModBlocks;
 import net.succ.succsessentials_extended.block.entity.custom.ElectricFurnaceBlockEntity;
 import net.succ.succsessentials_extended.screen.ModMenuTypes;
 
-public class ElectricFurnaceBlockMenu extends AbstractContainerMenu {
+public class ElectricFurnaceBlockMenu
+        extends BaseUpgradeableMachineMenu {
 
     /* ================= FIELDS ================= */
     public final ElectricFurnaceBlockEntity blockEntity;
@@ -40,7 +43,12 @@ public class ElectricFurnaceBlockMenu extends AbstractContainerMenu {
 
 
     public ElectricFurnaceBlockMenu(int id, Inventory inv, BlockEntity entity, ContainerData data) {
-        super(ModMenuTypes.ELECTRIC_FURNACE_MENU.get(), id);
+        super(
+                ModMenuTypes.ELECTRIC_FURNACE_MENU.get(),
+                id,
+                inv,
+                (UpgradeableMachine) entity
+        );
 
         this.blockEntity = (ElectricFurnaceBlockEntity) entity;
         this.level = inv.player.level();
@@ -146,7 +154,7 @@ public class ElectricFurnaceBlockMenu extends AbstractContainerMenu {
 
     /* ================= PLAYER INVENTORY HELPERS ================= */
 
-    private void addPlayerInventory(Inventory inv) {
+    protected void addPlayerInventory(Inventory inv) {
         for (int r = 0; r < 3; r++) {
             for (int c = 0; c < 9; c++) {
                 this.addSlot(new Slot(inv, c + r * 9 + 9, 8 + c * 18, 84 + r * 18));
@@ -154,7 +162,7 @@ public class ElectricFurnaceBlockMenu extends AbstractContainerMenu {
         }
     }
 
-    private void addPlayerHotbar(Inventory inv) {
+    protected void addPlayerHotbar(Inventory inv) {
         for (int c = 0; c < 9; c++) {
             this.addSlot(new Slot(inv, c, 8 + c * 18, 142));
         }

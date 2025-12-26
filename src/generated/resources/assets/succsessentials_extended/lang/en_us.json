@@ -44,10 +44,12 @@
   "block.succsessentials_extended.raw_titanium_block": "Raw Titanium Block",
   "block.succsessentials_extended.raw_tungsten_block": "Raw Tungsten Block",
   "block.succsessentials_extended.raw_zinc_block": "Raw Zinc Block",
+  "block.succsessentials_extended.rolling_mill": "Rolling Mill",
   "block.succsessentials_extended.silver_ore": "Silver Ore",
   "block.succsessentials_extended.tin_ore": "Tin Ore",
   "block.succsessentials_extended.titanium_ore": "Titanium Ore",
   "block.succsessentials_extended.tungsten_ore": "Tungsten Ore",
+  "block.succsessentials_extended.wire_drawer": "Wire Drawer",
   "block.succsessentials_extended.zinc_ore": "Zinc Ore",
   "creativetab.succsessentials_extended": "Succ's Essentials Extended",
   "item.succsessentials_extended.advanced_circuit_board": "Advanced Circuit Board",
@@ -165,5 +167,9 @@
   "jei.succsessentials_extended.hammering": "Hammering",
   "jei.succsessentials_extended.infusing": "Infusing",
   "jei.succsessentials_extended.pulverizing": "Pulverizing",
-  "jei.succsessentials_extended.wire_cutting": "Wire Cutting"
+  "jei.succsessentials_extended.rolling_mill": "Rolling Mill",
+  "jei.succsessentials_extended.wire_cutting": "Wire Cutting",
+  "jei.succsessentials_extended.wire_drawing": "Wire Drawing",
+  "painting.succsessentials_extended.developer.author": "IsuckAtEverything",
+  "painting.succsessentials_extended.developer.title": "Developer"
 }

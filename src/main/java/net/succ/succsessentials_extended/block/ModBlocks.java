@@ -178,6 +178,10 @@ public class ModBlocks {
             () -> new ElectricFurnaceBlock(BlockBehaviour.Properties.of().strength(3f).requiresCorrectToolForDrops(), MachineTier.BASIC));
     public static final DeferredBlock<Block> INFUSER = registerMachineBlock("infuser",
             () -> new InfuserBlock(BlockBehaviour.Properties.of().strength(3f).requiresCorrectToolForDrops(), MachineTier.BASIC));
+    public static final DeferredBlock<Block> WIRE_DRAWER = registerMachineBlock("wire_drawer",
+            () -> new WireDrawerBlock(BlockBehaviour.Properties.of().strength(3f).requiresCorrectToolForDrops(), MachineTier.BASIC));
+    public static final DeferredBlock<Block> ROLLING_MILL = registerMachineBlock("rolling_mill",
+            () -> new RollingMillBlock(BlockBehaviour.Properties.of().strength(3f).requiresCorrectToolForDrops(), MachineTier.BASIC));
     public static final DeferredBlock<Block> COAL_GENERATOR = registerMachineBlock("coal_generator",
             () -> new CoalGeneratorBlock(BlockBehaviour.Properties.of().strength(3f).requiresCorrectToolForDrops(), MachineTier.BASIC, CoalGeneratorBlockEntity.POWER_GENERATION_RATE));
     public static final DeferredBlock<Block> BIO_FUEL_GENERATOR = registerMachineBlock("bio_fuel_generator",

@@ -23,6 +23,7 @@ import net.succ.succsessentials_extended.entity.ModEntities;
 import net.succ.succsessentials_extended.item.ModCreativeModeTabs;
 import net.succ.succsessentials_extended.item.ModItems;
 import net.succ.succsessentials_extended.loot.ModLootModifiers;
+import net.succ.succsessentials_extended.painting.ModPaintings;
 import net.succ.succsessentials_extended.potion.ModPotions;
 import net.succ.succsessentials_extended.recipe.ModRecipes;
 import net.succ.succsessentials_extended.screen.ModMenuTypes;
@@ -75,6 +76,9 @@ public class Succsessentials_extended {
 
         ModCreativeModeTabs.register(modEventBus);
 
+        ModPaintings.PAINTINGS.register(modEventBus);
+
+
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
 
@@ -121,7 +125,8 @@ public class Succsessentials_extended {
             event.register(ModMenuTypes.INFUSER_MENU.get(), InfuserBlockScreen::new);
             event.register(ModMenuTypes.PULVERIZER_MENU.get(), PulverizerBlockScreen::new);
             event.register(ModMenuTypes.BIO_FUEL_GENERATOR_MENU.get(), BioFuelGeneratorScreen::new);
-
+            event.register(ModMenuTypes.WIRE_DRAWER_MENU.get(), WireDrawerBlockScreen::new);
+            event.register(ModMenuTypes.ROLLING_MILL_MENU.get(), RollingMillBlockScreen::new);
         }
 
     }

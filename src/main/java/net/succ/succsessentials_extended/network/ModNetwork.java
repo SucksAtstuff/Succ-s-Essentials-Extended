@@ -15,14 +15,19 @@ public class ModNetwork {
     @SubscribeEvent
     public static void registerPayloadHandlers(RegisterPayloadHandlersEvent event) {
 
+
     }
+
+    public static void sendToServer(CustomPacketPayload payload) {
+    }
+
 
     // helper method for sending packets to the client
     public static void sendToClient(CustomPacketPayload payload, ServerPlayer player) {
         PacketDistributor.sendToPlayer(player, payload);
     }
 
-    // helper for syncing cooldowns
+    // helper for syncing cooldowns (unchanged)
     public static void sendCooldownToClient(ServerPlayer player, Item item, int ticks) {
 
     }

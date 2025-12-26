@@ -28,6 +28,10 @@ public class ModBusEvents {
 
         event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK, ModBlockEntities.PULVERIZER_BE.get(), PulverizerBlockEntity::getEnergyStorage);
 
+        event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK, ModBlockEntities.ROLLING_MILL_BE.get(), RollingMillBlockEntity::getEnergyStorage);
+
+        event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK, ModBlockEntities.WIRE_DRAWER_BE.get(), WireDrawerBlockEntity::getEnergyStorage);
+
         event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK, ModBlockEntities.BIO_FUEL_GENERATOR_BE.get(), BiofuelGeneratorBlockEntity::getEnergyStorage);
 
 

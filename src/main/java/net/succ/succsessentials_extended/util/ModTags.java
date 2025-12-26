@@ -72,6 +72,9 @@ public class ModTags {
         public static final TagKey<Item> ELITE_CIRCUITS =
                 TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "circuits/elite"));
 
+        public static final TagKey<Item> UPGRADE_MODULES =
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(Succsessentials_extended.MOD_ID, "upgrade_modules"));
+
         public static final TagKey<Item> HAMMERS =
                 TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "tools/hammers"));
         public static final TagKey<Item> WIRE_CUTTERS =

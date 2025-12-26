@@ -8,11 +8,13 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.neoforged.neoforge.items.SlotItemHandler;
+import net.succ.succsessentials_extended.api.machine.UpgradeableMachine;
+import net.succ.succsessentials_extended.api.screen.BaseUpgradeableMachineMenu;
 import net.succ.succsessentials_extended.block.ModBlocks;
 import net.succ.succsessentials_extended.block.entity.custom.InfuserBlockEntity;
 import net.succ.succsessentials_extended.screen.ModMenuTypes;
 
-public class InfuserBlockMenu extends AbstractContainerMenu {
+public class InfuserBlockMenu extends BaseUpgradeableMachineMenu {
 
     /* =========================
        MACHINE
@@ -42,7 +44,12 @@ public class InfuserBlockMenu extends AbstractContainerMenu {
     }
 
     public InfuserBlockMenu(int id, Inventory inv, BlockEntity entity, ContainerData data) {
-        super(ModMenuTypes.INFUSER_MENU.get(), id);
+        super(
+                ModMenuTypes.INFUSER_MENU.get(),
+                id,
+                inv,
+                (UpgradeableMachine) entity
+        );
 
         this.blockEntity = (InfuserBlockEntity) entity;
         this.level = inv.player.level();
@@ -141,13 +148,13 @@ public class InfuserBlockMenu extends AbstractContainerMenu {
        PLAYER INVENTORY
        ========================= */
 
-    private void addPlayerInventory(Inventory inv) {
+    protected void addPlayerInventory(Inventory inv) {
         for (int r = 0; r < 3; ++r)
             for (int c = 0; c < 9; ++c)
                 this.addSlot(new Slot(inv, c + r * 9 + 9, 8 + c * 18, 84 + r * 18));
     }
 
-    private void addPlayerHotbar(Inventory inv) {
+    protected void addPlayerHotbar(Inventory inv) {
         for (int c = 0; c < 9; ++c)
             this.addSlot(new Slot(inv, c, 8 + c * 18, 142));
     }

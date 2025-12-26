@@ -33,6 +33,12 @@ public class ModMenuTypes {
     public static final DeferredHolder<MenuType<?>, MenuType<PulverizerBlockMenu>> PULVERIZER_MENU =
             registerMenuType("pulverizer_menu", PulverizerBlockMenu::new);
 
+    public static final DeferredHolder<MenuType<?>, MenuType<RollingMillBlockMenu>> ROLLING_MILL_MENU =
+            registerMenuType("rolling_mill_menu", RollingMillBlockMenu::new);
+
+    public static final DeferredHolder<MenuType<?>, MenuType<WireDrawerBlockMenu>> WIRE_DRAWER_MENU =
+            registerMenuType("wire_drawer_menu", WireDrawerBlockMenu::new);
+
     private static <T extends AbstractContainerMenu>DeferredHolder<MenuType<?>, MenuType<T>> registerMenuType(String name,
                                                                                                               IContainerFactory<T> factory) {
         return MENUS.register(name, () -> IMenuTypeExtension.create(factory));

@@ -4,10 +4,12 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.ItemLike;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.succ.succsessentials_extended.Succsessentials_extended;
 import net.succ.succsessentials_extended.block.ModBlocks;
+import net.succ.succsessentials_extended.painting.ModPaintings;
 
 import java.util.function.Supplier;
 
@@ -222,6 +224,8 @@ public class ModCreativeModeTabs {
                                 output.accept(ModBlocks.ELECTRIC_FURNACE);
                                 output.accept(ModBlocks.INFUSER);
                                 output.accept(ModBlocks.PULVERIZER);
+                                output.accept(ModBlocks.WIRE_DRAWER);
+                                output.accept(ModBlocks.ROLLING_MILL);
                                 output.accept(ModBlocks.COAL_GENERATOR);
                                 output.accept(ModBlocks.BIO_FUEL_GENERATOR);
                                 output.accept(ModBlocks.PANEL_BLOCK);
