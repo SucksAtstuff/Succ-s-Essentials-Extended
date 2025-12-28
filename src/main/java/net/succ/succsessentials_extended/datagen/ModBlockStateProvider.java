@@ -80,6 +80,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
         litOrientableBlock(ModBlocks.INFUSER, "infuser");
         litOrientableBlock(ModBlocks.PULVERIZER, "pulverizer");
         litOrientableBlock(ModBlocks.BIO_FUEL_GENERATOR, "bio_fuel_generator");
+        litOrientableBlock(ModBlocks.ROLLING_MILL, "rolling_mill");
+        litOrientableBlock(ModBlocks.WIRE_DRAWER, "wire_drawer");
 
     }
 
