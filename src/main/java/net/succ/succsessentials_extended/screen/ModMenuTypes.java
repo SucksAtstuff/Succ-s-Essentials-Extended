@@ -39,6 +39,9 @@ public class ModMenuTypes {
     public static final DeferredHolder<MenuType<?>, MenuType<WireDrawerBlockMenu>> WIRE_DRAWER_MENU =
             registerMenuType("wire_drawer_menu", WireDrawerBlockMenu::new);
 
+    public static final DeferredHolder<MenuType<?>, MenuType<NuclearReactorControllerBlockMenu>> NUCLEAR_REACTOR_CONTROLLER_MENU =
+            registerMenuType("nuclear_reactor_controller_menu", NuclearReactorControllerBlockMenu::new);
+
     private static <T extends AbstractContainerMenu>DeferredHolder<MenuType<?>, MenuType<T>> registerMenuType(String name,
                                                                                                               IContainerFactory<T> factory) {
         return MENUS.register(name, () -> IMenuTypeExtension.create(factory));

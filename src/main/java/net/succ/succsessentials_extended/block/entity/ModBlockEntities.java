@@ -83,6 +83,38 @@ public class ModBlockEntities {
                     ).build(null)
             );
 
+
+    /* ==========================================================
+       NUCLEAR REACTOR (MULTIBLOCK)
+       ========================================================== */
+
+    public static final Supplier<BlockEntityType<NuclearReactorControllerBlockEntity>>
+            NUCLEAR_REACTOR_CONTROLLER_BE =
+            BLOCK_ENTITIES.register("nuclear_reactor_controller_be", () ->
+                    BlockEntityType.Builder.of(
+                            NuclearReactorControllerBlockEntity::new,
+                            ModBlocks.NUCLEAR_REACTOR_CONTROLLER.get()
+                    ).build(null)
+            );
+
+    public static final Supplier<BlockEntityType<NuclearReactorInputBlockEntity>>
+            NUCLEAR_REACTOR_INPUT_BE =
+            BLOCK_ENTITIES.register("nuclear_reactor_input_be", () ->
+                    BlockEntityType.Builder.of(
+                            NuclearReactorInputBlockEntity::new,
+                            ModBlocks.NUCLEAR_REACTOR_INPUT.get()
+                    ).build(null)
+            );
+
+    public static final Supplier<BlockEntityType<NuclearReactorOutputBlockEntity>>
+            NUCLEAR_REACTOR_OUTPUT_BE =
+            BLOCK_ENTITIES.register("nuclear_reactor_output_be", () ->
+                    BlockEntityType.Builder.of(
+                            NuclearReactorOutputBlockEntity::new,
+                            ModBlocks.NUCLEAR_REACTOR_OUTPUT.get()
+                    ).build(null)
+            );
+
     /* ==========================================================
        REGISTER
        ========================================================== */

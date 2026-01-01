@@ -19,6 +19,7 @@ import net.succ.succsessentials_extended.api.machine.GeneratorMachine;
 import net.succ.succsessentials_extended.api.machine.MachineTier;
 import net.succ.succsessentials_extended.api.machine.TieredMachine;
 import net.succ.succsessentials_extended.block.custom.*;
+import net.succ.succsessentials_extended.block.custom.multiblock.NuclearReactorRodBlock;
 import net.succ.succsessentials_extended.block.entity.custom.BiofuelGeneratorBlockEntity;
 import net.succ.succsessentials_extended.block.entity.custom.CoalGeneratorBlockEntity;
 import net.succ.succsessentials_extended.item.ModItems;
@@ -202,6 +203,21 @@ public class ModBlocks {
     public static final DeferredBlock<Block> PANEL_BLOCK = registerBlock("panel_block",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops()));
 
+    /* =====================================================================
+     *                     NUCLEAR REACTOR (MULTIBLOCK)
+     * ===================================================================== */
+
+    public static final DeferredBlock<Block> NUCLEAR_REACTOR_CONTROLLER = registerMachineBlock("nuclear_reactor_controller",
+                    () -> new NuclearReactorControllerBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), MachineTier.ADVANCED));
+
+    public static final DeferredBlock<Block> NUCLEAR_REACTOR_INPUT = registerBlock("nuclear_reactor_input",
+                    () -> new NuclearReactorInputBlock(BlockBehaviour.Properties.of().strength(3f).requiresCorrectToolForDrops()));
+
+    public static final DeferredBlock<Block> NUCLEAR_REACTOR_OUTPUT = registerBlock("nuclear_reactor_output",
+                    () -> new NuclearReactorOutputBlock(BlockBehaviour.Properties.of().strength(3f).requiresCorrectToolForDrops()));
+
+    public static final DeferredBlock<Block> NUCLEAR_REACTOR_ROD = registerBlock("nuclear_reactor_rod",
+            () -> new NuclearReactorRodBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops()));
 
     /* =====================================================================
      *                        INTERNAL REGISTRATION
@@ -221,8 +237,6 @@ public class ModBlocks {
         registerMachineBlockItem(name, toReturn);
         return toReturn;
     }
-
-
 
 
     private static <T extends Block> void registerBlockItem(String name, DeferredBlock<T> block) {

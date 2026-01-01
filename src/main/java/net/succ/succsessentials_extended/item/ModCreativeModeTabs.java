@@ -240,6 +240,15 @@ public class ModCreativeModeTabs {
                                 output.accept(ModBlocks.PANEL_BLOCK);
 
                                 /* ===================================================== */
+                                /*                 NUCLEAR REACTOR (MULTIBLOCK)          */
+                                /* ===================================================== */
+
+                                output.accept(ModBlocks.NUCLEAR_REACTOR_CONTROLLER);
+                                output.accept(ModBlocks.NUCLEAR_REACTOR_INPUT);
+                                output.accept(ModBlocks.NUCLEAR_REACTOR_OUTPUT);
+                                output.accept(ModBlocks.NUCLEAR_REACTOR_ROD);
+
+                                /* ===================================================== */
                                 /*                    TOOLS & ARMOR                     */
                                 /* ===================================================== */
 

@@ -77,6 +77,11 @@ public class ModBlockLootTablesProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.BIO_FUEL_GENERATOR.get());
         dropSelf(ModBlocks.PANEL_BLOCK.get());
 
+        dropSelf(ModBlocks.NUCLEAR_REACTOR_CONTROLLER.get());
+        dropSelf(ModBlocks.NUCLEAR_REACTOR_INPUT.get());
+        dropSelf(ModBlocks.NUCLEAR_REACTOR_OUTPUT.get());
+        dropSelf(ModBlocks.NUCLEAR_REACTOR_ROD.get());
+
         /* =====================================================================
          *                           STONE DROPS
          * ===================================================================== */
