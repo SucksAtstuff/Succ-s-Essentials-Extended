@@ -4,6 +4,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.Containers;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -26,6 +27,7 @@ public abstract class AbstractPoweredMachineBlockEntity
     protected final ModEnergyStorage energyStorage;
 
     /* ================= PROGRESS ================= */
+
 
     protected int progress = 0;
 
@@ -263,4 +265,22 @@ public abstract class AbstractPoweredMachineBlockEntity
     ) {
         MachineOutputHelper.output(handler, outputSlot, result);
     }
+
+    protected void dropUpgrades() {
+        if (level == null || level.isClientSide()) return;
+
+        for (int i = 0; i < upgradeInventory.getSlots(); i++) {
+            ItemStack stack = upgradeInventory.getStackInSlot(i);
+            if (!stack.isEmpty()) {
+                Containers.dropItemStack(
+                        level,
+                        worldPosition.getX(),
+                        worldPosition.getY(),
+                        worldPosition.getZ(),
+                        stack
+                );
+            }
+        }
+    }
+
 }

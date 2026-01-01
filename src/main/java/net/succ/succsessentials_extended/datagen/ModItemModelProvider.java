@@ -111,6 +111,13 @@ public class ModItemModelProvider extends ItemModelProvider {
                 ModItems.SILVER_PLATE
         );
 
+        registerMetalSet(
+                ModItems.ALUMINIUM_INGOT,
+                ModItems.ALUMINIUM_DUST,
+                ModItems.ALUMINIUM_NUGGET,
+                ModItems.ALUMINIUM_PLATE
+        );
+
         /* =====================================================================
          *                           ALLOYS
          * ===================================================================== */
@@ -183,6 +190,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.RAW_ZINC.get());
         basicItem(ModItems.RAW_NICKEL.get());
         basicItem(ModItems.RAW_SILVER.get());
+        basicItem(ModItems.RAW_ALUMINIUM.get());
 
         // Register models for chromium tools
         handheldItem(ModItems.CHROMIUM_SWORD.get());

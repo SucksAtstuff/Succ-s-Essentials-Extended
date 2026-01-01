@@ -43,6 +43,7 @@ public class ModBlockLootTablesProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.ZINC_BLOCK.get());
         dropSelf(ModBlocks.SILVER_BLOCK.get());
         dropSelf(ModBlocks.NICKEL_BLOCK.get());
+        dropSelf(ModBlocks.ALUMINIUM_BLOCK.get());
 
         // Alloy blocks
         dropSelf(ModBlocks.STEEL_BLOCK.get());
@@ -63,6 +64,7 @@ public class ModBlockLootTablesProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.RAW_ZINC_BLOCK.get());
         dropSelf(ModBlocks.RAW_SILVER_BLOCK.get());
         dropSelf(ModBlocks.RAW_NICKEL_BLOCK.get());
+        dropSelf(ModBlocks.RAW_ALUMINIUM_BLOCK.get());
 
         // Machines / tech
         dropSelf(ModBlocks.ALLOY_FORGER.get());
@@ -132,6 +134,12 @@ public class ModBlockLootTablesProvider extends BlockLootSubProvider {
                 block -> createOreDrop(block, ModItems.RAW_NICKEL.get()));
         add(ModBlocks.DEEPSLATE_NICKEL_ORE.get(),
                 block -> createOreDrop(block, ModItems.RAW_NICKEL.get()));
+
+        // Aluminium
+        add(ModBlocks.ALUMINIUM_ORE.get(),
+                block -> createOreDrop(block, ModItems.RAW_ALUMINIUM.get()));
+        add(ModBlocks.DEEPSLATE_ALUMINIUM_ORE.get(),
+                block -> createOreDrop(block, ModItems.RAW_ALUMINIUM.get()));
     }
 
     /* =====================================================================

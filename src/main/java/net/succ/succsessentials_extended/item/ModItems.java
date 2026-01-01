@@ -153,6 +153,17 @@ public class ModItems {
     public static final DeferredItem<Item> NICKEL_PLATE = ITEMS.register("nickel_plate",
             () -> new Item(new Item.Properties()));
 
+    public static final DeferredItem<Item> RAW_ALUMINIUM = ITEMS.register("raw_aluminium",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> ALUMINIUM_INGOT = ITEMS.register("aluminium_ingot",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> ALUMINIUM_NUGGET = ITEMS.register("aluminium_nugget",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> ALUMINIUM_DUST = ITEMS.register("aluminium_dust",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> ALUMINIUM_PLATE = ITEMS.register("aluminium_plate",
+            () -> new Item(new Item.Properties()));
+
     /* =====================================================================
      *                           ALLOY MATERIAL ITEMS
      * ===================================================================== */

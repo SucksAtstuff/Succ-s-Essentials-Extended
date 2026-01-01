@@ -79,9 +79,19 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.NICKEL_BLOCK.get())
                 .add(ModBlocks.RAW_NICKEL_BLOCK.get())
 
+                // Aluminium
+                .add(ModBlocks.ALUMINIUM_ORE.get())
+                .add(ModBlocks.DEEPSLATE_ALUMINIUM_ORE.get())
+                .add(ModBlocks.ALUMINIUM_BLOCK.get())
+                .add(ModBlocks.RAW_ALUMINIUM_BLOCK.get())
+
                 // Alloys
                 .add(ModBlocks.STEEL_BLOCK.get())
                 .add(ModBlocks.BRONZE_BLOCK.get())
+                .add(ModBlocks.BRASS_BLOCK.get())
+                .add(ModBlocks.ELECTRUM_BLOCK.get())
+                .add(ModBlocks.INVAR_BLOCK.get())
+                .add(ModBlocks.CONSTANTAN_BLOCK.get())
                 .add(ModBlocks.TITA_CHROME_BLOCK.get())
 
                 // Machines
@@ -105,6 +115,8 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         tag(BlockTags.NEEDS_IRON_TOOL)
                 .add(ModBlocks.BRONZE_BLOCK.get())
                 .add(ModBlocks.BRASS_BLOCK.get())
+                .add(ModBlocks.CONSTANTAN_BLOCK.get())
+                .add(ModBlocks.STEEL_BLOCK.get())
                 .add(ModBlocks.TIN_ORE.get())
                 .add(ModBlocks.DEEPSLATE_TIN_ORE.get())
                 .add(ModBlocks.ZINC_ORE.get())
@@ -112,12 +124,12 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.SILVER_ORE.get())
                 .add(ModBlocks.DEEPSLATE_SILVER_ORE.get())
                 .add(ModBlocks.NICKEL_ORE.get())
-                .add(ModBlocks.DEEPSLATE_NICKEL_ORE.get());
+                .add(ModBlocks.DEEPSLATE_NICKEL_ORE.get())
+                .add(ModBlocks.ALUMINIUM_ORE.get())
+                .add(ModBlocks.DEEPSLATE_ALUMINIUM_ORE.get());
 
         tag(BlockTags.NEEDS_DIAMOND_TOOL)
-                .add(ModBlocks.STEEL_BLOCK.get())
                 .add(ModBlocks.INVAR_BLOCK.get())
-                .add(ModBlocks.CONSTANTAN_BLOCK.get())
                 .add(ModBlocks.ELECTRUM_BLOCK.get())
                 .add(ModBlocks.COBALT_ORE.get())
                 .add(ModBlocks.DEEPSLATE_COBALT_ORE.get())

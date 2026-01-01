@@ -331,6 +331,8 @@ public class ModTags {
                 TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "gears/aluminum"));
         public static final TagKey<Item> STORAGE_ALUMINUM =
                 TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/aluminum"));
+        public static final TagKey<Item> STORAGE_RAW_ALUMINUM =
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/raw_aluminum"));
 
         /* ================= URANIUM ================= */
 
@@ -354,6 +356,8 @@ public class ModTags {
                 TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "gears/uranium"));
         public static final TagKey<Item> STORAGE_URANIUM =
                 TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/uranium"));
+        public static final TagKey<Item> STORAGE_RAW_URANIUM =
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/raw_uranium"));
 
         /* ================= OSMIUM ================= */
 

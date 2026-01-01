@@ -147,6 +147,19 @@ public class ModBlocks {
     public static final DeferredBlock<Block> NICKEL_BLOCK = registerBlock("block_of_nickel",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops()));
 
+        
+     // ---------- ALUMINIUM ----------
+     public static final DeferredBlock<Block> ALUMINIUM_ORE = registerBlock("aluminium_ore",
+             () -> new DropExperienceBlock(UniformInt.of(2,6),
+                     BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_ORE).requiresCorrectToolForDrops()));
+    public static final DeferredBlock<Block> DEEPSLATE_ALUMINIUM_ORE = registerBlock("deepslate_aluminium_ore",
+            () -> new DropExperienceBlock(UniformInt.of(2,6),
+                    BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE_IRON_ORE).requiresCorrectToolForDrops()));
+    public static final DeferredBlock<Block> RAW_ALUMINIUM_BLOCK = registerBlock("raw_aluminium_block",
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.RAW_IRON_BLOCK).requiresCorrectToolForDrops()));
+    public static final DeferredBlock<Block> ALUMINIUM_BLOCK = registerBlock("block_of_aluminium",
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops()));
+
     /* =====================================================================
      *                           ALLOY BLOCKS
      * ===================================================================== */

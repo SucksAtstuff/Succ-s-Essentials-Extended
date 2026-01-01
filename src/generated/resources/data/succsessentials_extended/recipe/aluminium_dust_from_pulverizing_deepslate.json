@@ -1,0 +1,16 @@
+{
+  "type": "succsessentials_extended:pulverizing",
+  "byproduct": {
+    "count": 1,
+    "id": "minecraft:cobbled_deepslate"
+  },
+  "cook_time": 180,
+  "energy_per_tick": 15,
+  "input": {
+    "item": "succsessentials_extended:deepslate_aluminium_ore"
+  },
+  "result": {
+    "count": 1,
+    "id": "succsessentials_extended:aluminium_dust"
+  }
+}

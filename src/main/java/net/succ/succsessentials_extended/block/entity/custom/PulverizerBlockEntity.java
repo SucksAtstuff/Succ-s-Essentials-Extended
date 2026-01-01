@@ -193,6 +193,8 @@ public class PulverizerBlockEntity extends AbstractPoweredMachineBlockEntity
             container.setItem(i, itemHandler.getStackInSlot(i));
         }
         Containers.dropContents(level, worldPosition, container);
+
+        dropUpgrades();
     }
 
     /* ================= NETWORK ================= */

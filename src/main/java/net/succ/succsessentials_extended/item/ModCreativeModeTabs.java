@@ -40,6 +40,7 @@ public class ModCreativeModeTabs {
                                 output.accept(ModItems.RAW_ZINC);
                                 output.accept(ModItems.RAW_SILVER);
                                 output.accept(ModItems.RAW_NICKEL);
+                                output.accept(ModItems.RAW_ALUMINIUM);
 
                                 /* ===================================================== */
                                 /*                         INGOTS                        */
@@ -54,6 +55,7 @@ public class ModCreativeModeTabs {
                                 output.accept(ModItems.ZINC_INGOT);
                                 output.accept(ModItems.SILVER_INGOT);
                                 output.accept(ModItems.NICKEL_INGOT);
+                                output.accept(ModItems.ALUMINIUM_INGOT);
 
                                 output.accept(ModItems.STEEL_INGOT);
                                 output.accept(ModItems.BRONZE_INGOT);
@@ -76,6 +78,7 @@ public class ModCreativeModeTabs {
                                 output.accept(ModItems.ZINC_NUGGET);
                                 output.accept(ModItems.SILVER_NUGGET);
                                 output.accept(ModItems.NICKEL_NUGGET);
+                                output.accept(ModItems.ALUMINIUM_NUGGET);
 
                                 output.accept(ModItems.STEEL_NUGGET);
                                 output.accept(ModItems.BRONZE_NUGGET);
@@ -98,6 +101,7 @@ public class ModCreativeModeTabs {
                                 output.accept(ModItems.ZINC_DUST);
                                 output.accept(ModItems.SILVER_DUST);
                                 output.accept(ModItems.NICKEL_DUST);
+                                output.accept(ModItems.ALUMINIUM_DUST);
 
                                 output.accept(ModItems.STEEL_DUST);
                                 output.accept(ModItems.BRONZE_DUST);
@@ -128,6 +132,7 @@ public class ModCreativeModeTabs {
                                 output.accept(ModItems.ZINC_PLATE);
                                 output.accept(ModItems.SILVER_PLATE);
                                 output.accept(ModItems.NICKEL_PLATE);
+                                output.accept(ModItems.ALUMINIUM_PLATE);
 
                                 output.accept(ModItems.STEEL_PLATE);
                                 output.accept(ModItems.BRONZE_PLATE);
@@ -179,6 +184,8 @@ public class ModCreativeModeTabs {
                                 output.accept(ModBlocks.DEEPSLATE_SILVER_ORE);
                                 output.accept(ModBlocks.NICKEL_ORE);
                                 output.accept(ModBlocks.DEEPSLATE_NICKEL_ORE);
+                                output.accept(ModBlocks.ALUMINIUM_ORE);
+                                output.accept(ModBlocks.DEEPSLATE_ALUMINIUM_ORE);
 
                                 /* ===================================================== */
                                 /*                       RAW BLOCKS                      */
@@ -193,6 +200,7 @@ public class ModCreativeModeTabs {
                                 output.accept(ModBlocks.RAW_ZINC_BLOCK);
                                 output.accept(ModBlocks.RAW_SILVER_BLOCK);
                                 output.accept(ModBlocks.RAW_NICKEL_BLOCK);
+                                output.accept(ModBlocks.RAW_ALUMINIUM_BLOCK);
 
                                 /* ===================================================== */
                                 /*                     STORAGE BLOCKS                    */
@@ -207,6 +215,7 @@ public class ModCreativeModeTabs {
                                 output.accept(ModBlocks.ZINC_BLOCK);
                                 output.accept(ModBlocks.SILVER_BLOCK);
                                 output.accept(ModBlocks.NICKEL_BLOCK);
+                                output.accept(ModBlocks.ALUMINIUM_BLOCK);
 
                                 output.accept(ModBlocks.STEEL_BLOCK);
                                 output.accept(ModBlocks.BRONZE_BLOCK);

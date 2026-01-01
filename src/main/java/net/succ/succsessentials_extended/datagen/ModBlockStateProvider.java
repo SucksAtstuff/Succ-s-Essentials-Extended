@@ -41,6 +41,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockWithItem(ModBlocks.ZINC_BLOCK);
         blockWithItem(ModBlocks.NICKEL_BLOCK);
         blockWithItem(ModBlocks.SILVER_BLOCK);
+        blockWithItem(ModBlocks.ALUMINIUM_BLOCK);
 
         blockWithItem(ModBlocks.RAW_CHROMIUM_BLOCK);
         blockWithItem(ModBlocks.RAW_TITANIUM_BLOCK);
@@ -51,6 +52,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockWithItem(ModBlocks.RAW_ZINC_BLOCK);
         blockWithItem(ModBlocks.RAW_NICKEL_BLOCK);
         blockWithItem(ModBlocks.RAW_SILVER_BLOCK);
+        blockWithItem(ModBlocks.RAW_ALUMINIUM_BLOCK);
 
         // Registering ingot ores with their respective item models
         simpleBlockWithItem(ModBlocks.CHROMIUM_ORE.get(), cubeAll(ModBlocks.CHROMIUM_ORE.get()));
@@ -71,6 +73,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
         simpleBlockWithItem(ModBlocks.DEEPSLATE_NICKEL_ORE.get(), cubeAll(ModBlocks.DEEPSLATE_NICKEL_ORE.get()));
         simpleBlockWithItem(ModBlocks.SILVER_ORE.get(), cubeAll(ModBlocks.SILVER_ORE.get()));
         simpleBlockWithItem(ModBlocks.DEEPSLATE_SILVER_ORE.get(), cubeAll(ModBlocks.DEEPSLATE_SILVER_ORE.get()));
+        simpleBlockWithItem(ModBlocks.ALUMINIUM_ORE.get(), cubeAll(ModBlocks.ALUMINIUM_ORE.get()));
+        simpleBlockWithItem(ModBlocks.DEEPSLATE_ALUMINIUM_ORE.get(), cubeAll(ModBlocks.DEEPSLATE_ALUMINIUM_ORE.get()));
 
         panelBlock(ModBlocks.PANEL_BLOCK);
 
