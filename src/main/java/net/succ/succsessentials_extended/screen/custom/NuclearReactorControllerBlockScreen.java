@@ -43,8 +43,6 @@ public class NuclearReactorControllerBlockScreen
             Component title
     ) {
         super(menu, inv, title);
-
-        this.imageHeight = 198;
     }
 
     @Override

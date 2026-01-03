@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "bottom": "succsessentials_extended:block/alloy_forger/alloy_forger_top",
+    "side": "succsessentials_extended:block/nuclear_reactor_output",
+    "top": "succsessentials_extended:block/alloy_forger/alloy_forger_top"
+  }
+}

@@ -127,6 +127,8 @@ public class Succsessentials_extended {
             event.register(ModMenuTypes.BIO_FUEL_GENERATOR_MENU.get(), BioFuelGeneratorScreen::new);
             event.register(ModMenuTypes.WIRE_DRAWER_MENU.get(), WireDrawerBlockScreen::new);
             event.register(ModMenuTypes.ROLLING_MILL_MENU.get(), RollingMillBlockScreen::new);
+            event.register(ModMenuTypes.NUCLEAR_REACTOR_CONTROLLER_MENU.get(), NuclearReactorControllerBlockScreen::new);
+
         }
 
     }

@@ -34,6 +34,9 @@ public class ModBusEvents {
 
         event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK, ModBlockEntities.BIO_FUEL_GENERATOR_BE.get(), BiofuelGeneratorBlockEntity::getEnergyStorage);
 
+        event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK, ModBlockEntities.NUCLEAR_REACTOR_CONTROLLER_BE.get(), NuclearReactorControllerBlockEntity::getEnergyStorage);
+
+
 
     }
 

@@ -40,15 +40,9 @@ public abstract class AbstractMultiblock {
      */
     protected final List<MultiblockPart> parts;
 
-    /**
-     * All blocks that are allowed to act as CASING.
-     * Example: Lead Block, Panel Block, etc.
-     */
-    protected final Set<Block> validCasingBlocks;
-
-    protected AbstractMultiblock(List<MultiblockPart> parts, Set<Block> validCasingBlocks) {
+    
+    protected AbstractMultiblock(List<MultiblockPart> parts) {
         this.parts = parts;
-        this.validCasingBlocks = validCasingBlocks;
     }
 
     /* ============================================================
@@ -65,34 +59,38 @@ public abstract class AbstractMultiblock {
      */
     public boolean validate(Level level, BlockPos controllerPos, BlockState controllerState) {
 
-        // Determine the facing of the controller
         Direction facing = controllerState.getValue(BlockStateProperties.HORIZONTAL_FACING);
 
-        // Validate every defined multiblock part
         for (MultiblockPart part : parts) {
 
-            // Rotate X/Z offsets based on controller facing
             BlockPos rotatedOffset = rotate(
                     part.offset().getX(),
                     part.offset().getZ(),
                     facing
             );
 
-            // Convert relative position to world position
             BlockPos worldPos = controllerPos.offset(
                     rotatedOffset.getX(),
                     part.offset().getY(),
                     rotatedOffset.getZ()
             );
 
-            // Validate the block at this position
+            // ✅ Add debug output here:
+            System.out.println("Validating part: " + part.type() +
+                    " at offset " + part.offset() +
+                    " → worldPos: " + worldPos +
+                    " | Expected blocks: " + part.allowedBlocks());
+
             if (!isValidPart(level, worldPos, part.type(), part)) {
+                System.out.println("❌ Invalid part found at " + worldPos + " of type " + part.type());
                 return false;
             }
         }
 
+        System.out.println("✅ Multiblock structure is valid.");
         return true;
     }
+
 
     /* ============================================================
        ROTATION HANDLING
@@ -128,26 +126,29 @@ public abstract class AbstractMultiblock {
         BlockState state = level.getBlockState(pos);
         Block block = state.getBlock();
 
-        // If this part defines its own allowed blocks, enforce them
+        // ✅ Debug output for block presence
+        System.out.println("Checking " + type + " at " + pos + ": found " + block.getClass().getSimpleName());
+
         if (part.allowedBlocks() != null) {
-            return part.allowedBlocks().contains(block);
+            boolean result = part.allowedBlocks().contains(block);
+            System.out.println("→ Matches allowedBlocks? " + result);
+            return result;
         }
 
         return switch (type) {
+            case CONTROLLER -> block instanceof MultiblockController;
+            case INPUT      -> block instanceof MultiblockInput;
+            case OUTPUT     -> block instanceof MultiblockOutput;
+            case CORE       -> block instanceof MultiblockRod;
+            case CASING -> {
+                if (part.allowedBlocks() != null) {
+                    yield part.allowedBlocks().contains(block);
+                }
+                yield false; // Or optionally allow anything here
+            }
 
-            case CONTROLLER ->
-                    block instanceof MultiblockController;
-            case INPUT ->
-                    block instanceof MultiblockInput;
-            case OUTPUT ->
-                    block instanceof MultiblockOutput;
-            case CASING ->
-                    validCasingBlocks.contains(block);
-            case CORE -> block instanceof MultiblockRod;
-            case AIR ->
-                    state.isAir();
-
+            case AIR        -> state.isAir();
         };
-
     }
+
 }

@@ -38,9 +38,7 @@ public class NuclearReactorMultiblock extends AbstractMultiblock {
 
     public NuclearReactorMultiblock() {
         super(
-                defineParts(),
-                defineCasingBlocks()
-        );
+                defineParts());
     }
 
     /* ============================================================
@@ -49,52 +47,29 @@ public class NuclearReactorMultiblock extends AbstractMultiblock {
 
     private static List<MultiblockPart> defineParts() {
         return List.of(
+                // === CONTROLLER (Front-middle, Y = 0) ===
+                new MultiblockPart(new BlockPos(0, 0, 0), MultiblockPartType.CONTROLLER),
 
-                /* ================= CONTROLLER ================= */
-                new MultiblockPart(
-                        new BlockPos(0, 0, 0),
-                        MultiblockPartType.CONTROLLER
-                ),
+                // === INPUT / OUTPUT (Y = 0) ===
+                new MultiblockPart(new BlockPos(-1, 0, 0), MultiblockPartType.INPUT),
+                new MultiblockPart(new BlockPos(1, 0, 0), MultiblockPartType.OUTPUT),
 
-                /* ================= INPUT / OUTPUT ================= */
-                new MultiblockPart(
-                        new BlockPos(-1, 0, 0),
-                        MultiblockPartType.INPUT
-                ),
-                new MultiblockPart(
-                        new BlockPos(1, 0, 0),
-                        MultiblockPartType.OUTPUT
-                ),
+                // === CENTER BACK ROD (Y = 0) ===
+                new MultiblockPart(new BlockPos(0, 0, 1), MultiblockPartType.CORE),
 
-                /* ================= REACTOR RODS ================= */
-                new MultiblockPart(
-                        new BlockPos(0, -1, -1),
-                        MultiblockPartType.CORE
-                ),
-                new MultiblockPart(
-                        new BlockPos(0, 0, -1),
-                        MultiblockPartType.CORE
-                ),
-                new MultiblockPart(
-                        new BlockPos(0, 1, -1),
-                        MultiblockPartType.CORE
-                ),
+                // === CASINGS ===
+                casing(-1, 0, -1, ModBlocks.PANEL_BLOCK.get()),   // Top-left
+                casing(0, 0, -1, ModBlocks.ALUMINIUM_BLOCK.get()),// Top-center
+                casing(1, 0, -1, ModBlocks.PANEL_BLOCK.get()),    // Top-right
 
-                /* ================= CASING — BOTTOM ================= */
-                casing(-1, -1, -1), casing(0, -1, -1), casing(1, -1, -1),
-                casing(-1, -1,  0),                    casing(1, -1,  0),
-                casing(-1, -1,  1), casing(0, -1,  1), casing(1, -1,  1),
-
-                /* ================= CASING — MIDDLE ================= */
-                casing(-1, 0, -1),                    casing(1, 0, -1),
-                casing(-1, 0,  1), casing(0, 0,  1), casing(1, 0,  1),
-
-                /* ================= CASING — TOP ================= */
-                casing(-1, 1, -1), casing(0, 1, -1), casing(1, 1, -1),
-                casing(-1, 1,  0),                    casing(1, 1,  0),
-                casing(-1, 1,  1), casing(0, 1,  1), casing(1, 1,  1)
+                casing(-1, 0, 1, ModBlocks.ALUMINIUM_BLOCK.get()),// Bottom-left
+                casing(1, 0, 1, ModBlocks.ALUMINIUM_BLOCK.get())  // Bottom-right
         );
     }
+
+
+
+
 
     /* ============================================================
        CASING HELPERS
@@ -111,10 +86,12 @@ public class NuclearReactorMultiblock extends AbstractMultiblock {
        VALID CASING BLOCKS
        ============================================================ */
 
-    private static Set<Block> defineCasingBlocks() {
-        return Set.of(
-                ModBlocks.PANEL_BLOCK.get(),
-                ModBlocks.ALUMINIUM_BLOCK.get() // swap to lead later
+    private static MultiblockPart casing(int x, int y, int z, Block allowedBlock) {
+        return new MultiblockPart(
+                new BlockPos(x, y, z),
+                MultiblockPartType.CASING,
+                Set.of(allowedBlock)
         );
     }
+
 }

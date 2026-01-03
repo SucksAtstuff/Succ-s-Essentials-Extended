@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "front": "succsessentials_extended:block/nuclear_reactor_controller/nuclear_reactor_controller_front",
+    "side": "succsessentials_extended:block/nuclear_reactor_controller/nuclear_reactor_controller_side",
+    "top": "succsessentials_extended:block/nuclear_reactor_controller/nuclear_reactor_controller_top"
+  }
+}

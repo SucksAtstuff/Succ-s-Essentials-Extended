@@ -184,7 +184,6 @@ public class NuclearReactorControllerBlock extends BaseEntityBlock
         if (state.getBlock() != newState.getBlock()) {
             BlockEntity blockEntity = level.getBlockEntity(pos);
             if (blockEntity instanceof NuclearReactorControllerBlockEntity reactor) {
-                reactor.drops();
             }
         }
 

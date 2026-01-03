@@ -77,6 +77,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
         simpleBlockWithItem(ModBlocks.DEEPSLATE_ALUMINIUM_ORE.get(), cubeAll(ModBlocks.DEEPSLATE_ALUMINIUM_ORE.get()));
 
         panelBlock(ModBlocks.PANEL_BLOCK);
+        panelBlock(ModBlocks.NUCLEAR_REACTOR_INPUT);
+        panelBlock(ModBlocks.NUCLEAR_REACTOR_OUTPUT);
 
         litOrientableBlock(ModBlocks.ALLOY_FORGER, "alloy_forger");
         litOrientableBlock(ModBlocks.ELECTRIC_FURNACE, "electric_furnace");
@@ -86,6 +88,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         litOrientableBlock(ModBlocks.BIO_FUEL_GENERATOR, "bio_fuel_generator");
         litOrientableBlock(ModBlocks.ROLLING_MILL, "rolling_mill");
         litOrientableBlock(ModBlocks.WIRE_DRAWER, "wire_drawer");
+        litOrientableBlock(ModBlocks.NUCLEAR_REACTOR_CONTROLLER, "nuclear_reactor_controller");
 
     }
 

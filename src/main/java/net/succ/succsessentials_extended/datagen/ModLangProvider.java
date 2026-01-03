@@ -150,6 +150,13 @@ public class ModLangProvider extends LanguageProvider {
             add(baseKey + ".author", info.author());
         }
 
+        // ======================================================================
+        // 12. MANUAL OVERRIDES
+        //    (These have matching skips in the automatic sections above!)
+        // ======================================================================
+        add("message.succsessentials_extended.structure_incomplete",
+                "Structure Incomplete");
+
     }
 
     /**
