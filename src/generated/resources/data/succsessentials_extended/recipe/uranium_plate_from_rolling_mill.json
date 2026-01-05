@@ -1,0 +1,12 @@
+{
+  "type": "succsessentials_extended:rolling_mill",
+  "cook_time": 140,
+  "energy_per_tick": 35,
+  "input": {
+    "tag": "c:ingots/uranium"
+  },
+  "result": {
+    "count": 1,
+    "id": "succsessentials_extended:uranium_plate"
+  }
+}

@@ -9,6 +9,7 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.succ.succsessentials_extended.Succsessentials_extended;
 import net.succ.succsessentials_extended.block.ModBlocks;
+import net.succ.succsessentials_extended.fluid.ModFluids;
 import net.succ.succsessentials_extended.painting.ModPaintings;
 
 import java.util.function.Supplier;
@@ -56,6 +57,8 @@ public class ModCreativeModeTabs {
                                 output.accept(ModItems.SILVER_INGOT);
                                 output.accept(ModItems.NICKEL_INGOT);
                                 output.accept(ModItems.ALUMINIUM_INGOT);
+                                output.accept(ModItems.LEAD_INGOT);
+                                output.accept(ModItems.URANIUM_INGOT);
 
                                 output.accept(ModItems.STEEL_INGOT);
                                 output.accept(ModItems.BRONZE_INGOT);
@@ -79,6 +82,8 @@ public class ModCreativeModeTabs {
                                 output.accept(ModItems.SILVER_NUGGET);
                                 output.accept(ModItems.NICKEL_NUGGET);
                                 output.accept(ModItems.ALUMINIUM_NUGGET);
+                                output.accept(ModItems.LEAD_NUGGET);
+                                output.accept(ModItems.URANIUM_NUGGET);
 
                                 output.accept(ModItems.STEEL_NUGGET);
                                 output.accept(ModItems.BRONZE_NUGGET);
@@ -102,6 +107,8 @@ public class ModCreativeModeTabs {
                                 output.accept(ModItems.SILVER_DUST);
                                 output.accept(ModItems.NICKEL_DUST);
                                 output.accept(ModItems.ALUMINIUM_DUST);
+                                output.accept(ModItems.LEAD_DUST);
+                                output.accept(ModItems.URANIUM_DUST);
 
                                 output.accept(ModItems.STEEL_DUST);
                                 output.accept(ModItems.BRONZE_DUST);
@@ -133,6 +140,8 @@ public class ModCreativeModeTabs {
                                 output.accept(ModItems.SILVER_PLATE);
                                 output.accept(ModItems.NICKEL_PLATE);
                                 output.accept(ModItems.ALUMINIUM_PLATE);
+                                output.accept(ModItems.LEAD_PLATE);
+                                output.accept(ModItems.URANIUM_PLATE);
 
                                 output.accept(ModItems.STEEL_PLATE);
                                 output.accept(ModItems.BRONZE_PLATE);
@@ -186,6 +195,10 @@ public class ModCreativeModeTabs {
                                 output.accept(ModBlocks.DEEPSLATE_NICKEL_ORE);
                                 output.accept(ModBlocks.ALUMINIUM_ORE);
                                 output.accept(ModBlocks.DEEPSLATE_ALUMINIUM_ORE);
+                                output.accept(ModBlocks.LEAD_ORE);
+                                output.accept(ModBlocks.DEEPSLATE_LEAD_ORE);
+                                output.accept(ModBlocks.URANIUM_ORE);
+                                output.accept(ModBlocks.DEEPSLATE_URANIUM_ORE);
 
                                 /* ===================================================== */
                                 /*                       RAW BLOCKS                      */
@@ -201,6 +214,8 @@ public class ModCreativeModeTabs {
                                 output.accept(ModBlocks.RAW_SILVER_BLOCK);
                                 output.accept(ModBlocks.RAW_NICKEL_BLOCK);
                                 output.accept(ModBlocks.RAW_ALUMINIUM_BLOCK);
+                                output.accept(ModBlocks.RAW_LEAD_BLOCK);
+                                output.accept(ModBlocks.RAW_URANIUM_BLOCK);
 
                                 /* ===================================================== */
                                 /*                     STORAGE BLOCKS                    */
@@ -216,6 +231,8 @@ public class ModCreativeModeTabs {
                                 output.accept(ModBlocks.SILVER_BLOCK);
                                 output.accept(ModBlocks.NICKEL_BLOCK);
                                 output.accept(ModBlocks.ALUMINIUM_BLOCK);
+                                output.accept(ModBlocks.LEAD_BLOCK);
+                                output.accept(ModBlocks.URANIUM_BLOCK);
 
                                 output.accept(ModBlocks.STEEL_BLOCK);
                                 output.accept(ModBlocks.BRONZE_BLOCK);
@@ -246,7 +263,7 @@ public class ModCreativeModeTabs {
                                 output.accept(ModBlocks.NUCLEAR_REACTOR_CONTROLLER);
                                 output.accept(ModBlocks.NUCLEAR_REACTOR_INPUT);
                                 output.accept(ModBlocks.NUCLEAR_REACTOR_OUTPUT);
-                                output.accept(ModBlocks.NUCLEAR_REACTOR_ROD);
+                                output.accept(ModBlocks.NUCLEAR_REACTOR_CORE);
 
                                 /* ===================================================== */
                                 /*                    TOOLS & ARMOR                     */
@@ -272,6 +289,8 @@ public class ModCreativeModeTabs {
 
                                 output.accept(ModItems.BIOMASS);
                                 output.accept(ModItems.BIOMASS_PELLET);
+                                output.accept(ModItems.NUCLEAR_WASTE);
+                                output.accept(ModFluids.NUCLEAR_WASTE_WATER_BUCKET);
                             })
 
                             .build()

@@ -42,6 +42,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockWithItem(ModBlocks.NICKEL_BLOCK);
         blockWithItem(ModBlocks.SILVER_BLOCK);
         blockWithItem(ModBlocks.ALUMINIUM_BLOCK);
+        blockWithItem(ModBlocks.LEAD_BLOCK);
+        blockWithItem(ModBlocks.URANIUM_BLOCK);
 
         blockWithItem(ModBlocks.RAW_CHROMIUM_BLOCK);
         blockWithItem(ModBlocks.RAW_TITANIUM_BLOCK);
@@ -53,6 +55,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockWithItem(ModBlocks.RAW_NICKEL_BLOCK);
         blockWithItem(ModBlocks.RAW_SILVER_BLOCK);
         blockWithItem(ModBlocks.RAW_ALUMINIUM_BLOCK);
+        blockWithItem(ModBlocks.RAW_LEAD_BLOCK);
+        blockWithItem(ModBlocks.RAW_URANIUM_BLOCK);
 
         // Registering ingot ores with their respective item models
         simpleBlockWithItem(ModBlocks.CHROMIUM_ORE.get(), cubeAll(ModBlocks.CHROMIUM_ORE.get()));
@@ -75,10 +79,15 @@ public class ModBlockStateProvider extends BlockStateProvider {
         simpleBlockWithItem(ModBlocks.DEEPSLATE_SILVER_ORE.get(), cubeAll(ModBlocks.DEEPSLATE_SILVER_ORE.get()));
         simpleBlockWithItem(ModBlocks.ALUMINIUM_ORE.get(), cubeAll(ModBlocks.ALUMINIUM_ORE.get()));
         simpleBlockWithItem(ModBlocks.DEEPSLATE_ALUMINIUM_ORE.get(), cubeAll(ModBlocks.DEEPSLATE_ALUMINIUM_ORE.get()));
+        simpleBlockWithItem(ModBlocks.LEAD_ORE.get(), cubeAll(ModBlocks.LEAD_ORE.get()));
+        simpleBlockWithItem(ModBlocks.DEEPSLATE_LEAD_ORE.get(), cubeAll(ModBlocks.DEEPSLATE_LEAD_ORE.get()));
+        simpleBlockWithItem(ModBlocks.URANIUM_ORE.get(), cubeAll(ModBlocks.URANIUM_ORE.get()));
+        simpleBlockWithItem(ModBlocks.DEEPSLATE_URANIUM_ORE.get(), cubeAll(ModBlocks.DEEPSLATE_URANIUM_ORE.get()));
 
         panelBlock(ModBlocks.PANEL_BLOCK);
         panelBlock(ModBlocks.NUCLEAR_REACTOR_INPUT);
         panelBlock(ModBlocks.NUCLEAR_REACTOR_OUTPUT);
+        blockWithItem(ModBlocks.NUCLEAR_REACTOR_CORE);
 
         litOrientableBlock(ModBlocks.ALLOY_FORGER, "alloy_forger");
         litOrientableBlock(ModBlocks.ELECTRIC_FURNACE, "electric_furnace");

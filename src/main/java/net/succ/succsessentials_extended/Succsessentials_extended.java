@@ -1,6 +1,8 @@
 package net.succ.succsessentials_extended;
 
 import com.mojang.logging.LogUtils;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.api.distmarker.Dist;
@@ -13,6 +15,7 @@ import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
+import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
@@ -20,6 +23,9 @@ import net.succ.succsessentials_extended.block.ModBlocks;
 import net.succ.succsessentials_extended.block.entity.ModBlockEntities;
 import net.succ.succsessentials_extended.effect.ModEffects;
 import net.succ.succsessentials_extended.entity.ModEntities;
+import net.succ.succsessentials_extended.fluid.BaseFluidType;
+import net.succ.succsessentials_extended.fluid.ModFluidTypes;
+import net.succ.succsessentials_extended.fluid.ModFluids;
 import net.succ.succsessentials_extended.item.ModCreativeModeTabs;
 import net.succ.succsessentials_extended.item.ModItems;
 import net.succ.succsessentials_extended.loot.ModLootModifiers;
@@ -77,6 +83,8 @@ public class Succsessentials_extended {
         ModCreativeModeTabs.register(modEventBus);
 
         ModPaintings.PAINTINGS.register(modEventBus);
+        ModFluidTypes.register(modEventBus);
+        ModFluids.register(modEventBus);
 
 
         // Register the item to a creative tab
@@ -114,7 +122,17 @@ public class Succsessentials_extended {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event)
         {
+            event .enqueueWork(()->{
+                ItemBlockRenderTypes.setRenderLayer(ModFluids.SOURCE_NUCLEAR_WASTE_WATER.get(), RenderType.translucent());
+                ItemBlockRenderTypes.setRenderLayer(ModFluids.FLOWING_NUCLEAR_WASTE_WATER.get(), RenderType.translucent());
+            });
 
+        }
+
+        @SubscribeEvent
+        public static void onClientExtensions(RegisterClientExtensionsEvent event){
+            event.registerFluidType(((BaseFluidType) ModFluidTypes.NUCLEAR_WASTE_WATER_FLUID_TYPE.get()).getClientFluidTypeExtensions(),
+                    ModFluidTypes.NUCLEAR_WASTE_WATER_FLUID_TYPE.get());
         }
 
         @SubscribeEvent

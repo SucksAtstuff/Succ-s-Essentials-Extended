@@ -16,6 +16,17 @@ import org.jetbrains.annotations.Nullable;
 /**
  * ============================================================
  * AbstractGeneratorBlockEntity
+ *
+ * Base class for ALL generator-style machines.
+ *
+ * IMPORTANT:
+ * ----------
+ * This class is primarily designed for burn-based generators
+ * (coal, biofuel, etc).
+ *
+ * Some machines (reactors, solar, wind) are CONTINUOUS producers.
+ * Those machines MUST be allowed to override the energy storage
+ * creation logic via createEnergyStorage().
  * ============================================================
  */
 public abstract class AbstractGeneratorBlockEntity
@@ -23,7 +34,8 @@ public abstract class AbstractGeneratorBlockEntity
 
     /* ================= ENERGY ================= */
 
-    protected final ModEnergyStorage energyStorage;
+    // NOT final on purpose — subclasses may customize construction
+    protected ModEnergyStorage energyStorage;
 
     /* ================= BURN STATE ================= */
 
@@ -41,18 +53,45 @@ public abstract class AbstractGeneratorBlockEntity
     ) {
         super(type, pos, state);
 
-        this.energyStorage = new ModEnergyStorage(energyCapacity, energyTransfer) {
+        /* ============================================================
+           ENERGY STORAGE CREATION
+           ============================================================
+
+           Burn generators should be OUTPUT-ONLY.
+           Continuous generators (reactors) override this method.
+         */
+        this.energyStorage = createEnergyStorage(energyCapacity, energyTransfer);
+
+        this.maxBurnProgress = maxBurnTime;
+        this.burnProgress = maxBurnTime;
+    }
+
+    /* ================= ENERGY FACTORY ================= */
+
+    /**
+     * Factory method for creating energy storage.
+     *
+     * Default behavior:
+     *  - OUTPUT-ONLY storage
+     *  - Correct for coal / biofuel generators
+     *
+     * Reactors and other continuous generators MUST override this.
+     */
+    protected ModEnergyStorage createEnergyStorage(int capacity, int transferRate) {
+        return new ModEnergyStorage(capacity, transferRate) {
             @Override
             public void onEnergyChanged() {
                 setChanged();
                 if (level != null && !level.isClientSide()) {
-                    level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 3);
+                    level.sendBlockUpdated(
+                            worldPosition,
+                            getBlockState(),
+                            getBlockState(),
+                            3
+                    );
                 }
             }
         };
-
-        this.maxBurnProgress = maxBurnTime;
-        this.burnProgress = maxBurnTime;
     }
 
     /* ================= ENERGY ACCESS ================= */
@@ -103,18 +142,10 @@ public abstract class AbstractGeneratorBlockEntity
         }
     }
 
-    /**
-     * How much energy this generator can push per tick.
-     */
+    /* ================= ABSTRACT API ================= */
+
     protected abstract int getEnergyTransferRate();
-
-    /**
-     * How much energy this generator PRODUCES per tick.
-     * Used exclusively for tooltip display.
-     */
     public abstract int getPowerGenerationRate();
-
-    /* ================= ABSTRACT HOOKS ================= */
 
     protected abstract boolean hasFuel();
     protected abstract void consumeFuel();

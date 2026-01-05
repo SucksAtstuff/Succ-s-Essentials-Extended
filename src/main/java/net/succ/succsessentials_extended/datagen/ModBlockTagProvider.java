@@ -85,6 +85,18 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.ALUMINIUM_BLOCK.get())
                 .add(ModBlocks.RAW_ALUMINIUM_BLOCK.get())
 
+                // Uranium
+                .add(ModBlocks.URANIUM_ORE.get())
+                .add(ModBlocks.DEEPSLATE_URANIUM_ORE.get())
+                .add(ModBlocks.URANIUM_BLOCK.get())
+                .add(ModBlocks.RAW_URANIUM_BLOCK.get())
+
+                // Lead
+                .add(ModBlocks.LEAD_ORE.get())
+                .add(ModBlocks.DEEPSLATE_LEAD_ORE.get())
+                .add(ModBlocks.LEAD_BLOCK.get())
+                .add(ModBlocks.RAW_LEAD_BLOCK.get())
+
                 // Alloys
                 .add(ModBlocks.STEEL_BLOCK.get())
                 .add(ModBlocks.BRONZE_BLOCK.get())
@@ -126,7 +138,9 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.NICKEL_ORE.get())
                 .add(ModBlocks.DEEPSLATE_NICKEL_ORE.get())
                 .add(ModBlocks.ALUMINIUM_ORE.get())
-                .add(ModBlocks.DEEPSLATE_ALUMINIUM_ORE.get());
+                .add(ModBlocks.DEEPSLATE_ALUMINIUM_ORE.get())
+                .add(ModBlocks.LEAD_ORE.get())
+                .add(ModBlocks.DEEPSLATE_LEAD_ORE.get());
 
         tag(BlockTags.NEEDS_DIAMOND_TOOL)
                 .add(ModBlocks.INVAR_BLOCK.get())
@@ -136,7 +150,9 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.OSMIUM_ORE.get())
                 .add(ModBlocks.DEEPSLATE_OSMIUM_ORE.get())
                 .add(ModBlocks.TITANIUM_ORE.get())
-                .add(ModBlocks.DEEPSLATE_TITANIUM_ORE.get());
+                .add(ModBlocks.DEEPSLATE_TITANIUM_ORE.get())
+                .add(ModBlocks.URANIUM_ORE.get())
+                .add(ModBlocks.DEEPSLATE_URANIUM_ORE.get());
 
         tag(Tags.Blocks.NEEDS_NETHERITE_TOOL)
                 .add(ModBlocks.TUNGSTEN_ORE.get())
@@ -221,8 +237,13 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.NICKEL_ORE.get())
                 .add(ModBlocks.DEEPSLATE_NICKEL_ORE.get());
 
-        tag(ModTags.Blocks.ORES_ALUMINUM);
-        tag(ModTags.Blocks.ORES_URANIUM);
+        tag(ModTags.Blocks.ORES_URANIUM)
+                .add(ModBlocks.URANIUM_ORE.get())
+                .add(ModBlocks.DEEPSLATE_URANIUM_ORE.get());
+
+        tag(ModTags.Blocks.ORES_ALUMINUM)
+                .add(ModBlocks.ALUMINIUM_ORE.get())
+                .add(ModBlocks.DEEPSLATE_ALUMINIUM_ORE.get());
 
         tag(ModTags.Blocks.STORAGE_CHROMIUM).add(ModBlocks.CHROMIUM_BLOCK.get());
         tag(ModTags.Blocks.STORAGE_TITANIUM).add(ModBlocks.TITANIUM_BLOCK.get());
@@ -231,8 +252,8 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         tag(ModTags.Blocks.STORAGE_COBALT).add(ModBlocks.COBALT_BLOCK.get());
         tag(ModTags.Blocks.STORAGE_OSMIUM).add(ModBlocks.OSMIUM_BLOCK.get());
         tag(ModTags.Blocks.STORAGE_ZINC).add(ModBlocks.ZINC_BLOCK.get());
-        tag(ModTags.Blocks.STORAGE_ALUMINUM);
-        tag(ModTags.Blocks.STORAGE_URANIUM);
+        tag(ModTags.Blocks.STORAGE_ALUMINUM).add(ModBlocks.ALUMINIUM_BLOCK.get());
+        tag(ModTags.Blocks.STORAGE_URANIUM).add(ModBlocks.URANIUM_BLOCK.get());
         tag(ModTags.Blocks.STORAGE_STEEL).add(ModBlocks.STEEL_BLOCK.get());
         tag(ModTags.Blocks.STORAGE_BRONZE).add(ModBlocks.BRONZE_BLOCK.get());
         tag(ModTags.Blocks.STORAGE_BRASS).add(ModBlocks.BRASS_BLOCK.get());
@@ -240,7 +261,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         tag(ModTags.Blocks.STORAGE_INVAR).add(ModBlocks.INVAR_BLOCK.get());
         tag(ModTags.Blocks.STORAGE_CONSTANTAN).add(ModBlocks.CONSTANTAN_BLOCK.get());
         tag(ModTags.Blocks.STORAGE_BLOCKS_TITA_CHROME).add(ModBlocks.TITA_CHROME_BLOCK.get());
-        tag(ModTags.Blocks.STORAGE_LEAD);
+        tag(ModTags.Blocks.STORAGE_LEAD).add(ModBlocks.LEAD_BLOCK.get());
         tag(ModTags.Blocks.STORAGE_SILVER).add(ModBlocks.SILVER_BLOCK.get());
         tag(ModTags.Blocks.STORAGE_NICKEL).add(ModBlocks.NICKEL_BLOCK.get());
 
@@ -262,8 +283,11 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 
         tag(ModTags.Blocks.STORAGE_RAW_NICKEL).add(ModBlocks.RAW_NICKEL_BLOCK.get());
 
+        tag(ModTags.Blocks.STORAGE_RAW_ALUMINUM).add(ModBlocks.RAW_ALUMINIUM_BLOCK.get());
 
+        tag(ModTags.Blocks.STORAGE_RAW_URANIUM).add(ModBlocks.RAW_URANIUM_BLOCK.get());
 
+        tag(ModTags.Blocks.STORAGE_RAW_LEAD).add(ModBlocks.RAW_LEAD_BLOCK.get());
     }
 
 }

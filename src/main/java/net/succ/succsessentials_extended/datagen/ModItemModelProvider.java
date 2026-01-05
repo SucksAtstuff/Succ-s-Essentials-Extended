@@ -18,6 +18,7 @@ import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.succ.succsessentials_extended.Succsessentials_extended;
+import net.succ.succsessentials_extended.fluid.ModFluids;
 import net.succ.succsessentials_extended.item.ModItems;
 
 import java.util.LinkedHashMap;
@@ -118,6 +119,20 @@ public class ModItemModelProvider extends ItemModelProvider {
                 ModItems.ALUMINIUM_PLATE
         );
 
+        registerMetalSet(
+                ModItems.LEAD_INGOT,
+                ModItems.LEAD_DUST,
+                ModItems.LEAD_NUGGET,
+                ModItems.LEAD_PLATE
+        );
+
+        registerMetalSet(
+                ModItems.URANIUM_INGOT,
+                ModItems.URANIUM_DUST,
+                ModItems.URANIUM_NUGGET,
+                ModItems.URANIUM_PLATE
+        );
+
         /* =====================================================================
          *                           ALLOYS
          * ===================================================================== */
@@ -191,6 +206,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.RAW_NICKEL.get());
         basicItem(ModItems.RAW_SILVER.get());
         basicItem(ModItems.RAW_ALUMINIUM.get());
+        basicItem(ModItems.RAW_LEAD.get());
+        basicItem(ModItems.RAW_URANIUM.get());
 
         // Register models for chromium tools
         handheldItem(ModItems.CHROMIUM_SWORD.get());
@@ -204,6 +221,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.BIOMASS_PELLET.get());
         basicItem(ModItems.WIRE_CUTTER.get());
         basicItem(ModItems.HAMMER.get());
+        basicItem(ModItems.NUCLEAR_WASTE.get());
+        basicItem(ModFluids.NUCLEAR_WASTE_WATER_BUCKET.get());
 
         // Register models for machine items
         basicItem(ModItems.CIRCUIT_BOARD.get());

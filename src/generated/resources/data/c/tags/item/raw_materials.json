@@ -9,6 +9,8 @@
     "succsessentials_extended:raw_zinc",
     "succsessentials_extended:raw_silver",
     "succsessentials_extended:raw_aluminium",
-    "succsessentials_extended:raw_nickel"
+    "succsessentials_extended:raw_nickel",
+    "succsessentials_extended:raw_uranium",
+    "succsessentials_extended:raw_lead"
   ]
 }

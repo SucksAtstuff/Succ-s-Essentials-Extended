@@ -59,11 +59,11 @@ public class NuclearReactorMultiblock extends AbstractMultiblock {
 
                 // === CASINGS ===
                 casing(-1, 0, -1, ModBlocks.PANEL_BLOCK.get()),   // Top-left
-                casing(0, 0, -1, ModBlocks.ALUMINIUM_BLOCK.get()),// Top-center
+                casing(0, 0, -1, ModBlocks.LEAD_BLOCK.get()),// Top-center
                 casing(1, 0, -1, ModBlocks.PANEL_BLOCK.get()),    // Top-right
 
-                casing(-1, 0, 1, ModBlocks.ALUMINIUM_BLOCK.get()),// Bottom-left
-                casing(1, 0, 1, ModBlocks.ALUMINIUM_BLOCK.get())  // Bottom-right
+                casing(-1, 0, 1, ModBlocks.LEAD_BLOCK.get()),// Bottom-left
+                casing(1, 0, 1, ModBlocks.LEAD_BLOCK.get())  // Bottom-right
         );
     }
 

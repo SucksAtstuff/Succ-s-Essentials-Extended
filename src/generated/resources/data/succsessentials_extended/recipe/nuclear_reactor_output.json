@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "F": {
+      "item": "minecraft:hopper"
+    },
+    "P": {
+      "item": "succsessentials_extended:panel_block"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "S": {
+      "tag": "c:plates/steel"
+    }
+  },
+  "pattern": [
+    "SRS",
+    "PFP",
+    "SPS"
+  ],
+  "result": {
+    "count": 1,
+    "id": "succsessentials_extended:nuclear_reactor_output"
+  }
+}

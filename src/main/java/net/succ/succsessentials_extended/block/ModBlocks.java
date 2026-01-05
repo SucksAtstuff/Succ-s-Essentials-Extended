@@ -19,7 +19,7 @@ import net.succ.succsessentials_extended.api.machine.GeneratorMachine;
 import net.succ.succsessentials_extended.api.machine.MachineTier;
 import net.succ.succsessentials_extended.api.machine.TieredMachine;
 import net.succ.succsessentials_extended.block.custom.*;
-import net.succ.succsessentials_extended.block.custom.multiblock.NuclearReactorRodBlock;
+import net.succ.succsessentials_extended.block.custom.multiblock.NuclearReactorCoreBlock;
 import net.succ.succsessentials_extended.block.entity.custom.BiofuelGeneratorBlockEntity;
 import net.succ.succsessentials_extended.block.entity.custom.CoalGeneratorBlockEntity;
 import net.succ.succsessentials_extended.item.ModItems;
@@ -161,6 +161,32 @@ public class ModBlocks {
     public static final DeferredBlock<Block> ALUMINIUM_BLOCK = registerBlock("block_of_aluminium",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops()));
 
+    // ---------- LEAD ----------
+    public static final DeferredBlock<Block> LEAD_ORE = registerBlock("lead_ore",
+            () -> new DropExperienceBlock(UniformInt.of(2,6),
+                    BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_ORE).requiresCorrectToolForDrops()));
+    public static final DeferredBlock<Block> DEEPSLATE_LEAD_ORE = registerBlock("deepslate_lead_ore",
+            () -> new DropExperienceBlock(UniformInt.of(2,6),
+                    BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE_IRON_ORE).requiresCorrectToolForDrops()));
+    public static final DeferredBlock<Block> RAW_LEAD_BLOCK = registerBlock("raw_lead_block",
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.RAW_IRON_BLOCK).requiresCorrectToolForDrops()));
+    public static final DeferredBlock<Block> LEAD_BLOCK = registerBlock("block_of_lead",
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops()));
+
+
+    // ---------- URANIUM ----------
+    public static final DeferredBlock<Block> URANIUM_ORE = registerBlock("uranium_ore",
+            () -> new DropExperienceBlock(UniformInt.of(2,6),
+                    BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_ORE).requiresCorrectToolForDrops()));
+    public static final DeferredBlock<Block> DEEPSLATE_URANIUM_ORE = registerBlock("deepslate_uranium_ore",
+            () -> new DropExperienceBlock(UniformInt.of(2,6),
+                    BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE_IRON_ORE).requiresCorrectToolForDrops()));
+    public static final DeferredBlock<Block> RAW_URANIUM_BLOCK = registerBlock("raw_uranium_block",
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.RAW_IRON_BLOCK).requiresCorrectToolForDrops()));
+    public static final DeferredBlock<Block> URANIUM_BLOCK = registerBlock("block_of_uranium",
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops()));
+
+
     /* =====================================================================
      *                           ALLOY BLOCKS
      * ===================================================================== */
@@ -216,8 +242,8 @@ public class ModBlocks {
     public static final DeferredBlock<Block> NUCLEAR_REACTOR_OUTPUT = registerBlock("nuclear_reactor_output",
                     () -> new NuclearReactorOutputBlock(BlockBehaviour.Properties.of().strength(3f).requiresCorrectToolForDrops()));
 
-    public static final DeferredBlock<Block> NUCLEAR_REACTOR_ROD = registerBlock("nuclear_reactor_rod",
-            () -> new NuclearReactorRodBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops()));
+    public static final DeferredBlock<Block> NUCLEAR_REACTOR_CORE = registerBlock("nuclear_reactor_core",
+            () -> new NuclearReactorCoreBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops()));
 
     /* =====================================================================
      *                        INTERNAL REGISTRATION

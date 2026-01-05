@@ -44,6 +44,8 @@ public class ModBlockLootTablesProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.SILVER_BLOCK.get());
         dropSelf(ModBlocks.NICKEL_BLOCK.get());
         dropSelf(ModBlocks.ALUMINIUM_BLOCK.get());
+        dropSelf(ModBlocks.LEAD_BLOCK.get());
+        dropSelf(ModBlocks.URANIUM_BLOCK.get());
 
         // Alloy blocks
         dropSelf(ModBlocks.STEEL_BLOCK.get());
@@ -65,6 +67,8 @@ public class ModBlockLootTablesProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.RAW_SILVER_BLOCK.get());
         dropSelf(ModBlocks.RAW_NICKEL_BLOCK.get());
         dropSelf(ModBlocks.RAW_ALUMINIUM_BLOCK.get());
+        dropSelf(ModBlocks.RAW_LEAD_BLOCK.get());
+        dropSelf(ModBlocks.RAW_URANIUM_BLOCK.get());
 
         // Machines / tech
         dropSelf(ModBlocks.ALLOY_FORGER.get());
@@ -80,7 +84,7 @@ public class ModBlockLootTablesProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.NUCLEAR_REACTOR_CONTROLLER.get());
         dropSelf(ModBlocks.NUCLEAR_REACTOR_INPUT.get());
         dropSelf(ModBlocks.NUCLEAR_REACTOR_OUTPUT.get());
-        dropSelf(ModBlocks.NUCLEAR_REACTOR_ROD.get());
+        dropSelf(ModBlocks.NUCLEAR_REACTOR_CORE.get());
 
         /* =====================================================================
          *                           STONE DROPS
@@ -145,6 +149,18 @@ public class ModBlockLootTablesProvider extends BlockLootSubProvider {
                 block -> createOreDrop(block, ModItems.RAW_ALUMINIUM.get()));
         add(ModBlocks.DEEPSLATE_ALUMINIUM_ORE.get(),
                 block -> createOreDrop(block, ModItems.RAW_ALUMINIUM.get()));
+
+        // Lead
+        add(ModBlocks.LEAD_ORE.get(),
+                block -> createOreDrop(block, ModItems.RAW_LEAD.get()));
+        add(ModBlocks.DEEPSLATE_LEAD_ORE.get(),
+                block -> createOreDrop(block, ModItems.RAW_LEAD.get()));
+
+        // Uranium
+        add(ModBlocks.URANIUM_ORE.get(),
+                block -> createOreDrop(block, ModItems.RAW_URANIUM.get()));
+        add(ModBlocks.DEEPSLATE_URANIUM_ORE.get(),
+                block -> createOreDrop(block, ModItems.RAW_URANIUM.get()));
     }
 
     /* =====================================================================

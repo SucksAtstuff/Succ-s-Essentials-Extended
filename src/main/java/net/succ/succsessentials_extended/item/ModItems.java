@@ -238,6 +238,30 @@ public class ModItems {
     public static final DeferredItem<Item> CONSTANTAN_PLATE = ITEMS.register("constantan_plate",
             () -> new Item(new Item.Properties()));
 
+    /* ---------- LEAD ---------- */
+    public static final DeferredItem<Item> RAW_LEAD = ITEMS.register("raw_lead",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> LEAD_INGOT = ITEMS.register("lead_ingot",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> LEAD_NUGGET = ITEMS.register("lead_nugget",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> LEAD_DUST = ITEMS.register("lead_dust",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> LEAD_PLATE = ITEMS.register("lead_plate",
+            () -> new Item(new Item.Properties()));
+
+    /* ---------- URANIUM ---------- */
+    public static final DeferredItem<Item> RAW_URANIUM = ITEMS.register("raw_uranium",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> URANIUM_INGOT = ITEMS.register("uranium_ingot",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> URANIUM_NUGGET = ITEMS.register("uranium_nugget",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> URANIUM_DUST = ITEMS.register("uranium_dust",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> URANIUM_PLATE = ITEMS.register("uranium_plate",
+            () -> new Item(new Item.Properties()));
+
 
     /* =====================================================================
      *                           MISC ITEMS
@@ -250,6 +274,9 @@ public class ModItems {
             () -> new Item(new Item.Properties()));
 
     public static final DeferredItem<Item> BIOMASS_PELLET = ITEMS.register("biomass_pellet",
+            () -> new Item(new Item.Properties()));
+
+    public static final DeferredItem<Item> NUCLEAR_WASTE = ITEMS.register("nuclear_waste",
             () -> new Item(new Item.Properties()));
 
     public static void register(IEventBus eventBus) {

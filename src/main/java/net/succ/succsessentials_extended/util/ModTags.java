@@ -233,6 +233,8 @@ public class ModTags {
                 TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ores/lead/deepslate"));
         public static final TagKey<Item> STORAGE_LEAD =
                 TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/lead"));
+        public static final TagKey<Item> STORAGE_RAW_LEAD =
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/raw_lead"));
 
         /* ================= SILVER ================= */
 
@@ -703,6 +705,8 @@ public class ModTags {
                 TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "ores/lead/deepslate"));
         public static final TagKey<Block> STORAGE_LEAD =
                 TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/lead"));
+        public static final TagKey<Block> STORAGE_RAW_LEAD =
+                TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/raw_lead"));
 
         /* ================= SILVER ================= */
 
@@ -746,6 +750,8 @@ public class ModTags {
                 TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "ores/aluminum/deepslate"));
         public static final TagKey<Block> STORAGE_ALUMINUM =
                 TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/aluminum"));
+        public static final TagKey<Block> STORAGE_RAW_ALUMINUM =
+                TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/raw_aluminum"));
 
         /* ================= URANIUM ================= */
 
@@ -755,6 +761,8 @@ public class ModTags {
                 TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "ores/uranium/deepslate"));
         public static final TagKey<Block> STORAGE_URANIUM =
                 TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/uranium"));
+        public static final TagKey<Block> STORAGE_RAW_URANIUM =
+                TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/raw_uranium"));
 
         /* ================= OSMIUM ================= */
 

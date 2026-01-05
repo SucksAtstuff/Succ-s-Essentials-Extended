@@ -63,6 +63,15 @@ public class ModLangProvider extends LanguageProvider {
         );
 
         // ======================================================================
+        // 2.5 AUTOMATIC FLUIDS
+        // ======================================================================
+        addFluid(
+                "nuclear_waste_water",
+                "Nuclear Waste Water"
+        );
+
+
+        // ======================================================================
         // 3. AUTOMATIC ENTITIES
         // ======================================================================
         ModEntities.ENTRIES.forEach(supplier -> {
@@ -169,6 +178,20 @@ public class ModLangProvider extends LanguageProvider {
                 displayName
         );
     }
+
+
+    private void addFluid(String id, String displayName) {
+
+        // Source fluid
+        add("fluid." + Succsessentials_extended.MOD_ID + ".source_" + id, displayName);
+
+        // Flowing fluid
+        add("fluid." + Succsessentials_extended.MOD_ID + ".flowing_" + id, "Flowing " + displayName);
+
+        // Fluid type
+        add("fluid_type." + Succsessentials_extended.MOD_ID + "." + id, displayName);
+    }
+
 
     // Converts "ruby_pickaxe" → "Ruby Pickaxe"
     private static String format(String id) {

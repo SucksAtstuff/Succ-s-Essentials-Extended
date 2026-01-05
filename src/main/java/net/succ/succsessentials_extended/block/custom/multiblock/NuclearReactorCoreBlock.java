@@ -4,11 +4,11 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.succ.succsessentials_extended.api.machine.multi_block_structure.marker.MultiblockRod;
 
-public class NuclearReactorRodBlock
+public class NuclearReactorCoreBlock
         extends Block
         implements MultiblockRod {
 
-    public NuclearReactorRodBlock(BlockBehaviour.Properties properties) {
+    public NuclearReactorCoreBlock(BlockBehaviour.Properties properties) {
         super(properties);
     }
 }

@@ -22,6 +22,7 @@ import net.succ.succsessentials_extended.block.entity.ModBlockEntities;
 import net.succ.succsessentials_extended.block.entity.base.AbstractGeneratorBlockEntity;
 import net.succ.succsessentials_extended.item.ModItems;
 import net.succ.succsessentials_extended.screen.custom.NuclearReactorControllerBlockMenu;
+import net.succ.succsessentials_extended.util.energy.ModEnergyStorage;
 import org.jetbrains.annotations.Nullable;
 
 /**
@@ -29,12 +30,10 @@ import org.jetbrains.annotations.Nullable;
  * NuclearReactorControllerBlockEntity
  *
  * Central brain of the reactor.
- * Handles:
- *  - Multiblock validation
- *  - Fuel consumption (uranium)
- *  - Waste production
- *  - Power generation
- *  - Water handling (NEW)
+ *
+ * This is a CONTINUOUS generator (not burn-based).
+ * It overrides energy storage creation so it can
+ * RECEIVE internally generated FE.
  * ============================================================
  */
 public class NuclearReactorControllerBlockEntity
@@ -91,10 +90,36 @@ public class NuclearReactorControllerBlockEntity
                 ModBlockEntities.NUCLEAR_REACTOR_CONTROLLER_BE.get(),
                 pos,
                 state,
-                1_000_000,
-                4_000,
-                200
+                1_000_000, // ENERGY CAPACITY
+                4_000,     // ENERGY TRANSFER RATE
+                200        // Dummy burn time (unused)
         );
+    }
+
+    /* ============================================================
+       ENERGY STORAGE OVERRIDE
+       ============================================================ */
+
+    @Override
+    protected ModEnergyStorage createEnergyStorage(int capacity, int transferRate) {
+        return new ModEnergyStorage(
+                capacity,
+                transferRate, // maxReceive (generation)
+                transferRate  // maxExtract (output)
+        ) {
+            @Override
+            public void onEnergyChanged() {
+                setChanged();
+                if (level != null && !level.isClientSide()) {
+                    level.sendBlockUpdated(
+                            worldPosition,
+                            getBlockState(),
+                            getBlockState(),
+                            3
+                    );
+                }
+            }
+        };
     }
 
     /* ======================== TICK ======================== */
@@ -143,22 +168,34 @@ public class NuclearReactorControllerBlockEntity
         }
     }
 
-    /* ======================== IO LOOKUP ======================== */
+    /* ======================== IO LOOKUP (RESTORED) ======================== */
 
     @Nullable
     public NuclearReactorInputBlockEntity getInputBE() {
         if (level == null) return null;
-        Direction facing = getBlockState().getValue(NuclearReactorControllerBlock.FACING);
+
+        Direction facing = getBlockState()
+                .getValue(NuclearReactorControllerBlock.FACING);
+
         BlockPos pos = worldPosition.relative(facing.getCounterClockWise());
-        return level.getBlockEntity(pos) instanceof NuclearReactorInputBlockEntity be ? be : null;
+
+        return level.getBlockEntity(pos) instanceof NuclearReactorInputBlockEntity be
+                ? be
+                : null;
     }
 
     @Nullable
     public NuclearReactorOutputBlockEntity getOutputBE() {
         if (level == null) return null;
-        Direction facing = getBlockState().getValue(NuclearReactorControllerBlock.FACING);
+
+        Direction facing = getBlockState()
+                .getValue(NuclearReactorControllerBlock.FACING);
+
         BlockPos pos = worldPosition.relative(facing.getClockWise());
-        return level.getBlockEntity(pos) instanceof NuclearReactorOutputBlockEntity be ? be : null;
+
+        return level.getBlockEntity(pos) instanceof NuclearReactorOutputBlockEntity be
+                ? be
+                : null;
     }
 
     /* ======================== FUEL + WASTE ======================== */
@@ -170,20 +207,26 @@ public class NuclearReactorControllerBlockEntity
         if (input == null || output == null) return;
 
         ItemStack fuel = input.itemHandler.getStackInSlot(0);
-        if (fuel.isEmpty() || !fuel.is(ModItems.ALUMINIUM_INGOT.get())) return;
+        if (fuel.isEmpty() || !fuel.is(ModItems.URANIUM_INGOT.get())) return;
 
         ItemStack waste = output.itemHandler.getStackInSlot(0);
         if (!waste.isEmpty() &&
-                (!ItemStack.isSameItemSameComponents(waste, ModItems.BRASS_INGOT.get().getDefaultInstance()) ||
-                        waste.getCount() >= waste.getMaxStackSize())) {
+                (!ItemStack.isSameItemSameComponents(
+                        waste,
+                        ModItems.NUCLEAR_WASTE.get().getDefaultInstance()
+                ) || waste.getCount() >= waste.getMaxStackSize())) {
             return;
         }
 
         input.itemHandler.extractItem(0, 1, false);
-        output.itemHandler.insertItem(0, new ItemStack(ModItems.BRASS_INGOT.get()), false);
+        output.itemHandler.insertItem(
+                0,
+                new ItemStack(ModItems.NUCLEAR_WASTE.get()),
+                false
+        );
     }
 
-    /* ======================== WATER BUCKET ======================== */
+    /* ======================== WATER ======================== */
 
     private void handleWater() {
         ItemStack water = itemHandler.getStackInSlot(WATER_SLOT);
@@ -200,11 +243,13 @@ public class NuclearReactorControllerBlockEntity
     }
 
     @Override
-    protected void consumeFuel() {}
+    protected void consumeFuel() {
+        // Fuel handled via processFuelAndWaste()
+    }
 
     @Override
     protected void generateEnergy() {
-        energyStorage.receiveEnergy(getPowerGenerationRate(), false);
+        energyStorage.receiveEnergy(POWER_GENERATION_RATE, false);
     }
 
     @Override
@@ -223,21 +268,30 @@ public class NuclearReactorControllerBlockEntity
 
         BlockState state = getBlockState();
         if (state.getValue(BlockStateProperties.LIT) != lit) {
-            level.setBlock(worldPosition, state.setValue(BlockStateProperties.LIT, lit), Block.UPDATE_CLIENTS);
+            level.setBlock(
+                    worldPosition,
+                    state.setValue(BlockStateProperties.LIT, lit),
+                    Block.UPDATE_CLIENTS
+            );
         }
     }
-
 
     /* ======================== MENU ======================== */
 
     @Override
     public Component getDisplayName() {
-        return Component.translatable("block.succsessentials_extended.nuclear_reactor_controller");
+        return Component.translatable(
+                "block.succsessentials_extended.nuclear_reactor_controller"
+        );
     }
 
     @Nullable
     @Override
-    public AbstractContainerMenu createMenu(int id, Inventory inventory, Player player) {
+    public AbstractContainerMenu createMenu(
+            int id,
+            Inventory inventory,
+            Player player
+    ) {
         return new NuclearReactorControllerBlockMenu(id, inventory, this);
     }
 

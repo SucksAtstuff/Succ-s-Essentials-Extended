@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "succsessentials_extended:nuclear_reactor_rod"
+          "name": "succsessentials_extended:block_of_lead"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "succsessentials_extended:blocks/nuclear_reactor_rod"
+  "random_sequence": "succsessentials_extended:blocks/block_of_lead"
 }
