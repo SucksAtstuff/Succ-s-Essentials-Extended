@@ -28,7 +28,6 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.succ.succsessentials_extended.api.machine.GeneratorMachine;
 import net.succ.succsessentials_extended.api.machine.MachineTier;
 import net.succ.succsessentials_extended.api.machine.TieredMachine;
-import net.succ.succsessentials_extended.api.machine.multi_block_structure.marker.MultiblockController;
 import net.succ.succsessentials_extended.block.entity.ModBlockEntities;
 import net.succ.succsessentials_extended.block.entity.custom.AlloyForgerBlockEntity;
 import net.succ.succsessentials_extended.block.entity.custom.BiofuelGeneratorBlockEntity;
@@ -36,7 +35,7 @@ import net.succ.succsessentials_extended.block.entity.custom.NuclearReactorContr
 import org.jetbrains.annotations.Nullable;
 
 public class NuclearReactorControllerBlock extends BaseEntityBlock
-        implements TieredMachine, GeneratorMachine, MultiblockController {
+        implements TieredMachine, GeneratorMachine {
 
     /* ==========================================================
        BLOCKSTATE PROPERTIES

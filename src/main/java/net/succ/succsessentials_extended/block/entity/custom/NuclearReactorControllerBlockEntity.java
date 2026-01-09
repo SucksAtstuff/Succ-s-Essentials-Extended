@@ -15,9 +15,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.neoforged.neoforge.items.ItemStackHandler;
-import net.succ.succsessentials_extended.api.machine.multi_block_structure.AbstractMultiblock;
 import net.succ.succsessentials_extended.block.custom.NuclearReactorControllerBlock;
-import net.succ.succsessentials_extended.block.custom.multiblock.NuclearReactorMultiblock;
 import net.succ.succsessentials_extended.block.entity.ModBlockEntities;
 import net.succ.succsessentials_extended.block.entity.base.AbstractGeneratorBlockEntity;
 import net.succ.succsessentials_extended.item.ModItems;
@@ -73,8 +71,7 @@ public class NuclearReactorControllerBlockEntity
 
     /* ======================== MULTIBLOCK ======================== */
 
-    private static final AbstractMultiblock MULTIBLOCK =
-            new NuclearReactorMultiblock();
+
 
     /* ======================== STATE ======================== */
 
@@ -152,8 +149,8 @@ public class NuclearReactorControllerBlockEntity
     private void updateStructureState(ServerLevel level,
                                       BlockPos pos,
                                       BlockState state) {
-        boolean nowFormed = MULTIBLOCK.validate(level, pos, state);
-
+        //boolean nowFormed = MULTIBLOCK.validate(level, pos, state);
+        boolean nowFormed = true;
         if (formed != nowFormed) {
             formed = nowFormed;
 

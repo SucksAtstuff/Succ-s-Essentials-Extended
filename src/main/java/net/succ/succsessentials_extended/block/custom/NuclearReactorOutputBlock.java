@@ -14,13 +14,10 @@ import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.succ.succsessentials_extended.api.machine.MachineTier;
-import net.succ.succsessentials_extended.api.machine.multi_block_structure.marker.MultiblockOutput;
 import net.succ.succsessentials_extended.block.entity.custom.NuclearReactorOutputBlockEntity;
 import org.jetbrains.annotations.Nullable;
 
-public class NuclearReactorOutputBlock extends BaseEntityBlock
-        implements MultiblockOutput {
-
+public class NuclearReactorOutputBlock extends BaseEntityBlock {
     /* ==========================================================
        SHAPE
        ========================================================== */
