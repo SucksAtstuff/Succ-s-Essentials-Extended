@@ -164,6 +164,8 @@ public class ModItems {
     public static final DeferredItem<Item> ALUMINIUM_PLATE = ITEMS.register("aluminium_plate",
             () -> new Item(new Item.Properties()));
 
+
+
     /* =====================================================================
      *                           ALLOY MATERIAL ITEMS
      * ===================================================================== */
@@ -260,6 +262,18 @@ public class ModItems {
     public static final DeferredItem<Item> URANIUM_DUST = ITEMS.register("uranium_dust",
             () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> URANIUM_PLATE = ITEMS.register("uranium_plate",
+            () -> new Item(new Item.Properties()));
+
+    /* ---------- THORIUM ---------- */
+    public static final DeferredItem<Item> RAW_THORIUM = ITEMS.register("raw_thorium",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> THORIUM_INGOT = ITEMS.register("thorium_ingot",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> THORIUM_NUGGET = ITEMS.register("thorium_nugget",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> THORIUM_DUST = ITEMS.register("thorium_dust",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> THORIUM_PLATE = ITEMS.register("thorium_plate",
             () -> new Item(new Item.Properties()));
 
 

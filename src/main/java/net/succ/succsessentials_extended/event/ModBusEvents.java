@@ -36,8 +36,9 @@ public class ModBusEvents {
 
         event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK, ModBlockEntities.NUCLEAR_REACTOR_CONTROLLER_BE.get(), NuclearReactorControllerBlockEntity::getEnergyStorage);
 
-
-
+        event.registerBlockEntity(Capabilities.ItemHandler.BLOCK,  ModBlockEntities.NUCLEAR_REACTOR_INPUT_BE.get(),  (be, side) -> be.itemHandler);
+        event.registerBlockEntity(Capabilities.ItemHandler.BLOCK,  ModBlockEntities.NUCLEAR_REACTOR_OUTPUT_BE.get(), (be, side) -> be.itemHandler);
+        event.registerBlockEntity(Capabilities.FluidHandler.BLOCK, ModBlockEntities.NUCLEAR_REACTOR_INPUT_BE.get(),  (be, side) -> be.waterTank);
     }
 
     @SubscribeEvent

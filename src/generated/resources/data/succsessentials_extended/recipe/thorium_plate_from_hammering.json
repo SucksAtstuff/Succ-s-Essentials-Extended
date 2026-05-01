@@ -1,0 +1,14 @@
+{
+  "type": "succsessentials_extended:hammering",
+  "durability_cost": 2,
+  "hammer": {
+    "tag": "c:tools/hammers"
+  },
+  "input": {
+    "tag": "c:ingots/thorium"
+  },
+  "result": {
+    "count": 1,
+    "id": "succsessentials_extended:thorium_plate"
+  }
+}

@@ -34,12 +34,12 @@ public class NuclearReactorControllerBlockMenu extends AbstractContainerMenu {
     public final NuclearReactorControllerBlockEntity controller;
     private final Level level;
 
-    // === SLOT INDICES ===
-    private static final int INPUT_SLOT = 0;
-    private static final int OUTPUT_SLOT = 1;
-    private static final int WATER_SLOT = 2;
+    // === SLOT INDICES (order: uranium, water/empty bucket, waste) ===
+    private static final int INPUT_SLOT       = 0;
+    private static final int WATER_SLOT       = 1;
+    private static final int OUTPUT_SLOT      = 2;
     private static final int PLAYER_INV_START = 3;
-    private static final int PLAYER_INV_END = PLAYER_INV_START + 36;
+    private static final int PLAYER_INV_END   = PLAYER_INV_START + 36;
 
     /* ============================================================
        CLIENT CONSTRUCTOR
@@ -60,33 +60,20 @@ public class NuclearReactorControllerBlockMenu extends AbstractContainerMenu {
         // === MULTIBLOCK INPUT BLOCK ===
         NuclearReactorInputBlockEntity input = controller.getInputBE();
         if (input != null) {
-            addSlot(new SlotItemHandler(input.itemHandler, 0, 56, 35)); // slot 0
+            addSlot(new SlotItemHandler(input.itemHandler, 0, 56, 35));  // slot 0 — uranium
+            addSlot(new SlotItemHandler(input.itemHandler, 1, 149, 62)); // slot 2 — water bucket
         }
 
         // === MULTIBLOCK OUTPUT BLOCK ===
         NuclearReactorOutputBlockEntity output = controller.getOutputBE();
         if (output != null) {
             addSlot(new SlotItemHandler(output.itemHandler, 0, 116, 35) {
-                @Override
-                public boolean mayPlace(ItemStack stack) {
-                    return false;
-                }
-            }); // slot 1
+                @Override public boolean mayPlace(ItemStack stack) { return false; }
+            }); // slot 2 — nuclear waste
         }
 
-        // === WATER BUCKET SLOT ON CONTROLLER ===
-        addSlot(new SlotItemHandler(controller.itemHandler, WATER_SLOT, 149, 62) {
-            @Override
-            public boolean mayPlace(ItemStack stack) {
-                return stack.getItem() == Items.WATER_BUCKET;
-            }
-
-            @Override
-            public boolean mayPickup(Player player) {
-                ItemStack stack = getItem();
-                return stack.isEmpty() || stack.getItem() == Items.BUCKET;
-            }
-        }); // slot 2
+        // === SYNCED DATA ===
+        addDataSlots(this.controller.data);
 
         // === PLAYER INVENTORY ===
         addPlayerInventory(inv);
@@ -114,6 +101,16 @@ public class NuclearReactorControllerBlockMenu extends AbstractContainerMenu {
     }
 
     /* ============================================================
+       Water data accessors (synced via ContainerData)
+       ============================================================ */
+
+    public int getWaterTicks()    { return controller.data.get(0); }
+    public int getMaxWaterTicks() { return controller.data.get(1); }
+    public int getOverheatTicks() { return controller.data.get(2); }
+    public int getTankWater()     { return controller.data.get(3); }
+    public int getTankCapacity()  { return controller.data.get(4); }
+
+    /* ============================================================
        Quick-move stack logic for shift-click
        ============================================================ */
     @Override
@@ -131,12 +128,12 @@ public class NuclearReactorControllerBlockMenu extends AbstractContainerMenu {
             }
         } else {
             // FROM player inventory TO water slot
-            if (stack.getItem() == Items.WATER_BUCKET) {
+            if (stack.is(Items.WATER_BUCKET)) {
                 if (!moveItemStackTo(stack, WATER_SLOT, WATER_SLOT + 1, false)) {
                     return ItemStack.EMPTY;
                 }
             }
-            // FROM player inventory TO input slot
+            // FROM player inventory TO uranium input slot
             else if (!moveItemStackTo(stack, INPUT_SLOT, INPUT_SLOT + 1, false)) {
                 return ItemStack.EMPTY;
             }

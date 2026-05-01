@@ -42,6 +42,9 @@ public class ModCreativeModeTabs {
                                 output.accept(ModItems.RAW_SILVER);
                                 output.accept(ModItems.RAW_NICKEL);
                                 output.accept(ModItems.RAW_ALUMINIUM);
+                                output.accept(ModItems.RAW_LEAD);
+                                output.accept(ModItems.RAW_URANIUM);
+                                output.accept(ModItems.RAW_THORIUM);
 
                                 /* ===================================================== */
                                 /*                         INGOTS                        */
@@ -59,6 +62,7 @@ public class ModCreativeModeTabs {
                                 output.accept(ModItems.ALUMINIUM_INGOT);
                                 output.accept(ModItems.LEAD_INGOT);
                                 output.accept(ModItems.URANIUM_INGOT);
+                                output.accept(ModItems.THORIUM_INGOT);
 
                                 output.accept(ModItems.STEEL_INGOT);
                                 output.accept(ModItems.BRONZE_INGOT);
@@ -84,6 +88,7 @@ public class ModCreativeModeTabs {
                                 output.accept(ModItems.ALUMINIUM_NUGGET);
                                 output.accept(ModItems.LEAD_NUGGET);
                                 output.accept(ModItems.URANIUM_NUGGET);
+                                output.accept(ModItems.THORIUM_NUGGET);
 
                                 output.accept(ModItems.STEEL_NUGGET);
                                 output.accept(ModItems.BRONZE_NUGGET);
@@ -109,6 +114,7 @@ public class ModCreativeModeTabs {
                                 output.accept(ModItems.ALUMINIUM_DUST);
                                 output.accept(ModItems.LEAD_DUST);
                                 output.accept(ModItems.URANIUM_DUST);
+                                output.accept(ModItems.THORIUM_DUST);
 
                                 output.accept(ModItems.STEEL_DUST);
                                 output.accept(ModItems.BRONZE_DUST);
@@ -142,6 +148,7 @@ public class ModCreativeModeTabs {
                                 output.accept(ModItems.ALUMINIUM_PLATE);
                                 output.accept(ModItems.LEAD_PLATE);
                                 output.accept(ModItems.URANIUM_PLATE);
+                                output.accept(ModItems.THORIUM_PLATE);
 
                                 output.accept(ModItems.STEEL_PLATE);
                                 output.accept(ModItems.BRONZE_PLATE);
@@ -199,6 +206,8 @@ public class ModCreativeModeTabs {
                                 output.accept(ModBlocks.DEEPSLATE_LEAD_ORE);
                                 output.accept(ModBlocks.URANIUM_ORE);
                                 output.accept(ModBlocks.DEEPSLATE_URANIUM_ORE);
+                                output.accept(ModBlocks.THORIUM_ORE);
+                                output.accept(ModBlocks.DEEPSLATE_THORIUM_ORE);
 
                                 /* ===================================================== */
                                 /*                       RAW BLOCKS                      */
@@ -216,6 +225,7 @@ public class ModCreativeModeTabs {
                                 output.accept(ModBlocks.RAW_ALUMINIUM_BLOCK);
                                 output.accept(ModBlocks.RAW_LEAD_BLOCK);
                                 output.accept(ModBlocks.RAW_URANIUM_BLOCK);
+                                output.accept(ModBlocks.RAW_THORIUM_BLOCK);
 
                                 /* ===================================================== */
                                 /*                     STORAGE BLOCKS                    */
@@ -233,6 +243,7 @@ public class ModCreativeModeTabs {
                                 output.accept(ModBlocks.ALUMINIUM_BLOCK);
                                 output.accept(ModBlocks.LEAD_BLOCK);
                                 output.accept(ModBlocks.URANIUM_BLOCK);
+                                output.accept(ModBlocks.THORIUM_BLOCK);
 
                                 output.accept(ModBlocks.STEEL_BLOCK);
                                 output.accept(ModBlocks.BRONZE_BLOCK);

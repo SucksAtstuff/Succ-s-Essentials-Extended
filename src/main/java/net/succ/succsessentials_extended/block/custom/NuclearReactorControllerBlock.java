@@ -190,7 +190,7 @@ public class NuclearReactorControllerBlock extends BaseEntityBlock
     }
 
     public int getGenerationRate() {
-        return NuclearReactorControllerBlockEntity.POWER_GENERATION_RATE;
+        return NuclearReactorControllerBlockEntity.RATE_URANIUM;
     }
 
     @Override

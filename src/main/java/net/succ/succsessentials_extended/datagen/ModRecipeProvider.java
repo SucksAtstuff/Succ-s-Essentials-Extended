@@ -72,7 +72,9 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             new OrePulverizingData(ModBlocks.NICKEL_ORE, ModBlocks.DEEPSLATE_NICKEL_ORE, ModItems.NICKEL_DUST, 180, 15),
             new OrePulverizingData(ModBlocks.ALUMINIUM_ORE, ModBlocks.DEEPSLATE_ALUMINIUM_ORE, ModItems.ALUMINIUM_DUST, 180, 15),
             new OrePulverizingData(ModBlocks.URANIUM_ORE, ModBlocks.DEEPSLATE_URANIUM_ORE, ModItems.URANIUM_DUST, 260, 30),
+            new OrePulverizingData(ModBlocks.THORIUM_ORE, ModBlocks.DEEPSLATE_THORIUM_ORE, ModItems.THORIUM_DUST, 260, 30),
             new OrePulverizingData(ModBlocks.LEAD_ORE, ModBlocks.DEEPSLATE_LEAD_ORE, ModItems.LEAD_DUST, 180, 15)
+
 
     };
 
@@ -96,6 +98,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         List<ItemLike> ALUMINIUM_SMELTABLES = List.of(ModItems.RAW_ALUMINIUM, ModItems.ALUMINIUM_DUST, ModBlocks.ALUMINIUM_ORE, ModBlocks.DEEPSLATE_ALUMINIUM_ORE);
         List<ItemLike> LEAD_SMELTABLES = List.of(ModItems.RAW_LEAD, ModItems.LEAD_DUST, ModBlocks.LEAD_ORE, ModBlocks.DEEPSLATE_LEAD_ORE);
         List<ItemLike> URANIUM_SMELTABLES = List.of(ModItems.RAW_URANIUM, ModItems.URANIUM_DUST, ModBlocks.URANIUM_ORE, ModBlocks.DEEPSLATE_URANIUM_ORE);
+        List<ItemLike> THORIUM_SMELTABLES = List.of(ModItems.RAW_THORIUM, ModItems.THORIUM_DUST, ModBlocks.THORIUM_ORE, ModBlocks.DEEPSLATE_THORIUM_ORE);
+
 
         List<ItemLike> STEEL_SMELTABLES = List.of(ModItems.STEEL_DUST);
         List<ItemLike> BRONZE_SMELTABLES = List.of(ModItems.BRONZE_DUST);
@@ -143,6 +147,9 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
         oreSmelting(recipeOutput, URANIUM_SMELTABLES, RecipeCategory.MISC, ModItems.URANIUM_INGOT.get(), 0.45f, 300, "uranium");
         oreBlasting(recipeOutput, URANIUM_SMELTABLES, RecipeCategory.MISC, ModItems.URANIUM_INGOT.get(), 0.45f, 150, "uranium");
+
+        oreSmelting(recipeOutput, THORIUM_SMELTABLES, RecipeCategory.MISC, ModItems.THORIUM_INGOT.get(), 0.45f, 300, "thorium");
+        oreBlasting(recipeOutput, THORIUM_SMELTABLES, RecipeCategory.MISC, ModItems.THORIUM_INGOT.get(), 0.45f, 150, "thorium");
 
         oreSmelting(recipeOutput, STEEL_SMELTABLES, RecipeCategory.MISC, ModItems.STEEL_INGOT.get(), 0.25f, 200, "steel");
         oreBlasting(recipeOutput, STEEL_SMELTABLES, RecipeCategory.MISC, ModItems.STEEL_INGOT.get(), 0.25f, 100, "steel");
@@ -483,6 +490,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         metalConversions(recipeOutput, ModTags.Items.INGOTS_ALUMINUM, ModTags.Items.NUGGETS_ALUMINUM, ModBlocks.ALUMINIUM_BLOCK, ModItems.ALUMINIUM_INGOT, ModItems.ALUMINIUM_NUGGET);
         metalConversions(recipeOutput, ModTags.Items.INGOTS_LEAD, ModTags.Items.NUGGETS_LEAD, ModBlocks.LEAD_BLOCK, ModItems.LEAD_INGOT, ModItems.LEAD_NUGGET);
         metalConversions(recipeOutput, ModTags.Items.INGOTS_URANIUM, ModTags.Items.NUGGETS_URANIUM, ModBlocks.URANIUM_BLOCK, ModItems.URANIUM_INGOT, ModItems.URANIUM_NUGGET);
+        metalConversions(recipeOutput, ModTags.Items.INGOTS_THORIUM, ModTags.Items.NUGGETS_THORIUM, ModBlocks.THORIUM_BLOCK, ModItems.THORIUM_INGOT, ModItems.THORIUM_NUGGET);
+
 
         metalConversions(recipeOutput, ModTags.Items.INGOTS_STEEL, ModTags.Items.NUGGETS_STEEL, ModBlocks.STEEL_BLOCK, ModItems.STEEL_INGOT, ModItems.STEEL_NUGGET);
         metalConversions(recipeOutput, ModTags.Items.INGOTS_BRONZE, ModTags.Items.NUGGETS_BRONZE, ModBlocks.BRONZE_BLOCK, ModItems.BRONZE_INGOT, ModItems.BRONZE_NUGGET);
@@ -508,6 +517,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         rawMaterialConversions(recipeOutput, ModTags.Items.RAW_ALUMINUM, ModBlocks.RAW_ALUMINIUM_BLOCK, ModItems.RAW_ALUMINIUM);
         rawMaterialConversions(recipeOutput, ModTags.Items.RAW_LEAD, ModBlocks.RAW_LEAD_BLOCK, ModItems.RAW_LEAD);
         rawMaterialConversions(recipeOutput, ModTags.Items.RAW_URANIUM, ModBlocks.RAW_URANIUM_BLOCK, ModItems.RAW_URANIUM);
+        rawMaterialConversions(recipeOutput, ModTags.Items.RAW_THORIUM, ModBlocks.RAW_THORIUM_BLOCK, ModItems.RAW_THORIUM);
+
         /* =====================================================================
          *                           PULVERIZING
          * ===================================================================== */
@@ -557,6 +568,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         pulverizing(recipeOutput, Ingredient.of(ModTags.Items.INGOTS_ALUMINUM), ModItems.ALUMINIUM_DUST, null, 80, 10, PulverizingSource.INGOT);
         pulverizing(recipeOutput, Ingredient.of(ModTags.Items.INGOTS_LEAD), ModItems.LEAD_DUST, null, 80, 10, PulverizingSource.INGOT);
         pulverizing(recipeOutput, Ingredient.of(ModTags.Items.INGOTS_URANIUM), ModItems.URANIUM_DUST, null, 120, 20, PulverizingSource.INGOT);
+        pulverizing(recipeOutput, Ingredient.of(ModTags.Items.INGOTS_THORIUM), ModItems.THORIUM_DUST, null, 120, 20, PulverizingSource.INGOT);
+
 
         /* ---------- ALLOY INGOTS ---------- */
 
@@ -574,6 +587,11 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
         compostableBiomassPulverizing(recipeOutput, 60, 8);
         basicMetalProcessing(recipeOutput);
+
+        wireSpool(recipeOutput, ModItems.COPPER_WIRE, ModItems.COPPER_SPOOL);
+        wireSpool(recipeOutput, ModItems.IRON_WIRE, ModItems.IRON_SPOOL);
+        wireSpool(recipeOutput, ModItems.GOLD_WIRE, ModItems.GOLD_SPOOL);
+        wireSpool(recipeOutput, ModItems.ELECTRUM_WIRE, ModItems.ELECTRUM_SPOOL);
     }
 
     /* =====================================================================
@@ -724,6 +742,22 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .requires(rawBlock)
                 .unlockedBy("has_raw_block", has(rawBlock))
                 .save(recipeOutput, id(rawItem, "_from_raw_block"));
+    }
+
+    protected static void wireSpool(
+            RecipeOutput recipeOutput,
+            ItemLike wire,
+            ItemLike wireSpool
+    ) {
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, wireSpool)
+                .pattern(" W ")
+                .pattern("WSW")
+                .pattern(" W ")
+                .define('W', Ingredient.of(wire))
+                .define('S', wireSpool)
+                .unlockedBy("has_wire", has(wire))
+                .save(recipeOutput, id(wireSpool, "_from_wires"));
     }
 
     protected static void pulverizing(
@@ -1082,6 +1116,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         hammering(recipeOutput, ModTags.Items.INGOTS_ALUMINUM, ModItems.ALUMINIUM_PLATE.get(), 1, 1);
         hammering(recipeOutput, ModTags.Items.INGOTS_LEAD, ModItems.LEAD_PLATE.get(), 1, 1);
         hammering(recipeOutput, ModTags.Items.INGOTS_URANIUM, ModItems.URANIUM_PLATE.get(), 1, 2);
+        hammering(recipeOutput, ModTags.Items.INGOTS_THORIUM, ModItems.THORIUM_PLATE.get(), 1, 2);
+
 
         rollingMill(recipeOutput, ModTags.Items.INGOTS_IRON, ModItems.IRON_PLATE.get(), 1, 80, 20);
         rollingMill(recipeOutput, ModTags.Items.INGOTS_COPPER, ModItems.COPPER_PLATE.get(), 1, 80, 20);
@@ -1091,6 +1127,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         rollingMill(recipeOutput, ModTags.Items.INGOTS_TITANIUM, ModItems.TITANIUM_PLATE.get(), 1, 100, 25);
         rollingMill(recipeOutput, ModTags.Items.INGOTS_TUNGSTEN, ModItems.TUNGSTEN_PLATE.get(), 1, 120, 30);
         rollingMill(recipeOutput, ModTags.Items.INGOTS_URANIUM, ModItems.URANIUM_PLATE.get(), 1, 140, 35);
+        rollingMill(recipeOutput, ModTags.Items.INGOTS_THORIUM, ModItems.THORIUM_PLATE.get(), 1, 140, 35);
         rollingMill(recipeOutput, ModTags.Items.INGOTS_ALUMINUM, ModItems.ALUMINIUM_PLATE.get(), 1, 80, 20);
         rollingMill(recipeOutput, ModTags.Items.INGOTS_LEAD, ModItems.LEAD_PLATE.get(), 1, 80, 20);
 

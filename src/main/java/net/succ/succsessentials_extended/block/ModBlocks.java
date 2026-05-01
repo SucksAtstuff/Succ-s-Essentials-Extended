@@ -186,6 +186,18 @@ public class ModBlocks {
     public static final DeferredBlock<Block> URANIUM_BLOCK = registerBlock("block_of_uranium",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops()));
 
+    // ---------- THORIUM ----------
+    public static final DeferredBlock<Block> THORIUM_ORE = registerBlock("thorium_ore",
+            () -> new DropExperienceBlock(UniformInt.of(2,6),
+                    BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_ORE).requiresCorrectToolForDrops()));
+    public static final DeferredBlock<Block> DEEPSLATE_THORIUM_ORE = registerBlock("deepslate_thorium_ore",
+            () -> new DropExperienceBlock(UniformInt.of(2,6),
+                    BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE_IRON_ORE).requiresCorrectToolForDrops()));
+    public static final DeferredBlock<Block> RAW_THORIUM_BLOCK = registerBlock("raw_thorium_block",
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.RAW_IRON_BLOCK).requiresCorrectToolForDrops()));
+    public static final DeferredBlock<Block> THORIUM_BLOCK = registerBlock("block_of_thorium",
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops()));
+
 
     /* =====================================================================
      *                           ALLOY BLOCKS

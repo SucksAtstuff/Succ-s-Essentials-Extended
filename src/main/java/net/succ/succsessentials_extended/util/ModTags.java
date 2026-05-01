@@ -361,6 +361,32 @@ public class ModTags {
         public static final TagKey<Item> STORAGE_RAW_URANIUM =
                 TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/raw_uranium"));
 
+        /* ================= THORIUM ================= */
+
+        public static final TagKey<Item> ORES_THORIUM =
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ores/thorium"));
+        public static final TagKey<Item> DEEPSLATE_ORES_THORIUM =
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ores/thorium/deepslate"));
+        public static final TagKey<Item> RAW_THORIUM =
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "raw_materials/thorium"));
+        public static final TagKey<Item> INGOTS_THORIUM =
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ingots/thorium"));
+        public static final TagKey<Item> NUGGETS_THORIUM =
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "nuggets/thorium"));
+        public static final TagKey<Item> DUSTS_THORIUM =
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "dusts/thorium"));
+        public static final TagKey<Item> PLATES_THORIUM =
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "plates/thorium"));
+        public static final TagKey<Item> RODS_THORIUM =
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "rods/thorium"));
+        public static final TagKey<Item> GEARS_THORIUM =
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "gears/thorium"));
+        public static final TagKey<Item> STORAGE_THORIUM =
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/thorium"));
+        public static final TagKey<Item> STORAGE_RAW_THORIUM =
+                TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/raw_thorium"));
+
+
         /* ================= OSMIUM ================= */
 
         public static final TagKey<Item> ORES_OSMIUM =
@@ -763,6 +789,18 @@ public class ModTags {
                 TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/uranium"));
         public static final TagKey<Block> STORAGE_RAW_URANIUM =
                 TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/raw_uranium"));
+
+        /* ================= THORIUM ================= */
+
+        public static final TagKey<Block> ORES_THORIUM =
+                TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "ores/thorium"));
+        public static final TagKey<Block> DEEPSLATE_ORES_THORIUM =
+                TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "ores/thorium/deepslate"));
+        public static final TagKey<Block> STORAGE_THORIUM =
+                TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/thorium"));
+        public static final TagKey<Block> STORAGE_RAW_THORIUM =
+                TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/raw_thorium"));
+
 
         /* ================= OSMIUM ================= */
 

@@ -133,6 +133,13 @@ public class ModItemModelProvider extends ItemModelProvider {
                 ModItems.URANIUM_PLATE
         );
 
+        registerMetalSet(
+                ModItems.THORIUM_INGOT,
+                ModItems.THORIUM_DUST,
+                ModItems.THORIUM_NUGGET,
+                ModItems.THORIUM_PLATE
+        );
+
         /* =====================================================================
          *                           ALLOYS
          * ===================================================================== */
@@ -185,6 +192,7 @@ public class ModItemModelProvider extends ItemModelProvider {
                 ModItems.TITA_CHROME_NUGGET,
                 ModItems.TITA_CHROME_PLATE
         );
+
         basicItem(ModItems.COPPER_DUST.get());
         basicItem(ModItems.IRON_DUST.get());
         basicItem(ModItems.GOLD_DUST.get());
@@ -208,6 +216,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.RAW_ALUMINIUM.get());
         basicItem(ModItems.RAW_LEAD.get());
         basicItem(ModItems.RAW_URANIUM.get());
+        basicItem(ModItems.RAW_THORIUM.get());
 
         // Register models for chromium tools
         handheldItem(ModItems.CHROMIUM_SWORD.get());

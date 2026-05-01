@@ -46,6 +46,7 @@ public class ModBlockLootTablesProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.ALUMINIUM_BLOCK.get());
         dropSelf(ModBlocks.LEAD_BLOCK.get());
         dropSelf(ModBlocks.URANIUM_BLOCK.get());
+        dropSelf(ModBlocks.THORIUM_BLOCK.get());
 
         // Alloy blocks
         dropSelf(ModBlocks.STEEL_BLOCK.get());
@@ -69,6 +70,7 @@ public class ModBlockLootTablesProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.RAW_ALUMINIUM_BLOCK.get());
         dropSelf(ModBlocks.RAW_LEAD_BLOCK.get());
         dropSelf(ModBlocks.RAW_URANIUM_BLOCK.get());
+        dropSelf(ModBlocks.RAW_THORIUM_BLOCK.get());
 
         // Machines / tech
         dropSelf(ModBlocks.ALLOY_FORGER.get());
@@ -161,6 +163,12 @@ public class ModBlockLootTablesProvider extends BlockLootSubProvider {
                 block -> createOreDrop(block, ModItems.RAW_URANIUM.get()));
         add(ModBlocks.DEEPSLATE_URANIUM_ORE.get(),
                 block -> createOreDrop(block, ModItems.RAW_URANIUM.get()));
+
+        // Uranium
+        add(ModBlocks.THORIUM_ORE.get(),
+                block -> createOreDrop(block, ModItems.RAW_THORIUM.get()));
+        add(ModBlocks.DEEPSLATE_THORIUM_ORE.get(),
+                block -> createOreDrop(block, ModItems.RAW_THORIUM.get()));
     }
 
     /* =====================================================================
