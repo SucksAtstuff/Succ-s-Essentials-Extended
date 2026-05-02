@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/orientable",
-  "textures": {
-    "front": "succsessentials_extended:block/coal_generator/coal_generator_front_on",
-    "side": "succsessentials_extended:block/coal_generator/coal_generator_side",
-    "top": "succsessentials_extended:block/coal_generator/coal_generator_top"
-  }
-}

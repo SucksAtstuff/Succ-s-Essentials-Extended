@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/orientable",
-  "textures": {
-    "front": "succsessentials_extended:block/wire_drawer/wire_drawer_front",
-    "side": "succsessentials_extended:block/wire_drawer/wire_drawer_side",
-    "top": "succsessentials_extended:block/wire_drawer/wire_drawer_top"
-  }
-}

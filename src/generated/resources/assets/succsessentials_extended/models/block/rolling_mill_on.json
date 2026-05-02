@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/orientable",
-  "textures": {
-    "front": "succsessentials_extended:block/rolling_mill/rolling_mill_front_on",
-    "side": "succsessentials_extended:block/rolling_mill/rolling_mill_side",
-    "top": "succsessentials_extended:block/rolling_mill/rolling_mill_top"
-  }
-}

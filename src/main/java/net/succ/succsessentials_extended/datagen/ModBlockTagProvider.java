@@ -97,6 +97,12 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.LEAD_BLOCK.get())
                 .add(ModBlocks.RAW_LEAD_BLOCK.get())
 
+                // Thorium
+                .add(ModBlocks.THORIUM_ORE.get())
+                .add(ModBlocks.DEEPSLATE_THORIUM_ORE.get())
+                .add(ModBlocks.THORIUM_BLOCK.get())
+                .add(ModBlocks.RAW_THORIUM_BLOCK.get())
+
                 // Alloys
                 .add(ModBlocks.STEEL_BLOCK.get())
                 .add(ModBlocks.BRONZE_BLOCK.get())
@@ -111,6 +117,12 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.PANEL_BLOCK.get())
                 .add(ModBlocks.INFUSER.get())
                 .add(ModBlocks.ELECTRIC_FURNACE.get())
+
+                // Nuclear Reactor
+                .add(ModBlocks.NUCLEAR_REACTOR_CONTROLLER.get())
+                .add(ModBlocks.NUCLEAR_REACTOR_INPUT.get())
+                .add(ModBlocks.NUCLEAR_REACTOR_OUTPUT.get())
+                .add(ModBlocks.NUCLEAR_REACTOR_CORE.get())
 
                 // Tool tiers
                 .addTag(BlockTags.NEEDS_DIAMOND_TOOL)
@@ -152,7 +164,9 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.TITANIUM_ORE.get())
                 .add(ModBlocks.DEEPSLATE_TITANIUM_ORE.get())
                 .add(ModBlocks.URANIUM_ORE.get())
-                .add(ModBlocks.DEEPSLATE_URANIUM_ORE.get());
+                .add(ModBlocks.DEEPSLATE_URANIUM_ORE.get())
+                .add(ModBlocks.THORIUM_ORE.get())
+                .add(ModBlocks.DEEPSLATE_THORIUM_ORE.get());
 
         tag(Tags.Blocks.NEEDS_NETHERITE_TOOL)
                 .add(ModBlocks.TUNGSTEN_ORE.get())
@@ -288,6 +302,14 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         tag(ModTags.Blocks.STORAGE_RAW_URANIUM).add(ModBlocks.RAW_URANIUM_BLOCK.get());
 
         tag(ModTags.Blocks.STORAGE_RAW_LEAD).add(ModBlocks.RAW_LEAD_BLOCK.get());
+
+        tag(ModTags.Blocks.ORES_THORIUM)
+                .add(ModBlocks.THORIUM_ORE.get())
+                .add(ModBlocks.DEEPSLATE_THORIUM_ORE.get());
+        tag(ModTags.Blocks.DEEPSLATE_ORES_THORIUM)
+                .add(ModBlocks.DEEPSLATE_THORIUM_ORE.get());
+        tag(ModTags.Blocks.STORAGE_THORIUM).add(ModBlocks.THORIUM_BLOCK.get());
+        tag(ModTags.Blocks.STORAGE_RAW_THORIUM).add(ModBlocks.RAW_THORIUM_BLOCK.get());
     }
 
 }

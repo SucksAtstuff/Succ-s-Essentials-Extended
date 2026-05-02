@@ -56,6 +56,7 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 .addTag(ModTags.Items.STORAGE_TITA_CHROME)
                 .addTag(ModTags.Items.STORAGE_TUNGSTEN)
                 .addTag(ModTags.Items.STORAGE_COBALT)
+                .addTag(ModTags.Items.STORAGE_THORIUM)
                 .addTag(ModTags.Items.STORAGE_RAW_CHROMIUM)
                 .addTag(ModTags.Items.STORAGE_RAW_TITANIUM)
                 .addTag(ModTags.Items.STORAGE_RAW_TIN)
@@ -64,7 +65,11 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 .addTag(ModTags.Items.STORAGE_RAW_OSMIUM)
                 .addTag(ModTags.Items.STORAGE_RAW_ZINC)
                 .addTag(ModTags.Items.STORAGE_RAW_SILVER)
-                .addTag(ModTags.Items.STORAGE_RAW_NICKEL);
+                .addTag(ModTags.Items.STORAGE_RAW_NICKEL)
+                .addTag(ModTags.Items.STORAGE_RAW_ALUMINUM)
+                .addTag(ModTags.Items.STORAGE_RAW_URANIUM)
+                .addTag(ModTags.Items.STORAGE_RAW_LEAD)
+                .addTag(ModTags.Items.STORAGE_RAW_THORIUM);
 
 
         tag(ModTags.Items.STORAGE_IRON);
@@ -136,8 +141,14 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 .add(ModBlocks.LEAD_BLOCK.get().asItem())
                 .add(ModBlocks.RAW_LEAD_BLOCK.get().asItem());
 
+        tag(ModTags.Items.STORAGE_RAW_LEAD)
+                .add(ModBlocks.RAW_LEAD_BLOCK.get().asItem());
+
         tag(ModTags.Items.STORAGE_URANIUM)
                 .add(ModBlocks.URANIUM_BLOCK.get().asItem())
+                .add(ModBlocks.RAW_URANIUM_BLOCK.get().asItem());
+
+        tag(ModTags.Items.STORAGE_RAW_URANIUM)
                 .add(ModBlocks.RAW_URANIUM_BLOCK.get().asItem());
 
         tag(ModTags.Items.STORAGE_ALUMINUM)
@@ -260,6 +271,7 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 .add(ModItems.ALUMINIUM_INGOT.get())
                 .add(ModItems.URANIUM_INGOT.get())
                 .add(ModItems.LEAD_INGOT.get())
+                .add(ModItems.THORIUM_INGOT.get())
                 .add(ModItems.STEEL_INGOT.get())
                 .add(ModItems.BRONZE_INGOT.get())
                 .add(ModItems.BRASS_INGOT.get())
@@ -281,6 +293,7 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 .add(ModItems.ALUMINIUM_NUGGET.get())
                 .add(ModItems.URANIUM_NUGGET.get())
                 .add(ModItems.LEAD_NUGGET.get())
+                .add(ModItems.THORIUM_NUGGET.get())
                 .add(ModItems.STEEL_NUGGET.get())
                 .add(ModItems.BRONZE_NUGGET.get())
                 .add(ModItems.BRASS_NUGGET.get())
@@ -307,6 +320,7 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 .add(ModItems.ALUMINIUM_DUST.get())
                 .add(ModItems.URANIUM_DUST.get())
                 .add(ModItems.LEAD_DUST.get())
+                .add(ModItems.THORIUM_DUST.get())
                 .add(ModItems.STEEL_DUST.get())
                 .add(ModItems.BRONZE_DUST.get())
                 .add(ModItems.BRASS_DUST.get())
@@ -327,7 +341,8 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 .add(ModItems.RAW_ALUMINIUM.get())
                 .add(ModItems.RAW_NICKEL.get())
                 .add(ModItems.RAW_URANIUM.get())
-                .add(ModItems.RAW_LEAD.get());
+                .add(ModItems.RAW_LEAD.get())
+                .add(ModItems.RAW_THORIUM.get());
 
         tag(ModTags.Items.ORES)
                 .add(ModBlocks.CHROMIUM_ORE.get().asItem())
@@ -353,7 +368,9 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 .add(ModBlocks.URANIUM_ORE.get().asItem())
                 .add(ModBlocks.DEEPSLATE_URANIUM_ORE.get().asItem())
                 .add(ModBlocks.LEAD_ORE.get().asItem())
-                .add(ModBlocks.DEEPSLATE_LEAD_ORE.get().asItem());
+                .add(ModBlocks.DEEPSLATE_LEAD_ORE.get().asItem())
+                .add(ModBlocks.THORIUM_ORE.get().asItem())
+                .add(ModBlocks.DEEPSLATE_THORIUM_ORE.get().asItem());
 
         tag(ModTags.Items.PLATES)
                 .addTag(ModTags.Items.PLATES_COPPER)
@@ -377,7 +394,8 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 .addTag(ModTags.Items.PLATES_ELECTRUM)
                 .addTag(ModTags.Items.PLATES_INVAR)
                 .addTag(ModTags.Items.PLATES_CONSTANTAN)
-                .addTag(ModTags.Items.PLATES_TITA_CHROME);
+                .addTag(ModTags.Items.PLATES_TITA_CHROME)
+                .addTag(ModTags.Items.PLATES_THORIUM);
 
         tag(ModTags.Items.RODS);
         tag(ModTags.Items.GEARS);
@@ -646,6 +664,24 @@ public class ModItemTagProvider extends ItemTagsProvider {
         tag(ModTags.Items.ORES_URANIUM)
                 .add(ModBlocks.URANIUM_ORE.get().asItem())
                 .add(ModBlocks.DEEPSLATE_URANIUM_ORE.get().asItem());
+
+        // Thorium
+        tag(ModTags.Items.INGOTS_THORIUM).add(ModItems.THORIUM_INGOT.get());
+        tag(ModTags.Items.NUGGETS_THORIUM).add(ModItems.THORIUM_NUGGET.get());
+        tag(ModTags.Items.DUSTS_THORIUM).add(ModItems.THORIUM_DUST.get());
+        tag(ModTags.Items.PLATES_THORIUM).add(ModItems.THORIUM_PLATE.get());
+        tag(ModTags.Items.RODS_THORIUM);
+        tag(ModTags.Items.GEARS_THORIUM);
+        tag(ModTags.Items.RAW_THORIUM).add(ModItems.RAW_THORIUM.get());
+        tag(ModTags.Items.ORES_THORIUM)
+                .add(ModBlocks.THORIUM_ORE.get().asItem())
+                .add(ModBlocks.DEEPSLATE_THORIUM_ORE.get().asItem());
+        tag(ModTags.Items.DEEPSLATE_ORES_THORIUM)
+                .add(ModBlocks.DEEPSLATE_THORIUM_ORE.get().asItem());
+        tag(ModTags.Items.STORAGE_THORIUM)
+                .add(ModBlocks.THORIUM_BLOCK.get().asItem());
+        tag(ModTags.Items.STORAGE_RAW_THORIUM)
+                .add(ModBlocks.RAW_THORIUM_BLOCK.get().asItem());
 
         // Osmium
         tag(ModTags.Items.INGOTS_OSMIUM).add(ModItems.OSMIUM_INGOT.get());
