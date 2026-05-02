@@ -2,6 +2,7 @@ package net.succ.succsessentials_extended.screen.custom;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
@@ -10,7 +11,9 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.material.Fluids;
 import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.network.PacketDistributor;
 import net.succ.succsessentials_extended.Succsessentials_extended;
+import net.succ.succsessentials_extended.network.packet.ToggleReactorPacket;
 import net.succ.succsessentials_extended.screen.renderer.EnergyDisplayTooltipArea;
 import net.succ.succsessentials_extended.screen.renderer.FluidTankRenderer;
 import net.succ.succsessentials_extended.util.MouseUtil;
@@ -35,6 +38,7 @@ public class NuclearReactorControllerBlockScreen
     private EnergyDisplayTooltipArea energyInfoArea;
     private FluidTankRenderer waterTankRenderer;
     private FluidStack currentWaterFluid = FluidStack.EMPTY;
+    private Button toggleButton;
 
     public NuclearReactorControllerBlockScreen(
             NuclearReactorControllerBlockMenu menu,
@@ -59,6 +63,12 @@ public class NuclearReactorControllerBlockScreen
         );
 
         waterTankRenderer = new FluidTankRenderer(10_000, true, TANK_INNER_W, TANK_INNER_H);
+
+        toggleButton = Button.builder(
+                Component.literal(menu.isRunning() ? "STOP" : "START"),
+                b -> PacketDistributor.sendToServer(new ToggleReactorPacket(menu.controller.getBlockPos()))
+        ).bounds(leftPos + 68, topPos + 57, 40, 14).build();
+        addRenderableWidget(toggleButton);
     }
 
     /* ================= LABELS ================= */
@@ -121,6 +131,7 @@ public class NuclearReactorControllerBlockScreen
 
     @Override
     public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float delta) {
+        toggleButton.setMessage(Component.literal(menu.isRunning() ? "STOP" : "START"));
         renderBackground(guiGraphics, mouseX, mouseY, delta);
         super.render(guiGraphics, mouseX, mouseY, delta);
         renderTooltip(guiGraphics, mouseX, mouseY);

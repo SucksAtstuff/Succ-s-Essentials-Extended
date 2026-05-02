@@ -5,12 +5,11 @@ import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.block.Blocks;
-import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
-import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -32,6 +31,7 @@ import net.succ.succsessentials_extended.fluid.ModFluids;
 import net.succ.succsessentials_extended.item.ModCreativeModeTabs;
 import net.succ.succsessentials_extended.item.ModItems;
 import net.succ.succsessentials_extended.loot.ModLootModifiers;
+import net.succ.succsessentials_extended.network.ModNetwork;
 import net.succ.succsessentials_extended.painting.ModPaintings;
 import net.succ.succsessentials_extended.potion.ModPotions;
 import net.succ.succsessentials_extended.recipe.ModRecipes;
@@ -56,6 +56,7 @@ public class Succsessentials_extended {
     {
         // Register the commonSetup method for modloading 20
         modEventBus.addListener(this::commonSetup);
+        modEventBus.addListener(ModNetwork::registerPayloadHandlers);
 
         // Register ourselves for server and other game events we are interested in.
         // Note that this is necessary if and only if we want *this* class (ExampleMod) to respond directly to events.
@@ -93,6 +94,14 @@ public class Succsessentials_extended {
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
 
+        if (FMLEnvironment.dist.isClient()) {
+            NeoForge.EVENT_BUS.addListener(ClientGameEvents::onRenderLevel);
+            NeoForge.EVENT_BUS.addListener(ClientGameEvents::onRenderGui);
+            modEventBus.addListener(ClientModEvents::onClientSetup);
+            modEventBus.addListener(ClientModEvents::onClientExtensions);
+            modEventBus.addListener(ClientModEvents::registerScreens);
+        }
+
         // Register our mod's ModConfigSpec so that FML can create and load the config file for us
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
     }
@@ -118,8 +127,6 @@ public class Succsessentials_extended {
 
     }
 
-    // You can use EventBusSubscriber to automatically register all_hammers.json static methods in the class annotated with @SubscribeEvent
-    @EventBusSubscriber(modid = MOD_ID, bus = EventBusSubscriber.Bus.GAME, value = Dist.CLIENT)
     public static class ClientGameEvents {
         @SubscribeEvent
         public static void onRenderLevel(RenderLevelStageEvent event) {
@@ -132,7 +139,6 @@ public class Succsessentials_extended {
         }
     }
 
-    @EventBusSubscriber(modid = MOD_ID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
     public static class ClientModEvents
     {
         @SubscribeEvent

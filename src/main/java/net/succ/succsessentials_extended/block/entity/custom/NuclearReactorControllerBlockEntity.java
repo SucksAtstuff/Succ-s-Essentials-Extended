@@ -116,6 +116,7 @@ public class NuclearReactorControllerBlockEntity
     private static final int STRUCTURE_CHECK_INTERVAL = 20;
     private static final int OVERHEAT_LIMIT = 100; // 5 seconds without water while running
     private boolean formed = false;
+    private boolean isRunning = false;
     private int tickCounter = 0;
     private int waterTicks = 0;
     private int overheatTicks = 0;
@@ -136,6 +137,7 @@ public class NuclearReactorControllerBlockEntity
                     yield cachedTankWater;
                 }
                 case 4 -> 10_000; // tank capacity in mB
+                case 5 -> isRunning ? 1 : 0;
                 default -> 0;
             };
         }
@@ -143,8 +145,9 @@ public class NuclearReactorControllerBlockEntity
             if (index == 0) waterTicks = value;
             if (index == 2) overheatTicks = value;
             if (index == 3) cachedTankWater = value;
+            if (index == 5) isRunning = value != 0;
         }
-        @Override public int getCount() { return 5; }
+        @Override public int getCount() { return 6; }
     };
 
     /* ======================== CONSTRUCTOR ======================== */
@@ -201,6 +204,10 @@ public class NuclearReactorControllerBlockEntity
         }
 
         if (be.formed) {
+            if (!be.isRunning && be.isBurning) {
+                be.isBurning = false;
+                be.burnProgress = be.maxBurnProgress;
+            }
             be.convertBucketsToFluid();
             be.handleWater();
             be.handleOverheat(level, pos);
@@ -314,9 +321,16 @@ public class NuclearReactorControllerBlockEntity
 
     /* ======================== ENERGY ======================== */
 
+    public boolean isRunning() { return isRunning; }
+
+    public void setRunning(boolean running) {
+        this.isRunning = running;
+        setChanged();
+    }
+
     @Override
     protected boolean hasFuel() {
-        if (!formed) return false;
+        if (!formed || !isRunning) return false;
         NuclearReactorInputBlockEntity input = getInputBE();
         if (input == null || !isFuel(input.itemHandler.getStackInSlot(0))) return false;
         NuclearReactorOutputBlockEntity output = getOutputBE();
@@ -339,7 +353,7 @@ public class NuclearReactorControllerBlockEntity
 
     @Override
     protected void generateEnergy() {
-        if (waterTicks > 0) {
+        if (isRunning && waterTicks > 0) {
             energyStorage.receiveEnergy(currentFuelRate, false);
         }
     }
@@ -374,6 +388,7 @@ public class NuclearReactorControllerBlockEntity
     protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.saveAdditional(tag, registries);
         tag.putBoolean("formed", formed);
+        tag.putBoolean("isRunning", isRunning);
         tag.putInt("waterTicks", waterTicks);
         tag.putInt("overheatTicks", overheatTicks);
         tag.putInt("currentFuelRate", currentFuelRate);
@@ -383,6 +398,7 @@ public class NuclearReactorControllerBlockEntity
     protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.loadAdditional(tag, registries);
         formed = tag.getBoolean("formed");
+        isRunning = tag.getBoolean("isRunning");
         waterTicks = tag.getInt("waterTicks");
         overheatTicks = tag.getInt("overheatTicks");
         if (tag.contains("currentFuelRate")) currentFuelRate = tag.getInt("currentFuelRate");

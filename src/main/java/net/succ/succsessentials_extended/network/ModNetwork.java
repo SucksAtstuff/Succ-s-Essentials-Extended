@@ -7,15 +7,20 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.network.PacketDistributor;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
+import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 import net.succ.succsessentials_extended.Succsessentials_extended;
+import net.succ.succsessentials_extended.network.packet.ToggleReactorPacket;
 
-@EventBusSubscriber(modid = Succsessentials_extended.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
 public class ModNetwork {
 
     @SubscribeEvent
     public static void registerPayloadHandlers(RegisterPayloadHandlersEvent event) {
-
-
+        PayloadRegistrar registrar = event.registrar("1");
+        registrar.playToServer(
+                ToggleReactorPacket.TYPE,
+                ToggleReactorPacket.STREAM_CODEC,
+                ToggleReactorPacket::handle
+        );
     }
 
     public static void sendToServer(CustomPacketPayload payload) {

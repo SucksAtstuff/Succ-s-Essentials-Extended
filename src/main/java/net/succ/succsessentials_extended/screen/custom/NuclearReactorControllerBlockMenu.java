@@ -109,6 +109,7 @@ public class NuclearReactorControllerBlockMenu extends AbstractContainerMenu {
     public int getOverheatTicks() { return controller.data.get(2); }
     public int getTankWater()     { return controller.data.get(3); }
     public int getTankCapacity()  { return controller.data.get(4); }
+    public boolean isRunning()    { return controller.data.get(5) != 0; }
 
     /* ============================================================
        Quick-move stack logic for shift-click
