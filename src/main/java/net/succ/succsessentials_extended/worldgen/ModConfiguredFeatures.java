@@ -13,6 +13,7 @@ import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguratio
 import net.minecraft.world.level.levelgen.structure.templatesystem.BlockMatchTest;
 import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
 import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
+import net.succ.succsessentials_extended.ModConfig;
 import net.succ.succsessentials_extended.Succsessentials_extended;
 import net.succ.succsessentials_extended.block.ModBlocks;
 
@@ -70,120 +71,66 @@ public class ModConfiguredFeatures {
 
         // ---------- CHROMIUM ----------
         register(context, CHROMIUM_ORE_KEY, Feature.ORE,
-                new OreConfiguration(
-                        List.of(
-                                OreConfiguration.target(stoneReplaceables,
-                                        ModBlocks.CHROMIUM_ORE.get().defaultBlockState()),
-                                OreConfiguration.target(deepslateReplaceables,
-                                        ModBlocks.DEEPSLATE_CHROMIUM_ORE.get().defaultBlockState())
-                        ),
-                        4
-                )
-        );
+                new OreConfiguration(List.of(
+                        OreConfiguration.target(stoneReplaceables, ModBlocks.CHROMIUM_ORE.get().defaultBlockState()),
+                        OreConfiguration.target(deepslateReplaceables, ModBlocks.DEEPSLATE_CHROMIUM_ORE.get().defaultBlockState())
+                ), ModConfig.chromiumVeinSize));
 
         // ---------- TITANIUM ----------
         register(context, TITANIUM_ORE_KEY, Feature.ORE,
-                new OreConfiguration(
-                        List.of(
-                                OreConfiguration.target(stoneReplaceables,
-                                        ModBlocks.TITANIUM_ORE.get().defaultBlockState()),
-                                OreConfiguration.target(deepslateReplaceables,
-                                        ModBlocks.DEEPSLATE_TITANIUM_ORE.get().defaultBlockState())
-                        ),
-                        7
-                )
-        );
+                new OreConfiguration(List.of(
+                        OreConfiguration.target(stoneReplaceables, ModBlocks.TITANIUM_ORE.get().defaultBlockState()),
+                        OreConfiguration.target(deepslateReplaceables, ModBlocks.DEEPSLATE_TITANIUM_ORE.get().defaultBlockState())
+                ), ModConfig.titaniumVeinSize));
 
         // ---------- TIN ----------
         register(context, TIN_ORE_KEY, Feature.ORE,
-                new OreConfiguration(
-                        List.of(
-                                OreConfiguration.target(stoneReplaceables,
-                                        ModBlocks.TIN_ORE.get().defaultBlockState()),
-                                OreConfiguration.target(deepslateReplaceables,
-                                        ModBlocks.DEEPSLATE_TIN_ORE.get().defaultBlockState())
-                        ),
-                        9
-                )
-        );
+                new OreConfiguration(List.of(
+                        OreConfiguration.target(stoneReplaceables, ModBlocks.TIN_ORE.get().defaultBlockState()),
+                        OreConfiguration.target(deepslateReplaceables, ModBlocks.DEEPSLATE_TIN_ORE.get().defaultBlockState())
+                ), ModConfig.tinVeinSize));
 
         // ---------- TUNGSTEN ----------
         register(context, TUNGSTEN_ORE_KEY, Feature.ORE,
-                new OreConfiguration(
-                        List.of(
-                                OreConfiguration.target(stoneReplaceables,
-                                        ModBlocks.TUNGSTEN_ORE.get().defaultBlockState()),
-                                OreConfiguration.target(deepslateReplaceables,
-                                        ModBlocks.DEEPSLATE_TUNGSTEN_ORE.get().defaultBlockState())
-                        ),
-                        6
-                )
-        );
+                new OreConfiguration(List.of(
+                        OreConfiguration.target(stoneReplaceables, ModBlocks.TUNGSTEN_ORE.get().defaultBlockState()),
+                        OreConfiguration.target(deepslateReplaceables, ModBlocks.DEEPSLATE_TUNGSTEN_ORE.get().defaultBlockState())
+                ), ModConfig.tungstenVeinSize));
 
         // ---------- COBALT ----------
         register(context, COBALT_ORE_KEY, Feature.ORE,
-                new OreConfiguration(
-                        List.of(
-                                OreConfiguration.target(stoneReplaceables,
-                                        ModBlocks.COBALT_ORE.get().defaultBlockState()),
-                                OreConfiguration.target(deepslateReplaceables,
-                                        ModBlocks.DEEPSLATE_COBALT_ORE.get().defaultBlockState())
-                        ),
-                        7
-                )
-        );
+                new OreConfiguration(List.of(
+                        OreConfiguration.target(stoneReplaceables, ModBlocks.COBALT_ORE.get().defaultBlockState()),
+                        OreConfiguration.target(deepslateReplaceables, ModBlocks.DEEPSLATE_COBALT_ORE.get().defaultBlockState())
+                ), ModConfig.cobaltVeinSize));
 
         // ---------- OSMIUM ----------
         register(context, OSMIUM_ORE_KEY, Feature.ORE,
-                new OreConfiguration(
-                        List.of(
-                                OreConfiguration.target(stoneReplaceables,
-                                        ModBlocks.OSMIUM_ORE.get().defaultBlockState()),
-                                OreConfiguration.target(deepslateReplaceables,
-                                        ModBlocks.DEEPSLATE_OSMIUM_ORE.get().defaultBlockState())
-                        ),
-                        6
-                )
-        );
+                new OreConfiguration(List.of(
+                        OreConfiguration.target(stoneReplaceables, ModBlocks.OSMIUM_ORE.get().defaultBlockState()),
+                        OreConfiguration.target(deepslateReplaceables, ModBlocks.DEEPSLATE_OSMIUM_ORE.get().defaultBlockState())
+                ), ModConfig.osmiumVeinSize));
 
         // ---------- ZINC ----------
         register(context, ZINC_ORE_KEY, Feature.ORE,
-                new OreConfiguration(
-                        List.of(
-                                OreConfiguration.target(stoneReplaceables,
-                                        ModBlocks.ZINC_ORE.get().defaultBlockState()),
-                                OreConfiguration.target(deepslateReplaceables,
-                                        ModBlocks.DEEPSLATE_ZINC_ORE.get().defaultBlockState())
-                        ),
-                        10
-                )
-        );
+                new OreConfiguration(List.of(
+                        OreConfiguration.target(stoneReplaceables, ModBlocks.ZINC_ORE.get().defaultBlockState()),
+                        OreConfiguration.target(deepslateReplaceables, ModBlocks.DEEPSLATE_ZINC_ORE.get().defaultBlockState())
+                ), ModConfig.zincVeinSize));
 
         // ---------- SILVER ----------
         register(context, SILVER_ORE_KEY, Feature.ORE,
-                new OreConfiguration(
-                        List.of(
-                                OreConfiguration.target(stoneReplaceables,
-                                        ModBlocks.SILVER_ORE.get().defaultBlockState()),
-                                OreConfiguration.target(deepslateReplaceables,
-                                        ModBlocks.DEEPSLATE_SILVER_ORE.get().defaultBlockState())
-                        ),
-                        8
-                )
-        );
+                new OreConfiguration(List.of(
+                        OreConfiguration.target(stoneReplaceables, ModBlocks.SILVER_ORE.get().defaultBlockState()),
+                        OreConfiguration.target(deepslateReplaceables, ModBlocks.DEEPSLATE_SILVER_ORE.get().defaultBlockState())
+                ), ModConfig.silverVeinSize));
 
         // ---------- NICKEL ----------
         register(context, NICKEL_ORE_KEY, Feature.ORE,
-                new OreConfiguration(
-                        List.of(
-                                OreConfiguration.target(stoneReplaceables,
-                                        ModBlocks.NICKEL_ORE.get().defaultBlockState()),
-                                OreConfiguration.target(deepslateReplaceables,
-                                        ModBlocks.DEEPSLATE_NICKEL_ORE.get().defaultBlockState())
-                        ),
-                        8
-                )
-        );
+                new OreConfiguration(List.of(
+                        OreConfiguration.target(stoneReplaceables, ModBlocks.NICKEL_ORE.get().defaultBlockState()),
+                        OreConfiguration.target(deepslateReplaceables, ModBlocks.DEEPSLATE_NICKEL_ORE.get().defaultBlockState())
+                ), ModConfig.nickelVeinSize));
     }
 
     /* =====================================================================

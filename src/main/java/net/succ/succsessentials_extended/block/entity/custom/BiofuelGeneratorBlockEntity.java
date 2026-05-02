@@ -19,6 +19,7 @@ import net.neoforged.neoforge.items.ItemStackHandler;
 import net.succ.succsessentials_extended.block.custom.ElectricFurnaceBlock;
 import net.succ.succsessentials_extended.block.entity.ModBlockEntities;
 import net.succ.succsessentials_extended.block.entity.base.AbstractGeneratorBlockEntity;
+import net.succ.succsessentials_extended.ModConfig;
 import net.succ.succsessentials_extended.screen.custom.BioFuelGeneratorMenu;
 import net.succ.succsessentials_extended.util.ModTags;
 import org.jetbrains.annotations.Nullable;
@@ -95,9 +96,9 @@ public class BiofuelGeneratorBlockEntity extends AbstractGeneratorBlockEntity
                 ModBlockEntities.BIO_FUEL_GENERATOR_BE.get(),
                 pos,
                 state,
-                64000, // ENERGY CAPACITY
-                640,   // ENERGY TRANSFER RATE
-                BURN_TIME    // BURN TIME PER FUEL
+                ModConfig.biofuelCapacity,
+                ModConfig.biofuelTransfer,
+                ModConfig.biofuelBurnTime
         );
     }
 
@@ -124,21 +125,17 @@ public class BiofuelGeneratorBlockEntity extends AbstractGeneratorBlockEntity
      */
     @Override
     protected void generateEnergy() {
-        energyStorage.receiveEnergy(POWER_GENERATION_RATE, false);
+        energyStorage.receiveEnergy(ModConfig.biofuelGenerationRate, false);
     }
 
-    /**
-     * Defines how much energy this generator can push per tick.
-     * Used by the generator base.
-     */
     @Override
     protected int getEnergyTransferRate() {
-        return POWER_GENERATION_RATE;
+        return ModConfig.biofuelTransfer;
     }
 
     @Override
     public int getPowerGenerationRate() {
-        return POWER_GENERATION_RATE;
+        return ModConfig.biofuelGenerationRate;
     }
 
     /* ================= BLOCK STATE ================= */

@@ -25,6 +25,7 @@ import net.succ.succsessentials_extended.recipe.ModRecipes;
 import net.succ.succsessentials_extended.recipe.rollingmill.RollingMillRecipe;
 import net.succ.succsessentials_extended.recipe.rollingmill.RollingMillRecipeInput;
 import net.succ.succsessentials_extended.screen.custom.RollingMillBlockMenu;
+import net.succ.succsessentials_extended.ModConfig;
 import net.succ.succsessentials_extended.util.ModTags;
 import org.jetbrains.annotations.Nullable;
 
@@ -97,8 +98,8 @@ public class RollingMillBlockEntity extends AbstractPoweredMachineBlockEntity
                 ModBlockEntities.ROLLING_MILL_BE.get(),
                 pos,
                 state,
-                64000,
-                320
+                ModConfig.rollingMillCapacity,
+                ModConfig.rollingMillTransfer
         );
     }
 

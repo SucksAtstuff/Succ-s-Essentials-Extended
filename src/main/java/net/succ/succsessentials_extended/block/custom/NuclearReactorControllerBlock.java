@@ -190,7 +190,7 @@ public class NuclearReactorControllerBlock extends BaseEntityBlock
     }
 
     public int getGenerationRate() {
-        return NuclearReactorControllerBlockEntity.RATE_URANIUM;
+        return net.succ.succsessentials_extended.ModConfig.reactorUraniumRate;
     }
 
     @Override

@@ -25,6 +25,7 @@ import net.succ.succsessentials_extended.recipe.ModRecipes;
 import net.succ.succsessentials_extended.recipe.wiredrawing.WireDrawingRecipe;
 import net.succ.succsessentials_extended.recipe.wiredrawing.WireDrawingRecipeInput;
 import net.succ.succsessentials_extended.screen.custom.WireDrawerBlockMenu;
+import net.succ.succsessentials_extended.ModConfig;
 import net.succ.succsessentials_extended.util.ModTags;
 import org.jetbrains.annotations.Nullable;
 
@@ -91,8 +92,8 @@ public class WireDrawerBlockEntity extends AbstractPoweredMachineBlockEntity
                 ModBlockEntities.WIRE_DRAWER_BE.get(),
                 pos,
                 state,
-                64000,
-                320
+                ModConfig.wireDrawerCapacity,
+                ModConfig.wireDrawerTransfer
         );
     }
 

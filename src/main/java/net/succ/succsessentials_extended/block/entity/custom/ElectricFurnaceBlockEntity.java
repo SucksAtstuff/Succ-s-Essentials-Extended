@@ -21,6 +21,7 @@ import net.neoforged.neoforge.items.ItemStackHandler;
 import net.succ.succsessentials_extended.block.custom.ElectricFurnaceBlock;
 import net.succ.succsessentials_extended.block.entity.ModBlockEntities;
 import net.succ.succsessentials_extended.block.entity.base.AbstractPoweredMachineBlockEntity;
+import net.succ.succsessentials_extended.ModConfig;
 import net.succ.succsessentials_extended.screen.custom.ElectricFurnaceBlockMenu;
 import org.jetbrains.annotations.Nullable;
 
@@ -91,8 +92,8 @@ public class ElectricFurnaceBlockEntity extends AbstractPoweredMachineBlockEntit
                 ModBlockEntities.ELECTRIC_FURNACE_BE.get(),
                 pos,
                 state,
-                64000, // ENERGY CAPACITY (unchanged)
-                320    // ENERGY TRANSFER (unchanged)
+                ModConfig.electricFurnaceCapacity,
+                ModConfig.electricFurnaceTransfer
         );
     }
 
@@ -109,7 +110,7 @@ public class ElectricFurnaceBlockEntity extends AbstractPoweredMachineBlockEntit
         if (recipe.isEmpty()) return false;
 
         maxProgress = recipe.get().value().getCookingTime();
-        energyPerTick = 20; // constant for electric furnace
+        energyPerTick = ModConfig.electricFurnaceEnergyPerTick;
 
         ItemStack result = recipe.get().value().getResultItem(level.registryAccess());
         return canInsertIntoOutput(result);

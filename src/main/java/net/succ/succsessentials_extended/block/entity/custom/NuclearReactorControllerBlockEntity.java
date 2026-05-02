@@ -26,6 +26,7 @@ import net.succ.succsessentials_extended.block.ModBlocks;
 import net.succ.succsessentials_extended.block.custom.NuclearReactorControllerBlock;
 import net.succ.succsessentials_extended.block.entity.ModBlockEntities;
 import net.succ.succsessentials_extended.block.entity.base.AbstractGeneratorBlockEntity;
+import net.succ.succsessentials_extended.ModConfig;
 import net.succ.succsessentials_extended.item.ModItems;
 import net.succ.succsessentials_extended.screen.custom.NuclearReactorControllerBlockMenu;
 import net.succ.succsessentials_extended.util.energy.ModEnergyStorage;
@@ -96,14 +97,12 @@ public class NuclearReactorControllerBlockEntity
     /* ======================== FUEL RATES ======================== */
 
     // FE/t generated per fuel type — add plutonium/polonium here when items exist
-    public static final int RATE_THORIUM  =  60;   // 0.5x — low-grade fissile
-    public static final int RATE_URANIUM  = 120;   // 1.0x — baseline
     // public static final int RATE_PLUTONIUM = 240; // 2.0x
     // public static final int RATE_POLONIUM  = 480; // 4.0x
 
     private static int getFuelRate(net.minecraft.world.item.ItemStack stack) {
-        if (stack.is(ModItems.THORIUM_INGOT.get()))  return RATE_THORIUM;
-        if (stack.is(ModItems.URANIUM_INGOT.get()))  return RATE_URANIUM;
+        if (stack.is(ModItems.THORIUM_INGOT.get()))  return ModConfig.reactorThoriumRate;
+        if (stack.is(ModItems.URANIUM_INGOT.get()))  return ModConfig.reactorUraniumRate;
         // if (stack.is(ModItems.PLUTONIUM_INGOT.get())) return RATE_PLUTONIUM;
         // if (stack.is(ModItems.POLONIUM_INGOT.get()))  return RATE_POLONIUM;
         return 0;
@@ -124,7 +123,7 @@ public class NuclearReactorControllerBlockEntity
     private int waterTicks = 0;
     private int overheatTicks = 0;
     private int cachedTankWater = 0; // client-side mirror of the input block's fluid tank
-    private int currentFuelRate = RATE_URANIUM; // FE/t for the active burn cycle
+    private int currentFuelRate = ModConfig.reactorUraniumRate; // FE/t for the active burn cycle
 
     public final ContainerData data = new ContainerData() {
         @Override public int get(int index) {
@@ -160,8 +159,8 @@ public class NuclearReactorControllerBlockEntity
                 ModBlockEntities.NUCLEAR_REACTOR_CONTROLLER_BE.get(),
                 pos,
                 state,
-                1_000_000, // ENERGY CAPACITY
-                4_000,     // ENERGY TRANSFER RATE
+                ModConfig.reactorCapacity,
+                ModConfig.reactorTransfer,
                 200        // Dummy burn time (unused)
         );
     }
@@ -280,10 +279,12 @@ public class NuclearReactorControllerBlockEntity
         if (isBurning && waterTicks <= 0) {
             overheatTicks++;
             if (overheatTicks >= OVERHEAT_LIMIT) {
-                level.explode(null,
-                        pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5,
-                        7.0f, Level.ExplosionInteraction.TNT);
-                spawnRadiationCloud(level, pos);
+                if (ModConfig.reactorEnableExplosion) {
+                    level.explode(null,
+                            pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5,
+                            7.0f, Level.ExplosionInteraction.TNT);
+                    spawnRadiationCloud(level, pos);
+                }
                 overheatTicks = 0;
             }
         } else {
@@ -294,7 +295,7 @@ public class NuclearReactorControllerBlockEntity
     private void spawnRadiationCloud(Level level, BlockPos pos) {
         // Scale radius, duration and amplifier with fuel potency.
         // RATE_THORIUM (60) → scale 1.0; RATE_URANIUM (120) → scale 2.0
-        float scale = currentFuelRate / (float) RATE_THORIUM;
+        float scale = currentFuelRate / (float) ModConfig.reactorThoriumRate;
         float radius = 7.0f * scale;
         int duration = (int) (4800 * scale); // thorium: 4 min, uranium: 8 min
         int amplifier = (int) scale - 1;     // thorium: 0, uranium: 1
@@ -381,7 +382,7 @@ public class NuclearReactorControllerBlockEntity
 
     @Override
     protected int getEnergyTransferRate() {
-        return 4_000;
+        return ModConfig.reactorTransfer;
     }
 
     @Override

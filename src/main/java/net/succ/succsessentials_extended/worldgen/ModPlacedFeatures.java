@@ -10,6 +10,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.placement.*;
+import net.succ.succsessentials_extended.ModConfig;
 import net.succ.succsessentials_extended.Succsessentials_extended;
 
 import java.util.List;
@@ -49,75 +50,74 @@ public class ModPlacedFeatures {
         // ---------- CHROMIUM ----------
         register(context, CHROMIUM_ORE_PLACED_KEY,
                 configuredFeatures.getOrThrow(ModConfiguredFeatures.CHROMIUM_ORE_KEY),
-                ModOrePlacement.rareOrePlacement(1,
+                ModOrePlacement.commonOrePlacement(ModConfig.chromiumVeinsPerChunk,
                         HeightRangePlacement.triangle(
-                                VerticalAnchor.absolute(-48),
-                                VerticalAnchor.absolute(-8))));
-
+                                VerticalAnchor.absolute(ModConfig.chromiumMinY),
+                                VerticalAnchor.absolute(ModConfig.chromiumMaxY))));
 
         // ---------- TITANIUM ----------
         register(context, TITANIUM_ORE_PLACED_KEY,
                 configuredFeatures.getOrThrow(ModConfiguredFeatures.TITANIUM_ORE_KEY),
-                ModOrePlacement.commonOrePlacement(5,
+                ModOrePlacement.commonOrePlacement(ModConfig.titaniumVeinsPerChunk,
                         HeightRangePlacement.triangle(
-                                VerticalAnchor.absolute(-48),
-                                VerticalAnchor.absolute(16))));
+                                VerticalAnchor.absolute(ModConfig.titaniumMinY),
+                                VerticalAnchor.absolute(ModConfig.titaniumMaxY))));
 
         // ---------- TIN ----------
         register(context, TIN_ORE_PLACED_KEY,
                 configuredFeatures.getOrThrow(ModConfiguredFeatures.TIN_ORE_KEY),
-                ModOrePlacement.commonOrePlacement(12,
+                ModOrePlacement.commonOrePlacement(ModConfig.tinVeinsPerChunk,
                         HeightRangePlacement.uniform(
-                                VerticalAnchor.absolute(0),
-                                VerticalAnchor.absolute(96))));
+                                VerticalAnchor.absolute(ModConfig.tinMinY),
+                                VerticalAnchor.absolute(ModConfig.tinMaxY))));
 
         // ---------- TUNGSTEN ----------
         register(context, TUNGSTEN_ORE_PLACED_KEY,
                 configuredFeatures.getOrThrow(ModConfiguredFeatures.TUNGSTEN_ORE_KEY),
-                ModOrePlacement.rareOrePlacement(3,
+                ModOrePlacement.commonOrePlacement(ModConfig.tungstenVeinsPerChunk,
                         HeightRangePlacement.triangle(
-                                VerticalAnchor.absolute(-64),
-                                VerticalAnchor.absolute(-16))));
+                                VerticalAnchor.absolute(ModConfig.tungstenMinY),
+                                VerticalAnchor.absolute(ModConfig.tungstenMaxY))));
 
         // ---------- COBALT ----------
         register(context, COBALT_ORE_PLACED_KEY,
                 configuredFeatures.getOrThrow(ModConfiguredFeatures.COBALT_ORE_KEY),
-                ModOrePlacement.commonOrePlacement(5,
+                ModOrePlacement.commonOrePlacement(ModConfig.cobaltVeinsPerChunk,
                         HeightRangePlacement.triangle(
-                                VerticalAnchor.absolute(-32),
-                                VerticalAnchor.absolute(32))));
+                                VerticalAnchor.absolute(ModConfig.cobaltMinY),
+                                VerticalAnchor.absolute(ModConfig.cobaltMaxY))));
 
         // ---------- OSMIUM ----------
         register(context, OSMIUM_ORE_PLACED_KEY,
                 configuredFeatures.getOrThrow(ModConfiguredFeatures.OSMIUM_ORE_KEY),
-                ModOrePlacement.commonOrePlacement(4,
+                ModOrePlacement.commonOrePlacement(ModConfig.osmiumVeinsPerChunk,
                         HeightRangePlacement.triangle(
-                                VerticalAnchor.absolute(-40),
-                                VerticalAnchor.absolute(24))));
+                                VerticalAnchor.absolute(ModConfig.osmiumMinY),
+                                VerticalAnchor.absolute(ModConfig.osmiumMaxY))));
 
         // ---------- ZINC ----------
         register(context, ZINC_ORE_PLACED_KEY,
                 configuredFeatures.getOrThrow(ModConfiguredFeatures.ZINC_ORE_KEY),
-                ModOrePlacement.commonOrePlacement(10,
+                ModOrePlacement.commonOrePlacement(ModConfig.zincVeinsPerChunk,
                         HeightRangePlacement.uniform(
-                                VerticalAnchor.absolute(16),
-                                VerticalAnchor.absolute(112))));
+                                VerticalAnchor.absolute(ModConfig.zincMinY),
+                                VerticalAnchor.absolute(ModConfig.zincMaxY))));
 
         // ---------- SILVER ----------
         register(context, SILVER_ORE_PLACED_KEY,
                 configuredFeatures.getOrThrow(ModConfiguredFeatures.SILVER_ORE_KEY),
-                ModOrePlacement.commonOrePlacement(6,
+                ModOrePlacement.commonOrePlacement(ModConfig.silverVeinsPerChunk,
                         HeightRangePlacement.triangle(
-                                VerticalAnchor.absolute(-24),
-                                VerticalAnchor.absolute(40))));
+                                VerticalAnchor.absolute(ModConfig.silverMinY),
+                                VerticalAnchor.absolute(ModConfig.silverMaxY))));
 
         // ---------- NICKEL ----------
         register(context, NICKEL_ORE_PLACED_KEY,
                 configuredFeatures.getOrThrow(ModConfiguredFeatures.NICKEL_ORE_KEY),
-                ModOrePlacement.commonOrePlacement(6,
+                ModOrePlacement.commonOrePlacement(ModConfig.nickelVeinsPerChunk,
                         HeightRangePlacement.triangle(
-                                VerticalAnchor.absolute(-16),
-                                VerticalAnchor.absolute(48))));
+                                VerticalAnchor.absolute(ModConfig.nickelMinY),
+                                VerticalAnchor.absolute(ModConfig.nickelMaxY))));
 
     }
 

@@ -19,6 +19,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.items.ItemStackHandler;
 import net.succ.succsessentials_extended.block.custom.ElectricFurnaceBlock;
 import net.succ.succsessentials_extended.block.entity.ModBlockEntities;
+import net.succ.succsessentials_extended.ModConfig;
 import net.succ.succsessentials_extended.block.entity.base.AbstractGeneratorBlockEntity;
 import net.succ.succsessentials_extended.screen.custom.CoalGeneratorMenu;
 import org.jetbrains.annotations.Nullable;
@@ -78,9 +79,9 @@ public class CoalGeneratorBlockEntity extends AbstractGeneratorBlockEntity
                 ModBlockEntities.COAL_GENERATOR_BE.get(),
                 pos,
                 state,
-                64000,          // ENERGY CAPACITY
-                POWER_GENERATION_RATE, // ENERGY TRANSFER RATE
-                BURN_TIME             // BURN TIME PER FUEL
+                ModConfig.coalCapacity,
+                ModConfig.coalTransfer,
+                ModConfig.coalBurnTime
         );
     }
 
@@ -98,17 +99,17 @@ public class CoalGeneratorBlockEntity extends AbstractGeneratorBlockEntity
 
     @Override
     protected void generateEnergy() {
-        energyStorage.receiveEnergy(POWER_GENERATION_RATE, false);
+        energyStorage.receiveEnergy(ModConfig.coalGenerationRate, false);
     }
 
     @Override
     protected int getEnergyTransferRate() {
-        return POWER_GENERATION_RATE;
+        return ModConfig.coalTransfer;
     }
 
     @Override
     public int getPowerGenerationRate() {
-        return POWER_GENERATION_RATE;
+        return ModConfig.coalGenerationRate;
     }
 
     /* ================= BLOCK STATE ================= */

@@ -23,6 +23,7 @@ import net.succ.succsessentials_extended.block.entity.base.AbstractPoweredMachin
 import net.succ.succsessentials_extended.recipe.ModRecipes;
 import net.succ.succsessentials_extended.recipe.pulverizing.PulverizingRecipe;
 import net.succ.succsessentials_extended.recipe.pulverizing.PulverizingRecipeInput;
+import net.succ.succsessentials_extended.ModConfig;
 import net.succ.succsessentials_extended.screen.custom.PulverizerBlockMenu;
 import org.jetbrains.annotations.Nullable;
 
@@ -89,8 +90,8 @@ public class PulverizerBlockEntity extends AbstractPoweredMachineBlockEntity
                 ModBlockEntities.PULVERIZER_BE.get(),
                 pos,
                 state,
-                64000,
-                320
+                ModConfig.pulverizerCapacity,
+                ModConfig.pulverizerTransfer
         );
     }
 

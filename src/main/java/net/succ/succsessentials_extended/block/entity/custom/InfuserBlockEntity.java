@@ -25,6 +25,7 @@ import net.succ.succsessentials_extended.recipe.infusing.InfusingRecipe;
 import net.succ.succsessentials_extended.recipe.infusing.InfusingRecipeInput;
 import net.succ.succsessentials_extended.recipe.ModRecipes;
 import net.succ.succsessentials_extended.screen.custom.InfuserBlockMenu;
+import net.succ.succsessentials_extended.ModConfig;
 import net.succ.succsessentials_extended.util.ModTags;
 import org.jetbrains.annotations.Nullable;
 
@@ -92,8 +93,8 @@ public class InfuserBlockEntity extends AbstractPoweredMachineBlockEntity
                 ModBlockEntities.INFUSER_BE.get(),
                 pos,
                 state,
-                128000,
-                640
+                ModConfig.infuserCapacity,
+                ModConfig.infuserTransfer
         );
 
         this.maxProgress = 400;

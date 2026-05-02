@@ -25,6 +25,7 @@ import net.succ.succsessentials_extended.recipe.alloyforging.AlloyForgingRecipe;
 import net.succ.succsessentials_extended.recipe.alloyforging.AlloyForgingRecipeInput;
 import net.succ.succsessentials_extended.recipe.ModRecipes;
 import net.succ.succsessentials_extended.screen.custom.AlloyForgerBlockMenu;
+import net.succ.succsessentials_extended.ModConfig;
 import net.succ.succsessentials_extended.util.ModTags;
 import org.jetbrains.annotations.Nullable;
 
@@ -105,8 +106,8 @@ public class AlloyForgerBlockEntity extends AbstractPoweredMachineBlockEntity
                 ModBlockEntities.ALLOY_FORGER_BE.get(),
                 pos,
                 state,
-                64000, // ENERGY CAPACITY
-                320    // ENERGY TRANSFER
+                ModConfig.alloyForgerCapacity,
+                ModConfig.alloyForgerTransfer
         );
     }
 
