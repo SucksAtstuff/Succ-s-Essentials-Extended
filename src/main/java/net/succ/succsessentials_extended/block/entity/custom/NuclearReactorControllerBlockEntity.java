@@ -11,10 +11,13 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.AreaEffectCloud;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.succ.succsessentials_extended.effect.ModEffects;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.succ.succsessentials_extended.api.multiblock.MultiblockController;
@@ -280,11 +283,29 @@ public class NuclearReactorControllerBlockEntity
                 level.explode(null,
                         pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5,
                         7.0f, Level.ExplosionInteraction.TNT);
+                spawnRadiationCloud(level, pos);
                 overheatTicks = 0;
             }
         } else {
             overheatTicks = 0;
         }
+    }
+
+    private void spawnRadiationCloud(Level level, BlockPos pos) {
+        // Scale radius, duration and amplifier with fuel potency.
+        // RATE_THORIUM (60) → scale 1.0; RATE_URANIUM (120) → scale 2.0
+        float scale = currentFuelRate / (float) RATE_THORIUM;
+        float radius = 7.0f * scale;
+        int duration = (int) (4800 * scale); // thorium: 4 min, uranium: 8 min
+        int amplifier = (int) scale - 1;     // thorium: 0, uranium: 1
+
+        AreaEffectCloud cloud = new AreaEffectCloud(level,
+                pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5);
+        cloud.setRadius(radius);
+        cloud.setDuration(duration);
+        cloud.setRadiusPerTick(-radius / duration); // shrinks to 0 by expiry
+        cloud.addEffect(new MobEffectInstance(ModEffects.RADIATED_EFFECT, 100, amplifier));
+        level.addFreshEntity(cloud);
     }
 
     /* ======================== WATER ======================== */
