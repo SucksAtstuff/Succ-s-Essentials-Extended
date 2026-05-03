@@ -676,8 +676,6 @@ public class ModItemTagProvider extends ItemTagsProvider {
         tag(ModTags.Items.ORES_THORIUM)
                 .add(ModBlocks.THORIUM_ORE.get().asItem())
                 .add(ModBlocks.DEEPSLATE_THORIUM_ORE.get().asItem());
-        tag(ModTags.Items.DEEPSLATE_ORES_THORIUM)
-                .add(ModBlocks.DEEPSLATE_THORIUM_ORE.get().asItem());
         tag(ModTags.Items.STORAGE_THORIUM)
                 .add(ModBlocks.THORIUM_BLOCK.get().asItem());
         tag(ModTags.Items.STORAGE_RAW_THORIUM)

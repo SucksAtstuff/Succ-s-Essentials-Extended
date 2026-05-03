@@ -17,6 +17,7 @@ import net.neoforged.neoforge.client.event.RenderGuiEvent;
 import net.neoforged.neoforge.client.event.RenderLevelStageEvent;
 import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
 import net.succ.succsessentials_extended.client.MultiblockPreviewRenderer;
+import net.succ.succsessentials_extended.datagen.DataGenerators;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
@@ -57,6 +58,7 @@ public class Succsessentials_extended {
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(ModNetwork::registerPayloadHandlers);
         modEventBus.addListener(ModConfig::onLoad);
+        modEventBus.addListener(DataGenerators::gatherData);
 
         // Register ourselves for server and other game events we are interested in.
         // Note that this is necessary if and only if we want *this* class (ExampleMod) to respond directly to events.

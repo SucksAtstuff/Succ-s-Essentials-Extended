@@ -306,8 +306,6 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         tag(ModTags.Blocks.ORES_THORIUM)
                 .add(ModBlocks.THORIUM_ORE.get())
                 .add(ModBlocks.DEEPSLATE_THORIUM_ORE.get());
-        tag(ModTags.Blocks.DEEPSLATE_ORES_THORIUM)
-                .add(ModBlocks.DEEPSLATE_THORIUM_ORE.get());
         tag(ModTags.Blocks.STORAGE_THORIUM).add(ModBlocks.THORIUM_BLOCK.get());
         tag(ModTags.Blocks.STORAGE_RAW_THORIUM).add(ModBlocks.RAW_THORIUM_BLOCK.get());
     }
