@@ -1,0 +1,12 @@
+{
+  "type": "succsessentials_extended:rolling_mill",
+  "cook_time": 120,
+  "energy_per_tick": 30,
+  "input": {
+    "tag": "c:ingots/tungsten"
+  },
+  "result": {
+    "count": 1,
+    "id": "succsessentials_extended:tungsten_plate"
+  }
+}

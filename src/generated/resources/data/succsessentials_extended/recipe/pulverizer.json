@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "F": {
+      "item": "minecraft:piston"
+    },
+    "P": {
+      "item": "succsessentials_extended:panel_block"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "S": {
+      "tag": "c:ingots/steel"
+    }
+  },
+  "pattern": [
+    "SPS",
+    "PFP",
+    "SRS"
+  ],
+  "result": {
+    "count": 1,
+    "id": "succsessentials_extended:pulverizer"
+  }
+}

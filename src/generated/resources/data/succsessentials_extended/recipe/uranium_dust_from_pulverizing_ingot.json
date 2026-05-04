@@ -1,0 +1,11 @@
+{
+  "type": "succsessentials_extended:pulverizing",
+  "cook_time": 120,
+  "input": {
+    "tag": "c:ingots/uranium"
+  },
+  "result": {
+    "count": 1,
+    "id": "succsessentials_extended:uranium_dust"
+  }
+}

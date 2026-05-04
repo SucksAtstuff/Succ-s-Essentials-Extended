@@ -1,0 +1,16 @@
+{
+  "type": "succsessentials_extended:alloy_forging",
+  "cook_time": 100,
+  "count_a": 3,
+  "energy_per_tick": 40,
+  "input_a": {
+    "tag": "c:ingots/copper"
+  },
+  "input_b": {
+    "tag": "c:ingots/tin"
+  },
+  "result": {
+    "count": 4,
+    "id": "succsessentials_extended:bronze_ingot"
+  }
+}

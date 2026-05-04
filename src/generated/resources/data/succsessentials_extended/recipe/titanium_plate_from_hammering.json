@@ -1,0 +1,13 @@
+{
+  "type": "succsessentials_extended:hammering",
+  "hammer": {
+    "tag": "c:tools/hammers"
+  },
+  "input": {
+    "tag": "c:ingots/titanium"
+  },
+  "result": {
+    "count": 1,
+    "id": "succsessentials_extended:titanium_plate"
+  }
+}

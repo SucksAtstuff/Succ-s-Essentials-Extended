@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "succsessentials_extended:item/diamond_dust"
+  }
+}

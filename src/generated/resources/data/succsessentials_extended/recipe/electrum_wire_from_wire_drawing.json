@@ -1,0 +1,12 @@
+{
+  "type": "succsessentials_extended:wire_drawing",
+  "cook_time": 60,
+  "energy_per_tick": 15,
+  "input": {
+    "tag": "c:plates/electrum"
+  },
+  "result": {
+    "count": 3,
+    "id": "succsessentials_extended:electrum_wire"
+  }
+}

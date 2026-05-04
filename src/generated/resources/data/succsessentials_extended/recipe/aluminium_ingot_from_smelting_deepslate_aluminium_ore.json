@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 0.25,
+  "group": "aluminium",
+  "ingredient": {
+    "item": "succsessentials_extended:deepslate_aluminium_ore"
+  },
+  "result": {
+    "count": 1,
+    "id": "succsessentials_extended:aluminium_ingot"
+  }
+}

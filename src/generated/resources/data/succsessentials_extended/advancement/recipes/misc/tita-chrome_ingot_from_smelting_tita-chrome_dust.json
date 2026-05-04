@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "succsessentials_extended:tita-chrome_ingot_from_smelting_tita-chrome_dust"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_tita-chrome_dust": {
+      "conditions": {
+        "items": [
+          {
+            "items": "succsessentials_extended:tita-chrome_dust"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_tita-chrome_dust"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "succsessentials_extended:tita-chrome_ingot_from_smelting_tita-chrome_dust"
+    ]
+  }
+}

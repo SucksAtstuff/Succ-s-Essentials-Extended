@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 300,
+  "experience": 0.45,
+  "group": "uranium",
+  "ingredient": {
+    "item": "succsessentials_extended:uranium_ore"
+  },
+  "result": {
+    "count": 1,
+    "id": "succsessentials_extended:uranium_ingot"
+  }
+}

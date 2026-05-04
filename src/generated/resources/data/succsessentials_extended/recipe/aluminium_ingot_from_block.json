@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "succsessentials_extended:block_of_aluminium"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "id": "succsessentials_extended:aluminium_ingot"
+  }
+}

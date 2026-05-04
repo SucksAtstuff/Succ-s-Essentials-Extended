@@ -1,0 +1,12 @@
+{
+  "type": "succsessentials_extended:rolling_mill",
+  "cook_time": 100,
+  "energy_per_tick": 25,
+  "input": {
+    "tag": "c:ingots/constantan"
+  },
+  "result": {
+    "count": 1,
+    "id": "succsessentials_extended:constantan_plate"
+  }
+}

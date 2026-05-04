@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "F": {
+      "item": "minecraft:blast_furnace"
+    },
+    "P": {
+      "item": "succsessentials_extended:panel_block"
+    },
+    "S": {
+      "tag": "c:ingots/steel"
+    }
+  },
+  "pattern": [
+    "SPS",
+    "PFP",
+    "SPS"
+  ],
+  "result": {
+    "count": 1,
+    "id": "succsessentials_extended:alloy_forger"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "cookingtime": 100,
+  "experience": 0.3,
+  "group": "osmium",
+  "ingredient": {
+    "item": "succsessentials_extended:deepslate_osmium_ore"
+  },
+  "result": {
+    "count": 1,
+    "id": "succsessentials_extended:osmium_ingot"
+  }
+}

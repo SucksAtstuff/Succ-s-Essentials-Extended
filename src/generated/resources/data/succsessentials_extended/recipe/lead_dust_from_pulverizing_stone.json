@@ -1,0 +1,16 @@
+{
+  "type": "succsessentials_extended:pulverizing",
+  "byproduct": {
+    "count": 1,
+    "id": "minecraft:cobblestone"
+  },
+  "cook_time": 180,
+  "energy_per_tick": 15,
+  "input": {
+    "item": "succsessentials_extended:lead_ore"
+  },
+  "result": {
+    "count": 1,
+    "id": "succsessentials_extended:lead_dust"
+  }
+}

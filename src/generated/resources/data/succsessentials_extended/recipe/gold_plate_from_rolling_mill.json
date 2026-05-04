@@ -1,0 +1,11 @@
+{
+  "type": "succsessentials_extended:rolling_mill",
+  "cook_time": 80,
+  "input": {
+    "tag": "c:ingots/gold"
+  },
+  "result": {
+    "count": 1,
+    "id": "succsessentials_extended:gold_plate"
+  }
+}

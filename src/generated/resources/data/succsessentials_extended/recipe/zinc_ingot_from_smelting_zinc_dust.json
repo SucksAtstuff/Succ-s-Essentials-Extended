@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 0.2,
+  "group": "zinc",
+  "ingredient": {
+    "item": "succsessentials_extended:zinc_dust"
+  },
+  "result": {
+    "count": 1,
+    "id": "succsessentials_extended:zinc_ingot"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "type": "succsessentials_extended:hammering",
+  "durability_cost": 2,
+  "hammer": {
+    "tag": "c:tools/hammers"
+  },
+  "input": {
+    "tag": "c:ingots/uranium"
+  },
+  "result": {
+    "count": 1,
+    "id": "succsessentials_extended:uranium_plate"
+  }
+}
